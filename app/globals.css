@@ -125,3 +125,7 @@
     font-family: var(--font-sora), sans-serif;
   }
 }
+
+button {
+  cursor: pointer;
+}

@@ -16,7 +16,7 @@ export default function Header() {
             <img
               src="/logo.png"
               alt="Diabesity"
-              className="h-[71px] w-auto"
+              className="h-[50px] w-auto"
             />
           </Link>
 
@@ -46,7 +46,7 @@ export default function Header() {
             </button>
             <Link
               href="/contact-specialist"
-              className="bg-primary text-white px-6 py-2.5 rounded hover:bg-primary/90 transition-colors text-sm font-medium"
+              className="bg-primary text-white px-6 py-3 hover:bg-primary/90 transition-colors text-sm font-medium"
             >
               Contact a Specialist
             </Link>
