@@ -98,49 +98,57 @@ const faqs = [
     question: "Is diabetes a death sentence?",
     answer:
       "No, diabetes is not a death sentence. With proper management, including medication, diet, exercise, and regular monitoring, people with diabetes can live long, healthy, and fulfilling lives. The key is early detection and consistent care.",
-    color: "bg-yellow-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(46,100%,47%,1)_0%,hsla(218,68%,25%,1)_100%)]",
   },
   {
     question: "Why did this happen to me?",
     answer:
       "Diabesity can develop due to a combination of genetic factors, lifestyle choices, diet, and environmental factors. It's not your fault—it's a complex condition that affects millions. What matters now is taking positive steps forward to manage your health.",
-    color: "bg-blue-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(28,100%,50%,1)_0%,hsla(34,4%,65%,1)_100%)]",
   },
   {
     question: "Are you at risk?",
     answer:
       "Risk factors include family history of diabetes, being overweight, physical inactivity, age over 45, high blood pressure, and certain ethnic backgrounds. If you have multiple risk factors, it's important to get screened and take preventive measures.",
-    color: "bg-green-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(218,100%,63%,1)_0%,hsla(277,52%,40%,1)_100%)]",
   },
   {
     question: "My blood sugar numbers confuse me.",
     answer:
       "Normal fasting blood sugar is below 100 mg/dL. Prediabetes is 100-125 mg/dL, and diabetes is 126 mg/dL or higher. Your doctor can help you understand your specific targets and what your numbers mean for your health journey.",
-    color: "bg-orange-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(144,100%,39%,1)_0%,hsla(249,39%,29%,1)_100%)]",
   },
   {
     question: "Daily habits that protect you",
     answer:
       "Key protective habits include: eating a balanced diet rich in vegetables and whole grains, exercising for 30 minutes daily, maintaining a healthy weight, managing stress, getting adequate sleep, staying hydrated, and monitoring your blood sugar regularly.",
-    color: "bg-orange-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(144,100%,39%,1)_0%,hsla(249,39%,29%,1)_100%)]",
   },
   {
     question: "I'm at a restaurant — what should I order?",
     answer:
       "Choose grilled or baked proteins instead of fried, opt for vegetables or salad as sides, avoid sugary drinks and desserts, control portion sizes, and ask for dressings and sauces on the side. Don't hesitate to ask how food is prepared.",
-    color: "bg-green-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(218,100%,63%,1)_0%,hsla(277,52%,40%,1)_100%)]",
   },
   {
     question: "I've just been diagnosed — what does this mean?",
     answer:
       "A diagnosis means it's time to take action, but you're not alone. Work with your healthcare team to create a management plan, learn about your condition, make lifestyle adjustments, and connect with support groups. Many people successfully manage diabesity.",
-    color: "bg-blue-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(28,100%,50%,1)_0%,hsla(34,4%,65%,1)_100%)]",
   },
   {
     question: "My doctor mentioned a GLP-1 — what is that?",
     answer:
       "GLP-1 agonists are medications that help control blood sugar by mimicking a hormone that stimulates insulin release, slows digestion, and reduces appetite. They've shown promising results for both diabetes management and weight loss. Discuss with your doctor if they're right for you.",
-    color: "bg-yellow-500",
+    gradient:
+      "bg-[linear-gradient(90deg,hsla(46,100%,47%,1)_0%,hsla(218,68%,25%,1)_100%)]",
   },
 ];
 
@@ -380,38 +388,47 @@ export default function Home() {
       )}
 
       {/* Mission Section */}
-      <section className="grid md:grid-cols-2 max-w-7xl mx-auto">
-        {/* Left Dark Side */}
-        <div className="bg-[#2a2a2a] text-white px-8 md:px-16 py-16 md:py-24">
-          <h2 className="text-[#ff9d5c] text-3xl md:text-4xl font-medium mb-8">
-            Mission
-          </h2>
-          <p className="text-gray-200 text-lg leading-relaxed">
-            We believe every person in Pakistan deserves a life free of
-            diabesity, and we are here to be your compassionate partner in
-            making that a reality. We provide access to reliable information
-            from healthcare experts, explaining complex topics in simple English
-            and Urdu, while fostering hope through the real stories of
-            Pakistanis who have transformed their health. To support you at
-            home, we offer a library of practical resources like meal plans and
-            exercise routines designed for your family and lifestyle.
-          </p>
+      <section className="relative overflow-hidden">
+        {/* Background halves */}
+        <div className="absolute inset-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+          <div className="bg-[#2a2a2a]" />
+          <div className="bg-white" />
         </div>
 
-        {/* Right White Side */}
-        <div className="bg-white px-8 md:px-16 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
-            A reality we can face together
-          </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            In Pakistan, the combination of diabetes and obesity—"diabesity"—has
-            become one of our most urgent health challenges. With{" "}
-            <strong>1 in 4 adults</strong> projected to face obesity by{" "}
-            <strong>2035</strong> and diabetes already affecting{" "}
-            <strong>26.7%</strong> of our population, the numbers are serious.
-            Our modern lives, from the convenience of fast food to more
-            sedentary habits, have fueled this rise.
-          </p>
+        {/* Foreground content */}
+        <div className="relative max-w-7xl mx-auto grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+          {/* Left Dark Side */}
+          <div className="text-white px-8 md:px-16 py-16 md:py-24">
+            <h2 className="text-[#ff9d5c] text-3xl md:text-4xl font-medium mb-8">
+              Mission
+            </h2>
+            <p className="text-gray-200 text-lg leading-relaxed">
+              We believe every person in Pakistan deserves a life free of
+              diabesity, and we are here to be your compassionate partner in
+              making that a reality. We provide access to reliable information
+              from healthcare experts, explaining complex topics in simple
+              English and Urdu, while fostering hope through the real stories of
+              Pakistanis who have transformed their health. To support you at
+              home, we offer a library of practical resources like meal plans
+              and exercise routines designed for your family and lifestyle.
+            </p>
+          </div>
+
+          {/* Right White Side */}
+          <div className="px-8 md:px-16 py-16 md:py-24 text-gray-900">
+            <h2 className="text-3xl md:text-4xl font-medium mb-6">
+              A reality we can face together
+            </h2>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              In Pakistan, the combination of diabetes and
+              obesity—"diabesity"—has become one of our most urgent health
+              challenges. With <strong>1 in 4 adults</strong> projected to face
+              obesity by <strong>2035</strong> and diabetes already affecting{" "}
+              <strong>26.7%</strong> of our population, the numbers are serious.
+              Our modern lives, from the convenience of fast food to more
+              sedentary habits, have fueled this rise.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -637,7 +654,7 @@ export default function Home() {
                 <div key={idx} className="flex flex-col">
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className={`${faq.color} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
+                    className={`${faq.gradient} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
                   >
                     <span>{faq.question}</span>
                     <ChevronDown
@@ -665,7 +682,7 @@ export default function Home() {
                 <div key={idx + 4} className="flex flex-col">
                   <button
                     onClick={() => toggleFaq(idx + 4)}
-                    className={`${faq.color} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
+                    className={`${faq.gradient} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
                   >
                     <span>{faq.question}</span>
                     <ChevronDown
