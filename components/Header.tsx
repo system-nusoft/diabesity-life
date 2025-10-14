@@ -25,7 +25,6 @@ export default function Header() {
             <div className="relative group">
               <Link href="/" className="text-gray-700 hover:text-primary transition-colors flex items-center gap-1 text-base">
                 Home
-                <ChevronDown className="w-4 h-4" />
               </Link>
             </div>
             <Link href="/about" className="text-gray-700 hover:text-primary transition-colors text-base">
