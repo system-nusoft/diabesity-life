@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Post } from "@/lib/wordpress";
 import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
@@ -101,49 +102,57 @@ const faqs = [
     question: "Is diabetes a death sentence?",
     answer:
       "No, diabetes is not a death sentence. With proper management, including medication, diet, exercise, and regular monitoring, people with diabetes can live long, healthy, and fulfilling lives. The key is early detection and consistent care.",
-    gradient: "bg-yellow-500",
+    gradient:
+      "border-2 border-yellow-500 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-0",
   },
   {
     question: "Why did this happen to me?",
     answer:
       "Diabesity can develop due to a combination of genetic factors, lifestyle choices, diet, and environmental factors. It's not your fault—it's a complex condition that affects millions. What matters now is taking positive steps forward to manage your health.",
-    gradient: "bg-orange-500",
+    gradient:
+      "border-2 border-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-0",
   },
   {
     question: "Are you at risk?",
     answer:
       "Risk factors include family history of diabetes, being overweight, physical inactivity, age over 45, high blood pressure, and certain ethnic backgrounds. If you have multiple risk factors, it's important to get screened and take preventive measures.",
-    gradient: "bg-blue-500",
+    gradient:
+      "border-2 border-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-0",
   },
   {
     question: "My blood sugar numbers confuse me.",
     answer:
       "Normal fasting blood sugar is below 100 mg/dL. Prediabetes is 100-125 mg/dL, and diabetes is 126 mg/dL or higher. Your doctor can help you understand your specific targets and what your numbers mean for your health journey.",
-    gradient: "bg-green-500",
+    gradient:
+      "border-2 border-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-0",
   },
   {
     question: "Daily habits that protect you",
     answer:
       "Key protective habits include: eating a balanced diet rich in vegetables and whole grains, exercising for 30 minutes daily, maintaining a healthy weight, managing stress, getting adequate sleep, staying hydrated, and monitoring your blood sugar regularly.",
-    gradient: "bg-green-500",
+    gradient:
+      "border-2 border-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-0",
   },
   {
     question: "I'm at a restaurant — what should I order?",
     answer:
       "Choose grilled or baked proteins instead of fried, opt for vegetables or salad as sides, avoid sugary drinks and desserts, control portion sizes, and ask for dressings and sauces on the side. Don't hesitate to ask how food is prepared.",
-    gradient: "bg-blue-500",
+    gradient:
+      "border-2 border-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-0",
   },
   {
     question: "I've just been diagnosed — what does this mean?",
     answer:
       "A diagnosis means it's time to take action, but you're not alone. Work with your healthcare team to create a management plan, learn about your condition, make lifestyle adjustments, and connect with support groups. Many people successfully manage diabesity.",
-    gradient: "bg-orange-500",
+    gradient:
+      "border-2 border-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-0",
   },
   {
     question: "My doctor mentioned a GLP-1 — what is that?",
     answer:
       "GLP-1 agonists are medications that help control blood sugar by mimicking a hormone that stimulates insulin release, slows digestion, and reduces appetite. They've shown promising results for both diabetes management and weight loss. Discuss with your doctor if they're right for you.",
-    gradient: "bg-yellow-500",
+    gradient:
+      "border-2 border-yellow-500 hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-0",
   },
 ];
 
@@ -311,17 +320,15 @@ export default function Home({ posts }: HomeClientProps) {
                 </h1>
                 <div className="flex gap-4">
                   <Link href={slide.ctaUrl}>
-                    <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 text-sm md:text-lg font-medium transition-colors">
-                      {slide.ctaText}
-                    </button>
+                    <Button variant="primary">{slide.ctaText}</Button>
                   </Link>
-                  <button
+                  <Button
+                    variant="blurry"
                     onClick={() => openVideoModal(slide.videoUrl)}
-                    className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-3 text-sm md:text-lg font-medium transition-colors flex items-center gap-2"
                   >
                     <Play className="w-5 h-5" />
                     Watch Video
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -444,9 +451,7 @@ export default function Home({ posts }: HomeClientProps) {
               </h2>
             </div>
             <Link href="/news">
-              <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 font-medium transition-colors h-fit">
-                More news
-              </button>
+              <Button variant="outlined">More news</Button>
             </Link>
           </div>
 
@@ -489,9 +494,13 @@ export default function Home({ posts }: HomeClientProps) {
                             alt={article.title}
                             className="w-full h-48 object-cover mb-4"
                           />
-                          <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-5 py-2 font-medium transition-colors w-fit">
+                          <Button
+                            variant="outlined"
+                            size="sm"
+                            className="w-fit"
+                          >
                             Learn more
-                          </button>
+                          </Button>
                         </div>
                       </Card>
                     </Link>
@@ -552,9 +561,9 @@ export default function Home({ posts }: HomeClientProps) {
                 <h2 className="text-2xl md:text-3xl font-medium">
                   Knowledge is your most powerful tool for managing diabesity
                 </h2>
-                <button className="border-2 border-[#fcaf58] text-white hover:bg-[#fcaf58] hover:text-white px-8 py-3 font-medium transition-colors w-fit">
+                <Button variant="outlinedOrange" className="w-fit">
                   Start your learning path
-                </button>
+                </Button>
               </div>
             </div>
           </section>
@@ -577,9 +586,9 @@ export default function Home({ posts }: HomeClientProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button className="border-2 border-[#fcaf58] text-white hover:bg-[#fcaf58] hover:text-white px-8 py-3 font-medium transition-colors w-fit">
+                  <Button variant="outlinedOrange" className="w-fit">
                     Donate*
-                  </button>
+                  </Button>
                 </Link>
                 <small className="text-white italic">
                   *This button will take you to an external link
@@ -712,9 +721,9 @@ export default function Home({ posts }: HomeClientProps) {
           </div>
 
           <div className="text-center">
-            <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 font-medium transition-colors">
-              Explore more
-            </button>
+            <Link href="/faqs">
+              <Button variant="outlined">Explore more</Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -732,9 +741,7 @@ export default function Home({ posts }: HomeClientProps) {
               </h2>
             </div>
             <Link href="/blogs">
-              <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 font-medium transition-colors h-fit">
-                Explore more
-              </button>
+              <Button variant="outlined">Explore more</Button>
             </Link>
           </div>
 

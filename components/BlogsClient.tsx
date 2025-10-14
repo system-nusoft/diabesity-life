@@ -11,33 +11,26 @@ interface BlogsClientProps {
 export default function BlogsClient({ posts }: BlogsClientProps) {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section
-        className="relative h-[500px] md:h-[550px] overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2100')",
-        }}
-      >
-        <div className="absolute inset-0 bg-gray-500/60"></div>
-      </section>
-
-      {/* Introduction Section */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
-            Stories, Science, and Solutions for Pakistan
-          </h1>
-          <p className="text-gray-700 text-lg leading-relaxed max-w-5xl mb-2">
-            Welcome to the Diabesity Blog—your go-to hub for cutting-edge
-            insights on diabesity in Pakistan. From the latest research on
-            diabetes and obesity prevention to heartfelt stories of weight loss
-            for diabetics, we cover it all. Whether you're navigating side
-            effects, seeking healthy living tips tailored to Pakistani diets, or
-            exploring genetic risks, our posts deliver actionable advice backed
-            by science and real experiences. New articles drop weekly—subscribe
-            to never miss out!
-          </p>
+      <section className="grid grid-cols-2 max-w-7xl mx-auto gap-8 md:gap-24 py-16 md:py-20 px-6">
+        {/* Introduction Section */}
+        <div className="flex col-span-2 md:col-span-1 justify-center items-center">
+          <div>
+            <h1 className="text-3xl md:text-5xl font-medium text-gray-900 mb-6">
+              Living with diabesity
+            </h1>
+            <p className="text-gray-700 text-lg leading-relaxed max-w-5xl mb-2">
+              Find expert advice on diet, medication, and lifestyle changes you
+              can make today to take control of your health.
+            </p>
+          </div>
+        </div>
+        {/* Hero Section */}
+        <div className="flex col-span-2 md:col-span-1 items-center justify-center">
+          <img
+            className="relative overflow-hidden bg-cover bg-center"
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2100"
+          />
+          {/* <div className="absolute inset-0 bg-gray-500/60"></div> */}
         </div>
       </section>
 

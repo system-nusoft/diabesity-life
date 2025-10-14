@@ -22,13 +22,19 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-10">
-            <div className="relative group">
+            {/* <div className="relative group">
               <Link href="/" className="text-gray-700 hover:text-primary transition-colors flex items-center gap-1 text-base">
                 Home
               </Link>
-            </div>
+            </div> */}
             <Link href="/about" className="text-gray-700 hover:text-primary transition-colors text-base">
               About
+            </Link>
+            <Link href="/news" className="text-gray-700 hover:text-primary transition-colors text-base">
+              News
+            </Link>
+            <Link href="/faqs" className="text-gray-700 hover:text-primary transition-colors text-base">
+              FAQs
             </Link>
             <Link href="/blogs" className="text-gray-700 hover:text-primary transition-colors text-base">
               Blogs
@@ -40,11 +46,11 @@ export default function Header() {
 
           {/* Right Section */}
           <div className="hidden lg:flex items-center space-x-6">
-            <button className="text-gray-700 hover:text-primary transition-colors">
+            {/* <button className="text-gray-700 hover:text-primary transition-colors">
               <Search className="w-5 h-5" />
-            </button>
+            </button> */}
             <Link
-              href="/contact-specialist"
+              href="/contact"
               className="bg-primary text-white px-6 py-3 hover:bg-primary/90 transition-colors text-sm font-medium"
             >
               Contact a Specialist
@@ -64,11 +70,14 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="lg:hidden mt-6 pb-4 flex flex-col space-y-4 border-t border-gray-200 pt-4">
-            <Link href="/" className="text-gray-700 hover:text-primary transition-colors">
-              Home
-            </Link>
             <Link href="/about" className="text-gray-700 hover:text-primary transition-colors">
               About
+            </Link>
+            <Link href="/news" className="text-gray-700 hover:text-primary transition-colors">
+              News
+            </Link>
+            <Link href="/faqs" className="text-gray-700 hover:text-primary transition-colors">
+              FAQs
             </Link>
             <Link href="/blogs" className="text-gray-700 hover:text-primary transition-colors">
               Blogs

@@ -1,12 +1,13 @@
 import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
     <footer className="bg-[#1a1a1a] text-white">
       {/* Contact Specialist Section */}
       <section className="py-16 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between flex-col md:flex-row gap-8">
           <div>
             <h2 className="text-[#ff9d5c] text-4xl md:text-5xl font-medium mb-2">
               Get in touch
@@ -15,9 +16,11 @@ export default function Footer() {
               with a specialist
             </h2>
           </div>
-          <button className="w-36 h-16 border-2 border-[#ff9d5c] flex items-center justify-center text-white hover:bg-[#ff9d5c] transition-colors font-semibold">
-            Contact
-          </button>
+          <Link href="/contact">
+            <Button variant="outlinedOrange">
+              Contact
+            </Button>
+          </Link>
         </div>
       </section>
       <div className="max-w-7xl mx-auto px-6 py-8">
