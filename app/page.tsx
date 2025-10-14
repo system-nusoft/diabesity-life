@@ -1,13 +1,9 @@
-import { fetchAPI } from '@/lib/wordpress';
-import { GET_HOMEPAGE_DATA } from '@/lib/queries';
-import { PostsResponse } from '@/lib/wordpress';
+import { getAllBlogArticles } from '@/lib/blogContent';
+import { getAllNewsArticles } from '@/lib/newsContent';
 import HomeClient from '@/components/HomeClient';
 
-export const revalidate = 60;
-
-export default async function Home() {
-  const data = await fetchAPI<PostsResponse>(GET_HOMEPAGE_DATA);
-  const posts = data.posts.nodes;
-
-  return <HomeClient posts={posts} />;
+export default function Home() {
+  const blogs = getAllBlogArticles();
+  const news = getAllNewsArticles();
+  return <HomeClient blogs={blogs} news={news} />;
 }

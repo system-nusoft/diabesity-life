@@ -1,9 +1,18 @@
+import Article1 from "../public/news-article-1.jpg";
+import Article2 from "../public/news-article-2.webp";
+import Article3 from "../public/news-article-3.jpg";
+import Article4 from "../public/news-article-4.webp";
+import Article5 from "../public/news-article-5.png";
+import Article6 from "../public/news-article-6.jpg";
+
 export interface NewsArticle {
   slug: string;
   title: string;
   date: string;
   image: string;
   imageAlt: string;
+  category: string;
+  color: string;
   content: React.ReactNode;
 }
 
@@ -13,8 +22,10 @@ export const newsArticles: Record<string, NewsArticle> = {
     title: "What is driving Pakistan's alarming diabetes surge?",
     date: "2025-05-15",
     image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
+      Article1.src,
     imageAlt: "Healthcare in Pakistan",
+    category: "Education",
+    color: "bg-orange-500",
     content: (
       <>
         <p>
@@ -56,8 +67,10 @@ export const newsArticles: Record<string, NewsArticle> = {
       "PM launches prevention program as over 33 million Pakistanis found to have diabetes",
     date: "2025-06-20",
     image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070",
+      Article2.src,
     imageAlt: "Prime Minister health initiative",
+    category: "Health",
+    color: "bg-yellow-500",
     content: (
       <>
         <p>
@@ -91,8 +104,10 @@ export const newsArticles: Record<string, NewsArticle> = {
       "Pakistan Has the World's Highest Diabetes Prevalence—and Lacks Focus on Prevention",
     date: "2025-07-10",
     image:
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070",
+      Article3.src,
     imageAlt: "Diabetes prevention awareness",
+    category: "Diet",
+    color: "bg-green-500",
     content: (
       <>
         <p>
@@ -124,8 +139,10 @@ export const newsArticles: Record<string, NewsArticle> = {
     title: "Pakistan has 33m diabetics, 27pc still undiagnosed: PM coordinator",
     date: "2025-08-05",
     image:
-      "https://images.unsplash.com/photo-1509099863731-ef4bff19e808?q=80&w=2071",
+      Article4.src,
     imageAlt: "Medical consultation",
+    category: "Recipes",
+    color: "bg-blue-500",
     content: (
       <>
         <p>
@@ -152,8 +169,10 @@ export const newsArticles: Record<string, NewsArticle> = {
     title: "New study reveals lifestyle changes can reverse prediabetes",
     date: "2025-09-15",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070",
+      Article5.src,
     imageAlt: "Healthy lifestyle",
+    category: "Education",
+    color: "bg-orange-500",
     content: (
       <>
         <p>
@@ -183,8 +202,10 @@ export const newsArticles: Record<string, NewsArticle> = {
     title: "Breakthrough in diabetes medication shows promising results",
     date: "2025-09-28",
     image:
-      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=2074",
+      Article6.src,
     imageAlt: "Medical research",
+    category: "Health",
+    color: "bg-yellow-500",
     content: (
       <>
         <p>
@@ -205,72 +226,6 @@ export const newsArticles: Record<string, NewsArticle> = {
       </>
     ),
   },
-
-  "pakistani-foods-blood-sugar": {
-    slug: "pakistani-foods-blood-sugar",
-    title: "Traditional Pakistani foods that help manage blood sugar",
-    date: "2025-10-05",
-    image:
-      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053",
-    imageAlt: "Pakistani cuisine",
-    content: (
-      <>
-        <p>
-          Traditional Pakistani cuisine offers numerous options that can help
-          manage blood sugar levels effectively. Nutritionists are increasingly
-          recognizing the value of indigenous foods in diabetes management,
-          moving away from the notion that diabetics must abandon their cultural
-          diet.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4">Diabetes-Friendly Pakistani Foods</h2>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Daal (lentils) - High in protein and fiber</li>
-          <li>Karela (bitter gourd) - Known for blood sugar lowering properties</li>
-          <li>Methi (fenugreek) - Helps improve insulin sensitivity</li>
-          <li>Whole wheat roti instead of white flour</li>
-          <li>Yogurt-based raita without added sugar</li>
-        </ul>
-        <p className="mt-6">
-          By making simple modifications to traditional recipes, diabetics can
-          enjoy their cultural cuisine while maintaining healthy blood sugar
-          levels.
-        </p>
-      </>
-    ),
-  },
-
-  "support-groups-diabesity": {
-    slug: "support-groups-diabesity",
-    title: "Support groups helping thousands cope with diabesity",
-    date: "2025-10-12",
-    image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070",
-    imageAlt: "Support group meeting",
-    content: (
-      <>
-        <p>
-          Community support groups are proving to be a vital resource for
-          thousands of Pakistanis struggling with diabesity. These groups provide
-          emotional support, practical advice, and a sense of community for
-          individuals navigating the challenges of managing both diabetes and
-          obesity.
-        </p>
-        <p>
-          Members share their experiences, exchange healthy recipes, organize
-          group exercise activities, and provide encouragement during difficult
-          times. The psychological benefits of these support networks have been
-          shown to improve health outcomes significantly.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4">Benefits of Support Groups</h2>
-        <p>
-          Research indicates that individuals who participate in support groups
-          show better adherence to treatment plans, improved mental health, and
-          more sustainable lifestyle changes compared to those managing their
-          condition in isolation.
-        </p>
-      </>
-    ),
-  },
 };
 
 // Helper function to get news article by slug
@@ -281,4 +236,8 @@ export function getNewsArticle(slug: string): NewsArticle | null {
 // Helper function to get all news article slugs
 export function getAllNewsArticleSlugs(): string[] {
   return Object.keys(newsArticles);
+}
+
+export function getAllNewsArticles(): NewsArticle[] {
+  return Object.values(newsArticles);
 }

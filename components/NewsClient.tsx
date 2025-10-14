@@ -2,18 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { NewsArticle } from "@/lib/newsContent";
 import Link from "next/link";
 
-interface NewsArticleCard {
-  category: string;
-  title: string;
-  image: string;
-  color: string;
-  slug?: string;
-}
-
 interface NewsClientProps {
-  news: NewsArticleCard[];
+  news: NewsArticle[];
 }
 
 export default function NewsClient({ news }: NewsClientProps) {
@@ -71,7 +64,7 @@ export default function NewsClient({ news }: NewsClientProps) {
                       className="w-full h-48 object-cover mb-4"
                     />
                     <Button variant="outlined" size="sm" className="w-fit">
-                      Learn more
+                      Read more
                     </Button>
                   </div>
                 </Card>

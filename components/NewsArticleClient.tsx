@@ -24,7 +24,7 @@ export default function NewsArticleClient({
             <img
               src={article.image}
               alt={article.imageAlt}
-              className="w-full h-auto object-cover"
+              className="w-full h-80 object-cover"
             />
           </div>
 

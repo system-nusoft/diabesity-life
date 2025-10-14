@@ -2,98 +2,33 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Post } from "@/lib/wordpress";
+import { BlogArticle } from "@/lib/blogContent";
+import { NewsArticle } from "@/lib/newsContent";
 import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import DailyCare from "../public/daily-care.jpg";
+import Donate from "../public/donate-cta.jpeg";
+import EatHealthy from "../public/eat-healthy-1.jpeg";
+import HealthProviders from "../public/find-health-providers.jpg";
+import Hero1 from "../public/hero-section-1.webp";
+import Hero2 from "../public/hero-section-2.webp";
+import Knowledge from "../public/knowledge-tool-diabesity.png";
 
 const heroSlides = [
   {
-    image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070",
+    image: Hero1.src,
     heading: "Living with diabesity in Pakistan",
     ctaText: "Discover",
     ctaUrl: "/discover",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
+    image: Hero2.src,
     heading: "Take control of your health today",
     ctaText: "Get Started",
     ctaUrl: "/get-started",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=2074",
-    heading: "Expert guidance for your journey",
-    ctaText: "Find Specialists",
-    ctaUrl: "/find-specialist",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  },
-];
-
-const newsArticles = [
-  {
-    category: "Education",
-    title: "What is driving Pakistan's alarming diabetes surge?",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
-    color: "bg-orange-500",
-    slug: "pakistan-diabetes-surge",
-  },
-  {
-    category: "Health",
-    title:
-      "PM launches prevention program as over 33 million Pakistanis found to have diabetes",
-    image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070",
-    color: "bg-yellow-500",
-    slug: "pm-launches-prevention-program",
-  },
-  {
-    category: "Diet",
-    title:
-      "Pakistan Has the World's Highest Diabetes Prevalence—and Lacks Focus on Prevention",
-    image:
-      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070",
-    color: "bg-green-500",
-  },
-  {
-    category: "Recipes",
-    title: "Pakistan has 33m diabetics, 27pc still undiagnosed: PM coordinator",
-    image:
-      "https://images.unsplash.com/photo-1509099863731-ef4bff19e808?q=80&w=2071",
-    color: "bg-blue-500",
-  },
-  {
-    category: "Education",
-    title: "New study reveals lifestyle changes can reverse prediabetes",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070",
-    color: "bg-orange-500",
-  },
-  {
-    category: "Health",
-    title: "Breakthrough in diabetes medication shows promising results",
-    image:
-      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?q=80&w=2074",
-    color: "bg-yellow-500",
-  },
-  {
-    category: "Diet",
-    title: "Traditional Pakistani foods that help manage blood sugar",
-    image:
-      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053",
-    color: "bg-green-500",
-  },
-  {
-    category: "Recipes",
-    title: "Support groups helping thousands cope with diabesity",
-    image:
-      "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070",
-    color: "bg-blue-500",
   },
 ];
 
@@ -159,8 +94,7 @@ const faqs = [
 const services = [
   {
     title: "Find health providers",
-    image:
-      "https://images.unsplash.com/photo-1582560469781-1965b9af903d?q=80&w=2070",
+    image: HealthProviders.src,
     gradient: "from-yellow-500/100 to-yellow-500/0",
     linkText: "Find a specialist",
     linkUrl: "/find-specialist",
@@ -175,8 +109,7 @@ const services = [
   },
   {
     title: "Eat smart and healthy",
-    image:
-      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053",
+    image: EatHealthy.src,
     gradient: "from-blue-500/100 to-blue-500/0",
     linkText: "Get recipes",
     linkUrl: "/recipes",
@@ -191,8 +124,7 @@ const services = [
   },
   {
     title: "Daily care and monitoring",
-    image:
-      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=2070",
+    image: DailyCare.src,
     gradient: "from-purple-500/100 to-purple-500/0",
     linkText: "View guides",
     linkUrl: "/devices",
@@ -200,10 +132,11 @@ const services = [
 ];
 
 interface HomeClientProps {
-  posts: Post[];
+  blogs: BlogArticle[];
+  news: NewsArticle[];
 }
 
-export default function Home({ posts }: HomeClientProps) {
+export default function Home({ blogs, news }: HomeClientProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
@@ -260,7 +193,7 @@ export default function Home({ posts }: HomeClientProps) {
 
   const nextNewsSlide = () => {
     setNewsCurrentIndex((prev) => {
-      const maxIndex = newsArticles.length - cardsPerView;
+      const maxIndex = news.length - cardsPerView;
       if (prev >= maxIndex) return 0; // Loop back to start
       return prev + 1;
     });
@@ -268,7 +201,7 @@ export default function Home({ posts }: HomeClientProps) {
 
   const prevNewsSlide = () => {
     setNewsCurrentIndex((prev) => {
-      const maxIndex = newsArticles.length - cardsPerView;
+      const maxIndex = news.length - cardsPerView;
       if (prev <= 0) return maxIndex; // Loop to end
       return prev - 1;
     });
@@ -309,7 +242,7 @@ export default function Home({ posts }: HomeClientProps) {
             style={{
               backgroundImage: `url('${slide.image}')`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "top center",
             }}
           >
             <div className="absolute inset-0 bg-black/30"></div>
@@ -471,12 +404,12 @@ export default function Home({ posts }: HomeClientProps) {
                   }%)`,
                 }}
               >
-                {newsArticles.map((article, idx) => (
+                {news.map((article, idx) => (
                   <div
                     key={idx}
                     className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-3"
                   >
-                    <Link href={article.slug ? `/news/${article.slug}` : "#"}>
+                    <Link href={`/news/${article.slug}`}>
                       <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-white py-0 pb-6 rounded-none h-full cursor-pointer">
                         <div className="relative bg-gray-200">
                           <div
@@ -499,7 +432,7 @@ export default function Home({ posts }: HomeClientProps) {
                             size="sm"
                             className="w-fit"
                           >
-                            Learn more
+                            Read more
                           </Button>
                         </div>
                       </Card>
@@ -551,8 +484,7 @@ export default function Home({ posts }: HomeClientProps) {
           <section
             className="relative h-auto bg-cover bg-center w-auto md:w-[50%] shadow-sm hover:shadow-lg transition-shadow border"
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070')",
+              backgroundImage: `url(${Knowledge.src})`,
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
@@ -571,8 +503,7 @@ export default function Home({ posts }: HomeClientProps) {
           <section
             className="relative py-10 bg-cover bg-center w-auto md:w-[50%] shadow-sm hover:shadow-lg transition-shadow border"
             style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070')",
+              backgroundImage: `url(${Donate.src})`,
             }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
@@ -615,7 +546,7 @@ export default function Home({ posts }: HomeClientProps) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
             {services.map((service, index) => (
               <div
                 key={index}
@@ -722,7 +653,7 @@ export default function Home({ posts }: HomeClientProps) {
 
           <div className="text-center">
             <Link href="/faqs">
-              <Button variant="outlined">Explore more</Button>
+              <Button variant="outlined">Read more</Button>
             </Link>
           </div>
         </div>
@@ -741,34 +672,34 @@ export default function Home({ posts }: HomeClientProps) {
               </h2>
             </div>
             <Link href="/blogs">
-              <Button variant="outlined">Explore more</Button>
+              <Button variant="outlined">Find out more</Button>
             </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {posts.slice(0, 3).map((post, idx) => (
+            {blogs.slice(0, 3).map((blog, idx) => (
               <Card
                 key={idx}
                 className="overflow-hidden hover:shadow-lg transition-shadow py-0 rounded-none cursor-pointer"
               >
-                <Link href={`/blogs/${post.slug}`}>
+                <Link href={`/blogs/${blog.slug}`}>
                   <div className="relative h-56 bg-gray-200">
                     <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-xs font-semibold">
-                      {new Date(post.date).toLocaleDateString("en-GB", {
+                      {new Date(blog.date).toLocaleDateString("en-GB", {
                         day: "numeric",
                         month: "short",
                       })}
                     </div>
                     <img
-                      src={post.featuredImage?.node.sourceUrl || ""}
-                      alt={post.title}
+                      src={blog.image}
+                      alt={blog.imageAlt}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="px-6 py-4">
                     <p className="text-gray-600 text-sm mb-2">Blog</p>
                     <h3 className="font-bold text-gray-900 text-xl mb-4">
-                      {post.title}
+                      {blog.title}
                     </h3>
                   </div>
                 </Link>
