@@ -1,6 +1,7 @@
 "use client";
 
 import { BlogArticle } from "@/lib/blogContent";
+import RelatedBlogs from "./RelatedBlogs";
 
 interface BlogPostClientProps {
   blog: BlogArticle;
@@ -13,7 +14,7 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
       <article className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             {blog.title}
           </h1>
 
@@ -33,7 +34,7 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
             <img
               src={blog.image}
               alt={blog.imageAlt}
-              className="w-full h-80 object-cover"
+              className="w-full h-96 object-cover"
             />
           </div>
 
@@ -43,6 +44,11 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
           </div>
         </div>
       </article>
+
+      {/* Related Blogs Section */}
+      {blog.relatedBlogs && blog.relatedBlogs.length > 0 && (
+        <RelatedBlogs slugs={blog.relatedBlogs} />
+      )}
     </div>
   );
 }

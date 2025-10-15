@@ -1,6 +1,7 @@
 import Semaglutide from "../public/how-semaglutide-changes-lives.jpg";
 import ObesityChallenge from "../public/getting-rid-of-obesity-the-real-challenge.jpg";
 import SilentEpidemic from "../public/diabetes-is-a-silent-epidemic-sweeping-pakistan.jpg"
+import { TextImageSection, Heading, Paragraph, List, Quote } from "@/components/BlogTemplate";
 
 export interface BlogArticle {
   slug: string;
@@ -10,6 +11,7 @@ export interface BlogArticle {
   imageAlt: string;
   category: string;
   content: React.ReactNode;
+  relatedBlogs?: string[];
 }
 
 export const blogArticles: Record<string, BlogArticle> = {
@@ -23,35 +25,93 @@ export const blogArticles: Record<string, BlogArticle> = {
     category: "Medication",
     content: (
       <>
-        <p>
+        <Paragraph>
           Semaglutide is a glucagon-like peptide-1 (GLP-1) receptor agonist that
           has revolutionized the treatment of type 2 diabetes and obesity. This
           medication works by mimicking the effects of the natural GLP-1 hormone,
           which helps regulate blood sugar levels and appetite.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4">How Semaglutide Works</h2>
-        <p>
+        </Paragraph>
+
+        <Heading level={2}>How Semaglutide Works</Heading>
+        <Paragraph>
           Semaglutide functions through multiple mechanisms to improve metabolic
           health. It stimulates insulin secretion when blood glucose levels are
           elevated, suppresses glucagon release, slows gastric emptying, and
           reduces appetite by acting on brain centers that regulate hunger.
-        </p>
-        <h2 className="text-2xl font-bold mt-8 mb-4">Life-Changing Benefits</h2>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>Significant weight loss (10-15% of body weight on average)</li>
-          <li>Improved blood sugar control and lower A1C levels</li>
-          <li>Reduced cardiovascular risk factors</li>
-          <li>Enhanced quality of life and increased energy</li>
-          <li>Better management of diabesity symptoms</li>
-        </ul>
-        <p className="mt-6">
-          For many Pakistanis struggling with diabesity, semaglutide has provided
-          hope and tangible results. Patients report not only weight loss but
-          also improved mobility, better sleep, and renewed confidence in managing
-          their health condition.
-        </p>
+        </Paragraph>
+
+        <TextImageSection
+          text={
+            <>
+              <Heading level={3}>The Science Behind It</Heading>
+              <Paragraph>
+                When you take semaglutide, it activates GLP-1 receptors throughout
+                your body, particularly in the pancreas and brain. This activation
+                triggers a cascade of beneficial effects that help manage both
+                diabetes and weight.
+              </Paragraph>
+              <Paragraph>
+                The medication is administered once weekly via a simple injection,
+                making it convenient for most patients to incorporate into their
+                routine.
+              </Paragraph>
+            </>
+          }
+          image="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=2079"
+          imageAlt="Medical science research"
+        />
+
+        <Heading level={2}>Life-Changing Benefits</Heading>
+        <List
+          items={[
+            "Significant weight loss (10-15% of body weight on average)",
+            "Improved blood sugar control and lower A1C levels",
+            "Reduced cardiovascular risk factors",
+            "Enhanced quality of life and increased energy",
+            "Better management of diabesity symptoms",
+          ]}
+        />
+
+        <Quote author="Dr. Sarah Ahmed, Endocrinologist">
+          Semaglutide represents a paradigm shift in how we approach diabesity
+          treatment. It addresses both the metabolic and weight components
+          simultaneously, giving patients a real chance at long-term success.
+        </Quote>
+
+        <TextImageSection
+          text={
+            <>
+              <Heading level={3}>Real Patient Success Stories</Heading>
+              <Paragraph>
+                For many Pakistanis struggling with diabesity, semaglutide has
+                provided hope and tangible results. Patients report not only
+                weight loss but also improved mobility, better sleep, and renewed
+                confidence in managing their health condition.
+              </Paragraph>
+              <Paragraph>
+                Ahmed, a 45-year-old from Karachi, lost 18kg in 6 months and
+                reduced his A1C from 9.2% to 6.5%. "I finally feel like I have
+                control over my health again," he shares.
+              </Paragraph>
+            </>
+          }
+          image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070"
+          imageAlt="Happy healthy person"
+          reverse
+        />
+
+        <Paragraph>
+          While semaglutide is a powerful tool, it works best when combined with
+          lifestyle modifications including a balanced diet and regular physical
+          activity. Consult your healthcare provider to see if semaglutide is
+          right for you.
+        </Paragraph>
       </>
     ),
+    relatedBlogs: [
+      "getting-rid-of-obesity-the-real-challenge",
+      "understanding-diabesity-in-pakistan",
+    ],
   },
 
   "getting-rid-of-obesity-the-real-challenge": {
@@ -93,6 +153,10 @@ export const blogArticles: Record<string, BlogArticle> = {
         </p>
       </>
     ),
+    relatedBlogs: [
+      "how-semaglutide-changes-lives",
+      "diabetes-is-a-slient-epidemic-sweeping-pakistan",
+    ],
   },
 
   "diabetes-is-a-slient-epidemic-sweeping-pakistan": {
@@ -134,6 +198,10 @@ export const blogArticles: Record<string, BlogArticle> = {
         </p>
       </>
     ),
+    relatedBlogs: [
+      "understanding-diabesity-in-pakistan",
+      "getting-rid-of-obesity-the-real-challenge",
+    ],
   },
 
   "understanding-diabesity-in-pakistan": {
@@ -175,6 +243,10 @@ export const blogArticles: Record<string, BlogArticle> = {
         </p>
       </>
     ),
+    relatedBlogs: [
+      "how-semaglutide-changes-lives",
+      "diabetes-is-a-slient-epidemic-sweeping-pakistan",
+    ],
   },
 };
 
