@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
 import { useState } from "react";
 
 export default function ContactPage() {
@@ -81,12 +80,12 @@ export default function ContactPage() {
             {/* Left Column - Contact Information */}
             <div>
               <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
-                We're here to help
+                We&apos;re here to help
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-12">
                 Have questions about diabetes prevention, obesity management, or
-                treatments in Pakistan? Please reach out. Your journey to better health
-                starts with a conversation.
+                treatments in Pakistan? Please reach out. Your journey to better
+                health starts with a conversation.
               </p>
             </div>
 
