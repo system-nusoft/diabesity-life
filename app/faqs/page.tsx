@@ -451,9 +451,9 @@ export default function NewsClient() {
             {/* Right Column - Last Half FAQs */}
             <div className="flex flex-col gap-4">
               {faqs.slice(faqs.length / 2, faqs.length).map((faq, idx) => (
-                <div key={idx + 4} className="flex flex-col">
+                <div key={idx + faqs.length / 2} className="flex flex-col">
                   <button
-                    onClick={() => toggleFaq(idx + 4)}
+                    onClick={() => toggleFaq(idx + faqs.length / 2)}
                     className={`${getCategoryGradient(
                       faq.category
                     )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
@@ -461,13 +461,13 @@ export default function NewsClient() {
                     <span>{faq.question}</span>
                     <ChevronDown
                       className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 ${
-                        openFaqIndex === idx + 4 ? "rotate-180" : ""
+                        openFaqIndex === idx + faqs.length / 2 ? "rotate-180" : ""
                       }`}
                     />
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
-                      openFaqIndex === idx + 4 ? "max-h-96 mt-2" : "max-h-0"
+                      openFaqIndex === idx + faqs.length / 2 ? "max-h-96 mt-2" : "max-h-0"
                     }`}
                   >
                     <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">

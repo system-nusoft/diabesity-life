@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
+import { Category, getCategoryGradient } from "@/lib/utils";
 import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -14,7 +15,6 @@ import HealthProviders from "../public/find-health-providers.jpg";
 import Hero1 from "../public/hero-section-1.webp";
 import Hero2 from "../public/hero-section-2.webp";
 import Knowledge from "../public/knowledge-tool-diabesity.png";
-import { Category, getCategoryGradient } from "@/lib/utils";
 
 const heroSlides = [
   {
@@ -35,52 +35,52 @@ const heroSlides = [
 
 const faqs = [
   {
-    question: "Is diabetes a death sentence?",
+    question: "I’m at a restaurant — what should I order?",
     answer:
-      "No, diabetes is not a death sentence. With proper management, including medication, diet, exercise, and regular monitoring, people with diabetes can live long, healthy, and fulfilling lives. The key is early detection and consistent care.",
-    category: "Education" as Category,
-  },
-  {
-    question: "Why did this happen to me?",
-    answer:
-      "Diabesity can develop due to a combination of genetic factors, lifestyle choices, diet, and environmental factors. It's not your fault—it's a complex condition that affects millions. What matters now is taking positive steps forward to manage your health.",
+      "Eating out doesn’t have to mean giving up control. In Pakistan, menus are full of tempting carb-heavy dishes, but you can make smart swaps. Choose grilled or baked meats over fried. Ask for roti made from whole wheat instead of naan, and skip the extra oil. Load your plate with salad or sautéed vegetables before touching the rice or bread. If you’re at a dhaba, go for daal with a side of mixed sabzi instead of biryani. And remember — portion size matters. Share a dish with a friend or ask for half to be packed. You’ll leave satisfied, not stuffed, and your blood sugar will thank you.",
     category: "Diet" as Category,
-  },
-  {
-    question: "Are you at risk?",
-    answer:
-      "Risk factors include family history of diabetes, being overweight, physical inactivity, age over 45, high blood pressure, and certain ethnic backgrounds. If you have multiple risk factors, it's important to get screened and take preventive measures.",
-    category: "Health" as Category,
-  },
-  {
-    question: "My blood sugar numbers confuse me.",
-    answer:
-      "Normal fasting blood sugar is below 100 mg/dL. Prediabetes is 100-125 mg/dL, and diabetes is 126 mg/dL or higher. Your doctor can help you understand your specific targets and what your numbers mean for your health journey.",
-    category: "Recipes" as Category,
-  },
-  {
-    question: "Daily habits that protect you",
-    answer:
-      "Key protective habits include: eating a balanced diet rich in vegetables and whole grains, exercising for 30 minutes daily, maintaining a healthy weight, managing stress, getting adequate sleep, staying hydrated, and monitoring your blood sugar regularly.",
-    category: "Health" as Category,
-  },
-  {
-    question: "I'm at a restaurant — what should I order?",
-    answer:
-      "Choose grilled or baked proteins instead of fried, opt for vegetables or salad as sides, avoid sugary drinks and desserts, control portion sizes, and ask for dressings and sauces on the side. Don't hesitate to ask how food is prepared.",
-    category: "Diet" as Category,
-  },
-  {
-    question: "I've just been diagnosed — what does this mean?",
-    answer:
-      "A diagnosis means it's time to take action, but you're not alone. Work with your healthcare team to create a management plan, learn about your condition, make lifestyle adjustments, and connect with support groups. Many people successfully manage diabesity.",
-    category: "Education" as Category,
   },
   {
     question: "My doctor mentioned a GLP-1 — what is that?",
     answer:
-      "GLP-1 agonists are medications that help control blood sugar by mimicking a hormone that stimulates insulin release, slows digestion, and reduces appetite. They've shown promising results for both diabetes management and weight loss. Discuss with your doctor if they're right for you.",
+      "GLP-1 receptor agonists are a newer type of diabetes medicine that work with your body’s natural hormones. They help your pancreas release insulin when needed, slow down digestion so you feel fuller, and can even help with weight loss — which is important since obesity and diabetes often go hand in hand in Pakistan. They usually come as weekly or daily injections, but the needles are tiny and easy to use. They’re not for everyone, and they can be costly, so discuss with your doctor whether they fit your treatment plan. For many, GLP-1s are a game-changer in controlling blood sugar and reducing heart risks.",
+    category: "Health" as Category,
+  },
+  {
+    question: "I’ve just been diagnosed — what does this mean?",
+    answer:
+      "Hearing “You have diabetes” can feel like a punch to the gut. But here’s the truth: diabetes is not the end of your story — it’s a new chapter. In simple terms, your body is struggling to manage sugar (glucose) in your blood, either because it’s not making enough insulin or not using it well. Left unchecked, high sugar can harm your heart, eyes, kidneys, and nerves. But with the right habits, medication, and mindset, you can live a long, healthy life. Many Pakistanis manage their diabetes while running businesses, raising families, and enjoying life — and so can you. The key is to learn, act, and stay consistent.",
     category: "Education" as Category,
+  },
+  {
+    question: "I crave sweets all the time.",
+    answer:
+      "Sweet cravings are real — and in a culture where mithai, chai, and desserts are part of every celebration, resisting them can feel impossible. Instead of banning sweets completely (which can backfire), learn to manage them. Choose smaller portions — one gulab jamun instead of three. Swap sugary drinks for unsweetened lassi or lemon water. Keep fruit like guava or apple handy for when cravings hit. And remember, cravings often fade after 10–15 minutes — distract yourself with a short walk or a phone call. Over time, your taste buds will adjust, and you’ll find you need less sugar to feel satisfied.",
+    category: "Diet" as Category,
+  },
+  {
+    question: "I keep forgetting my medication.",
+    answer:
+      "Missing doses can quietly undo all your hard work. In Pakistan’s busy daily rhythm — juggling work, family, and social commitments — it’s easy to forget. The trick is to tie your medication to something you already do every day: after brushing your teeth, before your morning chai, or right after dinner. Use your phone’s alarm or a pillbox with compartments for each day. If you travel often, keep a spare strip in your bag or car. Remember, diabetes medicines work best when taken consistently — skipping “just one day” can cause your sugar to spike and increase long-term risks. Make it part of your routine, not an afterthought.",
+    category: "Health" as Category,
+  },
+  {
+    question: "Why did this happen to me?",
+    answer:
+      "It’s natural to ask “Why me?” Diabetes can be influenced by many factors — family history, weight, diet, stress, and even certain illnesses. In Pakistan, high-carb diets, low physical activity, and rising obesity rates have made type 2 diabetes more common. This isn’t about blame — it’s about awareness. Knowing your risk factors helps you take control. Even if genetics played a role, lifestyle changes can slow or even reverse early damage. Instead of focusing on “why,” focus on “what now” — the steps you can take today to protect your future.",
+    category: "Education" as Category,
+  },
+  {
+    question: "I don’t know what I can eat anymore.",
+    answer:
+      "It can feel like your entire menu has been taken away — but in reality, you still have plenty of delicious options. Think of your plate in three parts: Half vegetables — sabzi, salad, or lightly cooked greens. One-quarter lean protein — chicken, fish, daal, or eggs. One-quarter whole grains or healthy carbs — whole-wheat roti, brown rice, or small portions of boiled potatoes. Avoid sugary drinks like cola or packaged juices; choose water, unsweetened lassi, or green tea instead. In Pakistan, small swaps — like grilled kebab instead of fried samosa, or roti instead of naan — can make a big difference. You’re not giving up flavour; you’re choosing foods that keep your sugar steady and your energy high.",
+    category: "Diet" as Category,
+  },
+  {
+    question: "Are GLP-1s safe for me?",
+    answer:
+      "GLP-1 medicines are generally safe for many people with type 2 diabetes, but they’re not for everyone. They can cause side effects like nausea, stomach upset, or constipation — usually mild and temporary. People with certain thyroid or pancreas conditions may need to avoid them. In Pakistan, where access and cost can be challenges, it’s important to have an honest discussion with your doctor about your health history, budget, and goals. If prescribed, start slowly, follow instructions carefully, and report any unusual symptoms. Safety isn’t just about the medicine — it’s about the right medicine for the right person.",
+    category: "Health" as Category,
   },
 ];
 
@@ -646,6 +646,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
               ))}
             </div>
           </div>
+          <Link href="/faqs" className="flex justify-center mt-12">
+            <Button variant="outlined">Read more</Button>
+          </Link>
         </div>
       </section>
 
