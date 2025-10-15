@@ -41,7 +41,7 @@ export function TextImageSection({
 
 interface HeadingProps {
   children: React.ReactNode;
-  level?: 1 | 2 | 3;
+  level?: 1 | 2 | 3 | 4;
   className?: string;
 }
 
@@ -51,6 +51,7 @@ export function Heading({ children, level = 2, className = "" }: HeadingProps) {
     1: "text-3xl md:text-4xl",
     2: "text-2xl md:text-3xl",
     3: "text-xl md:text-2xl",
+    4: "text-lg md:text-xl",
   };
 
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
@@ -82,7 +83,7 @@ interface ListProps {
 
 export function List({ items, className = "" }: ListProps) {
   return (
-    <ul className={`list-disc pl-6 space-y-2 text-gray-700 mb-6 ${className}`}>
+    <ul className={`list-disc pl-6 space-y-2 text-gray-700 my-4 ${className}`}>
       {items.map((item, index) => (
         <li key={index}>{item}</li>
       ))}

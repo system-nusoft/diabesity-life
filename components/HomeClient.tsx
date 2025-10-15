@@ -470,59 +470,6 @@ export default function Home({ blogs, news }: HomeClientProps) {
         </div>
       </section>
 
-      <section>
-        {/* CTAs Section */}
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto gap-4 px-6">
-          {/* Left Section */}
-          <section
-            className="relative h-auto bg-cover bg-center w-auto md:w-[50%] shadow-sm hover:shadow-lg transition-shadow border"
-            style={{
-              backgroundImage: `url(${Knowledge.src})`,
-            }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-            <div className="relative h-full max-w-7xl mx-auto px-6 py-10 flex items-center">
-              <div className="text-white max-w-2xl flex flex-col gap-6 justify-center">
-                <h2 className="text-2xl md:text-3xl font-medium">
-                  Knowledge is your most powerful tool for managing diabesity
-                </h2>
-                <Button variant="outlinedOrange" className="w-fit">
-                  Start your learning path
-                </Button>
-              </div>
-            </div>
-          </section>
-          {/* Right Section */}
-          <section
-            className="relative py-10 bg-cover bg-center w-auto md:w-[50%] shadow-sm hover:shadow-lg transition-shadow border"
-            style={{
-              backgroundImage: `url(${Donate.src})`,
-            }}
-          >
-            <div className="absolute inset-0 bg-black/50"></div>
-            <div className="relative flex flex-col h-full max-w-7xl mx-auto px-6 gap-6 justify-center">
-              <h2 className="text-white text-2xl md:text-3xl font-medium">
-                Be the change against diabesity
-              </h2>
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="http://www.dap.org.pk/Donations.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="outlinedOrange" className="w-fit">
-                    Donate*
-                  </Button>
-                </Link>
-                <small className="text-white italic">
-                  *This button will take you to an external link
-                </small>
-              </div>
-            </div>
-          </section>
-        </div>
-      </section>
-
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">

@@ -15,16 +15,27 @@ export default function NewsArticleClient({
       <article className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             {article.title}
           </h1>
+
+          {/* Date */}
+          <div className="flex items-center gap-4 mb-8 text-gray-600">
+            <time dateTime={article.date}>
+              {new Date(article.date).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </time>
+          </div>
 
           {/* Featured Image */}
           <div className="mb-12">
             <img
               src={article.image}
               alt={article.imageAlt}
-              className="w-full h-80 object-cover"
+              className="w-full h-96 object-cover"
             />
           </div>
 

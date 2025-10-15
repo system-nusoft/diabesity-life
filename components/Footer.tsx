@@ -1,10 +1,24 @@
-import { Facebook, Linkedin, Twitter, Youtube } from "lucide-react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import {
+  ExternalLinkIcon,
+  Facebook,
+  Linkedin,
+  Twitter,
+  Youtube,
+} from "lucide-react";
+import Link from "next/link";
+import FooterBG from "../public/footer-bg.jpg";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1a1a1a] text-white">
+    <footer
+      className="bg-[#1a1a1a] text-white"
+      style={{
+        backgroundImage: `url('${FooterBG.src}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "top center",
+      }}
+    >
       {/* Contact Specialist Section */}
       <section className="py-16 md:py-16">
         <div className="max-w-7xl mx-auto px-6 flex justify-between flex-col md:flex-row gap-8">
@@ -12,15 +26,25 @@ export default function Footer() {
             <h2 className="text-[#ff9d5c] text-4xl md:text-5xl font-medium mb-2">
               Get in touch
             </h2>
-            <h2 className="text-[#ff9d5c] text-4xl md:text-5xl font-medium">
+            {/* <h2 className="text-[#ff9d5c] text-4xl md:text-5xl font-medium">
               with a specialist
-            </h2>
+            </h2> */}
           </div>
-          <Link href="/contact">
-            <Button variant="outlinedOrange">
-              Contact
-            </Button>
-          </Link>
+          <div className="flex gap-4">
+            <Link href="/contact">
+              <Button variant="outlinedOrange">Contact</Button>
+            </Link>
+            <Link
+              href="http://www.dap.org.pk/Donations.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="blurry">
+                Donate
+                <ExternalLinkIcon className="ml-1 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       <div className="max-w-7xl mx-auto px-6 py-8">
