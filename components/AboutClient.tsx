@@ -84,17 +84,17 @@ export default function AboutClient() {
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
                   This devastating link between diabetes and obesity, is not a
-                  statistic. It's our parents, our siblings, our friends.
+                  statistic. It&apos;s our parents, our siblings, our friends.
                 </p>
                 <p>
-                  We saw a nation grappling with the world's highest rate of
+                  We saw a nation grappling with the world&apos;s highest rate of
                   diabetes, yet facing a wall of misinformation, stigma, and
-                  resources that didn't fit our culture or our lives. The advice
+                  resources that didn&apos;t fit our culture or our lives. The advice
                   was generic, the meal plans were foreign, and the conversation
                   was happening in whispers, if at all.
                 </p>
                 <p>
-                  We knew we couldn't stand by while this silent epidemic stole
+                  We knew we couldn&apos;t stand by while this silent epidemic stole
                   the health and futures of millions.
                 </p>
                 <p>

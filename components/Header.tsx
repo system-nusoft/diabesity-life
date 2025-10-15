@@ -1,7 +1,7 @@
 "use client";
 
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { Search, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
@@ -13,11 +13,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img
-              src="/logo.png"
-              alt="Diabesity"
-              className="h-[50px] w-auto"
-            />
+            <img src="/logo.png" alt="Diabesity" className="h-[50px] w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -27,19 +23,34 @@ export default function Header() {
                 Home
               </Link>
             </div> */}
-            <Link href="/about" className="text-gray-700 hover:text-primary transition-colors text-base">
+            <Link
+              href="/about"
+              className="text-gray-700 hover:text-primary transition-colors text-base"
+            >
               About
             </Link>
-            <Link href="/news" className="text-gray-700 hover:text-primary transition-colors text-base">
+            <Link
+              href="/news"
+              className="text-gray-700 hover:text-primary transition-colors text-base"
+            >
               News
             </Link>
-            <Link href="/faqs" className="text-gray-700 hover:text-primary transition-colors text-base">
+            <Link
+              href="/faqs"
+              className="text-gray-700 hover:text-primary transition-colors text-base"
+            >
               FAQs
             </Link>
-            <Link href="/blogs" className="text-gray-700 hover:text-primary transition-colors text-base">
+            <Link
+              href="/blogs"
+              className="text-gray-700 hover:text-primary transition-colors text-base"
+            >
               Blogs
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-primary transition-colors text-base">
+            <Link
+              href="/contact"
+              className="text-gray-700 hover:text-primary transition-colors text-base"
+            >
               Contact
             </Link>
           </nav>
@@ -63,26 +74,45 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="lg:hidden mt-6 pb-4 flex flex-col space-y-4 border-t border-gray-200 pt-4">
-            <Link href="/about" className="text-gray-700 hover:text-primary transition-colors">
+            <Link
+              href="/about"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
               About
             </Link>
-            <Link href="/news" className="text-gray-700 hover:text-primary transition-colors">
+            <Link
+              href="/news"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
               News
             </Link>
-            <Link href="/faqs" className="text-gray-700 hover:text-primary transition-colors">
+            <Link
+              href="/faqs"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
               FAQs
             </Link>
-            <Link href="/blogs" className="text-gray-700 hover:text-primary transition-colors">
+            <Link
+              href="/blogs"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
               Blogs
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-primary transition-colors">
+            <Link
+              href="/contact"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
               Contact
             </Link>
             <Link

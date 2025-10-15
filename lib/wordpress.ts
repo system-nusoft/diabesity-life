@@ -1,4 +1,5 @@
-import { GraphQLClient } from 'graphql-request';
+ /* eslint-disable @typescript-eslint/no-explicit-any */
+ import { GraphQLClient } from 'graphql-request';
 
 // Types
 export interface FeaturedImage {
