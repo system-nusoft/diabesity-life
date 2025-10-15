@@ -35,7 +35,7 @@ export const blogArticles: Record<string, BlogArticle> = {
     category: "Medication",
     content: (
       <>
-        <Heading level={2}>How Semaglutide 'Changed' My Life</Heading>
+        <Heading level={2}>How Semaglutide &apos;Changed&apos; My Life</Heading>
 
         <Paragraph>
           Zainab Jan never imagined that diabetes and a weight loss treatment
@@ -65,7 +65,7 @@ export const blogArticles: Record<string, BlogArticle> = {
                 progress was satisfactory, she later began to experience mood
                 swings.
               </Paragraph>
-              <Paragraph>"I was getting snappier," she said.</Paragraph>
+              <Paragraph>&quot;I was getting snappier,&quot; she said.</Paragraph>
               <Paragraph>
                 Her physician informed her that such early side effects as
                 nausea, vomiting, abdominal discomfort, or mood shifts were
@@ -93,9 +93,9 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Paragraph>
-          "I had been having occasional missing periods because of hormonal
-          imbalance caused by diabetes & obesity, so I didn't pay much heed to
-          it initially," she remembered.
+          &quot;I had been having occasional missing periods because of hormonal
+          imbalance caused by diabetes & obesity, so I didn&apos;t pay much heed to
+          it initially,&quot; she remembered.
         </Paragraph>
 
         <Paragraph>
@@ -115,7 +115,7 @@ export const blogArticles: Record<string, BlogArticle> = {
             <>
               <Heading level={3}>The Medical Explanation</Heading>
               <Paragraph>
-                Experts indicate this isn't a complete shock.
+                Experts indicate this isn&apos;t a complete shock.
               </Paragraph>
               <Paragraph>
                 Dr Sikandar Jamal, a consultant diabetologist, says that
@@ -139,7 +139,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Quote>
 
         <Paragraph>
-          As Jan's pregnancy was diagnosed early, the doctor discontinued
+          As Jan&apos;s pregnancy was diagnosed early, the doctor discontinued
           semaglutide immediately. Jan turned to insulin for safer blood sugar
           management throughout pregnancy. Genetic testing was also suggested by
           her doctor to confirm the baby had not been harmed by early exposure
@@ -160,8 +160,8 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Paragraph>
-          "After 10 years, this was miraculous. My kids and husband were
-          ecstatic."
+          &quot;After 10 years, this was miraculous. My kids and husband were
+          ecstatic.&quot;
         </Paragraph>
 
         <Paragraph>But not everyone was so considerate.</Paragraph>
@@ -176,15 +176,15 @@ export const blogArticles: Record<string, BlogArticle> = {
           text={
             <>
               <Paragraph>
-                But she didn't let that stop her. "This was between my husband,
+                But she didn&apos;t let that stop her. &quot;This was between my husband,
                 the Almighty Allah, and me. Nobody else can have something to
-                say about that."
+                say about that.&quot;
               </Paragraph>
               <Paragraph>
-                Ever since her daughter's birth, her family feels whole again.
+                Ever since her daughter&apos;s birth, her family feels whole again.
               </Paragraph>
               <Paragraph>
-                "We are full of joy and happiness, Alhamdulillah!"
+                &quot;We are full of joy and happiness, Alhamdulillah!&quot;
               </Paragraph>
             </>
           }
@@ -196,9 +196,9 @@ export const blogArticles: Record<string, BlogArticle> = {
 
         <Paragraph>
           Now accepting motherhood again, she has one very specific message for
-          our society: "People need to learn to respect other people's choices.
+          our society: &quot;People need to learn to respect other people&apos;s choices.
           Health, fertility, and family planning are personal choices. Rather
-          than ridiculing or intruding, we should be nice and empathetic."
+          than ridiculing or intruding, we should be nice and empathetic.&quot;
         </Paragraph>
       </>
     ),
@@ -229,7 +229,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Paragraph>
-          Four years into her marriage, Rubina's life looked very different. She
+          Four years into her marriage, Rubina&apos;s life looked very different. She
           was now the mother of two children — and forty kilograms heavier.
           Before marriage, she had been slim and energetic, but obesity had
           gradually reshaped not just her body, but her entire sense of self.
@@ -268,7 +268,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         />
 
         <Paragraph>
-          Weight regain after dieting is so common that many people believe it's
+          Weight regain after dieting is so common that many people believe it&apos;s
           inevitable. In fact, past research has shown that for most people
           struggling with obesity, the weight lost is soon regained — sometimes
           even exceeding the original amount. This cycle has discouraged many
@@ -329,11 +329,11 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Paragraph>
           David tried fasting, slimming pills, and invested in multiple
           commercial weight-loss programs. Every time, the results were
-          temporary. "Each time I lost a significant amount of weight, I felt
-          great," David recalls. "But the happiness never lasted. I eventually
+          temporary. &quot;Each time I lost a significant amount of weight, I felt
+          great,&quot; David recalls. &quot;But the happiness never lasted. I eventually
           discovered the reason: after reaching my target weight, I slipped back
           into my old eating habits. Overeating was always the trigger for my
-          weight gain."
+          weight gain.&quot;
         </Paragraph>
 
         <Paragraph>
@@ -374,12 +374,12 @@ export const blogArticles: Record<string, BlogArticle> = {
 
         <Quote author="Rena Wing, Psychologist">
           The pattern of weight loss and regain is not necessarily a barrier to
-          long-term success. If you're struggling, don't give up — persistence
+          long-term success. If you&apos;re struggling, don&apos;t give up — persistence
           can pay off.
         </Quote>
 
         <Paragraph>
-          Above all, don't let past failures discourage you. While some earlier
+          Above all, don&apos;t let past failures discourage you. While some earlier
           studies suggested that losing and regaining weight could be unhealthy
           and make future weight loss harder, recent research challenges that
           idea.
@@ -391,15 +391,15 @@ export const blogArticles: Record<string, BlogArticle> = {
           People who want to lose weight are often searching for a method that
           is completely effective and foolproof. The truth, however, is that
           there is no single, universally proven formula for weight loss. Yale
-          University psychologist Kelly Brownell explains: "The flood of poorly
+          University psychologist Kelly Brownell explains: &quot;The flood of poorly
           written, misleading books on dieting has only made the matter more
-          confusing."
+          confusing.&quot;
         </Paragraph>
 
         <Paragraph>
           Many people seek professional advice or join structured programs. For
           example, Corrie Lee Farley from Washington turned to a weight-loss
-          organization that didn't ban her favorite foods. By making gradual
+          organization that didn&apos;t ban her favorite foods. By making gradual
           changes, she managed to lose 70 pounds.
         </Paragraph>
 
@@ -407,13 +407,13 @@ export const blogArticles: Record<string, BlogArticle> = {
           text={
             <>
               <Paragraph>
-                If you can't afford the cost of a weight-loss program or don't
-                have the time to join one, don't lose hope. Many people have
+                If you can&apos;t afford the cost of a weight-loss program or don&apos;t
+                have the time to join one, don&apos;t lose hope. Many people have
                 achieved their target weight entirely on their own.
               </Paragraph>
               <Paragraph>
                 Take Jay Wheaton from Texas. He had tried many times in the past
-                to lose weight, and despite repeated failures, he didn't give
+                to lose weight, and despite repeated failures, he didn&apos;t give
                 up. Eventually, he succeeded in losing 90 pounds from his
                 original 235 — and kept it off for nearly 20 years.
               </Paragraph>
@@ -427,8 +427,8 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Quote>
           I had taken part in some extremely demanding weight-loss programs, but
           every time I ended up failing. So, I eventually gave up. Then one day,
-          I ran into a friend I didn't even recognize at first — the friend had
-          lost a remarkable amount of weight. With his friend's guidance, Jay
+          I ran into a friend I didn&apos;t even recognize at first — the friend had
+          lost a remarkable amount of weight. With his friend&apos;s guidance, Jay
           began a new routine of healthy eating and regular exercise. Today, at
           150 pounds, his weight is perfectly suited to his 5-foot-8 frame.
         </Quote>
@@ -449,7 +449,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           Experts now recommend that daily fat intake should not exceed 30
           percent of total calories. Those who rely heavily on packaged or
           processed foods should be especially cautious. Labels reading
-          "low-fat" or "fat-free" can be misleading, as these products may still
+          &quot;low-fat&quot; or &quot;fat-free&quot; can be misleading, as these products may still
           contain more fat than recommended.
         </Paragraph>
 
@@ -459,7 +459,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Quote>
-          I learned that it's better to eat something whenever you feel hungry,
+          I learned that it&apos;s better to eat something whenever you feel hungry,
           just enough to satisfy that hunger. In my experience, waiting for a
           scheduled mealtime only makes you eat more than you should.
         </Quote>
@@ -518,10 +518,10 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Paragraph>
-          But the research offers hope. These failures aren't proof that lasting
-          weight loss is impossible—they're often the result of flawed
-          strategies. What's needed is not just effort, but the right approach.
-          It takes time, and it's rarely easy, but it's deeply worthwhile.
+          But the research offers hope. These failures aren&apos;t proof that lasting
+          weight loss is impossible—they&apos;re often the result of flawed
+          strategies. What&apos;s needed is not just effort, but the right approach.
+          It takes time, and it&apos;s rarely easy, but it&apos;s deeply worthwhile.
         </Paragraph>
         <Paragraph>
           If so, many once-discouraged people can not only lose significant
@@ -547,7 +547,7 @@ export const blogArticles: Record<string, BlogArticle> = {
       <>
         <Paragraph>
           <em>
-            Diabetes is fast becoming one of Pakistan's most serious public
+            Diabetes is fast becoming one of Pakistan&apos;s most serious public
             health challenges. Already, millions of adults have diabetes and
             millions more are at risk, while the nation reports one of the
             highest cases of diabetes in the world. Increasing obesity,
@@ -615,7 +615,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           </strong>
         </Paragraph>
         <Paragraph>
-          <strong>A:</strong> Certainly. There's sharp rise in diabetes cases in
+          <strong>A:</strong> Certainly. There&apos;s sharp rise in diabetes cases in
           our country in recent years, with over 34 million affected, but still,
           a large portion of patients remain undiagnosed or undertreated,
           mirroring global patterns where nearly 60 per cent of diabetics over
@@ -625,7 +625,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Quote author="Dr Sarwar Malik">
           The new alarming trend is the early onset of Type-2 diabetes in
           younger individuals of 18-35 years of age and it is becoming a huge
-          financial burden on the country's fragile economy.
+          financial burden on the country&apos;s fragile economy.
         </Quote>
 
         <Paragraph>
@@ -658,7 +658,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           delayed diagnosis and limited access to affordable care have allowed
           diabetes to spread unchecked. Social factors like poverty, stress, and
           gender-based disparities, particularly affecting women, also
-          contribute. So, while lifestyle is a core driver, it's part of a
+          contribute. So, while lifestyle is a core driver, it&apos;s part of a
           broader web of medical, social and systemic issues fueling the
           epidemic.
         </Paragraph>
@@ -716,7 +716,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           modification, oral medications, and insulin therapy, depending on the
           stage and severity of the disease. Initially, Metformin remains the
           first-line oral medication for Type 2 diabetes due to its safety,
-          affordability, and effectiveness. However, in recent years, there's
+          affordability, and effectiveness. However, in recent years, there&apos;s
           been a growing use of newer drug classes like SGLT2 inhibitors and
           GLP-1 receptor agonists, which offer added cardiovascular and kidney
           benefits though their high cost limits widespread use.
@@ -728,7 +728,7 @@ export const blogArticles: Record<string, BlogArticle> = {
               <Paragraph>
                 Treatment approaches have evolved significantly over the years.
                 Earlier, care was mostly reactive and focused on managing blood
-                sugar alone. Now, it's increasingly holistic, emphasising early
+                sugar alone. Now, it&apos;s increasingly holistic, emphasising early
                 screening, patient education, prevention of complications and
                 individualised care. Self-management education, mobile health
                 tools, and multidisciplinary clinics are also being introduced,
@@ -787,7 +787,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Quote>
 
         <Paragraph>
-          <strong>A:</strong> While there's no direct evidence that Semaglutide
+          <strong>A:</strong> While there&apos;s no direct evidence that Semaglutide
           improves infertility, its impact on weight loss and hormonal balance
           can sometimes disrupt menstrual cycles and ovulation. This hormonal
           fluctuation might reduce the effectiveness of some birth control
@@ -842,7 +842,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Quote author="Dr Sarwar Malik">
-          If I've the power to make a single change, it'll be to implement
+          If I&apos;ve the power to make a single change, it&apos;ll be to implement
           widespread, accessible and sustained diabetes education and prevention
           programmes at the community level. Empowering people with knowledge
           about healthy lifestyles, early symptoms and the importance of regular
@@ -878,9 +878,9 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Paragraph>
-          Diabetes mellitus, or more commonly known as 'Sugar' or 'Diabetes' in
+          Diabetes mellitus, or more commonly known as &apos;Sugar&apos; or &apos;Diabetes&apos; in
           our part of the world, diagnosis of which leaves permanent imprints
-          and a complete and comprehensive shift in one's lifestyle, is
+          and a complete and comprehensive shift in one&apos;s lifestyle, is
           characterized by inability of pancreas to produce enough level of
           hormone insulin, resulting in sustained high blood sugar levels and
           need of immediate preventive medical care.
@@ -895,7 +895,7 @@ export const blogArticles: Record<string, BlogArticle> = {
                 developing typically in childhood attributing to genetic and
                 environmental factors and Type 2 being the most common in
                 adults, with recent surge seen in younger people also, is
-                perceived as a 'Silent Killer' due to the serious complications
+                perceived as a &apos;Silent Killer&apos; due to the serious complications
                 it can lead to such as cardiovascular disease, neuropathy,
                 retinopathy, kidney disease to name a few, if not being treated
                 timely and effectively.
@@ -925,7 +925,7 @@ export const blogArticles: Record<string, BlogArticle> = {
 
         <Quote>
           Such staggering figures urge one not only to delve deeply into the
-          causes of this disease's development among individuals but also to
+          causes of this disease&apos;s development among individuals but also to
           carefully design a lifestyle regime, at both individual and societal
           levels, that may facilitate prevention and cure.
         </Quote>
@@ -933,7 +933,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Paragraph>
           With the increasing prevalence and mortality associated with it, it
           becomes an emotional and economic burden on the patient and a
-          socio-economic burden on the country's economy, making it even more
+          socio-economic burden on the country&apos;s economy, making it even more
           imperative to devise and develop ways that can help reduce its
           recurrence among people.
         </Paragraph>
@@ -975,7 +975,7 @@ export const blogArticles: Record<string, BlogArticle> = {
                 basic health care resources, would any such measure be
                 sufficient to cope with the ever-rising risks, prevalence and
                 recurrence of disease, i.e. Diabetes mellitus? The answer is a
-                solid 'No'.
+                solid &apos;No&apos;.
               </Paragraph>
             </>
           }
@@ -988,7 +988,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Paragraph>
           In a situation, where there is no universally designed cure for
           diabetes, researches and studies have shown over time, a revamping of
-          one's lifestyle, eating habits, weight watch can not only reduce the
+          one&apos;s lifestyle, eating habits, weight watch can not only reduce the
           risk of having the condition but can significantly supplement the
           other wise complex management of the condition that involves several
           strategies. Adults and especially the elderly should be made aware of
@@ -1006,7 +1006,7 @@ export const blogArticles: Record<string, BlogArticle> = {
                 Awareness through education at a young age, can prove to be the
                 strongest tool in preventing the occurrence of disease among
                 people, at a later stage in life. It is important to note, there
-                are some diabetes risk factors you can't change, such as your
+                are some diabetes risk factors you can&apos;t change, such as your
                 genetics/family history, age and race, however, some very basic
                 life style changes can substantially help reduce the risk of
                 developing disease in the first place.
@@ -1060,15 +1060,15 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Paragraph>
 
         <Paragraph>
-          I recall vividly when the doctor gave me a stern look and said, "You
-          have diabetes."
+          I recall vividly when the doctor gave me a stern look and said, &quot;You
+          have diabetes.&quot;
         </Paragraph>
 
         <Paragraph>
           The words struck me like a physical blow. I sat silently, reeling from
           what had occurred. My head was spinning in a thousand ways —
           complications, medications, lifestyle modifications. The more I
-          worried, the worse it felt. It wasn't the disease that terrified me;
+          worried, the worse it felt. It wasn&apos;t the disease that terrified me;
           it was the fear of losing control of my own life.
         </Paragraph>
 
@@ -1080,11 +1080,11 @@ export const blogArticles: Record<string, BlogArticle> = {
                 My mind was instantly flooded with questions and fears — What
                 does this mean for my future? Will I lose my health, my energy,
                 my independence? The doctor explained the realities in clear
-                terms: diabetes isn't just about high blood sugar; it's a
+                terms: diabetes isn&apos;t just about high blood sugar; it&apos;s a
                 disease that, if left uncontrolled, can silently damage vital
                 organs — the heart, kidneys, eyes, nerves, even the skin. It can
                 lead to blindness, kidney failure, heart attacks, strokes, and
-                slow-healing wounds. I knew then that this wasn't something I
+                slow-healing wounds. I knew then that this wasn&apos;t something I
                 could take lightly.
               </Paragraph>
             </>
@@ -1097,15 +1097,15 @@ export const blogArticles: Record<string, BlogArticle> = {
           That first week after my diagnosis was one of the darkest periods of
           my life. I was caught in a cycle of anxiety and regret, replaying
           every unhealthy choice I had made. I learned that my family history
-          wasn't innocent either — diabetes ran through generations like an
+          wasn&apos;t innocent either — diabetes ran through generations like an
           uninvited guest. My grandfather had it, my uncle struggled with it,
           and now it was in my life. The thought that it could one day affect my
-          children made my chest tighten. I didn't just have to fight this for
+          children made my chest tighten. I didn&apos;t just have to fight this for
           myself — I had to set an example for the next generation.
         </Paragraph>
 
         <Quote>
-          For days, I was in shock and a state of anxiety. I couldn't help but
+          For days, I was in shock and a state of anxiety. I couldn&apos;t help but
           wonder, How did I end up here? Every consideration took me back to the
           same painful reality: I had been neglecting my health. But one day,
           looking at myself in the mirror, I gave myself a promise. I was not
@@ -1136,7 +1136,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           Exercise became my daily routine. I walked each morning, picking up my
           speed and mood with every step. Strength training came next, followed
           by light cardio. The sweating was a purification of old ways, and my
-          body answered in kind. But I knew that diabetes wasn't just a fight in
+          body answered in kind. But I knew that diabetes wasn&apos;t just a fight in
           the body — it was one in the mind.
         </Paragraph>
 
@@ -1165,8 +1165,8 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Quote>
           In retrospect, diabetes did not kill me — it remade me. It showed me
           how to be disciplined, patient, and the strength of perseverance. I
-          still have it, but I live my own way. And if there's one thing I've
-          realized, it's this: a diagnosis isn't the end of the story — it can
+          still have it, but I live my own way. And if there&apos;s one thing I&apos;ve
+          realized, it&apos;s this: a diagnosis isn&apos;t the end of the story — it can
           be the start of a better one.
         </Quote>
       </>
@@ -1278,7 +1278,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Quote>
           Current or novel medications against monogenic forms of obesity,
           though available in many developed countries, are unfortunately
-          lacking in Pakistan—a country with the world's highest recorded
+          lacking in Pakistan—a country with the world&apos;s highest recorded
           prevalence of LEP-signaling deficiency.
         </Quote>
 
@@ -1346,7 +1346,7 @@ export const blogArticles: Record<string, BlogArticle> = {
               <Paragraph>
                 Current or novel medications against monogenic forms of obesity,
                 though available in many developed countries, are unfortunately
-                lacking in Pakistan—a country with the world's highest recorded
+                lacking in Pakistan—a country with the world&apos;s highest recorded
                 prevalence of LEP-signaling deficiency.
               </Paragraph>
             </>
@@ -1386,21 +1386,21 @@ export const blogArticles: Record<string, BlogArticle> = {
     category: "Health",
     content: (
       <>
-        <Heading level={3}>Introduction: When Health Isn't a Choice</Heading>
+        <Heading level={3}>Introduction: When Health Isn&apos;t a Choice</Heading>
         <Paragraph>
           <strong>Reels. Exams. Fast food. Repeat.</strong>
         </Paragraph>
         <Paragraph>
           Now in Pakistan, kids carry an invisible health burden. Not only
-          obesity or diabetes. Both! And it's beginning earlier than ever.
+          obesity or diabetes. Both! And it&apos;s beginning earlier than ever.
         </Paragraph>
         <Paragraph>
           It is often spoken about in hushed tones. A cousin who began taking
           insulin at 18. A friend who fainted in school. A sleepy adolescent
-          girl reports her illness as "weakness." But this isn't just a
+          girl reports her illness as &quot;weakness.&quot; But this isn&apos;t just a
           weakness.{" "}
           <strong>
-            It's diabesity: a mix of diabetes and obesity, and it's growing fast
+            It&apos;s diabesity: a mix of diabetes and obesity, and it&apos;s growing fast
             among Gen Z in Pakistan
           </strong>
           . Its prevalence is silently increasing in our homes as we are fixated
@@ -1411,8 +1411,8 @@ export const blogArticles: Record<string, BlogArticle> = {
           text={
             <>
               <Paragraph>
-                It's thought to be caused by a poor diet or lack of exercise.
-                For most young Pakistanis, it's an everyday battle. No gym, no
+                It&apos;s thought to be caused by a poor diet or lack of exercise.
+                For most young Pakistanis, it&apos;s an everyday battle. No gym, no
                 healthy food, excessive use of screens, exam stress, and no
                 support system, and you have a recipe for a crisis that nobody
                 is talking about.
@@ -1449,14 +1449,14 @@ export const blogArticles: Record<string, BlogArticle> = {
           text={
             <>
               <Paragraph>
-                Let's be real. The majority of families aren't cooking kale or
+                Let&apos;s be real. The majority of families aren&apos;t cooking kale or
                 quinoa. People consume what they can. That typically means
                 oil-drenched parathas and salan, white bread, sweet tea,
                 deep-fried snacks, and packaged drinks.
               </Paragraph>
               <Paragraph>
-                Ultra-processed foods are marketing themselves as "quick" and
-                "modern." Eye-catching advertisements promote cartoon-branded
+                Ultra-processed foods are marketing themselves as &quot;quick&quot; and
+                &quot;modern.&quot; Eye-catching advertisements promote cartoon-branded
                 breakfast cereals and convenient yogurt cups, but they are
                 choked with added sugars, salt, and trans-fat oils, and they
                 lack nutrients and fiber.
@@ -1489,14 +1489,14 @@ export const blogArticles: Record<string, BlogArticle> = {
           school hours.
         </Paragraph>
         <Paragraph>
-          This isn't just about looking different. It's about feeling like a
+          This isn&apos;t just about looking different. It&apos;s about feeling like a
           failure. Without the resources or assistance to break free from this
           cycle, young people are stuck in bodies they are told to hate and
           surrounded by foods they are told to stay away from.
         </Paragraph>
         <Paragraph>
-          It's not just weight. It's a psychological loop. Binge eating leads to
-          guilt. Guilt leads to starvation, so you feel like you're balancing
+          It&apos;s not just weight. It&apos;s a psychological loop. Binge eating leads to
+          guilt. Guilt leads to starvation, so you feel like you&apos;re balancing
           it. This toxic relationship with your body becomes so familiar that it
           starts to feel normal.
         </Paragraph>
@@ -1514,7 +1514,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           self-comforting.
         </Paragraph>
         <Heading level={2}>Hours of Sitting, Years of Damage</Heading>
-        <Paragraph>Let's not forget the static routines:</Paragraph>
+        <Paragraph>Let&apos;s not forget the static routines:</Paragraph>
         <List
           items={[
             "Children spend six to eight hours sitting during school",
@@ -1523,13 +1523,13 @@ export const blogArticles: Record<string, BlogArticle> = {
           ]}
         />
         <Paragraph>
-          Our way of life hinders regular movement. Setting one's health as a
+          Our way of life hinders regular movement. Setting one&apos;s health as a
           priority is frequently dismissed as a luxury or seen as a diversion
           from other responsibilities.
         </Paragraph>
         <Heading level={2}>Mental Health: The Invisible Weight</Heading>
         <Paragraph>
-          Gen Z is carrying more than just extra pounds. They're burdened with
+          Gen Z is carrying more than just extra pounds. They&apos;re burdened with
           academic pressure, financial uncertainty, social comparison, climate
           anxiety, and a continuous digital presence that challenges their
           self-worth.
@@ -1542,11 +1542,11 @@ export const blogArticles: Record<string, BlogArticle> = {
           them toward psychological collapse.
         </Paragraph>
         <Paragraph>
-          Food is what remains. It's comfort. It's control. It's a distraction.
-          And it's destruction. Mental health is untouched, yet most parents
-          dismiss it with advice to pray or "be stronger." Schools don't take
+          Food is what remains. It&apos;s comfort. It&apos;s control. It&apos;s a distraction.
+          And it&apos;s destruction. Mental health is untouched, yet most parents
+          dismiss it with advice to pray or &quot;be stronger.&quot; Schools don&apos;t take
           emotional distress seriously. Therapy is rare, and when it exists,
-          it's unaffordable for most, and emotional contributors to diabesity
+          it&apos;s unaffordable for most, and emotional contributors to diabesity
           remain largely ignored in both families and the healthcare system.
         </Paragraph>
         <Paragraph>
@@ -1567,10 +1567,10 @@ export const blogArticles: Record<string, BlogArticle> = {
           million diagnosed diabetics in the nation, the undiagnosed diabetics
           are probably even higher.
         </Paragraph>
-        <Heading level={2}>You Can't Fight What You Don't Understand</Heading>
+        <Heading level={2}>You Can&apos;t Fight What You Don&apos;t Understand</Heading>
         <Paragraph>
-          The average teenager and adult don't have a clue about how to read a
-          label. Most don't even realize how much sugar is excessive, or the
+          The average teenager and adult don&apos;t have a clue about how to read a
+          label. Most don&apos;t even realize how much sugar is excessive, or the
           fact that a packaged lassi contains more sugar than a can of soda.
           Nobody ever taught them, and nobody is teaching them now.
         </Paragraph>
@@ -1609,7 +1609,7 @@ export const blogArticles: Record<string, BlogArticle> = {
             "Make preventive care a norm by offering free annual screenings in schools, universities, and workplaces",
           ]}
         />
-        When people advise "Just take care of yourself," it must be followed
+        When people advise &quot;Just take care of yourself,&quot; it must be followed
         with the tools, spaces, and affordable options that make that advice
         realistic for everyone.
         <Heading level={2}>
@@ -1617,7 +1617,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Heading>
         <Paragraph>
           This Generation Deserves More than a Warning Label: Diabesity in Gen Z
-          is not only an epidemic, it's the result of decades of structural
+          is not only an epidemic, it&apos;s the result of decades of structural
           neglect, misinformation, cultural shifts, and economic pressures.
         </Paragraph>
         <Paragraph>
@@ -1657,7 +1657,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Paragraph>
           With so much screen time, prolonged sitting, and irresistible fast
           food, diabesity is a silent health crisis that is spreading quickly.
-          Despite the term's newness, its effects are prevalent in Pakistan.
+          Despite the term&apos;s newness, its effects are prevalent in Pakistan.
         </Paragraph>
 
         <Paragraph>
@@ -1672,8 +1672,8 @@ export const blogArticles: Record<string, BlogArticle> = {
             <>
               <Heading level={3}>What is Diabesity?</Heading>
               <Paragraph>
-                Diabesity is the combination of the two words "obesity" and
-                "diabetes". People who are overweight or chubby are also at a
+                Diabesity is the combination of the two words &quot;obesity&quot; and
+                &quot;diabetes&quot;. People who are overweight or chubby are also at a
                 higher risk of getting type 2 diabetes, this is a medical
                 reality.
               </Paragraph>
@@ -1862,7 +1862,7 @@ export const blogArticles: Record<string, BlogArticle> = {
                 management.
               </Paragraph>
               <Paragraph>
-                As noted by The Express Tribune, Pakistan's national health
+                As noted by The Express Tribune, Pakistan&apos;s national health
                 budget{" "}
                 <strong>
                   allocates very little to non-communicable diseases
@@ -1882,7 +1882,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         <Heading level={4}>Little Actions Lead to Significant Change</Heading>
 
         <Paragraph>
-          You don't have to completely change your life all at once. Begin with
+          You don&apos;t have to completely change your life all at once. Begin with
           modest, long-term actions:
         </Paragraph>
 
@@ -1895,7 +1895,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         />
 
         <Heading level={2}>
-          Conclusion: Treating Diabesity is a Lifelong Commitment But You Don't
+          Conclusion: Treating Diabesity is a Lifelong Commitment But You Don&apos;t
           Have to Do It Alone
         </Heading>
 

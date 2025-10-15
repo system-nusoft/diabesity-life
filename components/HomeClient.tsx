@@ -9,12 +9,10 @@ import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DailyCare from "../public/daily-care.jpg";
-import Donate from "../public/donate-cta.jpeg";
 import EatHealthy from "../public/eat-healthy-1.jpeg";
 import HealthProviders from "../public/find-health-providers.jpg";
 import Hero1 from "../public/hero-section-1.webp";
 import Hero2 from "../public/hero-section-2.webp";
-import Knowledge from "../public/knowledge-tool-diabesity.png";
 
 const heroSlides = [
   {
@@ -160,15 +158,15 @@ export default function Home({ blogs, news }: HomeClientProps) {
     return () => clearInterval(interval);
   }, []);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  };
+//   const nextSlide = () => {
+//     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+//   };
 
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
-    );
-  };
+//   const prevSlide = () => {
+//     setCurrentSlide(
+//       (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+//     );
+//   };
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -353,7 +351,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
               In Pakistan, the combination of diabetes and
-              obesity—"diabesity"—has become one of our most urgent health
+              obesity—&quot;diabesity&quot;—has become one of our most urgent health
               challenges. With <strong>1 in 4 adults</strong> projected to face
               obesity by <strong>2035</strong> and diabetes already affecting{" "}
               <strong>26.7%</strong> of our population, the numbers are serious.
@@ -481,7 +479,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               We help you succeed
             </h2>
             <p className="text-gray-600 text-lg">
-              From finding a specialist to creating healthy meals, here's
+              From finding a specialist to creating healthy meals, here&apos;s
               everything you need to take control
             </p>
           </div>
