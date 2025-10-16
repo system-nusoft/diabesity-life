@@ -6,7 +6,6 @@ import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
 import { Category, getCategoryGradient } from "@/lib/utils";
 import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DailyCare from "../public/daily-care.jpg";
@@ -89,7 +88,9 @@ const services = [
     image: HealthProviders.src,
     gradient: "from-yellow-500/100 to-yellow-500/0",
     linkText: "Find a specialist",
-    linkUrl: "/find-specialist",
+    linkUrl:
+      "https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902",
+    linkTarget: "_blank",
   },
   {
     title: "Understand diabesity",
@@ -97,29 +98,34 @@ const services = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070",
     gradient: "from-orange-500/100 to-orange-500/0",
     linkText: "Learn more",
-    linkUrl: "/learn-more",
+    linkUrl: "/blogs/what-is-diabesity-and-why-does-it-matter",
+    linkTarget: "",
   },
   {
     title: "Eat smart and healthy",
     image: EatHealthy.src,
     gradient: "from-blue-500/100 to-blue-500/0",
     linkText: "Get recipes",
-    linkUrl: "/recipes",
+    linkUrl: "#",
+    linkTarget: "",
   },
   {
     title: "Get custom diet plans",
     image:
       "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070",
     gradient: "from-green-500/100 to-green-500/0",
-    linkText: "See diet plans",
-    linkUrl: "/diet-plans",
+    linkText: "Find a dietician",
+    linkUrl:
+      "https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902",
+    linkTarget: "_blank",
   },
   {
     title: "Daily care and monitoring",
     image: DailyCare.src,
     gradient: "from-purple-500/100 to-purple-500/0",
     linkText: "View guides",
-    linkUrl: "/devices",
+    linkUrl: "#",
+    linkTarget: "",
   },
 ];
 
@@ -491,26 +497,31 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 key={index}
                 className="relative h-80 overflow-hidden group cursor-pointer border"
               >
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${service.gradient}`}
-                ></div>
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute bottom-4 left-3 text-white px-1">
-                  <p className="font-semibold text-xl mb-8">{service.title}</p>
-                  <Link href="#" className="underline">
-                    <p className="font-semibold text-lg flex items-center">
+                <Link
+                  href={service.linkUrl}
+                  target={service.linkTarget}
+                >
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t ${service.gradient}`}
+                  ></div>
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="absolute bottom-4 left-3 text-white px-1">
+                    <p className="font-semibold text-xl mb-8">
+                      {service.title}
+                    </p>
+                    <p className="font-semibold text-lg flex items-center underline">
                       {service.linkText}{" "}
                       <span className="ml-1">
                         <ChevronRight size={18} />
                       </span>
                     </p>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
