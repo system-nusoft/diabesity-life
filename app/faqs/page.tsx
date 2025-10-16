@@ -32,7 +32,7 @@ const faqs = [
   {
     question: "I keep forgetting my medication.",
     answer:
-      "Missing doses can quietly undo all your hard work. In Pakistan’s busy daily rhythm — juggling work, family, and social commitments — it’s easy to forget. The trick is to tie your medication to something you already do every day: after brushing your teeth, before your morning chai, or right after dinner. Use your phone’s alarm or a pillbox with compartments for each day. If you travel often, keep a spare strip in your bag or car. Remember, diabetes medicines work best when taken consistently — skipping “just one day” can cause your sugar to spike and increase long-term risks. Make it part of your routine, not an afterthought.",
+      "Missing doses can quietly undo your progress. In our busy Pakistani routines — juggling work, family, and social commitments — it’s easy to forget. The trick is to link your medication to something you already do daily: after brushing your teeth, before your morning chai, or right after dinner. Use your phone’s alarm, a pillbox with daily compartments, or even a sticky note on the fridge. If you travel often, keep a spare strip in your bag or car. Remember, diabetes medicines work best when taken consistently — skipping “just one day” can cause sugar spikes and long-term harm. Make it part of your routine, not an afterthought.",
     category: "Health" as Category,
   },
   {
@@ -467,7 +467,7 @@ export default function NewsClient() {
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
-                      openFaqIndex === idx + faqs.length / 2 ? "max-h-96 mt-2" : "max-h-0"
+                      openFaqIndex === idx + faqs.length / 2 ? "max-h-[30rem] mt-2" : "max-h-0"
                     }`}
                   >
                     <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">

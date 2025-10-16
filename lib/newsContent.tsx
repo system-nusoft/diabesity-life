@@ -1,3 +1,4 @@
+import { Quote } from "@/components/BlogTemplate";
 import Link from "next/link";
 import Article1 from "../public/news-article-1.jpg";
 import Article2 from "../public/news-article-2.webp";
@@ -156,11 +157,13 @@ export const newsArticles: Record<string, NewsArticle> = {
             Pakistan, requiring a united approach from all sectors to tackle it.
           </strong>
         </p>
-        <p className="mt-4">
-          “Approximately 33 million individuals in Pakistan live with diabetes,
-          with an alarmingly 27pc more, still undiagnosed,” he said after
-          inaugurating a Non-Communicable Diseases (NCDs) Centre in Barri Imam.
-        </p>
+        <Quote
+          author="he said after
+          inaugurating a Non-Communicable Diseases (NCDs) Centre in Barri Imam."
+        >
+          Approximately 33 million individuals in Pakistan live with diabetes,
+          with an alarmingly 27pc more, still undiagnosed.
+        </Quote>
         <p className="mt-4">
           For more details, click{" "}
           <Link
@@ -178,7 +181,8 @@ export const newsArticles: Record<string, NewsArticle> = {
 
   "pakistan-confronts-alarming-diabetes-burden": {
     slug: "pakistan-confronts-alarming-diabetes-burden",
-    title: "WORLD DIABETES FOUNDATION: Pakistan confronts alarming diabetes burden",
+    title:
+      "WORLD DIABETES FOUNDATION: Pakistan confronts alarming diabetes burden",
     date: "2025-09-15",
     image: Article5.src,
     imageAlt: "Healthy lifestyle",
