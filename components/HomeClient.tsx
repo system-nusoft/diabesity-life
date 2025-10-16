@@ -6,6 +6,7 @@ import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
 import { Category, getCategoryGradient } from "@/lib/utils";
 import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DailyCare from "../public/daily-care.jpg";
@@ -59,7 +60,7 @@ const faqs = [
   {
     question: "I keep forgetting my medication.",
     answer:
-      "Missing doses can quietly undo all your hard work. In Pakistan’s busy daily rhythm — juggling work, family, and social commitments — it’s easy to forget. The trick is to tie your medication to something you already do every day: after brushing your teeth, before your morning chai, or right after dinner. Use your phone’s alarm or a pillbox with compartments for each day. If you travel often, keep a spare strip in your bag or car. Remember, diabetes medicines work best when taken consistently — skipping “just one day” can cause your sugar to spike and increase long-term risks. Make it part of your routine, not an afterthought.",
+      "Missing doses can quietly undo your progress. In our busy Pakistani routines — juggling work, family, and social commitments — it’s easy to forget. The trick is to link your medication to something you already do daily: after brushing your teeth, before your morning chai, or right after dinner. Use your phone’s alarm, a pillbox with daily compartments, or even a sticky note on the fridge. If you travel often, keep a spare strip in your bag or car. Remember, diabetes medicines work best when taken consistently — skipping “just one day” can cause sugar spikes and long-term harm. Make it part of your routine, not an afterthought.",
     category: "Health" as Category,
   },
   {
@@ -158,15 +159,15 @@ export default function Home({ blogs, news }: HomeClientProps) {
     return () => clearInterval(interval);
   }, []);
 
-//   const nextSlide = () => {
-//     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-//   };
+  //   const nextSlide = () => {
+  //     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  //   };
 
-//   const prevSlide = () => {
-//     setCurrentSlide(
-//       (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
-//     );
-//   };
+  //   const prevSlide = () => {
+  //     setCurrentSlide(
+  //       (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+  //     );
+  //   };
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -233,7 +234,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
             style={{
               backgroundImage: `url('${slide.image}')`,
               backgroundSize: "cover",
-              backgroundPosition: "top center",
+              backgroundPosition: "center",
             }}
           >
             <div className="absolute inset-0 bg-black/30"></div>
@@ -351,12 +352,12 @@ export default function Home({ blogs, news }: HomeClientProps) {
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
               In Pakistan, the combination of diabetes and
-              obesity—&quot;diabesity&quot;—has become one of our most urgent health
-              challenges. With <strong>1 in 4 adults</strong> projected to face
-              obesity by <strong>2035</strong> and diabetes already affecting{" "}
-              <strong>26.7%</strong> of our population, the numbers are serious.
-              Our modern lives, from the convenience of fast food to more
-              sedentary habits, have fueled this rise.
+              obesity—&quot;diabesity&quot;—has become one of our most urgent
+              health challenges. With <strong>1 in 4 adults</strong> projected
+              to face obesity by <strong>2035</strong> and diabetes already
+              affecting <strong>26.7%</strong> of our population, the numbers
+              are serious. Our modern lives, from the convenience of fast food
+              to more sedentary habits, have fueled this rise.
             </p>
           </div>
         </div>
@@ -501,14 +502,14 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 <div className="absolute inset-0 bg-black/30"></div>
                 <div className="absolute bottom-4 left-3 text-white px-1">
                   <p className="font-semibold text-xl mb-8">{service.title}</p>
-                  <a href={service.linkUrl} className="underline">
+                  <Link href="#" className="underline">
                     <p className="font-semibold text-lg flex items-center">
                       {service.linkText}{" "}
                       <span className="ml-1">
                         <ChevronRight size={18} />
                       </span>
                     </p>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

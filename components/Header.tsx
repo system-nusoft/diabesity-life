@@ -61,7 +61,8 @@ export default function Header() {
               <Search className="w-5 h-5" />
             </button> */}
             <Link
-              href="/contact"
+              href="https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1633779827#gid=1633779827"
+              target="_blank"
               className="bg-primary text-white px-6 py-3 hover:bg-primary/90 transition-colors text-sm font-medium"
             >
               Contact a Specialist

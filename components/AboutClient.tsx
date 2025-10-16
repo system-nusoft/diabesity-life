@@ -41,7 +41,6 @@ export default function AboutClient() {
         {/* Introduction Section */}
         <div className="flex col-span-2 md:col-span-1 justify-center items-center">
           <div>
-            <p className="text-lg mb-4">About Us</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold max-w-3xl leading-tight">
               Health is your fundamental right
             </h1>
@@ -117,7 +116,7 @@ export default function AboutClient() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
-              Our Impact & Vision
+              Our Key Objectives
             </p>
             <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
               Our Mission in Action
