@@ -13,11 +13,11 @@ export default function Footer() {
   return (
     <footer
       className="bg-[#1a1a1a] text-white"
-      style={{
-        backgroundImage: `url('${FooterBG.src}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "top center",
-      }}
+      // style={{
+      //   backgroundImage: `url('${FooterBG.src}')`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "top center",
+      // }}
     >
       {/* Contact Specialist Section */}
       <section className="py-16 md:py-16">
@@ -32,14 +32,14 @@ export default function Footer() {
           </div>
           <div className="flex gap-4">
             <Link href="/contact">
-              <Button variant="outlinedOrange">Contact</Button>
+              <Button variant="filledOrange">Contact</Button>
             </Link>
             <Link
               href="http://www.dap.org.pk/Donations.html"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="blurry">
+              <Button variant="outlinedOrange">
                 Donate
                 <ExternalLinkIcon className="ml-1 h-5 w-5" />
               </Button>
@@ -116,16 +116,16 @@ export default function Footer() {
           </p>
           <div className="flex space-x-6">
             <Link
-              href="/terms"
+              href="#"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >
               Terms of use
             </Link>
             <Link
-              href="/privacy"
+              href="#"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >
-              Privacy
+              Privacy policy
             </Link>
           </div>
         </div>

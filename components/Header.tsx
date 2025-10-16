@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [_isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -61,7 +62,9 @@ export default function Header() {
               <Search className="w-5 h-5" />
             </button> */}
             <Link
-              href="/contact"
+              href="https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902"
+              target="_blank"
+              // onClick={() => setIsModalOpen(true)}
               className="bg-primary text-white px-6 py-3 hover:bg-primary/90 transition-colors text-sm font-medium"
             >
               Contact a Specialist
@@ -115,15 +118,18 @@ export default function Header() {
             >
               Contact
             </Link>
-            <Link
-              href="/contact-specialist"
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="bg-primary text-white px-6 py-2.5 rounded hover:bg-primary/90 transition-colors text-center"
             >
               Contact a Specialist
-            </Link>
+            </button>
           </nav>
         )}
       </div>
+
+      {/* Doctor Booking Modal */}
+      {/* <DoctorBookingModal open={isModalOpen} onOpenChange={setIsModalOpen} /> */}
     </header>
   );
 }
