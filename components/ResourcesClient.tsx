@@ -149,7 +149,7 @@ export default function ResourcesClient({
       </section>
 
       {/* Content Section */}
-      <section className="pb-16 md:pb-24 bg-white">
+      <section id="content" className="pb-16 md:pb-24 bg-white">
         {activeTab === "blogs" ? (
           <BlogsList blogs={blogs} />
         ) : activeTab === "news" ? (

@@ -39,8 +39,8 @@ export default function RecipeList({ recipes }: RecipeListProps) {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-between px-6">
-                <h3 className="font-bold text-gray-900 text-xl leading-tight mb-4">
+              <div className="flex flex-col justify-between px-4 h-48">
+                <h3 className="font-bold text-gray-900 text-xl leading-tight">
                   {recipe.title}
                 </h3>
 

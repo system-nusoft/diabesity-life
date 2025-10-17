@@ -106,7 +106,7 @@ const services = [
     image: EatHealthy.src,
     gradient: "from-blue-500/100 to-blue-500/0",
     linkText: "Get recipes",
-    linkUrl: "/resources?tab=recipes",
+    linkUrl: "/resources?tab=recipes#content",
     linkTarget: "",
   },
   {
@@ -381,7 +381,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 Latest insights on diabesity
               </h2>
             </div>
-            <Link href="/resources?tab=news">
+            <Link href="/resources?tab=news#content">
               <Button variant="outlined">More news</Button>
             </Link>
           </div>
@@ -618,7 +618,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 Find the support you need
               </h2>
             </div>
-            <Link href="/resources?tab=blogs">
+            <Link href="/resources?tab=blogs#content">
               <Button variant="outlined">Find out more</Button>
             </Link>
           </div>

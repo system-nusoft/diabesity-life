@@ -10,6 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-primary hover:bg-primary/90 text-white px-8 py-3",
+        gray: "bg-gray-600 hover:bg-gray-600/90 text-white border-2 border-gray-600 px-8 py-3",
         filledOrange:
           "bg-[#ff9d5c] hover:bg-[#ff9d5c]/90 border-2 border-[#ff9d5c] text-white px-8 py-3",
         blurry:

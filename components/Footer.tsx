@@ -39,7 +39,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="outlinedOrange">
+              <Button variant="gray">
                 Donate
                 <ExternalLinkIcon className="ml-1 h-5 w-5" />
               </Button>
