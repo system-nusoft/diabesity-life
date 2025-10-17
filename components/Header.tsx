@@ -118,7 +118,7 @@ export default function Header() {
               className="bg-primary text-white px-6 py-2.5 rounded hover:bg-primary/90 transition-colors text-center"
             >
               Contact a Specialist
-            </button>
+            </Link>
           </nav>
         )}
       </div>
