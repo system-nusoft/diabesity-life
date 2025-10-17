@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
 import {
+  bookingPlatforms,
   doctors,
   getUniqueCities,
   getUniqueSpecializations,
-  bookingPlatforms,
   type Doctor,
 } from "@/lib/doctorsData";
-import { X, Phone, FileText, ChevronDown } from "lucide-react";
+import { ChevronDown, FileText, Phone, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 interface DoctorBookingModalProps {
   open: boolean;
@@ -199,7 +199,7 @@ function CustomSelect({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+        className="flex h-10 w-full items-center justify-between border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
       >
         <span className={value ? "text-gray-900" : "text-gray-500"}>
           {selectedOption?.label || placeholder}
@@ -244,20 +244,18 @@ function CustomSelect({
 
 function DoctorCard({ doctor }: { doctor: Doctor }) {
   return (
-    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow bg-white">
+    <div className="border border-gray-200 p-4 hover:shadow-md transition-shadow bg-white">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="flex-1">
-          <h3 className="font-semibold text-lg text-gray-900">
-            {doctor.name}
-          </h3>
-          <p className="text-primary font-medium mt-1">
+          <h3 className="font-semibold text-lg text-gray-900">{doctor.name}</h3>
+          <p className="text-gray-600 text-sm font-medium">
             {doctor.specialization}
           </p>
           <div className="flex flex-wrap gap-2 mt-2">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+            <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-primary text-white">
               {doctor.city}
             </span>
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium border border-primary text-primary">
               {doctor.bookingPlatform}
             </span>
           </div>

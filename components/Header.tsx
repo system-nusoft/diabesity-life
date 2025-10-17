@@ -31,22 +31,16 @@ export default function Header() {
               About
             </Link>
             <Link
-              href="/news"
+              href="/resources"
               className="text-gray-700 hover:text-primary transition-colors text-base"
             >
-              News
+              Resources
             </Link>
             <Link
               href="/faqs"
               className="text-gray-700 hover:text-primary transition-colors text-base"
             >
               FAQs
-            </Link>
-            <Link
-              href="/blogs"
-              className="text-gray-700 hover:text-primary transition-colors text-base"
-            >
-              Blogs
             </Link>
             <Link
               href="/contact"
@@ -90,36 +84,37 @@ export default function Header() {
           <nav className="lg:hidden mt-6 pb-4 flex flex-col space-y-4 border-t border-gray-200 pt-4">
             <Link
               href="/about"
+              onClick={() => setIsMenuOpen(false)}
               className="text-gray-700 hover:text-primary transition-colors"
             >
               About
             </Link>
             <Link
-              href="/news"
+              href="/resources"
+              onClick={() => setIsMenuOpen(false)}
               className="text-gray-700 hover:text-primary transition-colors"
             >
-              News
+              Resources
             </Link>
             <Link
               href="/faqs"
+              onClick={() => setIsMenuOpen(false)}
               className="text-gray-700 hover:text-primary transition-colors"
             >
               FAQs
             </Link>
             <Link
-              href="/blogs"
-              className="text-gray-700 hover:text-primary transition-colors"
-            >
-              Blogs
-            </Link>
-            <Link
               href="/contact"
+              onClick={() => setIsMenuOpen(false)}
               className="text-gray-700 hover:text-primary transition-colors"
             >
               Contact
             </Link>
-            <button
-              onClick={() => setIsModalOpen(true)}
+            <Link
+              href="https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902"
+              target="_blank"
+              onClick={() => setIsMenuOpen(false)}
+              // onClick={() => setIsModalOpen(true)}
               className="bg-primary text-white px-6 py-2.5 rounded hover:bg-primary/90 transition-colors text-center"
             >
               Contact a Specialist
