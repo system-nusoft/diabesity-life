@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { JSX } from "react";
 
 interface TextImageSectionProps {
@@ -109,5 +108,24 @@ export function Quote({ children, author, className = "" }: QuoteProps) {
         </footer>
       )}
     </blockquote>
+  );
+}
+
+interface HighlightsProps {
+  children: React.ReactNode;
+  title?: string;
+  className?: string;
+}
+
+export function Highlights({
+  children,
+  title = "Highlights",
+  className = "",
+}: HighlightsProps) {
+  return (
+    <div className={`bg-gray-100 border border-gray-200 p-6 my-6 ${className}`}>
+      <h3 className="text-xl font-bold text-primary mb-4">{title}</h3>
+      <div className="space-y-3">{children}</div>
+    </div>
   );
 }
