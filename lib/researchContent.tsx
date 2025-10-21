@@ -445,12 +445,12 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           In a groundbreaking discovery, scientists have shown that{" "}
           <b>
-            epigenetic markers in a newborn's cord blood can predict their
+            epigenetic markers in a newborn&apos;s cord blood can predict their
             lifetime risk of type 2 diabetes
           </b>
           —with nearly <b>80% greater accuracy</b> than standard methods. This
           could revolutionize early screening, identifying at-risk children from
-          the moment they're born.
+          the moment they&apos;re born.
         </p>
 
         <p className="mt-4">
@@ -489,27 +489,27 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          Health experts break its impact into two groups. "Sick fat disease"
+          Health experts break its impact into two groups. &quot;Sick fat disease&quot;
           happens when fat tissue itself goes haywire and pumps out bad hormones
           that push conditions such as diabetes, hypertension, and fatty liver
-          disease. "Fat mass disease" arises from the physical strain of excess
+          disease. &quot;Fat mass disease&quot; arises from the physical strain of excess
           weight — pressure on the heart, pressure on the lungs, sleep apnea,
           and reduced mobility. Together, these pressures are responsible for
           why obesity is associated with hundreds of medical complications.
         </p>
 
         <p className="mt-4">
-          Worse still is the body's own defense mechanism. As people reduce
+          Worse still is the body&apos;s own defense mechanism. As people reduce
           calories, survival mechanisms are triggered: hunger hormones spike,
           satiety signals plummet, and metabolism decreases to preserve energy.
-          That's metabolic adaptation, and it accounts for why diets almost
+          That&apos;s metabolic adaptation, and it accounts for why diets almost
           inevitably fail and why maintenance of weight loss is much more
           difficult than losing weight initially.
         </p>
 
         <p className="mt-4">
           Scientists point out that for successful treatment, it is necessary to
-          transcend "eat less, move more." Long-term management can involve
+          transcend &quot;eat less, move more.&quot; Long-term management can involve
           nutritional interventions, exercise, behavioral therapy, drugs, and
           even surgery. The word is out: obesity is not a straightforward
           failure of willpower but a multifaceted disease that needs integrated
@@ -567,7 +567,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          This trend isn't merely a clinical aside—it's a real-world issue.
+          This trend isn&apos;t merely a clinical aside—it&apos;s a real-world issue.
           Example: patients who received 36 weeks of tirzepatide regained almost
           as much as half the weight lost after stopping.
         </p>
@@ -726,13 +726,13 @@ export const researchArticles: Record<string, ResearchArticle> = {
           detrimental. Rather, the levels of fat hormones could determine
           whether fat tissue defends or encourages cancer. For men specifically,
           restoring more healthy levels of adiponectin might be an important
-          aspect of prevention, and leptin's association with adenomas
+          aspect of prevention, and leptin&apos;s association with adenomas
           reinforces the need to track early-stage risk.
         </p>
 
         <p className="mt-4">
           <b>
-            Is your very own fat shaping your cancer risk in ways you can't even
+            Is your very own fat shaping your cancer risk in ways you can&apos;t even
             imagine?{" "}
             <Link
               href="https://bmccancer.biomedcentral.com/articles/10.1186/s12885-025-14362-y"
@@ -782,7 +782,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           What is appealing about these strategies is their versatility. Rather
-          than a single "ideal" diet, practitioners may guide patients toward
+          than a single &quot;ideal&quot; diet, practitioners may guide patients toward
           the choice that suits their tastes, cultural patterns, and health
           objectives—thus, making it more likely to stick in the long term.
           Research indicates that no matter what plan is utilized, patients
@@ -798,7 +798,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           <b>
             Interested in learning which diet may revolutionize diabetes
-            care—and why food might be medicine's most overlooked prescription?{" "}
+            care—and why food might be medicine&apos;s most overlooked prescription?{" "}
             <Link
               href="https://academic.oup.com/jcem/article/110/Supplement_2/S112/8042170"
               target="_blank"
@@ -825,7 +825,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
     content: (
       <>
         <p className="mt-4">
-          The UK's health guardian has published sweeping new advice that has
+          The UK&apos;s health guardian has published sweeping new advice that has
           the potential to revolutionize how obesity is treated throughout the
           NHS. For the first time, the National Institute for Health and Care
           Excellence (NICE) is encouraging clinicians to treat overweight and
@@ -834,9 +834,9 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          The change isn't only medical—it's cultural. Doctors are encouraged to
+          The change isn&apos;t only medical—it&apos;s cultural. Doctors are encouraged to
           seek consent before bringing up the issue of weight, not to use
-          stigmatising language, and to think about the individual's broader
+          stigmatising language, and to think about the individual&apos;s broader
           life background—from poverty to early trauma—before they can talk
           about treatment. NICE underlines the fact that insensitive management
           can drive individuals away from care, making both physical and mental
@@ -868,12 +868,12 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          The word is out: obesity care must go beyond "eat less, move more" and
+          The word is out: obesity care must go beyond &quot;eat less, move more&quot; and
           adopt compassion, choice, and long-term support.
         </p>
 
         <p className="mt-4">
-          The word is out: obesity care must go beyond "eat less, move more" and
+          The word is out: obesity care must go beyond &quot;eat less, move more&quot; and
           adopt compassion, choice, and long-term support.{" "}
           <Link
             href="Find out how the new NHS guidance might transform obesity care in the UK here."
@@ -932,20 +932,20 @@ export const researchArticles: Record<string, ResearchArticle> = {
           diseases: SGLT-2 inhibitors to guard the heart and kidneys, GLP-1
           receptor agonists to aid in weight and blood sugar, and lifestyle
           changes that lower all three risks simultaneously. Most importantly,
-          it demands coordinated, team-delivered care—so patients aren't
+          it demands coordinated, team-delivered care—so patients aren&apos;t
           shuffled among specialists, but guided by a single, integrative plan.
         </p>
 
         <p className="mt-4">
           The bottom line: CKM Syndrome transforms the way we view chronic
-          illness. Rather than isolated issues, it's a single interrelated
+          illness. Rather than isolated issues, it&apos;s a single interrelated
           crisis—and one that can be slowed or prevented if addressed early and
           as a team.
         </p>
 
         <p className="mt-4">
           <b>
-            Might this "one-disease" strategy shift the way your doctor works
+            Might this &quot;one-disease&quot; strategy shift the way your doctor works
             with you to manage your health?{" "}
             <Link
               href="https://www.ahajournals.org/doi/10.1161/cir.0000000000001184"
@@ -1020,7 +1020,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            Fatty liver is no silent bystander—it's a metabolic warning sign
+            Fatty liver is no silent bystander—it&apos;s a metabolic warning sign
             that usually precedes.{" "}
             <Link
               href="https://diabetesjournals.org/care/article/48/7/1057/160536/Metabolic-Dysfunction-Associated-Steatotic-Liver"
@@ -1089,7 +1089,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           The lesson is clear: combining heart, kidney, and metabolic disease in
-          a single umbrella isn't merely a new medical paradigm—it may be the
+          a single umbrella isn&apos;t merely a new medical paradigm—it may be the
           strongest means to avoid chronic illness and add years of healthy
           living.
         </p>
@@ -1213,7 +1213,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          This research throws some light on semaglutide's multifaceted action—
+          This research throws some light on semaglutide&apos;s multifaceted action—
           implying that it involves biochemically rebalancing in metabolic and
           immune systems and not just through weight reduction alone.
           Considering the worldwide increase in MASH and its transformation into
@@ -1259,7 +1259,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           A landmark report in the journal <em>Global Heart</em> reveals the
           staggering scale of the global obesity epidemic and its profound
-          connection to cardiovascular disease (CVD), the world's leading cause
+          connection to cardiovascular disease (CVD), the world&apos;s leading cause
           of death. The research highlights that as of 2022, over one billion
           people were living with obesity. This escalating crisis is directly
           fueling a surge in heart-related conditions, with high body mass index
@@ -1267,12 +1267,12 @@ export const researchArticles: Record<string, ResearchArticle> = {
           that has more than doubled since 1990.
         </p>
         <p className="mt-4">
-          The paper, "The Weight of Cardiovascular Diseases," presents a
+          The paper, &quot;The Weight of Cardiovascular Diseases,&quot; presents a
           comprehensive analysis showing that since 1990, the age-standardised
           prevalence of obesity has doubled among women and tripled among men.
           The authors argue for a critical shift in perspective, urging
           policymakers and clinicians to move beyond viewing obesity as a simple
-          "lifestyle choice." Instead, they emphasize it as a complex,
+          &quot;lifestyle choice.&quot; Instead, they emphasize it as a complex,
           multifaceted disorder driven by a combination of biological, social,
           environmental, and commercial factors that require a holistic and
           integrated response.
@@ -1280,7 +1280,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           Looking forward, the report outlines actionable strategies across both
           public health and clinical medicine. It points to the promise of
-          potentially "game-changing" medical interventions, such as GLP-1
+          potentially &quot;game-changing&quot; medical interventions, such as GLP-1
           receptor agonists (GLP-1RAs), for managing weight and improving
           cardiovascular outcomes. The authors conclude with a powerful call to
           action for coordinated efforts from global health organizations,
@@ -1397,11 +1397,11 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          This new indication is based on clinical trial data showing Wegovy's
+          This new indication is based on clinical trial data showing Wegovy&apos;s
           ability to achieve resolution of MASH and improvement in liver
-          fibrosis. The approval is granted under the FDA's accelerated pathway,
+          fibrosis. The approval is granted under the FDA&apos;s accelerated pathway,
           meaning continued approval may depend on the results of ongoing
-          confirmatory trials. This adds a critical new dimension to Wegovy's
+          confirmatory trials. This adds a critical new dimension to Wegovy&apos;s
           existing approvals for reducing major cardiovascular events and for
           chronic weight management in adults and adolescents with obesity or
           overweight.
@@ -1498,7 +1498,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           Extensive clinical data from the SUSTAIN trial program underscores
-          Seglutide's efficacy. Across multiple head-to-head trials, semaglutide
+          Seglutide&apos;s efficacy. Across multiple head-to-head trials, semaglutide
           demonstrated superior reductions in both HbA1c and body weight
           compared to placebo, other GLP-1 RAs (like dulaglutide and exenatide
           ER), DPP-4 inhibitors, and SGLT-2 inhibitors. The landmark SUSTAIN 6
@@ -1522,7 +1522,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            This profile highlights Seglutide's robust clinical data and its
+            This profile highlights Seglutide&apos;s robust clinical data and its
             evolving role as a multi-faceted agent for managing complex,
             interrelated metabolic conditions. For complete dosing,
             administration, and safety information, healthcare professionals
@@ -1561,7 +1561,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
           receptor agonist, significantly reduces the risk of major kidney
           disease events in people with type 2 diabetes and chronic kidney
           disease (CKD). This finding addresses a critical gap in understanding
-          the drug's effects beyond blood sugar control and weight loss.
+          the drug&apos;s effects beyond blood sugar control and weight loss.
         </p>
 
         <p className="mt-4">
@@ -1598,7 +1598,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            Want to dive deeper into the data that's changing the standard of
+            Want to dive deeper into the data that&apos;s changing the standard of
             care for diabetic kidney disease?{" "}
             <Link
               href="https://diabesity.life/wp-content/uploads/2025/10/The-FLOW-Trial-Plain-Language-Summary.jpg"
@@ -1638,7 +1638,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
           The study was a large-scale, double-blind, randomized,
           placebo-controlled trial involving 3,533 participants. Patients were
           administered either a weekly 1.0 mg dose of subcutaneous semaglutide
-          or a placebo. The primary goal was to determine the drug's efficacy in
+          or a placebo. The primary goal was to determine the drug&apos;s efficacy in
           preventing a composite of major kidney events (including kidney
           failure and a substantial loss of function) or death from
           kidney-related or cardiovascular causes.
