@@ -24,7 +24,7 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
           {/* Language Toggle - Only show if Urdu translation is available */}
           {hasUrdu && (
             <div className="flex justify-end mb-6">
-              <div className="inline-flex rounded-md shadow-sm" role="group">
+              <div className="inline-flex shadow-sm" role="group">
                 <button
                   type="button"
                   onClick={() => setLanguage("en")}
@@ -32,7 +32,7 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
                     language === "en"
                       ? "bg-primary text-white border-primary"
                       : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                  } rounded-l-lg transition-colors`}
+                  } transition-colors`}
                 >
                   English
                 </button>
@@ -43,7 +43,7 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
                     language === "ur"
                       ? "bg-primary text-white border-primary"
                       : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                  } rounded-r-lg transition-colors`}
+                  } transition-colors`}
                 >
                   اردو
                 </button>
