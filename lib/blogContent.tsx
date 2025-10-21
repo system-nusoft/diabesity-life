@@ -17,6 +17,7 @@ import WhyDiabesityMatters from "../public/what-is-diabesity-and-why-does-it-mat
 export interface BlogArticle {
   slug: string;
   title: string;
+  author?: string;
   date: string;
   image: string;
   imageAlt: string;
@@ -28,15 +29,13 @@ export interface BlogArticle {
 export const blogArticles: Record<string, BlogArticle> = {
   "how-semaglutide-changes-lives": {
     slug: "how-semaglutide-changes-lives",
-    title: "How Semaglutide Changes Lives",
+    title: "How Semaglutide Changed My Life",
     date: "2025-05-12",
     image: Semaglutide.src,
     imageAlt: "Semaglutide medication",
     category: "Medication",
     content: (
       <>
-        <Heading level={2}>How Semaglutide &apos;Changed&apos; My Life</Heading>
-
         <Paragraph>
           Zainab Jan never imagined that diabetes and a weight loss treatment
           plan would result in one of the largest surprises of her life: a
@@ -216,16 +215,13 @@ export const blogArticles: Record<string, BlogArticle> = {
   "getting-rid-of-obesity-the-real-challenge": {
     slug: "getting-rid-of-obesity-the-real-challenge",
     title: "Getting Rid of Obesity: The Real Challenge",
+    author: "Tariq Nisar",
     date: "2025-06-15",
     image: ObesityChallenge.src,
     imageAlt: "Weight management",
     category: "Weight Loss",
     content: (
       <>
-        <Paragraph>
-          <strong>Tariq Nisar</strong>
-        </Paragraph>
-
         <Paragraph>
           <em>
             (Translated from an Urdu article published in Monthly Nabz, May
@@ -322,7 +318,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           actually lead to success.
         </Quote>
 
-        <Heading level={2}>Choosing the Right Approach</Heading>
+        <Heading level={3}>Choosing the Right Approach</Heading>
 
         <Paragraph>
           Selecting the right method is critical when it comes to losing weight
@@ -391,7 +387,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           challenges that idea.
         </Paragraph>
 
-        <Heading level={2}>Losing Weight: Finding What Works for You</Heading>
+        <Heading level={3}>Losing Weight: Finding What Works for You</Heading>
 
         <Paragraph>
           People who want to lose weight are often searching for a method that
@@ -440,7 +436,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           5-foot-8 frame.
         </Quote>
 
-        <Heading level={2}>Make It Personal</Heading>
+        <Heading level={3}>Make It Personal</Heading>
 
         <Paragraph>
           Most people in the study followed the same core principles that
@@ -477,7 +473,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           smaller meals spread throughout the day.
         </Paragraph>
 
-        <Heading level={2}>Exercise</Heading>
+        <Heading level={3}>Exercise</Heading>
 
         <Paragraph>
           Ninety percent of participants in the study achieved lasting success
@@ -513,7 +509,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           everyday life than you were in the past.
         </Paragraph>
 
-        <Heading level={2}>A Surprising Insight</Heading>
+        <Heading level={3}>A Surprising Insight</Heading>
 
         <Paragraph>
           In the study, 40% of participants said that keeping the weight off was
@@ -547,7 +543,8 @@ export const blogArticles: Record<string, BlogArticle> = {
 
   "diabetes-is-a-slient-epidemic-sweeping-pakistan": {
     slug: "diabetes-is-a-slient-epidemic-sweeping-pakistan",
-    title: "Diabetes is a silent epidemic sweeping Pakistan - Dr Sarwar Malik",
+    title: "Diabetes is a silent epidemic sweeping Pakistan",
+    author: "Dr Sarwar Malik",
     date: "2025-08-10",
     image: SilentEpidemic.src,
     imageAlt: "Silent Epidemic",
@@ -878,16 +875,13 @@ export const blogArticles: Record<string, BlogArticle> = {
   "understanding-diabetes": {
     slug: "understanding-diabetes",
     title: "Understanding Diabetes",
+    author: "Tayyaba Anwar",
     date: "2025-07-20",
     image: UnderstandDiabetes.src,
     imageAlt: "Healthcare in Pakistan",
     category: "Education",
     content: (
       <>
-        <Paragraph>
-          <em>Tayyaba Anwar</em>
-        </Paragraph>
-
         <Paragraph>
           Diabetes mellitus, or more commonly known as &apos;Sugar&apos; or
           &apos;Diabetes&apos; in our part of the world, diagnosis of which
@@ -934,20 +928,30 @@ export const blogArticles: Record<string, BlogArticle> = {
           posing highest prevalence rate in the world.
         </Paragraph>
 
-        <Quote>
-          Such staggering figures urge one not only to delve deeply into the
-          causes of this disease&apos;s development among individuals but also
-          to carefully design a lifestyle regime, at both individual and
-          societal levels, that may facilitate prevention and cure.
-        </Quote>
+        <TextImageSection
+          text={
+            <>
+              <Paragraph>
+                Such staggering figures urge one not only to delve deeply into
+                the causes of this disease&apos;s development among individuals
+                but also to carefully design a lifestyle regime, at both
+                individual and societal levels, that may facilitate prevention
+                and cure.
+              </Paragraph>
 
-        <Paragraph>
-          With the increasing prevalence and mortality associated with it, it
-          becomes an emotional and economic burden on the patient and a
-          socio-economic burden on the country&apos;s economy, making it even
-          more imperative to devise and develop ways that can help reduce its
-          recurrence among people.
-        </Paragraph>
+              <Paragraph>
+                With the increasing prevalence and mortality associated with it,
+                it becomes an emotional and economic burden on the patient and a
+                socio-economic burden on the country&apos;s economy, making it
+                even more imperative to devise and develop ways that can help
+                reduce its recurrence among people.
+              </Paragraph>
+            </>
+          }
+          reverse
+          image="https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071"
+          imageAlt="Healthcare infrastructure"
+        />
         <Paragraph>
           Sedentary lifestyles, obesity, and poor dietary habits are as much
           contributor towards an individual developing the disease as hereditary
@@ -976,23 +980,14 @@ export const blogArticles: Record<string, BlogArticle> = {
           protocols.
         </Paragraph>
 
-        <TextImageSection
-          text={
-            <>
-              <Heading level={3}>Is It Enough?</Heading>
-              <Paragraph>
-                But within a country of more than 255 million, underdeveloped
-                systems and structures, a struggling economy and scarcity of
-                basic health care resources, would any such measure be
-                sufficient to cope with the ever-rising risks, prevalence and
-                recurrence of disease, i.e. Diabetes mellitus? The answer is a
-                solid &apos;No&apos;.
-              </Paragraph>
-            </>
-          }
-          image="https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=2071"
-          imageAlt="Healthcare infrastructure"
-        />
+        <Heading level={3}>Is It Enough?</Heading>
+        <Paragraph>
+          But within a country of more than 255 million, underdeveloped systems
+          and structures, a struggling economy and scarcity of basic health care
+          resources, would any such measure be sufficient to cope with the
+          ever-rising risks, prevalence and recurrence of disease, i.e. Diabetes
+          mellitus? The answer is a solid &apos;No&apos;.
+        </Paragraph>
 
         <Heading level={3}>Lifestyle as Medicine</Heading>
 
@@ -1009,25 +1004,16 @@ export const blogArticles: Record<string, BlogArticle> = {
           life right from their school years.
         </Paragraph>
 
-        <TextImageSection
-          text={
-            <>
-              <Heading level={3}>Prevention Through Education</Heading>
-              <Paragraph>
-                Awareness through education at a young age, can prove to be the
-                strongest tool in preventing the occurrence of disease among
-                people, at a later stage in life. It is important to note, there
-                are some diabetes risk factors you can&apos;t change, such as
-                your genetics/family history, age and race, however, some very
-                basic life style changes can substantially help reduce the risk
-                of developing disease in the first place.
-              </Paragraph>
-            </>
-          }
-          image="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=2070"
-          imageAlt="Health education"
-          reverse
-        />
+        <Heading level={3}>Prevention Through Education</Heading>
+        <Paragraph>
+          Awareness through education at a young age, can prove to be the
+          strongest tool in preventing the occurrence of disease among people,
+          at a later stage in life. It is important to note, there are some
+          diabetes risk factors you can&apos;t change, such as your
+          genetics/family history, age and race, however, some very basic life
+          style changes can substantially help reduce the risk of developing
+          disease in the first place.
+        </Paragraph>
 
         <List
           items={[
@@ -1061,16 +1047,13 @@ export const blogArticles: Record<string, BlogArticle> = {
   "is-diabetes-ending-my-life": {
     slug: "is-diabetes-ending-my-life",
     title: "Is Diabetes ending my life?",
+    author: "Muhammad Yasir",
     date: "2025-09-05",
     image: EndingLife.src,
     imageAlt: "Living with diabetes",
     category: "Health",
     content: (
       <>
-        <Paragraph>
-          <strong>By Muhammad Yasir</strong>
-        </Paragraph>
-
         <Paragraph>
           I recall vividly when the doctor gave me a stern look and said,
           &quot;You have diabetes.&quot;
@@ -1152,21 +1135,13 @@ export const blogArticles: Record<string, BlogArticle> = {
           fight in the body — it was one in the mind.
         </Paragraph>
 
-        <TextImageSection
-          text={
-            <>
-              <Heading level={3}>Mental Wellness</Heading>
-              <Paragraph>
-                So I taught myself to pace my mind. I did deep breathing,
-                morning meditation, and sat quietly outside, feeling the breeze
-                on my face. Stress was just another adversary, and I needed to
-                keep it under control.
-              </Paragraph>
-            </>
-          }
-          image="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2099"
-          imageAlt="Mental wellness and meditation"
-        />
+        <Heading level={3}>Mental Wellness</Heading>
+        <Paragraph>
+          So I taught myself to pace my mind. I did deep breathing, morning
+          meditation, and sat quietly outside, feeling the breeze on my face.
+          Stress was just another adversary, and I needed to keep it under
+          control.
+        </Paragraph>
 
         <Paragraph>
           Months went by, and my commitment started paying off in my readings.
@@ -1199,14 +1174,12 @@ export const blogArticles: Record<string, BlogArticle> = {
     category: "Education",
     content: (
       <>
-        <Quote>
-          <em>
-            <strong>
-              Obesity is a metabolic disorder in which energy balance is
-              dysregulated, leading to weight gain.
-            </strong>
-          </em>
-        </Quote>
+        <em>
+          <strong>
+            Obesity is a metabolic disorder in which energy balance is
+            dysregulated, leading to weight gain.
+          </strong>
+        </em>
 
         <Paragraph>
           It is a major medical problem beginning from childhood and seems to
@@ -1288,12 +1261,12 @@ export const blogArticles: Record<string, BlogArticle> = {
           reverse
         />
 
-        <Quote>
+        <Paragraph>
           Current or novel medications against monogenic forms of obesity,
           though available in many developed countries, are unfortunately
           lacking in Pakistan—a country with the world&apos;s highest recorded
           prevalence of LEP-signaling deficiency.
-        </Quote>
+        </Paragraph>
 
         <Heading level={3}>Treatment Options</Heading>
 
@@ -1307,7 +1280,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           ]}
         />
 
-        <Heading level={2}>Syndromic Obesity</Heading>
+        <Heading level={3}>Syndromic Obesity</Heading>
         <Paragraph>
           Syndromic obesity refers to obesity that is associated with
           intellectual disability, dysmorphic features, or abnormalities
@@ -1340,10 +1313,13 @@ export const blogArticles: Record<string, BlogArticle> = {
         </Heading>
 
         <Paragraph>
-          <em>
-            (Saeed et al., 2023, Cell Reports Medicine 4, 101187.
-            https://doi.org/10.1016/j.xcrm.2023.101187)
-          </em>
+          <a
+            href="https://www.cell.com/cell-reports-medicine/fulltext/S2666-3791%2823%2900354-3"
+            target="_blank"
+            className="underline"
+          >
+            <em>Read more</em>
+          </a>
         </Paragraph>
 
         <TextImageSection
@@ -1376,14 +1352,14 @@ export const blogArticles: Record<string, BlogArticle> = {
           receptor agonists for subjects with MC4R deficiency.
         </Paragraph>
 
-        <Quote>
+        <Paragraph>
           The fact that a sizable population of children are failing to achieve
           normal educational development and are becoming seriously ill and
           dying prematurely as the result of a deficiency in hormonal signaling
           for which relatively simple peptide treatments are readily available
           highlights serious flaws in the global system through which drugs are
           developed and made available to those who most need them.
-        </Quote>
+        </Paragraph>
       </>
     ),
     relatedBlogs: [
@@ -1426,24 +1402,13 @@ export const blogArticles: Record<string, BlogArticle> = {
           on food reels, body trends, exercise crazes, and soothing mantras of
           wellness.
         </Paragraph>
-        <TextImageSection
-          text={
-            <>
-              <Paragraph>
-                It&apos;s thought to be caused by a poor diet or lack of
-                exercise. For most young Pakistanis, it&apos;s an everyday
-                battle. No gym, no healthy food, excessive use of screens, exam
-                stress, and no support system, and you have a recipe for a
-                crisis that nobody is talking about.
-              </Paragraph>
-            </>
-          }
-          image="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=2074"
-          imageAlt="Young generation lifestyle"
-        />
-        <Heading level={2}>
-          From Playgrounds to PlayStations: Movement is No Longer the Norm
-        </Heading>
+        <Paragraph>
+          It&apos;s thought to be caused by a poor diet or lack of exercise. For
+          most young Pakistanis, it&apos;s an everyday battle. No gym, no
+          healthy food, excessive use of screens, exam stress, and no support
+          system, and you have a recipe for a crisis that nobody is talking
+          about.
+        </Paragraph>
         <Heading level={3}>Where Do You Even Move Anymore?</Heading>
         <Paragraph>
           There was once a day when kids spent their evenings outside. Now that
@@ -1461,7 +1426,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           This sedentary shift is not merely a cultural change. It is a
           metabolic disaster in the making.
         </Paragraph>
-        <Heading level={2}>
+        <Heading level={3}>
           Processed Food, Perfect Bodies, and a Flood of Digital Pressure
         </Heading>
         <TextImageSection
@@ -1532,7 +1497,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           national discussion of it. Only silent scrolling, comparing, and
           self-comforting.
         </Paragraph>
-        <Heading level={2}>Hours of Sitting, Years of Damage</Heading>
+        <Heading level={3}>Hours of Sitting, Years of Damage</Heading>
         <Paragraph>Let&apos;s not forget the static routines:</Paragraph>
         <List
           items={[
@@ -1546,7 +1511,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           a priority is frequently dismissed as a luxury or seen as a diversion
           from other responsibilities.
         </Paragraph>
-        <Heading level={2}>Mental Health: The Invisible Weight</Heading>
+        <Heading level={3}>Mental Health: The Invisible Weight</Heading>
         <Paragraph>
           Gen Z is carrying more than just extra pounds. They&apos;re burdened
           with academic pressure, financial uncertainty, social comparison,
@@ -1560,22 +1525,31 @@ export const blogArticles: Record<string, BlogArticle> = {
           financial insecurity, isolation, and perpetual comparison are pushing
           them toward psychological collapse.
         </Paragraph>
-        <Paragraph>
-          Food is what remains. It&apos;s comfort. It&apos;s control. It&apos;s
-          a distraction. And it&apos;s destruction. Mental health is untouched,
-          yet most parents dismiss it with advice to pray or &quot;be
-          stronger.&quot; Schools don&apos;t take emotional distress seriously.
-          Therapy is rare, and when it exists, it&apos;s unaffordable for most,
-          and emotional contributors to diabesity remain largely ignored in both
-          families and the healthcare system.
-        </Paragraph>
-        <Paragraph>
-          A study conducted by Aga Khan University in low-income Karachi
-          neighborhoods found that nearly 17% of adolescents already meet the
-          criteria for metabolic syndrome. That is their risk for type 2
-          diabetes, cardiovascular disease, and obesity complications is real
-          and is surfacing quickly.
-        </Paragraph>
+        <TextImageSection
+          text={
+            <>
+              <Paragraph>
+                Food is what remains. It&apos;s comfort. It&apos;s control.
+                It&apos;s a distraction. And it&apos;s destruction. Mental
+                health is untouched, yet most parents dismiss it with advice to
+                pray or &quot;be stronger.&quot; Schools don&apos;t take
+                emotional distress seriously. Therapy is rare, and when it
+                exists, it&apos;s unaffordable for most, and emotional
+                contributors to diabesity remain largely ignored in both
+                families and the healthcare system.
+              </Paragraph>
+              <Paragraph>
+                A study conducted by Aga Khan University in low-income Karachi
+                neighborhoods found that nearly 17% of adolescents already meet
+                the criteria for metabolic syndrome. That is their risk for type
+                2 diabetes, cardiovascular disease, and obesity complications is
+                real and is surfacing quickly.
+              </Paragraph>
+            </>
+          }
+          image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070"
+          imageAlt="Healthcare accessibility"
+        />
         <Paragraph>
           Over 25% of children in Punjab are already obese. Astonishingly, the
           majority of parents continue to confuse strength and bulkiness,
@@ -1587,7 +1561,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           million diagnosed diabetics in the nation, the undiagnosed diabetics
           are probably even higher.
         </Paragraph>
-        <Heading level={2}>
+        <Heading level={3}>
           You Can&apos;t Fight What You Don&apos;t Understand
         </Heading>
         <Paragraph>
@@ -1602,24 +1576,14 @@ export const blogArticles: Record<string, BlogArticle> = {
           schools. Rather, adolescents are being overloaded with diet secrets on
           the internet and doctor-shaming lectures once the damage is done.
         </Paragraph>
-        <TextImageSection
-          text={
-            <>
-              <Heading level={3}>Born in a Third-World Reality</Heading>
-              <Paragraph>
-                Living in a low-income country intensifies the crisis. It is
-                relatively uncommon to find preventive screenings for obesity or
-                diabetes. Many people cannot afford healthcare due to
-                out-of-pocket costs. The majority of people find wellness
-                trends, which typically come from the West, to be unclear and
-                cost-prohibitive.
-              </Paragraph>
-            </>
-          }
-          image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070"
-          imageAlt="Healthcare accessibility"
-          reverse
-        />
+        <Heading level={3}>Born in a Third-World Reality</Heading>
+        <Paragraph>
+          Living in a low-income country intensifies the crisis. It is
+          relatively uncommon to find preventive screenings for obesity or
+          diabetes. Many people cannot afford healthcare due to out-of-pocket
+          costs. The majority of people find wellness trends, which typically
+          come from the West, to be unclear and cost-prohibitive.
+        </Paragraph>
         <Paragraph>
           But these challenges can be addressed with practical, local solutions:
         </Paragraph>
@@ -1635,7 +1599,7 @@ export const blogArticles: Record<string, BlogArticle> = {
         When people advise &quot;Just take care of yourself,&quot; it must be
         followed with the tools, spaces, and affordable options that make that
         advice realistic for everyone.
-        <Heading level={2}>
+        <Heading level={3}>
           Conclusion: This Generation Deserves More Than a Warning Label
         </Heading>
         <Paragraph>
@@ -1679,7 +1643,7 @@ export const blogArticles: Record<string, BlogArticle> = {
     category: "Education",
     content: (
       <>
-        <Heading level={2}>Introduction</Heading>
+        <Heading level={3}>Introduction</Heading>
 
         <Paragraph>
           With so much screen time, prolonged sitting, and irresistible fast
@@ -1922,7 +1886,7 @@ export const blogArticles: Record<string, BlogArticle> = {
           ]}
         />
 
-        <Heading level={2}>
+        <Heading level={3}>
           Conclusion: Treating Diabesity is a Lifelong Commitment But You
           Don&apos;t Have to Do It Alone
         </Heading>
@@ -1962,7 +1926,7 @@ export const blogArticles: Record<string, BlogArticle> = {
     relatedBlogs: [
       "understanding-diabetes",
       "is-diabetes-ending-my-life",
-      "scroll-study-snack-repeat"
+      "scroll-study-snack-repeat",
     ],
   },
 };

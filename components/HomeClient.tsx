@@ -88,9 +88,8 @@ const services = [
     image: HealthProviders.src,
     gradient: "from-yellow-500/100 to-yellow-500/0",
     linkText: "Find a specialist",
-    linkUrl:
-      "https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902",
-    linkTarget: "_blank",
+    linkUrl: "/doctors",
+    linkTarget: "",
   },
   {
     title: "Understand diabesity",
@@ -98,7 +97,7 @@ const services = [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070",
     gradient: "from-orange-500/100 to-orange-500/0",
     linkText: "Learn more",
-    linkUrl: "/blogs/what-is-diabesity-and-why-does-it-matter",
+    linkUrl: "/resources",
     linkTarget: "",
   },
   {
@@ -115,9 +114,8 @@ const services = [
       "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=2070",
     gradient: "from-green-500/100 to-green-500/0",
     linkText: "Find a dietician",
-    linkUrl:
-      "https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902",
-    linkTarget: "_blank",
+    linkUrl: "/doctors",
+    linkTarget: "",
   },
   {
     title: "Daily care and monitoring",
