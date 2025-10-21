@@ -1,6 +1,7 @@
 "use client";
 
 import { Home, Lightbulb, Settings, Trees } from "lucide-react";
+import { List } from "./BlogTemplate";
 
 const missionCards = [
   {
@@ -86,15 +87,15 @@ export default function AboutClient() {
                   statistic. It&apos;s our parents, our siblings, our friends.
                 </p>
                 <p>
-                  We saw a nation grappling with the world&apos;s highest rate of
-                  diabetes, yet facing a wall of misinformation, stigma, and
-                  resources that didn&apos;t fit our culture or our lives. The advice
-                  was generic, the meal plans were foreign, and the conversation
-                  was happening in whispers, if at all.
+                  We saw a nation grappling with the world&apos;s highest rate
+                  of diabetes, yet facing a wall of misinformation, stigma, and
+                  resources that didn&apos;t fit our culture or our lives. The
+                  advice was generic, the meal plans were foreign, and the
+                  conversation was happening in whispers, if at all.
                 </p>
                 <p>
-                  We knew we couldn&apos;t stand by while this silent epidemic stole
-                  the health and futures of millions.
+                  We knew we couldn&apos;t stand by while this silent epidemic
+                  stole the health and futures of millions.
                 </p>
                 <p>
                   So, we built the solution we needed.{" "}
@@ -108,6 +109,34 @@ export default function AboutClient() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="pb-16 md:pb-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <p>
+            <b>About us and our battle against ‘Diabesity’</b>
+          </p>
+          <p className="mt-4">
+            We are a motivated group of healthcare professionals, civil society
+            activists, and concerned citizens who share a common purpose of
+            helping Pakistan fight the growing diabetes and obesity pandemic,
+            also now being increasingly known as ‘Diabesity’.
+          </p>
+          <List
+            items={[
+              "Connect individuals to resources, specialists, and support systems.",
+              "Promote healthy living grounded in our culture and day-to-day realities.",
+              "Strive to eliminate stigma associated with diabesity and provide everyone with the resources to lead healthy lives.",
+              "Deliver reliable information in English and Urdu to raise awareness on diabesity.",
+            ]}
+          />
+          <p className="mt-4">
+            For the benefit of current and future generations, we invite you to{" "}
+            <b>inform, inspire</b> and <b>empower</b> yourself and your loved
+            ones, and participate in a{" "}
+            <b>national movement against Diabesity.</b>
+          </p>
         </div>
       </section>
 

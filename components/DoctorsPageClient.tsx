@@ -68,7 +68,9 @@ export default function DoctorsPageClient() {
             Contact a Specialist
           </h1>
           <p className="text-white text-lg md:text-xl max-w-3xl">
-            Find and contact qualified doctors based on your maslay masail
+            Search our network of trusted doctors, nutritionists, and
+            specialists across Pakistan to get the personalized care you
+            deserve.
           </p>
         </div>
       </section>
@@ -78,7 +80,7 @@ export default function DoctorsPageClient() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Filters */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
                 Booking Platform
               </label>
@@ -94,7 +96,7 @@ export default function DoctorsPageClient() {
                   ...bookingPlatforms.map((p) => ({ value: p, label: p })),
                 ]}
               />
-            </div>
+            </div> */}
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">City</label>
@@ -168,10 +170,7 @@ export default function DoctorsPageClient() {
           {/* Show More Button */}
           {hasMore && (
             <div className="flex justify-center mt-8">
-              <Button
-                onClick={handleShowMore}
-                variant="outlined"
-              >
+              <Button onClick={handleShowMore} variant="outlined">
                 Show more
               </Button>
             </div>

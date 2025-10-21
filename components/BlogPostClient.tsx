@@ -19,7 +19,7 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
           </h1>
 
           {/* Date */}
-          <div className="flex items-center gap-4 mb-8 text-gray-600">
+          <div className="flex items-center gap-4 mb-4 text-gray-600">
             <time dateTime={blog.date}>
               {new Date(blog.date).toLocaleDateString("en-GB", {
                 day: "numeric",
@@ -28,6 +28,11 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
               })}
             </time>
           </div>
+
+          {/* Author */}
+          <p className="text-md text-gray-900 mb-4 leading-tight float-end italic">
+            {blog.author}
+          </p>
 
           {/* Featured Image */}
           <div className="mb-12">
