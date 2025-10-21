@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { BlogArticle } from "@/lib/blogContent";
 import RelatedBlogs from "./RelatedBlogs";
 
@@ -8,18 +9,59 @@ interface BlogPostClientProps {
 }
 
 export default function BlogPostClient({ blog }: BlogPostClientProps) {
+  const [language, setLanguage] = useState<"en" | "ur">("en");
+  const hasUrdu = !!blog.urdu;
+
+  const currentTitle = language === "ur" && blog.urdu ? blog.urdu.title : blog.title;
+  const currentAuthor = language === "ur" && blog.urdu?.author ? blog.urdu.author : blog.author;
+  const currentContent = language === "ur" && blog.urdu ? blog.urdu.content : blog.content;
+
   return (
     <div className="flex flex-col">
       {/* Blog Post Content */}
       <article className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6">
+          {/* Language Toggle - Only show if Urdu translation is available */}
+          {hasUrdu && (
+            <div className="flex justify-end mb-6">
+              <div className="inline-flex rounded-md shadow-sm" role="group">
+                <button
+                  type="button"
+                  onClick={() => setLanguage("en")}
+                  className={`px-4 py-2 text-sm font-medium border ${
+                    language === "en"
+                      ? "bg-primary text-white border-primary"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                  } rounded-l-lg transition-colors`}
+                >
+                  English
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLanguage("ur")}
+                  className={`px-4 py-2 text-sm font-medium border-t border-b border-r ${
+                    language === "ur"
+                      ? "bg-primary text-white border-primary"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
+                  } rounded-r-lg transition-colors`}
+                >
+                  اردو
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            {blog.title}
+          <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight ${
+            language === "ur" ? "text-right" : ""
+          }`}>
+            {currentTitle}
           </h1>
 
           {/* Date */}
-          <div className="flex items-center gap-4 mb-4 text-gray-600">
+          <div className={`flex items-center gap-4 mb-4 text-gray-600 ${
+            language === "ur" ? "flex-row-reverse" : ""
+          }`}>
             <time dateTime={blog.date}>
               {new Date(blog.date).toLocaleDateString("en-GB", {
                 day: "numeric",
@@ -30,9 +72,13 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
           </div>
 
           {/* Author */}
-          <p className="text-md text-gray-900 mb-4 leading-tight float-end italic">
-            {blog.author}
-          </p>
+          {currentAuthor && (
+            <p className={`text-md text-gray-900 mb-4 leading-tight italic ${
+              language === "ur" ? "float-start text-right" : "float-end"
+            }`}>
+              {currentAuthor}
+            </p>
+          )}
 
           {/* Featured Image */}
           <div className="mb-12">
@@ -44,8 +90,10 @@ export default function BlogPostClient({ blog }: BlogPostClientProps) {
           </div>
 
           {/* Blog Content */}
-          <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-            {blog.content}
+          <div className={`prose prose-lg max-w-none text-gray-700 leading-relaxed ${
+            language === "ur" ? "text-right" : ""
+          }`}>
+            {currentContent}
           </div>
         </div>
       </article>
