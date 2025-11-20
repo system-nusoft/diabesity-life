@@ -113,10 +113,10 @@ export default function AboutClient() {
       </section>
 
       <section className="pb-16 md:pb-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <p>
+        <div className="max-w-7xl mx-auto px-6 text-lg">
+          <h3 className="text-3xl">
             <b>About us and our battle against ‘Diabesity’</b>
-          </p>
+          </h3>
           <p className="mt-4">
             We are a motivated group of healthcare professionals, civil society
             activists, and concerned citizens who share a common purpose of

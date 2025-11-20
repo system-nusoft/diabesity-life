@@ -13,20 +13,28 @@ import EatHealthy from "../public/eat-healthy-1.jpeg";
 import HealthProviders from "../public/find-health-providers.jpg";
 import Hero1 from "../public/hero-section-1.webp";
 import Hero2 from "../public/hero-section-2.webp";
+import Hero3 from "../public/hero-section-3.webp";
 
 const heroSlides = [
   {
     image: Hero1.src,
     heading: "Living with diabesity in Pakistan",
     ctaText: "Discover",
-    ctaUrl: "/discover",
+    ctaUrl: "#",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
   {
     image: Hero2.src,
     heading: "Take control of your health today",
     ctaText: "Get Started",
-    ctaUrl: "/get-started",
+    ctaUrl: "#",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  },
+  {
+    image: Hero3.src,
+    heading: "Diabetes information in Urdu",
+    ctaText: "Learn more",
+    ctaUrl: "/urdu-guides",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
 ];
@@ -233,7 +241,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
+              index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
             style={{
               backgroundImage: `url('${slide.image}')`,

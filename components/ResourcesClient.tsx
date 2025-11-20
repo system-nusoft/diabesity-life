@@ -8,8 +8,10 @@ import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
 import { Recipe } from "@/lib/recipeContent";
 import { ResearchArticle } from "@/lib/researchContent";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import HeroImage from "../public/diabetes-resources.webp";
 
 interface ResourcesClientProps {
   blogs: BlogArticle[];
@@ -73,10 +75,10 @@ export default function ResourcesClient({
         </div>
         {/* Hero Image */}
         <div className="flex col-span-2 md:col-span-1 items-center justify-center">
-          <img
-            className="relative overflow-hidden bg-cover bg-center"
-            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2100"
+          <Image
+            src={HeroImage}
             alt="Resources Hero"
+            className="relative overflow-hidden bg-cover bg-center"
           />
         </div>
       </section>
