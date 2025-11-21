@@ -30,7 +30,7 @@ export default function DoctorBookingModal({
   const filteredDoctors = useMemo(() => {
     return doctors.filter((doctor) => {
       const platformMatch =
-        !selectedPlatform || doctor.bookingPlatform === selectedPlatform;
+        !selectedPlatform || doctor.bookingPlatforms[0].platform === selectedPlatform;
       const cityMatch =
         !selectedCity ||
         doctor.city.toLowerCase().includes(selectedCity.toLowerCase());
@@ -256,7 +256,7 @@ function DoctorCard({ doctor }: { doctor: Doctor }) {
               {doctor.city}
             </span>
             <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium border border-primary text-primary">
-              {doctor.bookingPlatform}
+              {doctor.bookingPlatforms[0].platform}
             </span>
           </div>
         </div>

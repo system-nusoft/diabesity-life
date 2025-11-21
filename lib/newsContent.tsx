@@ -6,6 +6,7 @@ import Article3 from "../public/news-article-3.jpg";
 import Article4 from "../public/news-article-4.webp";
 import Article5 from "../public/news-article-5.png";
 import Article6 from "../public/news-article-6.jpg";
+import Article7 from "../public/news-article-7.webp";
 
 export interface NewsArticle {
   slug: string;
@@ -108,8 +109,8 @@ export const newsArticles: Record<string, NewsArticle> = {
     date: "2025-07-10",
     image: Article3.src,
     imageAlt: "Diabetes prevention awareness",
-    category: "Diet",
-    color: "bg-green-500",
+    category: "Health",
+    color: "bg-yellow-500",
     content: (
       <>
         <p>
@@ -145,8 +146,8 @@ export const newsArticles: Record<string, NewsArticle> = {
     date: "2025-08-05",
     image: Article4.src,
     imageAlt: "Medical consultation",
-    category: "Recipes",
-    color: "bg-blue-500",
+    category: "Health",
+    color: "bg-yellow-500",
     content: (
       <>
         <p>
@@ -186,8 +187,8 @@ export const newsArticles: Record<string, NewsArticle> = {
     date: "2025-09-15",
     image: Article5.src,
     imageAlt: "Healthy lifestyle",
-    category: "Education",
-    color: "bg-orange-500",
+    category: "Health",
+    color: "bg-yellow-500",
     content: (
       <>
         <p>
@@ -252,6 +253,46 @@ export const newsArticles: Record<string, NewsArticle> = {
           For more details, click{" "}
           <Link
             href="https://www.dawn.com/news/1908855/children-among-24000-living-with-type-1-diabetes-in-pakistan"
+            target="_blank"
+            className="text-primary underline"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  "increased-diabetic-population-in-pakistan": {
+    slug: "increased-diabetic-population-in-pakistan",
+    title:
+      "VITALSNEWS: Pakistan now has 34.5 million, not 33m people living with diabetes, WHO warns",
+    date: "2025-11-17",
+    image: Article7.src,
+    imageAlt: "Medical research",
+    category: "Health",
+    color: "bg-yellow-500",
+    content: (
+      <>
+        <p>
+          Islamabad: Pakistan now has 34.5 million people living with diabetes,
+          a sharp increase from the International Diabetes Federation’s earlier
+          estimate of 33 million, new WHO figures released on World Diabetes Day
+          2025 show. Health officials say this confirms that Pakistan continues
+          to carry the highest proportional diabetes burden in the world, with
+          one in three adults already affected.
+        </p>
+        <p className="mt-4">
+          WHO and the Ministry of Health warned on Friday that the country now
+          accounts for more than 40 percent of all diabetes cases in the Eastern
+          Mediterranean Region. They urged people to seek screening and adopt
+          preventive lifestyles as the disease continues to rise across all age
+          groups.
+        </p>
+        <p className="mt-4">
+          For more details, click{" "}
+          <Link
+            href="https://vitalsnews.com/top-story/pakistan-sounds-the-alarm-on-explosive-diabetes-crisis-as-who-issues-stark-warning/"
             target="_blank"
             className="text-primary underline"
           >
