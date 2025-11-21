@@ -19,23 +19,23 @@ const heroSlides = [
   {
     image: Hero1.src,
     heading: "Living with diabesity in Pakistan",
-    ctaText: "Discover",
-    ctaUrl: "#",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
   },
   {
     image: Hero2.src,
     heading: "Take control of your health today",
-    ctaText: "Get Started",
-    ctaUrl: "#",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    ctaText: "Get started",
+    ctaUrl: "/daily-care-and-monitoring",
+    videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
   },
   {
     image: Hero3.src,
-    heading: "Diabetes information in Urdu",
-    ctaText: "Learn more",
+    heading: "ذیابیطس اردو میں معلومات",
+    ctaText: "مزید جانیں",
     ctaUrl: "/urdu-guides",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
+    watchVideoText: "ویڈیو دیکھیں",
+    isRtl: true,
   },
 ];
 
@@ -130,7 +130,7 @@ const services = [
     image: DailyCare.src,
     gradient: "from-purple-500/100 to-purple-500/0",
     linkText: "View guides",
-    linkUrl: "#",
+    linkUrl: "/daily-care-and-monitoring",
     linkTarget: "",
   },
 ];
@@ -241,7 +241,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
+              index === currentSlide
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none"
             }`}
             style={{
               backgroundImage: `url('${slide.image}')`,
@@ -250,21 +252,28 @@ export default function Home({ blogs, news }: HomeClientProps) {
             }}
           >
             <div className="absolute inset-0 bg-black/30"></div>
-            <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
-              <div className="text-white max-w-2xl">
+            <div
+              className={`relative h-full max-w-7xl mx-auto px-6 flex items-center ${
+                slide.isRtl ? "justify-end" : ""
+              }`}
+              dir={slide.isRtl ? "rtl" : "ltr"}
+            >
+              <div className={`text-white ${slide.isRtl ? "w-full" : "max-w-2xl"}`}>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                   {slide.heading}
                 </h1>
                 <div className="flex gap-4">
-                  <Link href={slide.ctaUrl}>
-                    <Button variant="primary">{slide.ctaText}</Button>
-                  </Link>
+                  {slide.ctaText && slide.ctaUrl && (
+                    <Link href={slide.ctaUrl}>
+                      <Button variant="primary">{slide.ctaText}</Button>
+                    </Link>
+                  )}
                   <Button
                     variant="blurry"
                     onClick={() => openVideoModal(slide.videoUrl)}
                   >
                     <Play className="w-5 h-5" />
-                    Watch Video
+                    {slide.watchVideoText || "Watch Video"}
                   </Button>
                 </div>
               </div>

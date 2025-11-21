@@ -5,6 +5,7 @@ export interface Doctor {
   contactNumber: string;
   pmdcNumber: string;
   bookingPlatform: "Marham" | "Oladoc" | "SehatKahani";
+  bookingPlatformLink?: string;
 }
 
 export const doctors: Doctor[] = [
@@ -16,6 +17,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0345-9857944",
     pmdcNumber: "17797-N",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Adnan Zahid",
@@ -24,6 +26,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0321-5071061",
     pmdcNumber: "50254-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Umar Wahab",
@@ -32,6 +35,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-9158285",
     pmdcNumber: "13174-N",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Ahmed Abdullah",
@@ -40,6 +44,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5494758",
     pmdcNumber: "50155-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Kashif Rasheed",
@@ -48,6 +53,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5304789",
     pmdcNumber: "53791-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Usama Sohail",
@@ -56,6 +62,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0343-4147898",
     pmdcNumber: "",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Amjad Iqbal",
@@ -64,6 +71,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300-9648828",
     pmdcNumber: "17676-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Irfan Sheikh",
@@ -72,6 +80,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0301-7410205",
     pmdcNumber: "7046-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Altaf Ur Rehman",
@@ -80,6 +89,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0302-8643100",
     pmdcNumber: "24718-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Fahim Ullah",
@@ -88,6 +98,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0332-9142021",
     pmdcNumber: "13826-N",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Azmat Khan",
@@ -96,6 +107,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5179501",
     pmdcNumber: "455-AJK",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Bilal Bin Younus",
@@ -104,6 +116,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300-9405405",
     pmdcNumber: "12147-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr M Tahir Chaudhry",
@@ -112,6 +125,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300-9448693",
     pmdcNumber: "20817-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Madeeha Nazar",
@@ -120,6 +134,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0332-7777658",
     pmdcNumber: "45679-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Musarrat Iqbal",
@@ -128,6 +143,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0302-5450011",
     pmdcNumber: "12006-S",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Faheem Ullah",
@@ -136,6 +152,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0301-8502888",
     pmdcNumber: "19868-N",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Zahid Mehmood",
@@ -144,6 +161,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5628541",
     pmdcNumber: "8106-N",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Iqbal",
@@ -152,6 +170,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0307-5113504",
     pmdcNumber: "1112-AJK",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Hafiz Ahsan",
@@ -160,6 +179,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0322-4383054",
     pmdcNumber: "50794-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Syed Sohaib Haider Zadi",
@@ -168,6 +188,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-8776350",
     pmdcNumber: "45931-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Shahzad tahir",
@@ -176,6 +197,7 @@ export const doctors: Doctor[] = [
     contactNumber: "03005144156",
     pmdcNumber: "26615-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Col Fawad Rehman",
@@ -184,6 +206,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0313-5256261",
     pmdcNumber: "40189-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Wasiq Zafar",
@@ -192,6 +215,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-6422274",
     pmdcNumber: "16030-P",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Saleem Qureshi",
@@ -200,6 +224,7 @@ export const doctors: Doctor[] = [
     contactNumber: "03205450688",
     pmdcNumber: "1764-p",
     bookingPlatform: "Marham",
+    bookingPlatformLink: "",
   },
 
   // Oladoc Doctors
@@ -210,6 +235,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0345-9857944",
     pmdcNumber: "17797-N",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Adnan Zahid",
@@ -218,6 +244,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0321-5071061",
     pmdcNumber: "50254-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Umar Wahab",
@@ -226,6 +253,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-9158285",
     pmdcNumber: "13174-N",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Ahmed Abdullah",
@@ -234,6 +262,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5494758",
     pmdcNumber: "50155-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Kashif Rasheed",
@@ -242,6 +271,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5304789",
     pmdcNumber: "53791-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Fahim Ullah RMI",
@@ -250,6 +280,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0332-9142021",
     pmdcNumber: "13826-N",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Azmat Khan",
@@ -258,6 +289,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5179501",
     pmdcNumber: "455-AJK",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Madeeha Nazar",
@@ -266,6 +298,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0332-7777658",
     pmdcNumber: "45679-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Musarrat Iqbal",
@@ -274,6 +307,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0302-5450011",
     pmdcNumber: "12006-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Faheem Ullah Mersi Hosp",
@@ -282,6 +316,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0301-8502888",
     pmdcNumber: "19868-N",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Zahid Mehmood",
@@ -290,6 +325,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5628541",
     pmdcNumber: "8106-N",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Iqbal",
@@ -298,6 +334,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0307-5113504",
     pmdcNumber: "1112-AJK",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Shahzad tahir",
@@ -306,6 +343,7 @@ export const doctors: Doctor[] = [
     contactNumber: "03005144156",
     pmdcNumber: "26615-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Wasiq Zafar Abbasi",
@@ -314,6 +352,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-6422274",
     pmdcNumber: "16030-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Saleem Qureshi",
@@ -322,6 +361,7 @@ export const doctors: Doctor[] = [
     contactNumber: "03205450688",
     pmdcNumber: "1764-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Tariq Sawand",
@@ -330,6 +370,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3337301525",
     pmdcNumber: "32698-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Saleem Khan",
@@ -338,6 +379,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3332636673",
     pmdcNumber: "60468-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Asma Ahmed",
@@ -346,6 +388,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3018215464",
     pmdcNumber: "39382-2",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Nadeem Naeem",
@@ -354,6 +397,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3009395600",
     pmdcNumber: "55072-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Musarrat Riaz",
@@ -362,6 +406,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3333608865",
     pmdcNumber: "31508-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Tahir Ansari",
@@ -370,6 +415,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3112477724",
     pmdcNumber: "35100-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Yusuf Kamal",
@@ -378,6 +424,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3332154522",
     pmdcNumber: "P-34703",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Urooj Laal",
@@ -386,6 +433,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3045153188",
     pmdcNumber: "P-41278",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Imran Ul Haq",
@@ -394,6 +442,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3343556355",
     pmdcNumber: "S-45026",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Asher Fawad",
@@ -402,6 +451,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3302323905",
     pmdcNumber: "3507-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Amin Abdullah Makki",
@@ -410,6 +460,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3330245765",
     pmdcNumber: "13887-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Nida Shakeel",
@@ -418,6 +469,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3181144469",
     pmdcNumber: "48669-S",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Syed Sohaib Haider",
@@ -426,6 +478,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333 8776350",
     pmdcNumber: "45931-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Bilal Bin Younus",
@@ -434,6 +487,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3009405405",
     pmdcNumber: "12147-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Hafiz Ehsan Ullah",
@@ -442,6 +496,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0322 4383054",
     pmdcNumber: "50794-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Amjad Iqbal",
@@ -450,6 +505,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300 9648828",
     pmdcNumber: "17676-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "Usama Sohail",
@@ -458,6 +514,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0343 4147898",
     pmdcNumber: "34969-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
   {
     name: "M Tahir Ch",
@@ -466,6 +523,7 @@ export const doctors: Doctor[] = [
     contactNumber: "3009448693",
     pmdcNumber: "20817-P",
     bookingPlatform: "Oladoc",
+    bookingPlatformLink: "",
   },
 
   // SehatKahani Doctors
@@ -476,6 +534,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0345-9857944",
     pmdcNumber: "17797-N",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Adnan Zahid",
@@ -484,6 +543,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0321-5071061",
     pmdcNumber: "50254-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Umar Wahab",
@@ -492,6 +552,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-9158285",
     pmdcNumber: "13174-N",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Ahmed Abdullah",
@@ -500,6 +561,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5494758",
     pmdcNumber: "50155-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Kashif Rasheed",
@@ -508,6 +570,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5304789",
     pmdcNumber: "53791-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Usama Sohail",
@@ -516,6 +579,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0343-4147898",
     pmdcNumber: "114912-P*",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Amjad Iqbal",
@@ -524,6 +588,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300-9648828",
     pmdcNumber: "17676-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Irfan Sheikh",
@@ -532,6 +597,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0301-7410245",
     pmdcNumber: "7046-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Altaf Ur Rehman",
@@ -540,6 +606,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0302-8643100",
     pmdcNumber: "24718-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Fahim Ullah",
@@ -548,6 +615,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0332-9142021",
     pmdcNumber: "13826-N",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Azmat Khan",
@@ -556,6 +624,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5179501",
     pmdcNumber: "455-AJK",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Bilal Bin Younus",
@@ -564,6 +633,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300-9405405",
     pmdcNumber: "12147-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr M Tahir Chaudhry",
@@ -572,6 +642,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0300-9448693",
     pmdcNumber: "20817-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Madeeha Nazar",
@@ -580,6 +651,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0332-7777658",
     pmdcNumber: "45679-P",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Musarrat Iqbal",
@@ -588,6 +660,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0302-5450011",
     pmdcNumber: "12006-S",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Faheem Ullah",
@@ -596,6 +669,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0301-8502888",
     pmdcNumber: "19868-N",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Zahid Mehmood",
@@ -604,6 +678,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0333-5628541",
     pmdcNumber: "8106-N",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
   {
     name: "Dr Muhammad Iqbal",
@@ -612,6 +687,7 @@ export const doctors: Doctor[] = [
     contactNumber: "0307-5113504",
     pmdcNumber: "1112-AJK",
     bookingPlatform: "SehatKahani",
+    bookingPlatformLink: "",
   },
 ];
 

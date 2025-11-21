@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import DiabetesUk from "../public/diabetes-uk-logo.svg";
 import Image1 from "../public/five-ways-to-move-more-image-1.webp";
 import Image2 from "../public/five-ways-to-move-more-image-2.webp";
 import Image3 from "../public/five-ways-to-move-more-image-3.webp";
@@ -45,26 +47,32 @@ const images = [
 const downloads = [
   {
     title: "Five ways to move more sitting PDF",
+    urduTitle: "بیٹھے ہوئے مزید حرکت کے پانچ طریقے PDF",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/1974_SE_ExercisePoster_lower_body_while_sitting_V2_cmyk_Urdu-PK.pdf?v=1653318793",
   },
   {
     title: "Five ways to move more standing PDF 1",
+    urduTitle: "کھڑے ہوئے مزید حرکت کے پانچ طریقے PDF 1",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/1974_SE_ExercisePoster_lower_body_while_standing_V2_cmyk_Urdu-PK.pdf?v=1653318793&_gl=1*1w8vefa*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTA3JGo1NCRsMCRoMA..",
   },
   {
     title: "Five way to move more standing PDF 2",
+    urduTitle: "کھڑے ہوئے مزید حرکت کے پانچ طریقے PDF 2",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/1974_SE_ExercisePoster_upper_body_while_standing_V2_cmyk_Urdu-PK.pdf?v=1653318793&_gl=1*1qxyt3f*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTIyJGozOSRsMCRoMA..",
   },
   {
     title: "Five ways to move more marching on the spot PDF",
+    urduTitle: "جگہ پر مارچ کرتے ہوئے مزید حرکت کے پانچ طریقے PDF",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/1974_SE_ExercisePoster_while_marching_on-the-spot_V2_cmyk_Urdu-PK.pdf?v=1653318793&_gl=1*40wmbu*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTM3JGoyNCRsMCRoMA..",
   },
   {
     title: "Five ways to move more stretching PDF",
+    urduTitle: "اسٹریچنگ کرتے ہوئے مزید حرکت کے پانچ طریقے PDF",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/1974_SE_ExercisePoster_while_stretching_out_V3_cmyk_Urdu-PK.pdf?v=1653318793&_gl=1*1jh8gk5*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTUxJGoxMCRsMCRoMA..",
   },
   {
     title: "Five ways to move more - whole body aerobic style PDF",
+    urduTitle: "پورے جسم کی ایروبک انداز میں مزید حرکت کے پانچ طریقے PDF",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/1974_SE_ExercisePoster_your_whole_body_aerobic_style__V2_cmyk_Urdu-PK.pdf?v=1653318793&_gl=1*prg502*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTYxJGo2MCRsMCRoMA..",
   },
 ];
@@ -85,7 +93,7 @@ export default function FiveWaysToMoveMoreClient() {
             onClick={() => setShowLightbox(false)}
             className="absolute top-4 right-4 text-white hover:text-gray-300 text-xl font-bold z-10"
           >
-            Close ✕
+            بند کریں ✕
           </button>
           <img
             src={images[selectedImage].src}
@@ -113,10 +121,10 @@ export default function FiveWaysToMoveMoreClient() {
       </section> */}
 
       {/* Main Content */}
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-white py-12 md:py-16" dir="rtl">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left - Image Gallery */}
+            {/* Right - Image Gallery */}
             <div>
               {/* Main Image */}
               <div
@@ -161,27 +169,46 @@ export default function FiveWaysToMoveMoreClient() {
               </div>
             </div>
 
-            {/* Right - Content */}
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Five Ways to Move More Urdu (Download Only)
+            {/* Left - Content */}
+            <div className="text-right">
+              {/* Credits */}
+              <div className="flex flex-col gap-2 mb-4">
+                <Image src={DiabetesUk} alt="diabetes-uk" className="w-32" />
+                <p className="text-gray-700 italic text-sm">
+                  (Content sourced from{" "}
+                  <a
+                    href="https://www.diabetes.org.uk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Diabetes UK
+                  </a>
+                  )
+                </p>
+              </div>
+
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                مزید حرکت کے پانچ طریقے (صرف ڈاؤن لوڈ)
               </h1>
 
               {/* Price Badge */}
-              <div className="inline-block border border-gray-300 px-4 py-2 mb-6">
-                <span className="text-gray-700 font-medium">Free</span>
+              <div className="inline-block border border-gray-300 px-4 py-2 my-4">
+                <span className="text-gray-700 font-medium">مفت</span>
               </div>
 
               {/* Tab */}
               <div className="">
-                <button className="bg-primary text-white px-6 py-2 font-medium">
-                  Details
+                <button className="bg-[#DB3B00] text-white px-6 py-2 font-medium">
+                  تفصیلات
                 </button>
               </div>
 
               {/* Content Box */}
               <div className="border border-gray-200 p-6">
-                <p className="text-gray-700 mb-6">Available to download in Urdu.</p>
+                <p className="text-gray-700 mb-6">
+                  اردو میں ڈاؤن لوڈ کے لیے دستیاب۔
+                </p>
 
                 <div className="space-y-3">
                   {downloads.map((download, index) => (
@@ -189,9 +216,9 @@ export default function FiveWaysToMoveMoreClient() {
                       key={index}
                       href={download.href}
                       target="_blank"
-                      className="block text-primary hover:text-primary/80 underline"
+                      className="block text-primary hover:text-primary/80 text-lg"
                     >
-                      {download.title}
+                      {download.urduTitle}
                     </Link>
                   ))}
                 </div>

@@ -7,7 +7,7 @@ import {
   getUniqueSpecializations,
   type Doctor,
 } from "@/lib/doctorsData";
-import { ChevronDown, FileText, Phone } from "lucide-react";
+import { ChevronDown, ExternalLink, FileText, Phone } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "./ui/button";
 
@@ -256,9 +256,17 @@ function DoctorCard({ doctor }: { doctor: Doctor }) {
             <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-primary text-white">
               {doctor.city}
             </span>
-            <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium border border-primary text-primary">
-              {doctor.bookingPlatform}
-            </span>
+            {doctor.bookingPlatformLink && (
+              <a
+                href={doctor.bookingPlatformLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                {doctor.bookingPlatform}
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
           </div>
         </div>
 

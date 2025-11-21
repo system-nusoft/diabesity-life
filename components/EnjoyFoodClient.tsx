@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import DiabetesUk from "../public/diabetes-uk-logo.svg";
 import Image1 from "../public/enjoy-food-image-1.webp";
 import Image2 from "../public/enjoy-food-image-2.webp";
 
@@ -21,10 +23,12 @@ const images = [
 const downloads = [
   {
     title: "Enjoy Food - African Caribbean",
+    urduTitle: "کھانے سے لطف اندوز ہوں - افریقی کیریبین",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/African_Caribbean_Guide_low_res_X_update.pdf?v=1707237840&_gl=1*k5w4h5*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTkzJGoyOCRsMCRoMA..",
   },
   {
     title: "Enjoy Food - South Asian",
+    urduTitle: "کھانے سے لطف اندوز ہوں - جنوبی ایشیائی",
     href: "https://cdn.shopify.com/s/files/1/1922/6045/files/Asian_food_Guide_low_res_X_update.pdf?v=1707237842&_gl=1*1j4kmzr*_gcl_au*OTgwNzUxNTQyLjE3NjAwODE1NzQ.*_ga*MTc1MTU4ODEwNy4xNzYwMDgxNTc1*_ga_J1HFNSGEX6*czE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNTk2JGoyNSRsMCRoMA..",
   },
 ];
@@ -48,7 +52,7 @@ export default function EnjoyFoodClient() {
             onClick={() => setShowLightbox(false)}
             className="absolute top-4 right-4 text-white hover:text-gray-300 text-xl font-bold z-10"
           >
-            Close ✕
+            بند کریں ✕
           </button>
           <img
             src={images[selectedImage].src}
@@ -76,10 +80,10 @@ export default function EnjoyFoodClient() {
       </section> */}
 
       {/* Main Content */}
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-white py-12 md:py-16" dir="rtl">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left - Image Gallery */}
+            {/* Right - Image Gallery */}
             <div>
               {/* Main Image */}
               <div
@@ -124,15 +128,32 @@ export default function EnjoyFoodClient() {
               </div>
             </div>
 
-            {/* Right - Content */}
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                Enjoy Food Guides (download only)
+            {/* Left - Content */}
+            <div className="text-right">
+              {/* Credits */}
+              <div className="flex flex-col gap-2 mb-4">
+                <Image src={DiabetesUk} alt="diabetes-uk" className="w-32" />
+                <p className="text-gray-700 italic text-sm">
+                  (Content sourced from{" "}
+                  <a
+                    href="https://www.diabetes.org.uk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Diabetes UK
+                  </a>
+                  )
+                </p>
+              </div>
+
+              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                کھانے سے لطف اندوز ہوں گائیڈز (صرف ڈاؤن لوڈ)
               </h1>
 
               {/* Price Badge */}
-              <div className="inline-block border border-gray-300 px-4 py-2 mb-6">
-                <span className="text-gray-700 font-medium">Free</span>
+              <div className="inline-block border border-gray-300 px-4 py-2 my-4">
+                <span className="text-gray-700 font-medium">مفت</span>
               </div>
 
               {/* Tabs */}
@@ -141,21 +162,21 @@ export default function EnjoyFoodClient() {
                   onClick={() => setActiveTab("details")}
                   className={`px-6 py-2 font-medium ${
                     activeTab === "details"
-                      ? "bg-primary text-white"
+                      ? "bg-[#DB3B00] text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
-                  Details
+                  تفصیلات
                 </button>
                 <button
                   onClick={() => setActiveTab("downloads")}
                   className={`px-6 py-2 font-medium ${
                     activeTab === "downloads"
-                      ? "bg-primary text-white"
+                      ? "bg-[#DB3B00] text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
-                  Downloads
+                  ڈاؤن لوڈز
                 </button>
               </div>
 
@@ -164,53 +185,56 @@ export default function EnjoyFoodClient() {
                 {activeTab === "details" ? (
                   <div className="space-y-4 text-gray-700">
                     <p>
-                      We are sorry but we are out of stock of the African
-                      Caribbean and South Asian guides. They are available to
-                      download only just click on the download tab above.
+                      ہمیں افسوس ہے لیکن افریقی کیریبین اور جنوبی ایشیائی گائیڈز
+                      ختم ہو گئے ہیں۔ یہ صرف ڈاؤن لوڈ کے لیے دستیاب ہیں، اوپر
+                      ڈاؤن لوڈ ٹیب پر کلک کریں۔
                     </p>
                     <p>
-                      Enjoying what you eat is one of life&apos;s pleasures. But
-                      if you, or someone in your family, has diabetes
-                      you&apos;ll know it can be tricky at times.
+                      آپ جو کھاتے ہیں اس سے لطف اندوز ہونا زندگی کی خوشیوں میں
+                      سے ایک ہے۔ لیکن اگر آپ، یا آپ کے خاندان میں کوئی، ذیابیطس
+                      کا شکار ہے تو آپ جانتے ہیں کہ یہ بعض اوقات مشکل ہو سکتا
+                      ہے۔
                     </p>
                     <p>
-                      We have put together the Enjoy Food guides to help
-                      everyone affected by diabetes put the excitement back into
-                      cooking and enjoying a healthy diet.
+                      ہم نے کھانے سے لطف اندوز ہوں گائیڈز کو اکٹھا کیا ہے تاکہ
+                      ذیابیطس سے متاثر ہر شخص کو کھانا پکانے اور صحت مند غذا سے
+                      لطف اندوز ہونے میں مدد ملے۔
                     </p>
                     <p>
-                      You can download these copies for free using the download
-                      tab above.
+                      آپ اوپر ڈاؤن لوڈ ٹیب کا استعمال کرتے ہوئے یہ کاپیاں مفت
+                      میں ڈاؤن لوڈ کر سکتے ہیں۔
                     </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                      <li>Enjoy Food - African-Caribbean diet</li>
+                    <ul className="list-disc pr-6 space-y-2">
+                      <li>کھانے سے لطف اندوز ہوں - افریقی کیریبین غذا</li>
                       <li>
-                        Enjoy Food - South Asian diet, including information in
-                        English with text panels in Bengali, Urdu and Gujarati
+                        کھانے سے لطف اندوز ہوں - جنوبی ایشیائی غذا، بنگالی، اردو
+                        اور گجراتی میں متن پینلز کے ساتھ انگریزی میں معلومات
+                        شامل ہے
                       </li>
                       <li>
-                        To order or download our Eating well guide in English or
-                        download only in Welsh please click{" "}
+                        انگریزی میں ہماری اچھی طرح کھانے کی گائیڈ آرڈر یا ڈاؤن
+                        لوڈ کرنے کے لیے یا صرف ویلش میں ڈاؤن لوڈ کرنے کے لیے{" "}
                         <Link
                           href="https://shop.diabetes.org.uk/products/eating-well-with-diabetes"
                           target="_blank"
                           className="text-primary underline"
                         >
-                          here
-                        </Link>
-                        .
+                          یہاں
+                        </Link>{" "}
+                        کلک کریں۔
                       </li>
                     </ul>
                     <p>
-                      For more inspiration, and to get started, visit{" "}
+                      مزید الہام اور شروع کرنے کے لیے،{" "}
                       <Link
                         href="https://www.diabetes.org.uk/living-with-diabetes/eating?_gl=1%2Az1frqd%2A_gcl_au%2AOTgwNzUxNTQyLjE3NjAwODE1NzQ.%2A_ga%2AMTc1MTU4ODEwNy4xNzYwMDgxNTc1%2A_ga_J1HFNSGEX6%2AczE3NjM2MjI5NjIkbzEzJGcxJHQxNzYzNjIzNjA5JGoxMiRsMCRoMA.."
                         target="_blank"
                         className="text-primary underline"
+                        dir="ltr"
                       >
                         www.diabetes.org.uk/enjoyfood
-                      </Link>
-                      .
+                      </Link>{" "}
+                      پر جائیں۔
                     </p>
                   </div>
                 ) : (
@@ -220,9 +244,9 @@ export default function EnjoyFoodClient() {
                         key={index}
                         href={download.href}
                         target="_blank"
-                        className="block text-primary hover:text-primary/80 underline"
+                        className="block text-primary hover:text-primary/80 text-lg"
                       >
-                        {download.title}
+                        {download.urduTitle}
                       </Link>
                     ))}
                   </div>

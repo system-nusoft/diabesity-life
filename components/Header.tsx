@@ -3,10 +3,11 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import HealthcareProfessionalModal from "./HealthcareProfessionalModal";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [_isModalOpen, _setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -43,10 +44,10 @@ export default function Header() {
               FAQs
             </Link>
             <Link
-              href="/contact"
+              href="/doctors"
               className="text-gray-700 hover:text-primary transition-colors text-base"
             >
-              Contact
+              Contact a specialist
             </Link>
           </nav>
 
@@ -55,13 +56,12 @@ export default function Header() {
             {/* <button className="text-gray-700 hover:text-primary transition-colors">
               <Search className="w-5 h-5" />
             </button> */}
-            <Link
-              href="/doctors"
-              // onClick={() => setIsModalOpen(true)}
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="bg-primary text-white px-6 py-3 hover:bg-primary/90 transition-colors text-sm font-medium"
             >
-              Contact a Specialist
-            </Link>
+              For healthcare professionals
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,21 +109,24 @@ export default function Header() {
             >
               Contact
             </Link>
-            <Link
-              href="https://docs.google.com/spreadsheets/d/1Fa2fmWnn4mJt9LvZVIydERUsX_wN359P/edit?gid=1254477902#gid=1254477902"
-              target="_blank"
-              onClick={() => setIsMenuOpen(false)}
-              // onClick={() => setIsModalOpen(true)}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                setIsModalOpen(true);
+              }}
               className="bg-primary text-white px-6 py-2.5 rounded hover:bg-primary/90 transition-colors text-center"
             >
-              Contact a Specialist
-            </Link>
+              For Healthcare Professionals
+            </button>
           </nav>
         )}
       </div>
 
-      {/* Doctor Booking Modal */}
-      {/* <DoctorBookingModal open={isModalOpen} onOpenChange={setIsModalOpen} /> */}
+      {/* Healthcare Professional Modal */}
+      <HealthcareProfessionalModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      />
     </header>
   );
 }

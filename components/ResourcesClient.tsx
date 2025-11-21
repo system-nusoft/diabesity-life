@@ -11,7 +11,7 @@ import { ResearchArticle } from "@/lib/researchContent";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import HeroImage from "../public/diabetes-resources.webp";
+import HeroImage from "../public/diabetes-resources.png";
 
 interface ResourcesClientProps {
   blogs: BlogArticle[];
