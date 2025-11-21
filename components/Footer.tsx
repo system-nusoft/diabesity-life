@@ -7,7 +7,6 @@ import {
   Youtube,
 } from "lucide-react";
 import Link from "next/link";
-import FooterBG from "../public/footer-bg.jpg";
 
 export default function Footer() {
   return (
