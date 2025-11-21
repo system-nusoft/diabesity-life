@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  bookingPlatforms,
   doctors,
   getUniqueCities,
   getUniqueSpecializations,
@@ -24,7 +23,8 @@ export default function DoctorsPageClient() {
   const filteredDoctors = useMemo(() => {
     return doctors.filter((doctor) => {
       const platformMatch =
-        !selectedPlatform || doctor.bookingPlatform === selectedPlatform;
+        !selectedPlatform ||
+        doctor.bookingPlatforms.some((p) => p.platform === selectedPlatform);
       const cityMatch =
         !selectedCity ||
         doctor.city.toLowerCase().includes(selectedCity.toLowerCase());
@@ -256,17 +256,23 @@ function DoctorCard({ doctor }: { doctor: Doctor }) {
             <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-primary text-white">
               {doctor.city}
             </span>
-            {doctor.bookingPlatformLink && (
-              <a
-                href={doctor.bookingPlatformLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-white transition-colors"
-              >
-                {doctor.bookingPlatform}
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
+            {doctor.bookingPlatforms.map((platformInfo, index) => {
+              if (platformInfo.link) {
+                return (
+                  <a
+                    key={index}
+                    href={platformInfo.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-white transition-colors"
+                  >
+                    {platformInfo.platform}
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                );
+              }
+              return null;
+            })}
           </div>
         </div>
 

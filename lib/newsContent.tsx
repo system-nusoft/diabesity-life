@@ -266,7 +266,7 @@ export const newsArticles: Record<string, NewsArticle> = {
   "increased-diabetic-population-in-pakistan": {
     slug: "increased-diabetic-population-in-pakistan",
     title:
-      "Vitalsnews: Pakistan now has 34.5 million, not 33m people living with diabetes, WHO warns",
+      "VITALSNEWS: Pakistan now has 34.5 million, not 33m people living with diabetes, WHO warns",
     date: "2025-11-17",
     image: Article7.src,
     imageAlt: "Medical research",
