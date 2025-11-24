@@ -115,14 +115,14 @@ export default function UrduGuidesClient() {
           <div className="flex flex-col gap-4 mt-6">
             <Image src={DiabetesUk} alt="diabetes-uk" />
             <p className="text-gray-700 italic text-sm">
-            (Content sourced from{" "}
+            (This content is provided by Diabetes UK and is used with their permission. For more information click{" "}
             <a
               href="https://www.diabetes.org.uk/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              Diabetes UK)
+              here)
             </a>
           </p>
           </div>
