@@ -2,12 +2,14 @@
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import HealthcareProfessionalModal from "./HealthcareProfessionalModal";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -27,25 +29,41 @@ export default function Header() {
             </div> */}
             <Link
               href="/about"
-              className="text-gray-700 hover:text-primary transition-colors text-base"
+              className={`text-base transition-colors pb-1 ${
+                pathname === "/about"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               About
             </Link>
             <Link
               href="/resources"
-              className="text-gray-700 hover:text-primary transition-colors text-base"
+              className={`text-base transition-colors pb-1 ${
+                pathname === "/resources"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               Resources
             </Link>
             <Link
               href="/faqs"
-              className="text-gray-700 hover:text-primary transition-colors text-base"
+              className={`text-base transition-colors pb-1 ${
+                pathname === "/faqs"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               FAQs
             </Link>
             <Link
               href="/doctors"
-              className="text-gray-700 hover:text-primary transition-colors text-base"
+              className={`text-base transition-colors pb-1 ${
+                pathname === "/doctors"
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               Contact a specialist
             </Link>
@@ -84,30 +102,46 @@ export default function Header() {
             <Link
               href="/about"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-primary transition-colors"
+              className={`transition-colors ${
+                pathname === "/about"
+                  ? "text-primary border-l-2 border-primary pl-2"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               About
             </Link>
             <Link
               href="/resources"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-primary transition-colors"
+              className={`transition-colors ${
+                pathname === "/resources"
+                  ? "text-primary border-l-2 border-primary pl-2"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               Resources
             </Link>
             <Link
               href="/faqs"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-primary transition-colors"
+              className={`transition-colors ${
+                pathname === "/faqs"
+                  ? "text-primary border-l-2 border-primary pl-2"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
               FAQs
             </Link>
             <Link
-              href="/contact"
+              href="/doctors"
               onClick={() => setIsMenuOpen(false)}
-              className="text-gray-700 hover:text-primary transition-colors"
+              className={`transition-colors ${
+                pathname === "/doctors"
+                  ? "text-primary border-l-2 border-primary pl-2"
+                  : "text-gray-700 hover:text-primary"
+              }`}
             >
-              Contact
+              Contact a specialist
             </Link>
             <button
               onClick={() => {

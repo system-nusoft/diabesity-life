@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   ExternalLinkIcon,
   Facebook,
-  Linkedin,
+  Instagram,
   Twitter,
   Youtube,
 } from "lucide-react";
@@ -49,19 +49,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6">
           {/* Diabesity Info */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold mb-4">Diabesity</h4>
             <p className="text-gray-400 mb-2">Islamabad, Pakistan</p>
-          </div>
+          </div> */}
 
           {/* Phone */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold mb-4">Phone</h4>
             <p className="text-gray-400 mb-2">+92 000 000000</p>
-          </div>
+          </div> */}
 
           {/* Email */}
-          <div>
+          {/* <div>
             <h4 className="text-white font-semibold mb-4">Email</h4>
             <a
               href="mailto:abc@diabesity.com"
@@ -69,35 +69,39 @@ export default function Footer() {
             >
               abc@diabesity.com
             </a>
-          </div>
+          </div> */}
 
           {/* Socials */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Social</h4>
+            <h4 className="text-white font-semibold mb-4">Socials</h4>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61584352553403"
+                target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://x.com/DiabesityLife"
+                target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/diabesity.life.pk/"
+                target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="h-5 w-5" />
+                <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@Diabesity.Life.Pakistan"
+                target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="YouTube"
               >
@@ -115,13 +119,13 @@ export default function Footer() {
           </p>
           <div className="flex space-x-6">
             <Link
-              href="#"
+              href="/terms-of-use"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >
               Terms of use
             </Link>
             <Link
-              href="#"
+              href="/privacy-policy"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >
               Privacy policy
