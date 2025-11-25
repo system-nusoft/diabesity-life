@@ -10,13 +10,13 @@ export default function ContactPage() {
   );
 
   const GOOGLE_FORM_URL =
-    "https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse";
+    "https://docs.google.com/forms/d/e/1FAIpQLScUAXgiTjvQotaoz7qoLwzAdtKG5FqmpW5J8MJC-1zzmkSWvg/formResponse";
 
   const FORM_FIELDS = {
-    fullName: "entry.XXXXXXXXX",
-    email: "entry.XXXXXXXXX",
-    subject: "entry.XXXXXXXXX",
-    message: "entry.XXXXXXXXX",
+    fullName: "entry.1079562861",
+    email: "entry.1950987272",
+    subject: "entry.930277270",
+    message: "entry.1717737975",
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

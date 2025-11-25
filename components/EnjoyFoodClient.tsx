@@ -133,7 +133,7 @@ export default function EnjoyFoodClient() {
               {/* Credits */}
               <div className="flex flex-col gap-2 mb-4">
                 <Image src={DiabetesUk} alt="diabetes-uk" className="w-32" />
-                <p className="text-gray-700 italic text-sm">
+                {/* <p className="text-gray-700 italic text-sm">
                   (Content sourced from{" "}
                   <a
                     href="https://www.diabetes.org.uk/"
@@ -144,10 +144,10 @@ export default function EnjoyFoodClient() {
                     Diabetes UK
                   </a>
                   )
-                </p>
+                </p> */}
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
                 کھانے سے لطف اندوز ہوں گائیڈز (صرف ڈاؤن لوڈ)
               </h1>
 
