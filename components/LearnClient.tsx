@@ -34,7 +34,7 @@ const learnContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Obesity is not just about "weight" or looks; it's a chronic, medical
+          Obesity is not just about &quot;weight&quot; or looks; it&apos;s a chronic, medical
           condition involving excess body fat that affects hormones, metabolism,
           joints, and even mood. Doctors often use{" "}
           <strong>BMI (Body Mass Index)</strong> and{" "}
@@ -44,7 +44,7 @@ const learnContent = [
           and drives insulin resistance. In South Asian communities—including
           Pakistan—health risks can begin at{" "}
           <strong>lower BMI and waist sizes</strong> than many Western charts
-          suggest, which is why a person can "look normal" yet face real
+          suggest, which is why a person can &quot;look normal&quot; yet face real
           metabolic risk.
         </p>
 
@@ -71,10 +71,10 @@ const learnContent = [
             Why does obesity develop?
           </h3>
           <p className="text-gray-700 leading-relaxed">
-            It's multi-factorial: genetics, family routines, urban lifestyles,
+            It&apos;s multi-factorial: genetics, family routines, urban lifestyles,
             stress, poor sleep, medications, pregnancy-related changes, and food
             environments (sweet tea, refined carbs, large portions, frequent
-            weddings/dawats). It isn't simply "willpower." Hormones like{" "}
+            weddings/dawats). It isn&apos;t simply &quot;willpower.&quot; Hormones like{" "}
             <strong>insulin</strong> and <strong>GLP-1</strong> influence
             hunger/fullness, and chronic stress raises cortisol, pushing the
             body to store fat.
@@ -124,7 +124,7 @@ const learnContent = [
           <p className="text-gray-700 leading-relaxed">
             Take the <strong>1-minute Risk Quiz</strong> to understand your
             baseline and get a simple action plan.{" "}
-            <em>"Doctor ki salah zaroori hai."</em>
+            <em>&quot;Doctor ki salah zaroori hai.&quot;</em>
           </p>
         </div>
       </div>
@@ -140,7 +140,7 @@ const learnContent = [
           higher than normal. In <strong>Type 2 diabetes</strong> (the most
           common in adults), the body becomes resistant to insulin and also
           makes less insulin over time. <strong>Pre-diabetes</strong> means
-          sugars are higher than normal but not yet in diabetes range; it's a
+          sugars are higher than normal but not yet in diabetes range; it&apos;s a
           warning—and an opportunity to reverse course.
         </p>
 
@@ -228,7 +228,7 @@ const learnContent = [
           <h3 className="text-xl font-bold text-gray-900 mb-3">Next step:</h3>
           <p className="text-gray-700 leading-relaxed">
             Use the <strong>HbA1c Translator</strong> in Tools to understand
-            typical targets (your doctor's plan rules). Then book a{" "}
+            typical targets (your doctor&apos;s plan rules). Then book a{" "}
             <strong>baseline consult</strong> if your risk is elevated.
           </p>
         </div>
@@ -245,7 +245,7 @@ const learnContent = [
           <strong>insulin</strong>, the hormone that moves glucose from blood
           into cells. Think of insulin as a key; in insulin resistance, the
           locks (cell receptors) become rusty, so the key works poorly. The
-          pancreas compensates by making more insulin—until it can't. Blood
+          pancreas compensates by making more insulin—until it can&apos;t. Blood
           glucose rises, and over time Type 2 diabetes may develop.
         </p>
 
@@ -304,8 +304,8 @@ const learnContent = [
           </h3>
           <p className="text-gray-700 leading-relaxed">
             Our food culture is rich and social—chai, mithai, iftar spreads,
-            wedding menus. You don't have to give up your culture. Instead,
-            adapt it. Celebrate, then return to routine. It's the{" "}
+            wedding menus. You don&apos;t have to give up your culture. Instead,
+            adapt it. Celebrate, then return to routine. It&apos;s the{" "}
             <strong>long-term pattern</strong> that shapes health.
           </p>
         </div>
@@ -318,7 +318,7 @@ const learnContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Some risks you can't change (age, family history), others you can
+          Some risks you can&apos;t change (age, family history), others you can
           (diet, activity, sleep). In South Asian families, diabetes often
           clusters across generations, and health risks can appear at{" "}
           <strong>lower BMI</strong>.
@@ -347,7 +347,7 @@ const learnContent = [
               <strong>earlier</strong> and <strong>more frequent</strong> checks.
             </li>
             <li>
-              If you're planning pregnancy or managing PCOS, screening may be
+              If you&apos;re planning pregnancy or managing PCOS, screening may be
               advised sooner.
             </li>
             <li>
@@ -394,7 +394,7 @@ const learnContent = [
       <div className="space-y-6">
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> "Only sweets cause diabetes."
+            <strong>Myth:</strong> &quot;Only sweets cause diabetes.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
             <strong>Fact:</strong> Refined carbs of many kinds (white rice, bakery items, sugary beverages) raise glucose. Total
@@ -404,17 +404,17 @@ const learnContent = [
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> "If I walk daily, I can eat unlimited mithai."
+            <strong>Myth:</strong> &quot;If I walk daily, I can eat unlimited mithai.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> Movement is powerful, but you can't outrun a consistently high-sugar, high-portion diet. Combine
+            <strong>Fact:</strong> Movement is powerful, but you can&apos;t outrun a consistently high-sugar, high-portion diet. Combine
             both: smarter food <strong>and</strong> regular activity.
           </p>
         </div>
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> "Desi ghee is always 'good fat' so I can use as much as I want."
+            <strong>Myth:</strong> &quot;Desi ghee is always &apos;good fat&apos; so I can use as much as I want.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
             <strong>Fact:</strong> Quality matters—but quantity still counts. Fats are calorie-dense; <em>excess</em> intake—of any fat—can
@@ -424,20 +424,20 @@ const learnContent = [
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> "Fasting alone will cure my sugar."
+            <strong>Myth:</strong> &quot;Fasting alone will cure my sugar.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> Many people see improvements during structured fasting, but it's not a one-size-fits-all solution.
+            <strong>Fact:</strong> Many people see improvements during structured fasting, but it&apos;s not a one-size-fits-all solution.
             Medication timing, hypoglycaemia risk, and overall nutrition still matter—especially in Ramadan.
           </p>
         </div>
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> "Herbal or 'natural' products are automatically safe."
+            <strong>Myth:</strong> &quot;Herbal or &apos;natural&apos; products are automatically safe.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> "Natural" isn't always safe or effective. Some products interact with medicines or harm the liver/
+            <strong>Fact:</strong> &quot;Natural&quot; isn&apos;t always safe or effective. Some products interact with medicines or harm the liver/
             kidneys. Always discuss with your doctor.
           </p>
         </div>
@@ -460,7 +460,7 @@ const learnContent = [
           This site keeps public pages simple. For deeper reading: mechanisms of <strong>GLP-1 receptor agonists</strong>, links
           between <strong>NAFLD</strong> and insulin resistance, typical indications for <strong>bariatric/metabolic surgery</strong> (e.g., severe
           obesity with comorbidities), and practical approaches to sleep apnea, PCOS, and hypertension in the
-          context of weight and glucose control. We'll provide plain-language summaries and point to the latest
+          context of weight and glucose control. We&apos;ll provide plain-language summaries and point to the latest
           guidance for local practice where available.
         </p>
 

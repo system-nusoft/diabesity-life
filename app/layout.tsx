@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Epilogue, Sora } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import { Suspense } from "react";
 
 const epilogue = Epilogue({
   variable: "--font-epilogue",
@@ -35,7 +36,9 @@ export default function RootLayout({
         <Header />
         <Breadcrumbs />
         <div className="lg:flex">
-          <Sidebar />
+          <Suspense fallback={<div />}>
+            <Sidebar />
+          </Suspense>
           <main className="w-full lg:flex-1">{children}</main>
         </div>
         <Footer />

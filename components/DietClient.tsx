@@ -56,7 +56,7 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Pakistani meals can be heart-healthy without losing flavour. A "makeover" is not a punishment; it's a
+          Pakistani meals can be heart-healthy without losing flavour. A &quot;makeover&quot; is not a punishment; it&apos;s a
           series of small, repeatable tweaks. Start by re-balancing the <strong>plate</strong>: half vegetables/salad (cooked or
           raw), a quarter <strong>protein</strong> (daal, chicken, fish, eggs, yogurt), and a quarter <strong>carbs</strong> (roti or rice). For <strong>biryani/
           nihari/qorma</strong>, shrink the carb portion and add a protein-plus-fiber side (raita with grated cucumber,
@@ -105,9 +105,9 @@ const dietContent = [
         <p className="text-gray-700 leading-relaxed">
           Portion control is a skill. Replace vague advice with <strong>visual rules</strong>. Use the <strong>hand method</strong>: protein = palm,
           carbs = cupped hand (or half roti), fats = thumb, vegetables = two open hands. Eat on <strong>smaller plates</strong>{" "}
-          and <strong>plate in the kitchen</strong> (don't serve family-style if you tend to refill). Start meals with <strong>water + salad</strong> to
-          reduce overeating. Add <strong>"pause points"</strong>: halfway through, put the spoon down, take two deep breaths,
-          ask "Am I at 7/10 full?" If yes, save the rest.
+          and <strong>plate in the kitchen</strong> (don&apos;t serve family-style if you tend to refill). Start meals with <strong>water + salad</strong> to
+          reduce overeating. Add <strong>&quot;pause points&quot;</strong>: halfway through, put the spoon down, take two deep breaths,
+          ask &quot;Am I at 7/10 full?&quot; If yes, save the rest.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
@@ -155,7 +155,7 @@ const dietContent = [
         <p className="text-gray-700 leading-relaxed">
           Set <strong>guardrails</strong>, not bans. If you love <strong>samosa/chaat/bun kebab</strong>, limit to <strong>once per week</strong>, share with a
           friend, add water and salad/raita, and avoid sugary drinks. Pick <strong>grilled</strong> over deep-fried when possible;
-          ask vendors to <strong>hold extra chutney/syrups</strong>. Keep a <strong>"back-up snack kit"</strong> in your bag (roasted chana,
+          ask vendors to <strong>hold extra chutney/syrups</strong>. Keep a <strong>&quot;back-up snack kit&quot;</strong> in your bag (roasted chana,
           nuts, sugar-free gum) to dodge impulsive choices when hungry or stuck in traffic. For travel and office
           days, pack <strong>egg wraps, fruit, yogurt, or leftover tikka</strong>. When cravings hit at night, take <strong>two minutes</strong>:
           water, slow breaths, quick stretch; if still hungry, choose <strong>protein + veg</strong>.
@@ -169,7 +169,7 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Be sceptical of "miracle" weight-loss teas or pills. Some products are <strong>unsafe</strong> or <strong>ineffective</strong>. Evidence
+          Be sceptical of &quot;miracle&quot; weight-loss teas or pills. Some products are <strong>unsafe</strong> or <strong>ineffective</strong>. Evidence
           supports <strong>adequate protein</strong>, <strong>fiber</strong>, and in some cases <strong>vitamin D</strong> if deficient. Discuss <strong>omega-3</strong> for
           triglycerides with your doctor. Be cautious with <strong>fat burners</strong> and <strong>unregulated herbal mixes</strong>; they can
           interact with medicines or stress the liver. If you try something new, <strong>note any side effects</strong>, keep doses
@@ -184,10 +184,10 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Use <strong>implementation intentions</strong>: "If X happens, I will do Y" (e.g., "If I'm offered mithai at work, I'll take a
-          half piece and eat it slowly after lunch"). Keep <strong>visible cues</strong>: salad bowl on the counter, filled water bottle
+          Use <strong>implementation intentions</strong>: &quot;If X happens, I will do Y&quot; (e.g., &quot;If I&apos;m offered mithai at work, I&apos;ll take a
+          half piece and eat it slowly after lunch&quot;). Keep <strong>visible cues</strong>: salad bowl on the counter, filled water bottle
           on your desk, pre-cut veg in the fridge. Track <strong>three basics</strong> daily: steps, portions of veg, and sweet
-          drinks. Reward consistency, not perfection. If you "fall off" during a wedding week, <strong>reboot the very
+          drinks. Reward consistency, not perfection. If you &quot;fall off&quot; during a wedding week, <strong>reboot the very
           next meal</strong>. Progress beats perfection.
         </p>
       </div>
@@ -240,7 +240,7 @@ export default function DietClient() {
             Sections
           </h2>
           <ul className="space-y-4">
-            {dietSections.map((section, index) => (
+            {dietSections.map((section) => (
               <li key={section.id} className="flex items-start">
                 <span className="text-primary mr-3 mt-1.5 text-xl">
                   &#8226;
