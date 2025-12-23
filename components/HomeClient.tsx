@@ -19,6 +19,8 @@ const heroSlides = [
   {
     image: Hero1.src,
     heading: "Living with diabesity in Pakistan",
+    // ctaText: "Learn more",
+    // ctaUrl: "/learn",
     videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
   },
   {
@@ -128,7 +130,7 @@ const services = [
   {
     title: "Daily care and monitoring",
     image: DailyCare.src,
-    gradient: "from-purple-500/100 to-purple-500/0",
+    gradient: "from-primary to-purple-500/0",
     linkText: "View guides",
     linkUrl: "/daily-care-and-monitoring",
     linkTarget: "",
@@ -166,10 +168,10 @@ export default function Home({ blogs, news }: HomeClientProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [currentSlide]);
 
   //   const nextSlide = () => {
   //     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -253,12 +255,14 @@ export default function Home({ blogs, news }: HomeClientProps) {
           >
             <div className="absolute inset-0 bg-black/30"></div>
             <div
-              className={`relative h-full max-w-7xl mx-auto px-6 flex items-center ${
+              className={`relative h-full lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-6 flex items-center ${
                 slide.isRtl ? "justify-end" : ""
               }`}
               dir={slide.isRtl ? "rtl" : "ltr"}
             >
-              <div className={`text-white ${slide.isRtl ? "w-full" : "max-w-2xl"}`}>
+              <div
+                className={`text-white ${slide.isRtl ? "w-full" : "max-w-2xl"}`}
+              >
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                   {slide.heading}
                 </h1>
@@ -348,7 +352,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
         </div>
 
         {/* Foreground content */}
-        <div className="relative max-w-7xl mx-auto grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+        <div className="relative lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
           {/* Left Dark Side */}
           <div className="text-white px-8 md:px-16 py-16 md:py-24">
             <h2 className="text-[#ff9d5c] text-3xl md:text-4xl font-medium mb-8">
@@ -386,7 +390,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
       {/* News Section */}
       <section className="bg-gray-50 py-16 md:py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between mb-12 gap-6">
             <div>
               <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
@@ -420,7 +424,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 {news.map((article, idx) => (
                   <div
                     key={idx}
-                    className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-3"
+                    className="w-full md:w-1/2 lg:w-1/3 2xl:w-1/4 flex-shrink-0 px-3"
                   >
                     <Link href={`/news/${article.slug}`}>
                       <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-white py-0 pb-6 rounded-none h-full cursor-pointer">
@@ -492,7 +496,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
               SERVICES
@@ -506,7 +510,8 @@ export default function Home({ blogs, news }: HomeClientProps) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+          {/* Services section */}
+          <div className="grid md:grid-cols-3 2xl:grid-cols-5 gap-4 mb-6">
             {services.map((service, index) => (
               <div
                 key={index}
@@ -542,7 +547,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
       {/* FAQs Section */}
       <section className="py-16 md:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
               FAQs
@@ -623,7 +628,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
       {/* Blogs Section */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between gap-6 mb-12">
             <div className="text-left">
               <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">

@@ -17,7 +17,7 @@ export const getCategoryGradient = (category: Category): string => {
     Recipes:
       "border-2 border-blue-500 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-0",
     Services:
-      "border-2 border-purple-500 hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-0",
+      "border-2 border-primary hover:bg-gradient-to-r hover:from-primary hover:to-purple-0",
   };
   return gradients[category];
 };

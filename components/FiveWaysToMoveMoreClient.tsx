@@ -103,22 +103,6 @@ export default function FiveWaysToMoveMoreClient() {
           />
         </div>
       )}
-      {/* Breadcrumb */}
-      {/* <section className="bg-white py-4 border-b">
-        <div className="max-w-7xl mx-auto px-6">
-          <nav className="text-sm">
-            <Link href="/" className="text-primary hover:underline">
-              Home
-            </Link>
-            <span className="mx-2 text-gray-500">/</span>
-            <Link href="/urdu-guides" className="text-primary hover:underline">
-              Urdu Guides
-            </Link>
-            <span className="mx-2 text-gray-500">/</span>
-            <span className="text-gray-600">Five Ways to Move More Urdu</span>
-          </nav>
-        </div>
-      </section> */}
 
       {/* Main Content */}
       <section className="bg-white py-12 md:py-16" dir="rtl">

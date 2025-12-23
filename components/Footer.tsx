@@ -76,7 +76,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Socials</h4>
             <div className="flex space-x-4">
               <a
-                href="https://www.facebook.com/profile.php?id=61584352553403"
+                href="https://www.facebook.com/diabesitylifepk"
                 target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Facebook"
@@ -84,7 +84,7 @@ export default function Footer() {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://x.com/DiabesityLife"
+                href="https://x.com/diabesitylifepk"
                 target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Twitter"
@@ -92,7 +92,7 @@ export default function Footer() {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://www.instagram.com/diabesity.life.pk/"
+                href="https://www.instagram.com/diabesitylifepk"
                 target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="LinkedIn"
@@ -100,7 +100,7 @@ export default function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://www.youtube.com/@Diabesity.Life.Pakistan"
+                href="https://www.youtube.com/@diabesitylifepk"
                 target="_blank"
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="YouTube"

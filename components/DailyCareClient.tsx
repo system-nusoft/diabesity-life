@@ -28,19 +28,23 @@ const careItems = [
 
           <h4 className="font-bold mb-2">How to use (simple steps):</h4>
           <ol className="list-decimal pl-6 mb-4 space-y-1">
-            <li>Check the pen label, expiry date, and that the liquid looks clear.</li>
-            <li>Attach a new needle.</li>
-            <li>If the instructions mention &quot;priming&quot;, do it once.</li>
+            <li>
+              Check the pen label, expiry date, and that the liquid looks clear
+            </li>
+            <li>Attach a new needle</li>
+            <li>If the instructions mention &quot;priming&quot;, do it once</li>
             <li>Choose an area on your abdomen, thigh, or upper arm.</li>
-            <li>Inject under the skin.</li>
-            <li>Rotate spots each time to avoid lumps.</li>
-            <li>Throw the used needle into a sharp container right away.</li>
+            <li>Inject under the skin</li>
+            <li>Rotate spots each time to avoid lumps</li>
+            <li>Throw the used needle into a sharp container right away</li>
           </ol>
 
           <h4 className="font-bold mb-2">Storage basics:</h4>
           <ul className="list-disc pl-6 space-y-1">
-            <li>Keep unopened pens in the fridge (not frozen).</li>
-            <li>In-use pens can stay at room temperature (avoid heat and sunlight).</li>
+            <li>Keep unopened pens in the fridge (not frozen)</li>
+            <li>
+              In-use pens can stay at room temperature (avoid heat and sunlight)
+            </li>
           </ul>
         </div>
 
@@ -64,17 +68,22 @@ const careItems = [
 
           <h4 className="font-bold mb-2">How to use (simple steps):</h4>
           <ol className="list-decimal pl-6 mb-4 space-y-1">
-            <li>Confirm which insulin you are using and when it should be taken.</li>
-            <li>Prime the pen if required.</li>
-            <li>Inject under the skin and rotate areas.</li>
-            <li>Check blood sugar as advised.</li>
-            <li>Note down readings and how you feel.</li>
+            <li>
+              Confirm which insulin you are using and when it should be taken
+            </li>
+            <li>Prime the pen if required</li>
+            <li>Inject under the skin and rotate areas</li>
+            <li>Check blood sugar as advised</li>
+            <li>Note down readings and how you feel</li>
           </ol>
 
           <h4 className="font-bold mb-2">Storage basics:</h4>
           <ul className="list-disc pl-6 space-y-1">
-            <li>Keep unopened insulin in the fridge (not frozen).</li>
-            <li>In-use insulin can stay at room temperature for around 28 days (avoid sunlight).</li>
+            <li>Keep unopened insulin in the fridge (not frozen)</li>
+            <li>
+              In-use insulin can stay at room temperature for around 28 days
+              (avoid sunlight)
+            </li>
           </ul>
         </div>
       </div>
@@ -122,16 +131,16 @@ const careItems = [
           <ul className="list-disc pl-6 space-y-1">
             <li>
               Keep a small source of <strong>fast-acting sugar</strong> handy if
-              using insulin.
+              using insulin
             </li>
             <li>
               Note any repeated vomiting or severe belly pain — speak to a
-              doctor.
+              doctor
             </li>
-            <li>Stay hydrated, especially in summer.</li>
+            <li>Stay hydrated, especially in summer</li>
             <li>
               If you feel unwell (fever, dehydration), contact your clinician
-              before continuing certain medicines.
+              before continuing certain medicines
             </li>
           </ul>
         </div>
@@ -143,14 +152,14 @@ const careItems = [
           <ul className="list-disc pl-6 space-y-1">
             <li>
               &lt;70 mg/dL is considered low — treat with fast-acting sugar and
-              recheck in 15 minutes.
+              recheck in 15 minutes
             </li>
             <li>
-              Very high numbers + feeling unwell require medical attention.
+              Very high numbers + feeling unwell require medical attention
             </li>
             <li>
               Patterns are more useful than single readings — track morning,
-              before meals, or after meals based on your doctor&apos;s plan.
+              before meals, or after meals based on your doctor&apos;s plan
             </li>
           </ul>
         </div>
@@ -182,9 +191,12 @@ const careItems = [
 
           <h4 className="font-bold mb-2">Important notes:</h4>
           <ul className="list-disc pl-6 space-y-1">
-            <li>Do not use if you have certain rare thyroid conditions.</li>
-            <li>Not suitable during pregnancy or breastfeeding.</li>
-            <li>If you&apos;re also on insulin, your other doses may need adjustment.</li>
+            <li>Do not use if you have certain rare thyroid conditions</li>
+            <li>Not suitable during pregnancy or breastfeeding</li>
+            <li>
+              If you&apos;re also on insulin, your other doses may need
+              adjustment
+            </li>
           </ul>
         </div>
 
@@ -209,7 +221,9 @@ const careItems = [
           <ul className="list-disc pl-6 space-y-1">
             <li>Learn how to recognize low sugar signs</li>
             <li>Always have a fast-acting sugar option nearby</li>
-            <li>Illness, dehydration, or steroids can affect your insulin needs</li>
+            <li>
+              Illness, dehydration, or steroids can affect your insulin needs
+            </li>
           </ul>
         </div>
       </div>
@@ -241,8 +255,8 @@ const careItems = [
               needed
             </li>
             <li>
-              <strong>Advanced options</strong>: for people who need more support
-              after trying lifestyle and medications
+              <strong>Advanced options</strong>: for people who need more
+              support after trying lifestyle and medications
             </li>
           </ol>
           <p className="text-gray-700">
@@ -263,17 +277,17 @@ const careItems = [
           <ul className="list-disc pl-6 space-y-1">
             <li>
               Pair medication doses with regular habits (e.g., breakfast, after
-              Maghrib).
+              Maghrib)
             </li>
-            <li>Use reminders on your phone.</li>
-            <li>Keep injectables in one secure, visible place.</li>
+            <li>Use reminders on your phone</li>
+            <li>Keep injectables in one secure, visible place</li>
             <li>
-              Have a written plan: what you&apos;re taking, possible side effects,
-              what to do if unwell.
+              Have a written plan: what you&apos;re taking, possible side
+              effects, what to do if unwell
             </li>
             <li>
               Know when to increase water intake or pause certain medicines
-              during sickness.
+              during sickness
             </li>
           </ul>
         </div>
@@ -285,8 +299,8 @@ const careItems = [
             Surgery & Advanced Therapies (High-Level Only)
           </h3>
           <p className="text-gray-700 mb-3">
-            Sometimes, people with severe weight issues or diabetes complications
-            may consider surgical options.
+            Sometimes, people with severe weight issues or diabetes
+            complications may consider surgical options.
           </p>
 
           <h4 className="font-bold mb-2">Before surgery:</h4>
@@ -351,7 +365,9 @@ const careItems = [
             <li>Before meals</li>
             <li>2 hours after meals</li>
             <li>At bedtime</li>
-            <li>Any time you feel symptoms (shaking, dizziness, extreme thirst)</li>
+            <li>
+              Any time you feel symptoms (shaking, dizziness, extreme thirst)
+            </li>
           </ul>
         </div>
 
@@ -359,10 +375,10 @@ const careItems = [
           <h4 className="font-bold mb-2">How to check</h4>
           <ol className="list-decimal pl-6 space-y-1">
             <li>Wash hands.</li>
-            <li>Insert test strip into glucometer.</li>
-            <li>Use lancet on the side of your fingertip.</li>
-            <li>Place drop of blood on strip.</li>
-            <li>Wait for reading.</li>
+            <li>Insert test strip into glucometer</li>
+            <li>Use lancet on the side of your fingertip</li>
+            <li>Place drop of blood on strip</li>
+            <li>Wait for reading</li>
           </ol>
         </div>
 
@@ -431,7 +447,7 @@ export default function DailyCareClient() {
 
       {/* Accordions Section */}
       <section className="bg-white py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="flex flex-col gap-4">
             {careItems.map((item, index) => (
               <div key={index} className="flex flex-col">
@@ -439,18 +455,18 @@ export default function DailyCareClient() {
                   onClick={() => toggleItem(index)}
                   className={`${getCategoryGradient(
                     item.category
-                  )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
+                  )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center hover:opacity-90 group`}
                 >
-                  <span>{item.title}</span>
+                  <span className="group-hover:text-white">{item.title}</span>
                   <ChevronDown
-                    className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 ${
+                    className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 text-gray-900 ${
                       openItemIndex === index ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 <div
                   className={`overflow-hidden transition-all duration-300 ${
-                    openItemIndex === index ? "max-h-[2000px] mt-2" : "max-h-0"
+                    openItemIndex === index ? "max-h-[125rem] mt-2" : "max-h-0"
                   }`}
                 >
                   <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">
