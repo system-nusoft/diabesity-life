@@ -7,6 +7,8 @@ import Article4 from "../public/news-article-4.webp";
 import Article5 from "../public/news-article-5.png";
 import Article6 from "../public/news-article-6.jpg";
 import Article7 from "../public/news-article-7.webp";
+import Article8 from "../public/news-article-8.webp";
+import Article9 from "../public/news-article-9.jpg";
 
 export interface NewsArticle {
   slug: string;
@@ -16,6 +18,7 @@ export interface NewsArticle {
   imageAlt: string;
   category: string;
   color: string;
+  excerpt: string;
   content: React.ReactNode;
 }
 
@@ -28,6 +31,8 @@ export const newsArticles: Record<string, NewsArticle> = {
     imageAlt: "Healthcare in Pakistan",
     category: "Education",
     color: "bg-orange-500",
+    excerpt:
+      "Pakistan is in the midst of a growing diabetes crisis, a recent report has revealed. Over 33 million adults in the South Asian nation are living with diabetes and the numbers continue to rise.",
     content: (
       <>
         <p>
@@ -72,7 +77,9 @@ export const newsArticles: Record<string, NewsArticle> = {
     image: Article2.src,
     imageAlt: "Prime Minister health initiative",
     category: "Health",
-    color: "bg-yellow-500",
+    color: "bg-green-500",
+    excerpt:
+      "ISLAMABAD: Pakistani Prime Minister Shehbaz Sharif said on Thursday, National Diabetes Day, his government was launching a new program for the control and prevention of diabetes in a country where over 33 million people had the chronic disease.",
     content: (
       <>
         <p>
@@ -110,7 +117,9 @@ export const newsArticles: Record<string, NewsArticle> = {
     image: Article3.src,
     imageAlt: "Diabetes prevention awareness",
     category: "Health",
-    color: "bg-yellow-500",
+    color: "bg-green-500",
+    excerpt:
+      "ISLAMABAD – Muhammad Waqas is an engineer at a private telecom company. He still remembers the day six years ago in 2018 when he was diagnosed with diabetes at the age of 30. It completely changed his life.",
     content: (
       <>
         <p>
@@ -147,7 +156,9 @@ export const newsArticles: Record<string, NewsArticle> = {
     image: Article4.src,
     imageAlt: "Medical consultation",
     category: "Health",
-    color: "bg-yellow-500",
+    color: "bg-green-500",
+    excerpt:
+      "ISLAMABAD: While World Diabetes Day observed on Thursday, Coordinator to the Prime Minister on Health Dr Malik Mukhtar Ahmed Bharath said that diabetes was a major public health concern in Pakistan, requiring a united approach from all sectors to tackle it.",
     content: (
       <>
         <p>
@@ -188,7 +199,9 @@ export const newsArticles: Record<string, NewsArticle> = {
     image: Article5.src,
     imageAlt: "Healthy lifestyle",
     category: "Health",
-    color: "bg-yellow-500",
+    color: "bg-green-500",
+    excerpt:
+      "An estimated 6.7 million people live with diabetes in Pakistan. By 2035, this number is estimated to rise to 12.8 million which places Pakistan among the top ten countries of number of people living with diabetes.",
     content: (
       <>
         <p>
@@ -230,7 +243,9 @@ export const newsArticles: Record<string, NewsArticle> = {
     image: Article6.src,
     imageAlt: "Medical research",
     category: "Health",
-    color: "bg-yellow-500",
+    color: "bg-green-500",
+    excerpt:
+      "KARACHI: Highlighting the need to raise public awareness about diabetes, a public health specialist at a programme held on Tuesday at the Karachi Press Club (KPC) shared that the latest international data shows that 24,000 Pakistanis — the majority of them children — are living with Type 1 diabetes.",
     content: (
       <>
         <p>
@@ -271,7 +286,9 @@ export const newsArticles: Record<string, NewsArticle> = {
     image: Article7.src,
     imageAlt: "Medical research",
     category: "Health",
-    color: "bg-yellow-500",
+    color: "bg-green-500",
+    excerpt:
+      "Islamabad: Pakistan now has 34.5 million people living with diabetes, a sharp increase from the International Diabetes Federation’s earlier estimate of 33 million, new WHO figures released on World Diabetes Day 2025 show. Health officials say this confirms that Pakistan continues to carry the highest proportional diabetes burden in the world, with one in three adults already affected.",
     content: (
       <>
         <p>
@@ -293,6 +310,95 @@ export const newsArticles: Record<string, NewsArticle> = {
           For more details, click{" "}
           <Link
             href="https://vitalsnews.com/top-story/pakistan-sounds-the-alarm-on-explosive-diabetes-crisis-as-who-issues-stark-warning/"
+            target="_blank"
+            className="text-primary underline"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  "real-world-effectiveness-of-semaglutide": {
+    slug: "real-world-effectiveness-of-semaglutide",
+    title:
+      "DIABETES RESEARCH AND CLINICAL PRACTICE: Real-world effectiveness of once-weekly Semaglutide in type 2 diabetes: insights from Pak. diabetes effectiveness study",
+    date: "2025-11-17",
+    image: Article8.src,
+    imageAlt: "Medical research",
+    category: "Health",
+    color: "bg-green-500",
+    excerpt:
+      "Background: Pakistan ranks 3rd globally in the number of people with diabetes and has the highest prevalence rate in the world. Notably, Obesity not only is a major contributing factor in type 2 diabetes but also for Prediabetes.",
+    content: (
+      <>
+        <p>
+          <strong>Background:</strong> Pakistan ranks 3rd globally in the number
+          of people with diabetes and has the highest prevalence rate in the
+          world. Notably, Obesity not only is a major contributing factor in
+          type 2 diabetes but also for Prediabetes.
+        </p>
+        <p className="mt-4">
+          <strong>Aim:</strong> The Pakistan Diabetes Effectiveness Study, a
+          multicenter, prospective, open-label, observational study, evaluated
+          the real-world effectiveness of once-weekly Semaglutide in patients
+          with type 2 diabetes (T2D) in Pakistan.
+        </p>
+        <p className="mt-4">
+          <strong>Method:</strong> This study involved adult patients with T2D
+          who had at least one glycated hemoglobin (HbA1c) measurement within
+          12 weeks prior to initiating Semaglutide.
+        </p>
+        <p className="mt-4">
+          For more details, click{" "}
+          <Link
+            href="https://www.diabetesresearchclinicalpractice.com/article/S0168-8227(25)00867-8/fulltext"
+            target="_blank"
+            className="text-primary underline"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  "impact-of-community-based-support": {
+    slug: "impact-of-community-based-support",
+    title:
+      "DIABETES RESEARCH AND CLINICAL PRACTICE: Impact of community-based peer support on glycemic control & quality of life in Type 1 diabetes: an observational study",
+    date: "2025-11-17",
+    image: Article9.src,
+    imageAlt: "Medical research",
+    category: "Health",
+    color: "bg-green-500",
+    excerpt:
+      "Background: Peer support is vital for improving diabetes management by offering emotional, educational, & practical assistance specially in Type 1 Diabetes (T1DM) worldwide.",
+    content: (
+      <>
+        <p>
+          <strong>Background:</strong> Peer support is vital for improving
+          diabetes management by offering emotional, educational, & practical
+          assistance specially in Type 1 Diabetes (T1DM) worldwide.
+        </p>
+        <p className="mt-4">
+          <strong>Aim:</strong> The DiaBuddies project aimed to assess the
+          influence of community-based peer support, which included educational
+          interventions & motivational talks from celebrities with T1DM, on
+          glycemic control & quality of life among individuals with T1DM in
+          Islamabad, Pakistan.
+        </p>
+        <p className="mt-4">
+          <strong>Method:</strong> This observational cohort study, conducted
+          from January 2022 to January 2024, assessed the impact of
+          community-based peer support on glycemic control & quality of life in
+          378 individuals with T1DM.
+        </p>
+        <p className="mt-4">
+          For more details, click{" "}
+          <Link
+            href="https://www.diabetesresearchclinicalpractice.com/article/S0168-8227(25)00866-6/fulltext"
             target="_blank"
             className="text-primary underline"
           >

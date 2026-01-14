@@ -9,20 +9,24 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary hover:bg-primary/90 text-white px-8 py-3",
-        gray: "bg-gray-600 hover:bg-gray-600/90 text-white border-2 border-gray-600 px-8 py-3",
+        primary:
+          "bg-primary hover:bg-primary/90 border-2 border-primary text-white px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]",
+        secondary:
+          "bg-secondary hover:bg-secondary/90 border-2 border-secondary text-white px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]",
+        gray: "bg-gray-600 hover:bg-gray-600/90 text-white border-2 border-gray-600 px-6 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]",
         filledOrange:
-          "bg-[#ff9d5c] hover:bg-[#ff9d5c]/90 border-2 border-[#ff9d5c] text-white px-8 py-3",
+          "bg-[#ff9d5c] hover:bg-[#ff9d5c]/90 border-2 border-[#ff9d5c] text-white px-8 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]",
         blurry:
-          "bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-3",
+          "bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-2",
         outlined:
-          "border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 h-fit",
+          "border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-2 h-fit",
         outlinedOrange:
-          "border-2 border-[#ff9d5c] text-white hover:bg-[#ff9d5c] transition-colors font-semibold px-8 py-3",
+          "border-2 border-[#ff9d5c] text-white hover:bg-[#ff9d5c] transition-colors font-semibold px-8 py-2",
       },
       size: {
-        default: "text-sm md:text-lg",
+        default: "text-md md:text-lg",
         sm: "text-sm",
+        md: "text-md",
         lg: "text-lg",
         contact: "w-36 h-16",
       },

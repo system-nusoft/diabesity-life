@@ -22,6 +22,8 @@ export interface BlogArticle {
   image: string;
   imageAlt: string;
   category: string;
+  excerpt?: string;
+  links?: { text: string; url: string }[];
   content: React.ReactNode;
   relatedBlogs?: string[];
   urdu?: {
@@ -39,6 +41,12 @@ export const blogArticles: Record<string, BlogArticle> = {
     image: Semaglutide.src,
     imageAlt: "Semaglutide medication",
     category: "Medication",
+    excerpt: "Effects of Semaglutide on fertility and unexpected pregnancy",
+    links: [
+      { text: "Learn more about Semaglutide", url: "#" },
+      { text: "Diabesity Medication Guide", url: "#" },
+      { text: "Patient Stories", url: "#" },
+    ],
     content: (
       <>
         <Paragraph>
@@ -225,6 +233,12 @@ export const blogArticles: Record<string, BlogArticle> = {
     image: ObesityChallenge.src,
     imageAlt: "Weight management",
     category: "Weight Loss",
+    links: [
+      { text: "Understanding Obesity", url: "#" },
+      { text: "Weight Loss Strategies", url: "#" },
+      { text: "Healthy Eating Habits", url: "#" },
+    ],
+    excerpt: "Breaking the cycle of weight regain after dieting",
     content: (
       <>
         <Paragraph>
@@ -840,6 +854,13 @@ export const blogArticles: Record<string, BlogArticle> = {
     image: SilentEpidemic.src,
     imageAlt: "Silent Epidemic",
     category: "Education",
+    links: [
+      { text: "World Diabetes Day", url: "#" },
+      { text: "Diabetes Care", url: "#" },
+      { text: "Effects of Obesity", url: "#" },
+    ],
+    excerpt:
+      "The effects of diabetes are far-reaching, impacting individuals and families.",
     content: (
       <>
         <Paragraph>

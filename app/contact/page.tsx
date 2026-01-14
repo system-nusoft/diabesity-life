@@ -65,8 +65,8 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-primary py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-primary py-16 md:py-20 px-6 lg:px-0">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
             Contact us
           </h1>
@@ -74,8 +74,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Content Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 md:py-24 bg-white px-6 lg:px-0">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
             {/* Left Column - Contact Information */}
             <div>
