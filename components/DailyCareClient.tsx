@@ -433,7 +433,7 @@ export default function DailyCareClient() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-primary py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Daily care and monitoring
           </h1>

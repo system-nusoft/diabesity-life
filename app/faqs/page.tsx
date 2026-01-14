@@ -3,6 +3,9 @@
 import { Category, getCategoryGradient } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import DietIcon from "../../public/faqs-diet.svg";
+import EducationIcon from "../../public/faqs-education.svg";
+import HealthIcon from "../../public/faqs-health.svg";
 
 const faqs = [
   {
@@ -381,16 +384,47 @@ const faqs = [
 
 export default function NewsClient() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category>("Health");
+
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
+  const categoryInfo = [
+    {
+      category: "Health" as Category,
+      title: "Health",
+      description:
+        "Medical guidance for managing your condition, from monitoring to overall wellness.",
+      bgColor: "bg-diet-500",
+      hoverColor: "hover:bg-diet-600",
+    },
+    {
+      category: "Education" as Category,
+      title: "Education",
+      description:
+        "Understand the science of diabesity and learn how to interpret your lab results.",
+      bgColor: "bg-orange-500",
+      hoverColor: "hover:bg-orange-600",
+    },
+    {
+      category: "Diet" as Category,
+      title: "Diet",
+      description:
+        "Get practical nutrition tips for making smart food choices and building healthy meals.",
+      bgColor: "bg-yellow-500",
+      hoverColor: "hover:bg-yellow-600",
+    },
+  ];
+
+  const filteredFaqs = faqs.filter((faq) => faq.category === selectedCategory);
+
   return (
     <div className="flex flex-col">
-      <section className="grid grid-cols-2 max-w-7xl mx-auto gap-8 md:gap-24 py-16 md:py-20 px-6">
+      <section className="grid grid-cols-2 max-w-4xl lg:max-w-6xl mx-auto gap-8 md:gap-24 py-16 md:py-20 px-6 lg:px-0">
         {/* Introduction Section */}
-        <div className="flex col-span-2 md:col-span-1 justify-center items-center">
-          <div>
+        <div className="flex col-span-2 justify-center items-center">
+          <div className="text-center">
             <h1 className="text-3xl md:text-5xl font-medium text-gray-900 mb-6">
               The answers to all your questions
             </h1>
@@ -398,84 +432,180 @@ export default function NewsClient() {
               Expert-verified answers from our team of healthcare professionals
             </p>
           </div>
-        </div>
-        {/* Hero Section */}
-        <div className="flex col-span-2 md:col-span-1 items-center justify-center">
-          <img
-            className="relative overflow-hidden bg-cover bg-center"
-            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2100"
-          />
-          {/* <div className="absolute inset-0 bg-gray-500/60"></div> */}
+        </div>   
+      </section>
+
+      {/* Category Filter Section */}
+      <section className="bg-white px-6 lg:px-0">
+        <div className="max-w-5xl lg:max-w-6xl mx-auto">
+          {/* Category Icons - Triangular Layout */}
+          <div className="max-w-5xl mx-auto mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 items-start">
+              {/* Health - Top Left */}
+              <div className="flex flex-col lg:flex-row-reverse items-center text-center gap-4">
+                <button
+                  onClick={() => {
+                    setSelectedCategory("Health");
+                    setOpenFaqIndex(null);
+                  }}
+                  className={`w-30 h-30 rounded-full flex items-center justify-center transition-all lg:mb-6 overflow-hidden ${
+                    categoryInfo[0].bgColor
+                  } ${
+                    selectedCategory === "Health"
+                      ? "ring-2 ring-offset-4 ring-green-500/30"
+                      : categoryInfo[0].hoverColor
+                  }`}
+                >
+                  <img
+                    src={HealthIcon.src}
+                    alt="Health"
+                    className="w-30 h-30 transition-transform hover:scale-110"
+                  />
+                </button>
+                <div className="flex flex-col items-center text-center">
+                  <h3 className="text-2xl font-bold text-green-500 mb-2">
+                    {categoryInfo[0].title}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed max-w-xs">
+                    {categoryInfo[0].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Education - Top Right */}
+              <div className="flex flex-col lg:flex-row items-center text-center gap-4">
+                <button
+                  onClick={() => {
+                    setSelectedCategory("Education");
+                    setOpenFaqIndex(null);
+                  }}
+                  className={`w-30 h-30 rounded-full flex items-center justify-center transition-all lg:mb-6 overflow-hidden ${
+                    categoryInfo[1].bgColor
+                  } ${
+                    selectedCategory === "Education"
+                      ? "ring-2 ring-offset-4 ring-orange-500/30"
+                      : categoryInfo[1].hoverColor
+                  }`}
+                >
+                  <img
+                    src={EducationIcon.src}
+                    alt="Education"
+                    className="w-30 h-30 transition-transform hover:scale-110"
+                  />
+                </button>
+                <div className="flex flex-col items-center text-center">
+                  <h3 className="text-2xl font-bold text-orange-500 mb-2">
+                    {categoryInfo[1].title}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed max-w-xs">
+                    {categoryInfo[1].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Diet - Bottom Center */}
+              <div className="flex flex-col items-center text-center gap-4 md:col-span-2 lg:-mt-12">
+                <button
+                  onClick={() => {
+                    setSelectedCategory("Diet");
+                    setOpenFaqIndex(null);
+                  }}
+                  className={`w-30 h-30 rounded-full flex items-center justify-center transition-all overflow-hidden ${
+                    categoryInfo[2].bgColor
+                  } ${
+                    selectedCategory === "Diet"
+                      ? "ring-2 ring-offset-4 ring-yellow-500/30"
+                      : categoryInfo[2].hoverColor
+                  }`}
+                >
+                  <img src={DietIcon.src} alt="Diet" className="w-30 h-30 transition-transform hover:scale-110" />
+                </button>
+                <div className="flex flex-col items-center text-center">
+                  <h3 className="text-2xl font-bold text-yellow-500 mb-2">
+                    {categoryInfo[2].title}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed max-w-xs">
+                    {categoryInfo[2].description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Grid Wrapper */}
-      <section className="pb-16 md:pb-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-8">
-            FAQs
-          </h2>
-
+      {/* FAQs List Section */}
+      <section className="pb-16 md:pb-24 bg-white px-6 lg:px-0">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           {/* FAQs Section */}
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {/* Left Column - First Half FAQs */}
             <div className="flex flex-col gap-4">
-              {faqs.slice(0, faqs.length / 2).map((faq, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <button
-                    onClick={() => toggleFaq(idx)}
-                    className={`${getCategoryGradient(
-                      faq.category
-                    )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 ${
-                        openFaqIndex === idx ? "rotate-180" : ""
+              {filteredFaqs
+                .slice(0, Math.ceil(filteredFaqs.length / 2))
+                .map((faq, idx) => (
+                  <div key={idx} className="flex flex-col">
+                    <button
+                      onClick={() => toggleFaq(idx)}
+                      className={`${getCategoryGradient(
+                        faq.category
+                      )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
+                    >
+                      <span>{faq.question}</span>
+                      <ChevronDown
+                        className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 ${
+                          openFaqIndex === idx ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        openFaqIndex === idx ? "max-h-96 mt-2" : "max-h-0"
                       }`}
-                    />
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openFaqIndex === idx ? "max-h-96 mt-2" : "max-h-0"
-                    }`}
-                  >
-                    <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">
-                      {faq.answer}
+                    >
+                      <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">
+                        {faq.answer}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
 
             {/* Right Column - Last Half FAQs */}
             <div className="flex flex-col gap-4">
-              {faqs.slice(faqs.length / 2, faqs.length).map((faq, idx) => (
-                <div key={idx + faqs.length / 2} className="flex flex-col">
-                  <button
-                    onClick={() => toggleFaq(idx + faqs.length / 2)}
-                    className={`${getCategoryGradient(
-                      faq.category
-                    )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 ${
-                        openFaqIndex === idx + faqs.length / 2 ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openFaqIndex === idx + faqs.length / 2 ? "max-h-[30rem] mt-2" : "max-h-0"
-                    }`}
-                  >
-                    <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">
-                      {faq.answer}
+              {filteredFaqs
+                .slice(Math.ceil(filteredFaqs.length / 2), filteredFaqs.length)
+                .map((faq, idx) => {
+                  const actualIndex = idx + Math.ceil(filteredFaqs.length / 2);
+                  return (
+                    <div key={actualIndex} className="flex flex-col">
+                      <button
+                        onClick={() => toggleFaq(actualIndex)}
+                        className={`${getCategoryGradient(
+                          faq.category
+                        )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
+                      >
+                        <span>{faq.question}</span>
+                        <ChevronDown
+                          className={`w-5 h-5 transition-transform duration-300 flex-shrink-0 ml-4 ${
+                            openFaqIndex === actualIndex ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          openFaqIndex === actualIndex
+                            ? "max-h-[30rem] mt-2"
+                            : "max-h-0"
+                        }`}
+                      >
+                        <div className="bg-white px-6 py-4 border text-gray-700 leading-relaxed">
+                          {faq.answer}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  );
+                })}
             </div>
           </div>
         </div>

@@ -54,7 +54,6 @@ export default function DoctorsPageClient() {
     setVisibleCount((prev) => prev + 10);
   };
 
-  // Reset visible count when filters change
   const resetVisibleCount = () => {
     setVisibleCount(10);
   };
@@ -62,8 +61,8 @@ export default function DoctorsPageClient() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-primary py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-primary py-16 md:py-20 px-6 lg:px-0">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
             Contact a Specialist
           </h1>
@@ -76,28 +75,10 @@ export default function DoctorsPageClient() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 md:py-24 bg-white px-6 lg:px-0">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           {/* Filters */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            {/* <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">
-                Booking Platform
-              </label>
-              <CustomSelect
-                value={selectedPlatform}
-                onChange={(value) => {
-                  setSelectedPlatform(value);
-                  resetVisibleCount();
-                }}
-                placeholder="All Platforms"
-                options={[
-                  { value: "", label: "All Platforms" },
-                  ...bookingPlatforms.map((p) => ({ value: p, label: p })),
-                ]}
-              />
-            </div> */}
-
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">City</label>
               <CustomSelect

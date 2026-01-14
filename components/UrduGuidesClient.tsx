@@ -108,10 +108,10 @@ export default function UrduGuidesClient() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section
-        className="bg-white py-16 md:py-20 border-b-6 border-[#DB3B00]"
+        className="bg-white py-16 md:py-20 border-b-6 border-[#DB3B00] px-6 lg:px-0"
         dir="rtl"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
             ذیابیطس اردو میں معلومات
           </h1>
@@ -134,8 +134,8 @@ export default function UrduGuidesClient() {
       </section>
 
       {/* Resources List Section */}
-      <section className="bg-gray-50 py-12 md:py-16" dir="rtl">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-gray-50 py-12 md:py-16 px-6 lg:px-0" dir="rtl">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <ul className="space-y-4">
             {resources.map((resource, index) => (
               <li key={index} className="flex items-start">
@@ -151,9 +151,6 @@ export default function UrduGuidesClient() {
                     >
                       {resource.urduTitle}
                     </Link>
-                    {/* <span className="text-gray-700 mr-2 text-lg md:text-xl">
-                      / {resource.title}
-                    </span> */}
                   </div>
                   {resource.type === "pdf" && resource.size && (
                     <div className="text-gray-600 text-md mt-1">

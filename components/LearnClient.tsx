@@ -2,16 +2,16 @@
 
 const learnSections = [
   {
-    id: "obesity-101",
-    title: "Obesity 101 — What it is and why it matters",
+    id: "obesity-diabetes-connection",
+    title: "What is Diabesity?",
   },
   {
     id: "diabetes-101",
-    title: "Diabetes 101 — Basics you can actually use",
+    title: "What is Diabetes?",
   },
   {
-    id: "obesity-diabetes-connection",
-    title: "Obesity ↔ Diabetes — How they're connected",
+    id: "obesity-101",
+    title: "What is Obesity?",
   },
   {
     id: "risk-factors-screening",
@@ -29,102 +29,77 @@ const learnSections = [
 
 const learnContent = [
   {
-    id: "obesity-101",
-    title: "Obesity 101 — What it is and why it matters",
+    id: "obesity-diabetes-connection",
+    title: "What is Diabesity?",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Obesity is not just about &quot;weight&quot; or looks; it&apos;s a chronic, medical
-          condition involving excess body fat that affects hormones, metabolism,
-          joints, and even mood. Doctors often use{" "}
-          <strong>BMI (Body Mass Index)</strong> and{" "}
-          <strong>waist circumference</strong> as starting points to assess
-          health risk. BMI relates your weight to height, while waist size helps
-          estimate abdominal (visceral) fat—fat that sits around internal organs
-          and drives insulin resistance. In South Asian communities—including
-          Pakistan—health risks can begin at{" "}
-          <strong>lower BMI and waist sizes</strong> than many Western charts
-          suggest, which is why a person can &quot;look normal&quot; yet face real
-          metabolic risk.
+          Excess visceral fat changes how cells respond to{" "}
+          <strong>insulin</strong>, the hormone that moves glucose from blood
+          into cells. Think of insulin as a key; in insulin resistance, the
+          locks (cell receptors) become rusty, so the key works poorly. The
+          pancreas compensates by making more insulin—until it can&apos;t. Blood
+          glucose rises, and over time Type 2 diabetes may develop.
         </p>
 
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Types of body fat:
+            Key drivers of the link:
           </h3>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>
-              <strong>Subcutaneous fat</strong> sits under the skin (e.g.,
-              thighs, arms).
+              <strong>Abdominal fat</strong> and liver fat (non-alcoholic fatty
+              liver) fuel insulin resistance.
             </li>
             <li>
-              <strong>Visceral fat</strong> wraps organs (liver, pancreas) and
-              is strongly linked to diabetes, high blood pressure, and heart
-              disease. Reducing visceral fat—even modestly—improves insulin and
-              energy.
+              <strong>Inflammation</strong>: excess fat tissue releases
+              inflammatory signals that worsen metabolic control.
+            </li>
+            <li>
+              <strong>Sleep & stress</strong>: poor sleep and chronic stress
+              elevate cortisol, pushing glucose up and cravings higher.
+            </li>
+            <li>
+              <strong>PCOS</strong> (in many women) and{" "}
+              <strong>low testosterone</strong> (in some men) add insulin
+              resistance, weight gain, and mood shifts.
             </li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Why does obesity develop?
-          </h3>
-          <p className="text-gray-700 leading-relaxed">
-            It&apos;s multi-factorial: genetics, family routines, urban lifestyles,
-            stress, poor sleep, medications, pregnancy-related changes, and food
-            environments (sweet tea, refined carbs, large portions, frequent
-            weddings/dawats). It isn&apos;t simply &quot;willpower.&quot; Hormones like{" "}
-            <strong>insulin</strong> and <strong>GLP-1</strong> influence
-            hunger/fullness, and chronic stress raises cortisol, pushing the
-            body to store fat.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Health risks to watch:
-          </h3>
-          <p className="text-gray-700 leading-relaxed mb-3">
-            Type 2 diabetes, fatty liver, high blood pressure, high cholesterol,
-            joint pain, sleep apnea, infertility/irregular periods,
-            depression/anxiety. The good news:{" "}
-            <strong>small, steady changes</strong>—5–7% weight loss, more
-            walking, better sleep, balanced desi meals—can meaningfully reduce
-            risk.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-3">
-            What actually helps:
+            Break the cycle:
           </h3>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>
-              <strong>Balanced desi meals</strong> (protein + vegetables +
-              controlled roti/rice), mindful portions.
+              <strong>Modest weight loss</strong> (even 5–7%) measurably
+              improves sugar control and energy.
             </li>
             <li>
-              <strong>Daily movement</strong> (steps, home routines, mosque/park
-              walks); sit less, move more.
+              <strong>Meal timing</strong>: space out sweets; avoid grazing all
+              day; aim for steady eating windows.
             </li>
             <li>
-              <strong>Sleep & stress</strong>: regular bedtimes, breathing
-              exercises, frequent water.
+              <strong>Protein-first</strong> at meals; add fiber (veg/daal) to
+              blunt sugar spikes.
             </li>
             <li>
-              <strong>Medical guidance</strong> when needed: labs, medication,
-              or referral.
+              <strong>Medication</strong> when appropriate—some help with weight
+              and insulin sensitivity.
             </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-3">Next step:</h3>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
+            Why this matters in Pakistan:
+          </h3>
           <p className="text-gray-700 leading-relaxed">
-            Take the <strong>1-minute Risk Quiz</strong> to understand your
-            baseline and get a simple action plan.{" "}
-            <em>&quot;Doctor ki salah zaroori hai.&quot;</em>
+            Our food culture is rich and social—chai, mithai, iftar spreads,
+            wedding menus. You don&apos;t have to give up your culture. Instead,
+            adapt it. Celebrate, then return to routine. It&apos;s the{" "}
+            <strong>long-term pattern</strong> that shapes health.
           </p>
         </div>
       </div>
@@ -132,18 +107,199 @@ const learnContent = [
   },
   {
     id: "diabetes-101",
-    title: "Diabetes 101 — Basics you can actually use",
+    title: "What is Diabetes?",
     content: (
       <div className="space-y-6">
-        <p className="text-gray-700 leading-relaxed">
-          <strong>Diabetes</strong> is a condition where blood glucose stays
-          higher than normal. In <strong>Type 2 diabetes</strong> (the most
-          common in adults), the body becomes resistant to insulin and also
-          makes less insulin over time. <strong>Pre-diabetes</strong> means
-          sugars are higher than normal but not yet in diabetes range; it&apos;s a
-          warning—and an opportunity to reverse course.
-        </p>
+        <div>
+          <p className="text-gray-700 leading-relaxed">
+            Understanding a health condition is the first step toward managing
+            it. At its core, diabetes is a condition that affects how your body
+            turns food into energy. Think of it like this:
+          </p>
+          <ul className="list-disc pl-6 mt-2 text-gray-700">
+            <li>
+              You eat food, which your body breaks down into a sugar called{" "}
+              <strong>glucose</strong>.
+            </li>
+            <li>
+              This glucose enters your bloodstream, raising your blood sugar
+              levels.
+            </li>
+            <li>
+              Your pancreas releases a hormone called <strong>insulin</strong>.
+            </li>
+            <li>
+              <strong>Insulin acts like a key</strong>, unlocking your body's
+              cells to let the glucose in, where it's used for energy.
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-gray-700 leading-relaxed mt-2">
+            In diabetes, this process is disrupted. There are two main ways this
+            can happen, which define the two main types of diabetes.
+          </p>
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
+            Type 1 Diabetes: An Autoimmune Condition
+          </h3>
+          <p>
+            In Type 1 diabetes, the body's immune system—which normally fights
+            off infections—mistakenly attacks and destroys the insulin-producing
+            cells (beta cells) in the pancreas. It’s like the body has lost the
+            factory that makes the "keys."
+          </p>
+          <ul className="list-disc pl-6 mt-2 text-gray-700">
+            <li>
+              <strong>Cause:</strong> An autoimmune reaction. The exact trigger
+              is unknown, but genetics and environmental factors (like viruses)
+              may play a role.
+              <strong>It is not caused by diet or lifestyle.</strong>
+            </li>
+            <li>
+              <strong>Insulin Production:</strong> The body produces very little
+              or no insulin.
+            </li>
+            <li>
+              <strong>Who it Affects:</strong> It's most often diagnosed in
+              children, teens, and young adults, but it can develop at any age.{" "}
+            </li>
+            <li>
+              <strong>Management:</strong> People with Type 1 diabetes must take
+              insulin every day to live. This is done through multiple daily
+              injections or an insulin pump.
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
+            Type 2 Diabetes: Insulin Resistance
+          </h3>
+          <p>
+            Type 2 diabetes is the most common form. In this case, the body's
+            "key factory" (the pancreas) is still working, but the "locks" on
+            the cells are faulty. This is called{" "}
+            <strong>insulin resistance.</strong> Initially, the pancreas works
+            overtime to produce more insulin to overcome this resistance. Over
+            time, however, it can't keep up, and blood sugar levels rise.
+          </p>
+          <ul className="list-disc pl-6 mt-2 text-gray-700">
+            <li>
+              <strong>Cause:</strong> A combination of strong genetic
+              predisposition and lifestyle factors.{" "}
+              <strong>
+                Obesity is the single biggest risk factor for developing Type 2
+                diabetes.
+              </strong>
+            </li>
+            <li>
+              <strong>Insulin Production:</strong> The body either doesn't use
+              insulin effectively (insulin resistance) or, in later stages,
+              doesn't produce enough insulin.
+            </li>
+            <li>
+              <strong>Who it Affects:</strong> It most often develops in people
+              over age 45, but rates are rising dramatically in younger adults,
+              teens, and children.
+            </li>
+            <li>
+              <strong>Management:</strong> Management focuses on:
+            </li>
+            <li>
+              <strong>Lifestyle:</strong> Healthy eating, regular physical
+              activity, and weight loss.
+            </li>
+            <li>
+              <strong>Oral Medications:</strong> Pills that help the body use
+              insulin better or make less glucose.
+            </li>
+            <li>
+              <strong>Injectable Medications:</strong> Including insulin or
+              other drugs (like GLP-1 agonists) that help manage blood sugar.
+            </li>
+          </ul>
+        </div>
 
+        {/* At-a-Glance Comparison Table */}
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-4">
+            At-a-Glance: Type 1 vs. Type 2 Diabetes
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b-2 border-gray-900">
+                  <th className="text-left py-4 pr-4 font-bold text-gray-900">
+                    Feature
+                  </th>
+                  <th className="text-left py-4 px-4 font-bold text-gray-900">
+                    Type 1 Diabetes
+                  </th>
+                  <th className="text-left py-4 pl-4 font-bold text-gray-900">
+                    Type 2 Diabetes
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-300">
+                  <td className="py-4 pr-4 font-bold text-gray-900">
+                    Primary Problem
+                  </td>
+                  <td className="py-4 px-4 text-gray-700">
+                    Body cannot produce insulin.
+                  </td>
+                  <td className="py-4 pl-4 text-gray-700">
+                    Body cannot use insulin effectively (insulin resistance).
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-300">
+                  <td className="py-4 pr-4 font-bold text-gray-900">Cause</td>
+                  <td className="py-4 px-4 text-gray-700">
+                    Autoimmune disease.
+                  </td>
+                  <td className="py-4 pl-4 text-gray-700">
+                    Strong genetic link plus lifestyle factors (obesity,
+                    inactivity).
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-300">
+                  <td className="py-4 pr-4 font-bold text-gray-900">
+                    Typical Onset
+                  </td>
+                  <td className="py-4 px-4 text-gray-700">
+                    Rapid, often in childhood or young adulthood.
+                  </td>
+                  <td className="py-4 pl-4 text-gray-700">
+                    Gradual, usually in adulthood, but increasing in youth.
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-300">
+                  <td className="py-4 pr-4 font-bold text-gray-900">
+                    Prevention
+                  </td>
+                  <td className="py-4 px-4 text-gray-700">
+                    Cannot be prevented.
+                  </td>
+                  <td className="py-4 pl-4 text-gray-700">
+                    Can often be prevented or delayed with a healthy lifestyle.
+                  </td>
+                </tr>
+                <tr className="border-b border-gray-300">
+                  <td className="py-4 pr-4 font-bold text-gray-900">
+                    Treatment
+                  </td>
+                  <td className="py-4 px-4 text-gray-700">
+                    Requires daily insulin (injections or pump).
+                  </td>
+                  <td className="py-4 pl-4 text-gray-700">
+                    Lifestyle changes, oral medications, and sometimes insulin.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
             Everyday signals
@@ -236,77 +392,179 @@ const learnContent = [
     ),
   },
   {
-    id: "obesity-diabetes-connection",
-    title: "Obesity ↔ Diabetes — How they're connected",
+    id: "obesity-101",
+    title: "What is Obesity?",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Excess visceral fat changes how cells respond to{" "}
-          <strong>insulin</strong>, the hormone that moves glucose from blood
-          into cells. Think of insulin as a key; in insulin resistance, the
-          locks (cell receptors) become rusty, so the key works poorly. The
-          pancreas compensates by making more insulin—until it can&apos;t. Blood
-          glucose rises, and over time Type 2 diabetes may develop.
+          Obesity is not just about &quot;weight&quot; or looks; it&apos;s a
+          chronic, medical condition involving excess body fat that affects
+          hormones, metabolism, joints, and even mood. Doctors often use{" "}
+          <strong>BMI (Body Mass Index)</strong> and{" "}
+          <strong>waist circumference</strong> as starting points to assess
+          health risk. BMI relates your weight to height, while waist size helps
+          estimate abdominal (visceral) fat—fat that sits around internal organs
+          and drives insulin resistance. In South Asian communities—including
+          Pakistan—health risks can begin at{" "}
+          <strong>lower BMI and waist sizes</strong> than many Western charts
+          suggest, which is why a person can &quot;look normal&quot; yet face
+          real metabolic risk.
         </p>
 
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Key drivers of the link:
+            Types of body fat:
           </h3>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>
-              <strong>Abdominal fat</strong> and liver fat (non-alcoholic fatty
-              liver) fuel insulin resistance.
+              <strong>Subcutaneous fat</strong> sits under the skin (e.g.,
+              thighs, arms).
             </li>
             <li>
-              <strong>Inflammation</strong>: excess fat tissue releases
-              inflammatory signals that worsen metabolic control.
-            </li>
-            <li>
-              <strong>Sleep & stress</strong>: poor sleep and chronic stress
-              elevate cortisol, pushing glucose up and cravings higher.
-            </li>
-            <li>
-              <strong>PCOS</strong> (in many women) and{" "}
-              <strong>low testosterone</strong> (in some men) add insulin
-              resistance, weight gain, and mood shifts.
+              <strong>Visceral fat</strong> wraps organs (liver, pancreas) and
+              is strongly linked to diabetes, high blood pressure, and heart
+              disease. Reducing visceral fat—even modestly—improves insulin and
+              energy.
             </li>
           </ul>
         </div>
-
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Break the cycle:
-          </h3>
-          <ul className="list-disc pl-6 space-y-2 text-gray-700">
-            <li>
-              <strong>Modest weight loss</strong> (even 5–7%) measurably
-              improves sugar control and energy.
-            </li>
-            <li>
-              <strong>Meal timing</strong>: space out sweets; avoid grazing all
-              day; aim for steady eating windows.
-            </li>
-            <li>
-              <strong>Protein-first</strong> at meals; add fiber (veg/daal) to
-              blunt sugar spikes.
-            </li>
-            <li>
-              <strong>Medication</strong> when appropriate—some help with weight
-              and insulin sensitivity.
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Why this matters in Pakistan:
+            The Clinical Classes of Obesity
           </h3>
           <p className="text-gray-700 leading-relaxed">
-            Our food culture is rich and social—chai, mithai, iftar spreads,
-            wedding menus. You don&apos;t have to give up your culture. Instead,
-            adapt it. Celebrate, then return to routine. It&apos;s the{" "}
-            <strong>long-term pattern</strong> that shapes health.
+            Healthcare providers classify obesity into different classes to
+            better understand health risks and determine appropriate treatment
+            paths.
+          </p>
+        </div>
+
+        {/* BMI Classification Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-900">
+                <th className="text-left py-4 pr-4 font-bold text-gray-900 w-[20%]">
+                  Class
+                </th>
+                <th className="text-left py-4 px-4 font-bold text-gray-900 w-[20%]">
+                  BMI Range
+                </th>
+                <th className="text-left py-4 pl-4 font-bold text-gray-900 w-[60%]">
+                  Description & Associated Health Risk
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-300">
+                <td className="py-4 pr-4 font-bold text-gray-900 w-[20%]">
+                  Overweight
+                </td>
+                <td className="py-4 px-4 text-gray-700 w-[20%]">25.0 – 29.9</td>
+                <td className="py-4 pl-4 text-gray-700 w-[60%]">
+                  <strong>Elevated Risk.</strong> Not technically classified as
+                  obesity, but this range indicates an increased risk of
+                  developing obesity and related health problems.
+                </td>
+              </tr>
+              <tr className="border-b border-gray-300">
+                <td className="py-4 pr-4 font-bold text-gray-900 w-[20%]">
+                  Class I Obesity
+                </td>
+                <td className="py-4 px-4 text-gray-700 w-[20%]">30.0 – 34.9</td>
+                <td className="py-4 pl-4 text-gray-700 w-[60%]">
+                  <strong>Moderate Risk.</strong> This is the first clinical
+                  stage of obesity. Health risks, including for Type 2 diabetes,
+                  high blood pressure, and heart disease, are significant.
+                </td>
+              </tr>
+              <tr className="border-b border-gray-300">
+                <td className="py-4 pr-4 font-bold text-gray-900 w-[20%]">
+                  Class II Obesity
+                </td>
+                <td className="py-4 px-4 text-gray-700 w-[20%]">35.0 – 39.9</td>
+                <td className="py-4 pl-4 text-gray-700 w-[60%]">
+                  <strong>High Risk.</strong> At this stage, the risk of
+                  weight-related health complications is high. Many individuals
+                  may be candidates for more intensive treatments, including
+                  weight-loss surgery.
+                </td>
+              </tr>
+              <tr className="border-b border-gray-300">
+                <td className="py-4 pr-4 font-bold text-gray-900 w-[20%]">
+                  Class III Obesity
+                </td>
+                <td className="py-4 px-4 text-gray-700 w-[20%]">≥ 40.0</td>
+                <td className="py-4 pl-4 text-gray-700 w-[60%]">
+                  <strong>Very High / Severe Risk.</strong> Formerly known as
+                  "morbid obesity," this class is associated with a very high
+                  risk of developing serious health conditions, a reduced life
+                  expectancy, and a lower quality of life if left untreated.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
+            Why does obesity develop?
+          </h3>
+          <p className="text-gray-700 leading-relaxed">
+            It&apos;s multi-factorial: genetics, family routines, urban
+            lifestyles, stress, poor sleep, medications, pregnancy-related
+            changes, and food environments (sweet tea, refined carbs, large
+            portions, frequent weddings/dawats). It isn&apos;t simply
+            &quot;willpower.&quot; Hormones like <strong>insulin</strong> and{" "}
+            <strong>GLP-1</strong> influence hunger/fullness, and chronic stress
+            raises cortisol, pushing the body to store fat.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
+            Health risks to watch:
+          </h3>
+          <p className="text-gray-700 leading-relaxed mb-3">
+            Type 2 diabetes, fatty liver, high blood pressure, high cholesterol,
+            joint pain, sleep apnea, infertility/irregular periods,
+            depression/anxiety. The good news:{" "}
+            <strong>small, steady changes</strong>—5–7% weight loss, more
+            walking, better sleep, balanced desi meals—can meaningfully reduce
+            risk.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">
+            What actually helps:
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-gray-700">
+            <li>
+              <strong>Balanced desi meals</strong> (protein + vegetables +
+              controlled roti/rice), mindful portions.
+            </li>
+            <li>
+              <strong>Daily movement</strong> (steps, home routines, mosque/park
+              walks); sit less, move more.
+            </li>
+            <li>
+              <strong>Sleep & stress</strong>: regular bedtimes, breathing
+              exercises, frequent water.
+            </li>
+            <li>
+              <strong>Medical guidance</strong> when needed: labs, medication,
+              or referral.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">Next step:</h3>
+          <p className="text-gray-700 leading-relaxed">
+            Take the <strong>1-minute Risk Quiz</strong> to understand your
+            baseline and get a simple action plan.{" "}
+            <em>&quot;Doctor ki salah zaroori hai.&quot;</em>
           </p>
         </div>
       </div>
@@ -329,11 +587,19 @@ const learnContent = [
             Common risk factors:
           </h3>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
-            <li>Parent or sibling with diabetes; history of high sugars during pregnancy (gestational diabetes).</li>
-            <li>Waist size trending up (particularly central/abdominal fat).</li>
+            <li>
+              Parent or sibling with diabetes; history of high sugars during
+              pregnancy (gestational diabetes).
+            </li>
+            <li>
+              Waist size trending up (particularly central/abdominal fat).
+            </li>
             <li>High blood pressure, high triglycerides or low HDL.</li>
             <li>PCOS in women; sleep apnea; sedentary work/study patterns.</li>
-            <li>Frequent intake of sugary drinks, large portions of rice/roti, late-night eating.</li>
+            <li>
+              Frequent intake of sugary drinks, large portions of rice/roti,
+              late-night eating.
+            </li>
           </ul>
         </div>
 
@@ -344,11 +610,12 @@ const learnContent = [
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>
               If you have multiple risks, ask your doctor about{" "}
-              <strong>earlier</strong> and <strong>more frequent</strong> checks.
+              <strong>earlier</strong> and <strong>more frequent</strong>{" "}
+              checks.
             </li>
             <li>
-              If you&apos;re planning pregnancy or managing PCOS, screening may be
-              advised sooner.
+              If you&apos;re planning pregnancy or managing PCOS, screening may
+              be advised sooner.
             </li>
             <li>
               After age 35 (often earlier in South Asians with risk), discuss
@@ -365,9 +632,7 @@ const learnContent = [
             <li>
               Carry a list of medicines, supplements, and recent symptoms.
             </li>
-            <li>
-              Ask which test is right for you, and how often to retest.
-            </li>
+            <li>Ask which test is right for you, and how often to retest.</li>
             <li>
               Request a simple action plan: diet, movement, follow-up timelines.
             </li>
@@ -397,28 +662,33 @@ const learnContent = [
             <strong>Myth:</strong> &quot;Only sweets cause diabetes.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> Refined carbs of many kinds (white rice, bakery items, sugary beverages) raise glucose. Total
-            pattern matters: portions, frequency, and overall meal balance.
+            <strong>Fact:</strong> Refined carbs of many kinds (white rice,
+            bakery items, sugary beverages) raise glucose. Total pattern
+            matters: portions, frequency, and overall meal balance.
           </p>
         </div>
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> &quot;If I walk daily, I can eat unlimited mithai.&quot;
+            <strong>Myth:</strong> &quot;If I walk daily, I can eat unlimited
+            mithai.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> Movement is powerful, but you can&apos;t outrun a consistently high-sugar, high-portion diet. Combine
-            both: smarter food <strong>and</strong> regular activity.
+            <strong>Fact:</strong> Movement is powerful, but you can&apos;t
+            outrun a consistently high-sugar, high-portion diet. Combine both:
+            smarter food <strong>and</strong> regular activity.
           </p>
         </div>
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> &quot;Desi ghee is always &apos;good fat&apos; so I can use as much as I want.&quot;
+            <strong>Myth:</strong> &quot;Desi ghee is always &apos;good
+            fat&apos; so I can use as much as I want.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> Quality matters—but quantity still counts. Fats are calorie-dense; <em>excess</em> intake—of any fat—can
-            stall progress.
+            <strong>Fact:</strong> Quality matters—but quantity still counts.
+            Fats are calorie-dense; <em>excess</em> intake—of any fat—can stall
+            progress.
           </p>
         </div>
 
@@ -427,25 +697,30 @@ const learnContent = [
             <strong>Myth:</strong> &quot;Fasting alone will cure my sugar.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> Many people see improvements during structured fasting, but it&apos;s not a one-size-fits-all solution.
-            Medication timing, hypoglycaemia risk, and overall nutrition still matter—especially in Ramadan.
+            <strong>Fact:</strong> Many people see improvements during
+            structured fasting, but it&apos;s not a one-size-fits-all solution.
+            Medication timing, hypoglycaemia risk, and overall nutrition still
+            matter—especially in Ramadan.
           </p>
         </div>
 
         <div>
           <p className="text-gray-900 font-semibold mb-2">
-            <strong>Myth:</strong> &quot;Herbal or &apos;natural&apos; products are automatically safe.&quot;
+            <strong>Myth:</strong> &quot;Herbal or &apos;natural&apos; products
+            are automatically safe.&quot;
           </p>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Fact:</strong> &quot;Natural&quot; isn&apos;t always safe or effective. Some products interact with medicines or harm the liver/
+            <strong>Fact:</strong> &quot;Natural&quot; isn&apos;t always safe or
+            effective. Some products interact with medicines or harm the liver/
             kidneys. Always discuss with your doctor.
           </p>
         </div>
 
         <div>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Better mindsets:</strong> small steady changes, consistency over perfection, celebrate progress, use
-            community support, and get medical advice when unsure.
+            <strong>Better mindsets:</strong> small steady changes, consistency
+            over perfection, celebrate progress, use community support, and get
+            medical advice when unsure.
           </p>
         </div>
       </div>
@@ -457,10 +732,13 @@ const learnContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          This site keeps public pages simple. For deeper reading: mechanisms of <strong>GLP-1 receptor agonists</strong>, links
-          between <strong>NAFLD</strong> and insulin resistance, typical indications for <strong>bariatric/metabolic surgery</strong> (e.g., severe
-          obesity with comorbidities), and practical approaches to sleep apnea, PCOS, and hypertension in the
-          context of weight and glucose control. We&apos;ll provide plain-language summaries and point to the latest
+          This site keeps public pages simple. For deeper reading: mechanisms of{" "}
+          <strong>GLP-1 receptor agonists</strong>, links between{" "}
+          <strong>NAFLD</strong> and insulin resistance, typical indications for{" "}
+          <strong>bariatric/metabolic surgery</strong> (e.g., severe obesity
+          with comorbidities), and practical approaches to sleep apnea, PCOS,
+          and hypertension in the context of weight and glucose control.
+          We&apos;ll provide plain-language summaries and point to the latest
           guidance for local practice where available.
         </p>
 
@@ -470,28 +748,33 @@ const learnContent = [
           </h3>
           <ul className="list-disc pl-6 space-y-2 text-gray-700">
             <li>
-              Approaches that blend <strong>nutrition, movement, sleep hygiene, and behavioural
-              coaching</strong> outperform single-focus plans.
+              Approaches that blend{" "}
+              <strong>
+                nutrition, movement, sleep hygiene, and behavioural coaching
+              </strong>{" "}
+              outperform single-focus plans.
             </li>
             <li>
-              <strong>Structured follow-up</strong> (e.g., 4–6 weeks) beats ad-hoc
-              check-ins.
+              <strong>Structured follow-up</strong> (e.g., 4–6 weeks) beats
+              ad-hoc check-ins.
             </li>
             <li>
-              In South Asian populations, consider <strong>lower BMI/waist thresholds</strong> for risk conversations
+              In South Asian populations, consider{" "}
+              <strong>lower BMI/waist thresholds</strong> for risk conversations
               and counselling.
             </li>
             <li>
-              For people on insulin or sulfonylureas, pair lifestyle counselling with <strong>hypoglycaemia
-              safety</strong>.
+              For people on insulin or sulfonylureas, pair lifestyle counselling
+              with <strong>hypoglycaemia safety</strong>.
             </li>
           </ul>
         </div>
 
         <div>
           <p className="text-gray-700 leading-relaxed">
-            <strong>Caveat:</strong> Clinical decisions must be personalised. Nothing here replaces formal guidelines or a full
-            clinical assessment.
+            <strong>Caveat:</strong> Clinical decisions must be personalised.
+            Nothing here replaces formal guidelines or a full clinical
+            assessment.
           </p>
         </div>
       </div>
@@ -503,7 +786,7 @@ export default function LearnClient() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // Adjust for fixed header
+      const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -518,13 +801,18 @@ export default function LearnClient() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-white py-16 md:py-20 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                 Learn
               </h1>
-              <p className="text-gray-700 text-lg leading-relaxed">TBD</p>
+              <p className="text-gray-700 text-md leading-relaxed">
+                Understanding diabesity starts here. Explore the science behind
+                diabetes and obesity, learn about risk factors, debunk common
+                myths, and get the knowledge you need to take control of your
+                health.
+              </p>
             </div>
             <div className="relative h-64 lg:h-96">
               <img
@@ -539,7 +827,7 @@ export default function LearnClient() {
 
       {/* Navigation Links Section */}
       <section className="bg-gray-50 py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
             Sections
           </h2>

@@ -11,11 +11,13 @@ const dietSections = [
   },
   {
     id: "low-gi-tips",
-    title: "Low-GI & Glycaemic Load Tips — Local choices that blunt sugar spikes",
+    title:
+      "Low-GI & Glycaemic Load Tips — Local choices that blunt sugar spikes",
   },
   {
     id: "portion-control",
-    title: "Portion Control & Practical Guides — Visual rules that work in real kitchens",
+    title:
+      "Portion Control & Practical Guides — Visual rules that work in real kitchens",
   },
   {
     id: "sample-diet-plans",
@@ -42,10 +44,15 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          If you have <strong>diabetes, PCOS, pregnancy, kidney/liver issues</strong>, or struggle with planning, a qualified
-          dietitian can tailor carbs, protein, and timing around your life, medicines, and budget. A single consult
-          can clarify <strong>portion sizes, Ramadan strategy</strong>, and <strong>grocery lists</strong> for the whole family. If you book online,
-          confirm <strong>credentials</strong>, ask for <strong>written plans</strong>, and schedule a <strong>follow-up in 4–6 weeks</strong>.
+          If you have{" "}
+          <strong>diabetes, PCOS, pregnancy, kidney/liver issues</strong>, or
+          struggle with planning, a qualified dietitian can tailor carbs,
+          protein, and timing around your life, medicines, and budget. A single
+          consult can clarify <strong>portion sizes, Ramadan strategy</strong>,
+          and <strong>grocery lists</strong> for the whole family. If you book
+          online, confirm <strong>credentials</strong>, ask for{" "}
+          <strong>written plans</strong>, and schedule a{" "}
+          <strong>follow-up in 4–6 weeks</strong>.
         </p>
       </div>
     ),
@@ -56,66 +63,95 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Pakistani meals can be heart-healthy without losing flavour. A &quot;makeover&quot; is not a punishment; it&apos;s a
-          series of small, repeatable tweaks. Start by re-balancing the <strong>plate</strong>: half vegetables/salad (cooked or
-          raw), a quarter <strong>protein</strong> (daal, chicken, fish, eggs, yogurt), and a quarter <strong>carbs</strong> (roti or rice). For <strong>biryani/
-          nihari/qorma</strong>, shrink the carb portion and add a protein-plus-fiber side (raita with grated cucumber,
-          mixed salad, sautéed bhindi). Use <strong>less oil</strong> and prefer <strong>stews/grills</strong> to deep-fries on routine days. Switch
-          from heaped tablespoons of ghee/oil to <strong>measured teaspoons</strong>.
+          Pakistani meals can be heart-healthy without losing flavour. A
+          &quot;makeover&quot; is not a punishment; it&apos;s a series of small,
+          repeatable tweaks. Start by re-balancing the <strong>plate</strong>:
+          half vegetables/salad (cooked or raw), a quarter{" "}
+          <strong>protein</strong> (daal, chicken, fish, eggs, yogurt), and a
+          quarter <strong>carbs</strong> (roti or rice). For{" "}
+          <strong>biryani/ nihari/qorma</strong>, shrink the carb portion and
+          add a protein-plus-fiber side (raita with grated cucumber, mixed
+          salad, sautéed bhindi). Use <strong>less oil</strong> and prefer{" "}
+          <strong>stews/grills</strong> to deep-fries on routine days. Switch
+          from heaped tablespoons of ghee/oil to{" "}
+          <strong>measured teaspoons</strong>.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
-          Batch-cook basic components: boiled chana/daal, grilled chicken strips, mixed veg—then assemble in
-          different ways through the week. For <strong>roti</strong>, try smaller diameter or use <strong>bajra/jowar</strong> mixes a few times a
-          week. For rice lovers, pre-boil and <strong>drain starchy water</strong>, then mix with veg and protein (pulao style).
-          Keep <strong>spices</strong>—they deliver joy without extra calories. The goal is a taste-faithful home menu that quietly
-          cuts excess carbs and oil. Over a month, these shifts add up to better energy, waist reduction, and
-          steadier sugars.
+          Batch-cook basic components: boiled chana/daal, grilled chicken
+          strips, mixed veg—then assemble in different ways through the week.
+          For <strong>roti</strong>, try smaller diameter or use{" "}
+          <strong>bajra/jowar</strong> mixes a few times a week. For rice
+          lovers, pre-boil and <strong>drain starchy water</strong>, then mix
+          with veg and protein (pulao style). Keep <strong>spices</strong>—they
+          deliver joy without extra calories. The goal is a taste-faithful home
+          menu that quietly cuts excess carbs and oil. Over a month, these
+          shifts add up to better energy, waist reduction, and steadier sugars.
         </p>
       </div>
     ),
   },
   {
     id: "low-gi-tips",
-    title: "Low-GI & Glycaemic Load Tips — Local choices that blunt sugar spikes",
+    title:
+      "Low-GI & Glycaemic Load Tips — Local choices that blunt sugar spikes",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Instead of banning foods, learn which <strong>combinations</strong> slow glucose rise. Pair carbs with <strong>protein and
-          fiber</strong>: daal-roti with salad, rice with chana and vegetables, fruit with a handful of nuts. Choose <strong>whole
-          grains</strong> (bajra, jowar, oats), <strong>legumes</strong> (daal, chana, rajma), and <strong>non-starchy vegetables</strong> (cucumber,
-          karela, saag, gobi). Keep portions of <strong>white rice/naan</strong> smaller; prefer <strong>roti</strong> over naan; explore <strong>brown
-          basmati</strong> if acceptable. For snacks, try <strong>roasted chana</strong>, <strong>fruit + yogurt</strong>, <strong>boiled eggs</strong>, or <strong>chicken tikka</strong>{" "}
+          Instead of banning foods, learn which <strong>combinations</strong>{" "}
+          slow glucose rise. Pair carbs with <strong>protein and fiber</strong>:
+          daal-roti with salad, rice with chana and vegetables, fruit with a
+          handful of nuts. Choose <strong>whole grains</strong> (bajra, jowar,
+          oats), <strong>legumes</strong> (daal, chana, rajma), and{" "}
+          <strong>non-starchy vegetables</strong> (cucumber, karela, saag,
+          gobi). Keep portions of <strong>white rice/naan</strong> smaller;
+          prefer <strong>roti</strong> over naan; explore{" "}
+          <strong>brown basmati</strong> if acceptable. For snacks, try{" "}
+          <strong>roasted chana</strong>, <strong>fruit + yogurt</strong>,{" "}
+          <strong>boiled eggs</strong>, or <strong>chicken tikka</strong>{" "}
           without extra oil.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
-          Timing matters: avoid <strong>late-night heavy meals</strong>, and try <strong>post-meal 10–15-minute walks</strong> to improve
-          glucose handling. During <strong>Ramadan</strong>, plan <strong>suhoor</strong> with protein + slow carbs (oats, daal, eggs) and <strong>iftar</strong>{" "}
-          with dates + water, followed by a balanced plate rather than a fried-food buffet.
+          Timing matters: avoid <strong>late-night heavy meals</strong>, and try{" "}
+          <strong>post-meal 10–15-minute walks</strong> to improve glucose
+          handling. During <strong>Ramadan</strong>, plan{" "}
+          <strong>suhoor</strong> with protein + slow carbs (oats, daal, eggs)
+          and <strong>iftar</strong> with dates + water, followed by a balanced
+          plate rather than a fried-food buffet.
         </p>
       </div>
     ),
   },
   {
     id: "portion-control",
-    title: "Portion Control & Practical Guides — Visual rules that work in real kitchens",
+    title:
+      "Portion Control & Practical Guides — Visual rules that work in real kitchens",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Portion control is a skill. Replace vague advice with <strong>visual rules</strong>. Use the <strong>hand method</strong>: protein = palm,
-          carbs = cupped hand (or half roti), fats = thumb, vegetables = two open hands. Eat on <strong>smaller plates</strong>{" "}
-          and <strong>plate in the kitchen</strong> (don&apos;t serve family-style if you tend to refill). Start meals with <strong>water + salad</strong> to
-          reduce overeating. Add <strong>&quot;pause points&quot;</strong>: halfway through, put the spoon down, take two deep breaths,
-          ask &quot;Am I at 7/10 full?&quot; If yes, save the rest.
+          Portion control is a skill. Replace vague advice with{" "}
+          <strong>visual rules</strong>. Use the <strong>hand method</strong>:
+          protein = palm, carbs = cupped hand (or half roti), fats = thumb,
+          vegetables = two open hands. Eat on <strong>smaller plates</strong>{" "}
+          and <strong>plate in the kitchen</strong> (don&apos;t serve
+          family-style if you tend to refill). Start meals with{" "}
+          <strong>water + salad</strong> to reduce overeating. Add{" "}
+          <strong>&quot;pause points&quot;</strong>: halfway through, put the
+          spoon down, take two deep breaths, ask &quot;Am I at 7/10 full?&quot;
+          If yes, save the rest.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
-          For chai culture, negotiate <strong>frequency and size</strong>. Take <strong>unsweetened or lightly sweetened chai</strong> and pair
-          with <strong>protein</strong> (egg, chana) instead of biscuits. If you love paratha, reserve it for <strong>two mornings/week</strong>{" "}
-          and use tissue-pressed, shallow-fried versions. At dawats/weddings, follow the <strong>two-item rule</strong>: one
-          savoury + one sweet, both small; skip sugary drinks; add water. Portion control is about <strong>enjoying the
-          same foods</strong> in amounts that keep you energized rather than sleepy.
+          For chai culture, negotiate <strong>frequency and size</strong>. Take{" "}
+          <strong>unsweetened or lightly sweetened chai</strong> and pair with{" "}
+          <strong>protein</strong> (egg, chana) instead of biscuits. If you love
+          paratha, reserve it for <strong>two mornings/week</strong> and use
+          tissue-pressed, shallow-fried versions. At dawats/weddings, follow the{" "}
+          <strong>two-item rule</strong>: one savoury + one sweet, both small;
+          skip sugary drinks; add water. Portion control is about{" "}
+          <strong>enjoying the same foods</strong> in amounts that keep you
+          energized rather than sleepy.
         </p>
       </div>
     ),
@@ -126,15 +162,20 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Give yourself options that match your reality: - <strong>Budget plan:</strong> Roti with daal/egg, seasonal veg, small rice
-          days, boiled chana, and homemade raita. One fruit/day, nuts 3–4 days/week. Minimal packaged snacks.
-          - <strong>Moderate plan:</strong> Add fish/chicken twice weekly, brown basmati sometimes, yogurt smoothies (no
-          sugar), light tikkas, more salad variety. - <strong>Clinical plan (with dietitian):</strong> Tailored carbs/protein/fat
-          targets, medication-timed meals, special needs (PCOS, kidney issues), Ramadan adjustments.
+          Give yourself options that match your reality: -{" "}
+          <strong>Budget plan:</strong> Roti with daal/egg, seasonal veg, small
+          rice days, boiled chana, and homemade raita. One fruit/day, nuts 3–4
+          days/week. Minimal packaged snacks. - <strong>Moderate plan:</strong>{" "}
+          Add fish/chicken twice weekly, brown basmati sometimes, yogurt
+          smoothies (no sugar), light tikkas, more salad variety. -{" "}
+          <strong>Clinical plan (with dietitian):</strong> Tailored
+          carbs/protein/fat targets, medication-timed meals, special needs
+          (PCOS, kidney issues), Ramadan adjustments.
         </p>
 
         <p className="text-gray-700 leading-relaxed">
-          Example day (weight-loss intent): Breakfast: omelet with veg + small roti; chai with little/no sugar.
+          Example day (weight-loss intent): Breakfast: omelet with veg + small
+          roti; chai with little/no sugar.
           <br />
           Lunch: daal + salad + small rice; yogurt raita.
           <br />
@@ -153,12 +194,19 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Set <strong>guardrails</strong>, not bans. If you love <strong>samosa/chaat/bun kebab</strong>, limit to <strong>once per week</strong>, share with a
-          friend, add water and salad/raita, and avoid sugary drinks. Pick <strong>grilled</strong> over deep-fried when possible;
-          ask vendors to <strong>hold extra chutney/syrups</strong>. Keep a <strong>&quot;back-up snack kit&quot;</strong> in your bag (roasted chana,
-          nuts, sugar-free gum) to dodge impulsive choices when hungry or stuck in traffic. For travel and office
-          days, pack <strong>egg wraps, fruit, yogurt, or leftover tikka</strong>. When cravings hit at night, take <strong>two minutes</strong>:
-          water, slow breaths, quick stretch; if still hungry, choose <strong>protein + veg</strong>.
+          Set <strong>guardrails</strong>, not bans. If you love{" "}
+          <strong>samosa/chaat/bun kebab</strong>, limit to{" "}
+          <strong>once per week</strong>, share with a friend, add water and
+          salad/raita, and avoid sugary drinks. Pick <strong>grilled</strong>{" "}
+          over deep-fried when possible; ask vendors to{" "}
+          <strong>hold extra chutney/syrups</strong>. Keep a{" "}
+          <strong>&quot;back-up snack kit&quot;</strong> in your bag (roasted
+          chana, nuts, sugar-free gum) to dodge impulsive choices when hungry or
+          stuck in traffic. For travel and office days, pack{" "}
+          <strong>egg wraps, fruit, yogurt, or leftover tikka</strong>. When
+          cravings hit at night, take <strong>two minutes</strong>: water, slow
+          breaths, quick stretch; if still hungry, choose{" "}
+          <strong>protein + veg</strong>.
         </p>
       </div>
     ),
@@ -169,11 +217,16 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Be sceptical of &quot;miracle&quot; weight-loss teas or pills. Some products are <strong>unsafe</strong> or <strong>ineffective</strong>. Evidence
-          supports <strong>adequate protein</strong>, <strong>fiber</strong>, and in some cases <strong>vitamin D</strong> if deficient. Discuss <strong>omega-3</strong> for
-          triglycerides with your doctor. Be cautious with <strong>fat burners</strong> and <strong>unregulated herbal mixes</strong>; they can
-          interact with medicines or stress the liver. If you try something new, <strong>note any side effects</strong>, keep doses
-          small, and <strong>tell your clinician</strong>.
+          Be sceptical of &quot;miracle&quot; weight-loss teas or pills. Some
+          products are <strong>unsafe</strong> or <strong>ineffective</strong>.
+          Evidence supports <strong>adequate protein</strong>,{" "}
+          <strong>fiber</strong>, and in some cases <strong>vitamin D</strong>{" "}
+          if deficient. Discuss <strong>omega-3</strong> for triglycerides with
+          your doctor. Be cautious with <strong>fat burners</strong> and{" "}
+          <strong>unregulated herbal mixes</strong>; they can interact with
+          medicines or stress the liver. If you try something new,{" "}
+          <strong>note any side effects</strong>, keep doses small, and{" "}
+          <strong>tell your clinician</strong>.
         </p>
       </div>
     ),
@@ -184,11 +237,15 @@ const dietContent = [
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
-          Use <strong>implementation intentions</strong>: &quot;If X happens, I will do Y&quot; (e.g., &quot;If I&apos;m offered mithai at work, I&apos;ll take a
-          half piece and eat it slowly after lunch&quot;). Keep <strong>visible cues</strong>: salad bowl on the counter, filled water bottle
-          on your desk, pre-cut veg in the fridge. Track <strong>three basics</strong> daily: steps, portions of veg, and sweet
-          drinks. Reward consistency, not perfection. If you &quot;fall off&quot; during a wedding week, <strong>reboot the very
-          next meal</strong>. Progress beats perfection.
+          Use <strong>implementation intentions</strong>: &quot;If X happens, I
+          will do Y&quot; (e.g., &quot;If I&apos;m offered mithai at work,
+          I&apos;ll take a half piece and eat it slowly after lunch&quot;). Keep{" "}
+          <strong>visible cues</strong>: salad bowl on the counter, filled water
+          bottle on your desk, pre-cut veg in the fridge. Track{" "}
+          <strong>three basics</strong> daily: steps, portions of veg, and sweet
+          drinks. Reward consistency, not perfection. If you &quot;fall
+          off&quot; during a wedding week,{" "}
+          <strong>reboot the very next meal</strong>. Progress beats perfection.
         </p>
       </div>
     ),
@@ -214,13 +271,17 @@ export default function DietClient() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-white py-16 md:py-20 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                 Diet
               </h1>
-              <p className="text-gray-700 text-lg leading-relaxed">TBD</p>
+              <p className="text-gray-700 text-md leading-relaxed">
+                Practical nutrition guidance tailored for Pakistani meals. Learn
+                how to balance your plate, make smart food swaps, and enjoy desi
+                cuisine while managing your health—no restriction, just balance.
+              </p>
             </div>
             <div className="relative h-64 lg:h-96">
               <img
@@ -235,7 +296,7 @@ export default function DietClient() {
 
       {/* Navigation Links Section */}
       <section className="bg-gray-50 py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
             Sections
           </h2>

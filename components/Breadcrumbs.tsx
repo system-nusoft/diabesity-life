@@ -44,7 +44,6 @@ export default function Breadcrumbs() {
     ...pathSegments.map((segment, index) => {
       let href = "/" + pathSegments.slice(0, index + 1).join("/");
 
-      // Use custom label if available, otherwise format the segment
       const label =
         labelMap[segment] ||
         segment
@@ -65,7 +64,7 @@ export default function Breadcrumbs() {
       className="bg-gray-50 border-b border-gray-200"
       aria-label="Breadcrumb"
     >
-      <div className="max-w-7xl mx-auto px-6 py-3">
+      <div className="max-w-4xl lg:max-w-6xl mx-auto py-3 px-6 lg:px-0">
         <ol className="flex items-center space-x-2 text-sm">
           {breadcrumbs.map((breadcrumb, index) => {
             const isLast = index === breadcrumbs.length - 1;

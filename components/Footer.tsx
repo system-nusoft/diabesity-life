@@ -1,37 +1,21 @@
 import { Button } from "@/components/ui/button";
-import {
-  ExternalLinkIcon,
-  Facebook,
-  Instagram,
-  Twitter,
-  Youtube,
-} from "lucide-react";
+import { ExternalLinkIcon, Facebook, Instagram, Youtube } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer
-      className="bg-[#1a1a1a] text-white"
-      // style={{
-      //   backgroundImage: `url('${FooterBG.src}')`,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "top center",
-      // }}
-    >
+    <footer className="bg-[#1a1a1a] text-white">
       {/* Contact Specialist Section */}
-      <section className="py-16 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between flex-col md:flex-row gap-8">
+      <section className="pt-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-0 flex justify-between flex-col md:flex-row gap-8">
           <div>
-            <h2 className="text-[#ff9d5c] text-4xl md:text-5xl font-medium mb-2">
+            <h2 className="text-secondary text-3xl md:text-4xl font-medium mb-2">
               Get in touch
             </h2>
-            {/* <h2 className="text-[#ff9d5c] text-4xl md:text-5xl font-medium">
-              with a specialist
-            </h2> */}
           </div>
           <div className="flex gap-4">
             <Link href="/contact">
-              <Button variant="filledOrange">Contact</Button>
+              <Button variant="secondary">Contact</Button>
             </Link>
             <Link
               href="http://www.dap.org.pk/Donations.html"
@@ -46,8 +30,8 @@ export default function Footer() {
           </div>
         </div>
       </section>
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-6">
+      <div className="max-w-6xl mx-auto px-6 lg:px-0 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-4">
           {/* Diabesity Info */}
           {/* <div>
             <h4 className="text-white font-semibold mb-4">Diabesity</h4>
@@ -70,11 +54,17 @@ export default function Footer() {
               abc@diabesity.com
             </a>
           </div> */}
+        </div>
 
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 pt-4 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-500 text-sm mb-4 md:mb-0">
+            © <span className="text-primary">Diabesity</span> 2026. All Rights
+            Reserved
+          </p>
           {/* Socials */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Socials</h4>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-4 lg:mb-0">
               <a
                 href="https://www.facebook.com/diabesitylifepk"
                 target="_blank"
@@ -89,7 +79,16 @@ export default function Footer() {
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Twitter"
               >
-                <Twitter className="h-5 w-5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="19"
+                  height="19"
+                  fill="currentColor"
+                  className="bi bi-twitter-x"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                </svg>
               </a>
               <a
                 href="https://www.instagram.com/diabesitylifepk"
@@ -109,14 +108,6 @@ export default function Footer() {
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            © <span className="text-primary">Diabesity</span> 2025. All Rights
-            Reserved
-          </p>
           <div className="flex space-x-6">
             <Link
               href="/terms-of-use"

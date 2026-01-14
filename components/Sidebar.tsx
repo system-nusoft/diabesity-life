@@ -4,6 +4,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { useSidebar } from "@/contexts/SidebarContext";
 
 interface NavItem {
   label: string;
@@ -20,14 +21,6 @@ const navigationItems: NavItem[] = [
     label: "About",
     href: "/about",
   },
-  // {
-  //   label: "Learn",
-  //   href: "/learn",
-  // },
-  // {
-  //   label: "Diet",
-  //   href: "/diet",
-  // },
   {
     label: "Resources",
     href: "/resources",
@@ -74,6 +67,7 @@ export default function Sidebar() {
   ]);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { isOpen } = useSidebar();
 
   const toggleExpanded = (label: string) => {
     setExpandedItems((prev) =>
@@ -171,9 +165,14 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="hidden lg:block sticky top-[5.5rem] h-[calc(100vh-5.5rem)] bg-gray-50 border-r border-gray-200 overflow-y-auto w-[16.25rem]"
+      className={`hidden lg:block sticky top-[5.5rem] h-[calc(100vh-5.5rem)] bg-gray-50 border-r border-gray-200 overflow-y-auto transition-all duration-300 ease-in-out ${
+        isOpen ? "w-[16.25rem]" : "w-0"
+      }`}
+      style={{
+        borderRightWidth: isOpen ? "1px" : "0px",
+      }}
     >
-      <div className="py-4 px-2">
+      <div className={`py-4 px-2 ${isOpen ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}>
         <nav className="space-y-0.5">
           {navigationItems.map((item) => renderNavItem(item))}
         </nav>
