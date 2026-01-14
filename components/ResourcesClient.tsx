@@ -60,7 +60,7 @@ export default function ResourcesClient({
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="grid grid-cols-2 max-w-7xl mx-auto gap-8 md:gap-24 py-16 md:py-20 px-6">
+      <section className="grid grid-cols-2 max-w-4xl lg:max-w-6xl mx-auto gap-8 md:gap-24 py-16 md:py-20 px-6 lg:px-0">
         {/* Introduction Section */}
         <div className="flex col-span-2 md:col-span-1 justify-center items-center">
           <div>
@@ -85,9 +85,9 @@ export default function ResourcesClient({
 
       {/* Tabs Section */}
       <section className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           {/* Mobile Dropdown */}
-          <div className="md:hidden py-4">
+          <div className="md:hidden py-4 px-6">
             <select
               value={activeTab}
               onChange={(e) =>

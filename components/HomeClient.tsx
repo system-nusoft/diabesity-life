@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
+import { recipes } from "@/lib/recipeContent";
 import { Category, getCategoryGradient } from "@/lib/utils";
-import { ChevronDown, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import DailyCare from "../public/daily-care.jpg";
@@ -14,16 +15,26 @@ import HealthProviders from "../public/find-health-providers.jpg";
 import Hero1 from "../public/hero-section-1.webp";
 import Hero2 from "../public/hero-section-2.webp";
 import Hero3 from "../public/hero-section-3.webp";
+import PakistanMap from "../public/pakistan-map.png";
+import Service1 from "../public/service-icon-1.png";
+import Service2 from "../public/service-icon-2.png";
+import Service4 from "../public/service-icon-4.png";
+import Story from "../public/story-placeholder.webp";
+import SupportBG from "../public/support-section-bg.webp";
 
 const heroSlides = [
   {
     image: Hero1.src,
-    heading: "Living with diabesity in Pakistan",
+    heading: "A new chapter in diabesity care",
+    body: "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
+    ctaText: "Learn more",
+    ctaUrl: "/resources",
     videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
   },
   {
     image: Hero2.src,
     heading: "Take control of your health today",
+    body: "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
     ctaText: "Get started",
     ctaUrl: "/daily-care-and-monitoring",
     videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
@@ -31,11 +42,60 @@ const heroSlides = [
   {
     image: Hero3.src,
     heading: "ذیابیطس اردو میں معلومات",
+    body: "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
     ctaText: "مزید جانیں",
     ctaUrl: "/urdu-guides",
     videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
     watchVideoText: "ویڈیو دیکھیں",
     isRtl: true,
+  },
+];
+
+const newServices = [
+  {
+    icon: Service1.src,
+    title: "Understand diabesity",
+    body: "Gain a clear understanding of the link between type 2 diabetes and obesity. Knowledge is the first powerful step toward managing your health.",
+    links: [{ text: "Learn more", url: "/learn" }],
+  },
+  {
+    icon: Service2.src,
+    title: "Eat smart and healthy",
+    body: "You don't have to sacrifice flavor for health. Explore delicious recipes and meal-planning tips that make healthy eating simple and enjoyable.",
+    links: [{ text: "Get recipes", url: "/resources?tab=recipes#content" }],
+  },
+  {
+    icon: Service4.src,
+    title: "Daily care & monitoring",
+    body: "Consistent self-care is key to managing your condition. Find practical guides on monitoring your blood sugar and building a healthy daily routine.",
+    links: [{ text: "View guides", url: "/daily-care-and-monitoring" }],
+  },
+];
+
+const impactStats = [
+  {
+    value: "1 in 4",
+    label: "adults with undiagnosed diabetes",
+    description:
+      "In Pakistan, a quarter of adults with diabetes don't know they have it, allowing silent progression to severe complications before the first symptom is even noticed.",
+    linkText: "",
+    linkUrl: "#",
+  },
+  {
+    value: "60%",
+    label: "heart attack patients have diabetes",
+    description:
+      "A staggering 6 out of 10 heart attack patients in Pakistan also have diabetes, highlighting the critical link between unmanaged blood sugar and cardiovascular risk.",
+    linkText: "",
+    linkUrl: "#",
+  },
+  {
+    value: "$2,648",
+    label: "million (USD)",
+    description:
+      "The annual cost of diabetes care in Pakistan exceeded $2.6 billion in 2021, placing an immense financial burden on families and the national healthcare system.",
+    linkText: "",
+    linkUrl: "#",
   },
 ];
 
@@ -128,7 +188,7 @@ const services = [
   {
     title: "Daily care and monitoring",
     image: DailyCare.src,
-    gradient: "from-purple-500/100 to-purple-500/0",
+    gradient: "from-primary to-purple-500/0",
     linkText: "View guides",
     linkUrl: "/daily-care-and-monitoring",
     linkTarget: "",
@@ -163,13 +223,13 @@ export default function Home({ blogs, news }: HomeClientProps) {
   }, []);
 
   // Auto-play hero slider
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000); // Change slide every 5 seconds
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, [currentSlide]);
 
   //   const nextSlide = () => {
   //     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -235,52 +295,96 @@ export default function Home({ blogs, news }: HomeClientProps) {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[500px] md:h-[550px] overflow-hidden">
-        {/* Slides */}
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              index === currentSlide
-                ? "opacity-100"
-                : "opacity-0 pointer-events-none"
-            }`}
-            style={{
-              backgroundImage: `url('${slide.image}')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="absolute inset-0 bg-black/30"></div>
+      <section className="relative overflow-hidden">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto">
+          {/* Slides */}
+          {heroSlides.map((slide, index) => (
             <div
-              className={`relative h-full max-w-7xl mx-auto px-6 flex items-center ${
-                slide.isRtl ? "justify-end" : ""
+              key={index}
+              className={`transition-opacity duration-500 ${
+                index === currentSlide
+                  ? "opacity-100 relative"
+                  : "opacity-0 pointer-events-none absolute inset-0"
               }`}
-              dir={slide.isRtl ? "rtl" : "ltr"}
             >
-              <div className={`text-white ${slide.isRtl ? "w-full" : "max-w-2xl"}`}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  {slide.heading}
-                </h1>
-                <div className="flex gap-4">
-                  {slide.ctaText && slide.ctaUrl && (
-                    <Link href={slide.ctaUrl}>
-                      <Button variant="primary">{slide.ctaText}</Button>
-                    </Link>
-                  )}
-                  <Button
-                    variant="blurry"
-                    onClick={() => openVideoModal(slide.videoUrl)}
-                  >
-                    <Play className="w-5 h-5" />
-                    {slide.watchVideoText || "Watch Video"}
-                  </Button>
+              {/* Mobile Layout */}
+              <div className="lg:hidden">
+                <div className="relative w-full px-6 h-auto md:h-80">
+                  <img
+                    src={slide.image}
+                    alt={slide.heading}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="bg-white px-6 py-8">
+                  <h1 className="text-primary-text text-2xl md:text-3xl font-bold mb-4 leading-tight">
+                    {slide.heading}
+                  </h1>
+                  <p className="text-primary-text text-base mb-6 leading-relaxed">
+                    {slide.body}
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    {slide.ctaText && slide.ctaUrl && (
+                      <Link href={slide.ctaUrl}>
+                        <Button variant="primary" className="w-full" size="md">
+                          {slide.ctaText}
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
+                  <div className="w-full h-1 bg-primary mt-8"></div>
+                </div>
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden lg:block relative">
+                <img
+                  src={slide.image}
+                  alt={slide.heading}
+                  className="w-full h-[550px] object-cover"
+                />
+
+                {/* Text Overlay Box with Decorative Border */}
+                <div className="absolute top-12 left-12 max-w-md">
+                  {/* Decorative Border - Top (right to left) */}
+                  <div className="absolute -top-2 -right-2 w-[50%] border-t-8 border-primary pointer-events-none"></div>
+
+                  {/* Decorative Border - Right */}
+                  <div className="absolute top-0 -right-2 h-[50%] border-r-8 border-primary pointer-events-none"></div>
+
+                  {/* Decorative Border - Bottom (left to right) */}
+                  <div className="absolute -bottom-2 -left-2 w-[50%] border-b-8 border-secondary pointer-events-none"></div>
+
+                  {/* Decorative Border - Left */}
+                  <div className="absolute bottom-0 -left-2 h-[50%] border-l-8 border-secondary pointer-events-none"></div>
+
+                  {/* White Background Box */}
+                  <div className="relative bg-white p-8 shadow-lg">
+                    <h1 className="text-primary-text text-4xl font-bold mb-4 leading-tight">
+                      {slide.heading}
+                    </h1>
+                    <p className="text-primary-text text-base mb-6 leading-relaxed">
+                      {slide.body}
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      {slide.ctaText && slide.ctaUrl && (
+                        <Link href={slide.ctaUrl}>
+                          <Button
+                            variant="primary"
+                            className="w-full sm:w-auto"
+                            size="md"
+                          >
+                            {slide.ctaText}
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-
+          ))}
+        </div>
         {/* Left Arrow */}
         {/* <button
           onClick={prevSlide}
@@ -298,7 +402,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
         </button> */}
 
         {/* Dot Indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+        {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
           {heroSlides.map((_, index) => (
             <button
               key={index}
@@ -310,7 +414,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               }`}
             />
           ))}
-        </div>
+        </div> */}
       </section>
 
       {/* Video Modal */}
@@ -339,18 +443,152 @@ export default function Home({ blogs, news }: HomeClientProps) {
         </div>
       )}
 
+      {/* New Services Section */}
+      <section className="">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto bg-gray-50">
+          <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6 p-6 lg:p-10">
+            {newServices.map((service, index) => (
+              <Card
+                key={index}
+                className="p-6 rounded-none hover:shadow-lg transition-shadow h-96"
+              >
+                <div className="flex flex-col gap-6">
+                  <img
+                    src={service.icon}
+                    alt={service.title}
+                    className="w-28 h-20 object-contain"
+                  />
+                  <h3 className="text-xl font-semibold text-primary-text">
+                    {service.title}
+                  </h3>
+                  <p>{service.body}</p>
+                  <div className="flex flex-col gap-2">
+                    {service.links.map((link, linkIndex) => (
+                      <Link
+                        key={linkIndex}
+                        href={link.url}
+                        className="text-primary-text text-md font-semibold underline hover:text-primary-text/80"
+                      >
+                        {link.text}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Impact Section */}
+      <section className="py-16 bg-white">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-24">
+            {impactStats.map((stat, index) => (
+              <div key={index} className="flex flex-col">
+                <div className="mb-4">
+                  <h2 className="text-4xl md:text-5xl font-bold text-primary-text">
+                    {stat.value}
+                  </h2>
+                  <p className="text-xl md:text-2xl leading-8 font-bold text-secondary">
+                    {stat.label}
+                  </p>
+                </div>
+                <p className="text-primary-text leading-relaxed">
+                  {stat.linkText ? (
+                    <>
+                      {stat.description.split(stat.linkText)[0]}
+                      <Link
+                        href={stat.linkUrl}
+                        className="text-primary-text font-bold underline hover:text-primary-text/80"
+                      >
+                        {stat.linkText}
+                      </Link>
+                      {stat.description.split(stat.linkText)[1]}
+                    </>
+                  ) : (
+                    stat.description
+                  )}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Find Support in Your Area Section */}
+      <section className="relative bg-secondary overflow-visible py-10">
+        <div className="relative z-10 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
+          {/* Mobile Layout */}
+          <div className="flex flex-col gap-6 lg:hidden">
+            <h2 className="text-2xl font-bold uppercase text-white">
+              Diabesity support in your area
+            </h2>
+            <p className="text-md text-white leading-relaxed">
+              Find regional contact information, your local support groups and
+              activities near you.
+            </p>
+            <div>
+              <Link href="/doctors">
+                <Button variant="primary" size="md" className="px-6">
+                  Find now
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:flex items-center gap-16">
+            {/* Left - Heading */}
+            <div className="text-white flex-shrink-0">
+              <h2 className="text-2xl md:text-4xl font-bold uppercase leading-tight">
+                Diabesity in <br /> your area
+              </h2>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {/* Middle - Description */}
+              <div className="text-white max-w-xs">
+                <p className="text-md leading-relaxed">
+                  Find regional contact information, your local support groups
+                  and activities near you.
+                </p>
+              </div>
+
+              {/* Button */}
+              <div className="flex-shrink-0">
+                <Link href="/doctors">
+                  <Button variant="primary" size="md" className="px-6">
+                    Find now
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right - Pakistan Map (extends beyond section height) */}
+            <div className="relative flex-1 flex justify-end">
+              <img
+                src={PakistanMap.src}
+                alt="Pakistan Map"
+                className="absolute top-1/2 -translate-y-1/2 right-0 h-[300px] w-auto object-fill"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden hidden">
         {/* Background halves */}
-        <div className="absolute inset-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+        {/* <div className="absolute inset-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
           <div className="bg-[#2a2a2a]" />
           <div className="bg-white" />
-        </div>
+        </div> */}
 
         {/* Foreground content */}
-        <div className="relative max-w-7xl mx-auto grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+        <div className="relative lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto grid grid-rows-2 md:grid-rows-1 md:grid-cols-2">
           {/* Left Dark Side */}
-          <div className="text-white px-8 md:px-16 py-16 md:py-24">
+          <div className="text-white px-8 md:px-16 py-16 md:py-24 bg-[#2a2a2a]">
             <h2 className="text-[#ff9d5c] text-3xl md:text-4xl font-medium mb-8">
               Mission
             </h2>
@@ -385,20 +623,14 @@ export default function Home({ blogs, news }: HomeClientProps) {
       </section>
 
       {/* News Section */}
-      <section className="bg-gray-50 py-16 md:py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between mb-12 gap-6">
+      <section className="px-6 lg:px-0 py-12 relative">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-center mb-12 gap-6">
             <div>
-              <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
-                News
-              </p>
-              <h2 className="text-3xl md:text-4xl font-medium text-gray-900">
+              <h2 className="text-3xl md:text-4xl font-medium text-primary-text">
                 Latest insights on diabesity
               </h2>
             </div>
-            <Link href="/resources?tab=news#content">
-              <Button variant="outlined">More news</Button>
-            </Link>
           </div>
 
           <div className="relative">
@@ -420,10 +652,10 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 {news.map((article, idx) => (
                   <div
                     key={idx}
-                    className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-3"
+                    className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 md:px-3"
                   >
                     <Link href={`/news/${article.slug}`}>
-                      <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-white py-0 pb-6 rounded-none h-full cursor-pointer">
+                      <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-white py-0 pb-6 rounded-none h-full cursor-pointer gap-0">
                         <div className="relative bg-gray-200">
                           <div
                             className={`absolute top-0 left-0 ${article.color} text-white px-3 py-1 text-xs font-semibold`}
@@ -431,45 +663,51 @@ export default function Home({ blogs, news }: HomeClientProps) {
                             {article.category}
                           </div>
                         </div>
-                        <div className="p-4 flex flex-col justify-between h-full gap-4">
-                          <h3 className="font-medium text-gray-900 mb-4 text-lg leading-snug line-clamp-3 min-h-[4.5rem]">
-                            {article.title}
-                          </h3>
+                        <div className="flex flex-col justify-between h-full">
                           <img
                             src={article.image}
                             alt={article.title}
-                            className="w-full h-48 object-cover mb-4"
+                            className="w-full h-48 object-cover"
                           />
-                          <Button
-                            variant="outlined"
-                            size="sm"
-                            className="w-fit"
-                          >
-                            Read more
-                          </Button>
+                        </div>
+                        <div className="px-4 flex flex-col gap-4 mt-6">
+                          <small className="text-gray-600 text-sm">
+                            {article.date}
+                          </small>
+                          <h3 className="font-medium text-primary-text text-lg leading-snug line-clamp-3 min-h-[4.5rem]">
+                            {article.title}
+                          </h3>
+                          <p className="text-primary-text text-sm leading-relaxed line-clamp-3">
+                            {article.excerpt}
+                          </p>
                         </div>
                       </Card>
                     </Link>
                   </div>
                 ))}
               </div>
+              <div className="flex justify-center mt-12">
+                <Link href="/resources?tab=news#content">
+                  <Button variant="outlined">More news</Button>
+                </Link>
+              </div>
             </div>
 
             {/* Left Arrow */}
-            <button
+            {/* <button
               onClick={prevNewsSlide}
               className="hidden md:flex absolute left-[-10] top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full items-center justify-center text-gray-600 hover:border-primary hover:text-primary hover:bg-white transition-colors z-10 "
             >
               <ChevronLeft className="w-8 h-8" />
-            </button>
+            </button> */}
 
             {/* Right Arrow */}
-            <button
+            {/* <button
               onClick={nextNewsSlide}
               className="hidden md:flex absolute right-[-10] top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full items-center justify-center text-gray-600 hover:border-primary hover:text-primary hover:bg-white transition-colors z-10 "
             >
               <ChevronRight className="w-8 h-8" />
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Navigation */}
@@ -490,9 +728,390 @@ export default function Home({ blogs, news }: HomeClientProps) {
         </div>
       </section>
 
+      {/* Blogs Section */}
+      <section className="py-8">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto p-6 lg:p-10 bg-gray-50">
+          <div className="flex flex-col md:flex-row justify-center gap-6 mb-12">
+            <h2 className="text-3xl md:text-4xl font-medium text-primary-text text-left">
+              Find the support you need
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogs.slice(0, 3).map((blog, idx) => (
+              <Card
+                key={idx}
+                className="overflow-hidden hover:shadow-lg transition-shadow py-0 rounded-none gap-0"
+              >
+                <Link href={`/blogs/${blog.slug}`} className="cursor-pointer">
+                  <div className="relative h-56 bg-gray-200">
+                    <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-xs font-semibold">
+                      {new Date(blog.date).toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                      })}
+                    </div>
+                    <img
+                      src={blog.image}
+                      alt={blog.imageAlt}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="px-6 py-4">
+                    <h3 className="font-bold text-primary-text text-xl mb-4">
+                      {blog.title}
+                    </h3>
+                    <p className="text-primary-text text-md font-semibold leading-relaxed line-clamp-3 mb-4">
+                      {blog.excerpt}
+                    </p>
+                  </div>
+                </Link>
+
+                {/* Links Section - Outside Link component to avoid nested <a> tags */}
+                {blog?.links && blog?.links.length > 0 && (
+                  <div className="flex flex-col gap-2 px-6 pb-6">
+                    {blog?.links.map((link, linkIdx) => (
+                      <a
+                        key={linkIdx}
+                        href={link.url}
+                        className="text-primary-text text-md font-semibold underline hover:text-primary-text/80"
+                      >
+                        {link?.text}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            ))}
+          </div>
+          <div className="flex justify-center mt-12">
+            <Link href="/resources?tab=blogs#content">
+              <Button variant="outlined">Find out more</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-16 bg-white">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6 lg:px-0">
+          {/* Mobile Layout */}
+          <div className="flex flex-col lg:hidden gap-8">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-text mb-6 uppercase">
+                Stories: <br /> This is Diabesity
+              </h2>
+              <p className="text-primary-text text-md leading-relaxed mb-6">
+                These are the unfiltered voices of people navigating life with
+                diabesity. Read their powerful, personal journeys of challenge,
+                discovery, and hope to find inspiration and a shared
+                understanding.
+              </p>
+              <Button variant="primary" size="sm" className="px-4">
+                Read all stories
+              </Button>
+            </div>
+
+            <div className="w-full">
+              <img
+                src={Story.src}
+                alt="Story featured image"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+
+            <div className="">
+              <p className="text-primary-text text-md leading-relaxed mb-6">
+                "How Semaglutide changed my life" <br /> <i>~ Zainab Jan</i>
+              </p>
+              <Link href="/blogs/how-semaglutide-changes-lives">
+                <Button variant="primary" size="md" className="px-8">
+                  Read this story
+                </Button>
+              </Link>
+            </div>
+
+            <div className="w-full h-1 bg-secondary"></div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid grid-cols-5 gap-16">
+            {/* Left - 2 columns */}
+            <div className="col-span-2 flex flex-col justify-center">
+              <h2 className="text-4xl xl:text-4xl font-bold text-primary-text mb-6 uppercase leading-tight">
+                Stories: <br /> This is Diabesity
+              </h2>
+              <p className="text-primary-text text-md leading-relaxed mb-8">
+                These are the unfiltered voices of people navigating life with
+                diabesity. Read their powerful, personal journeys of challenge,
+                discovery, and hope to find inspiration and a shared
+                understanding.
+              </p>
+              <div>
+                <Button variant="primary" size="md" className="px-8">
+                  Read all stories
+                </Button>
+              </div>
+            </div>
+
+            <div className="col-span-3 grid grid-cols-3">
+              {/* Middle - 1 column (Featured Story Card) */}
+              <div className="col-span-1 flex flex-col justify-center">
+                <div className="relative">
+                  {/* Top border - right to left */}
+                  <div className="absolute -top-2 -right-2 w-[50%] border-t-8 border-primary pointer-events-none"></div>
+                  {/* Right border */}
+                  <div className="absolute top-0 -right-2 h-[50%] border-r-8 border-primary pointer-events-none"></div>
+                  {/* Bottom border - left to right */}
+                  <div className="absolute -bottom-2 -left-2 w-[50%] border-b-8 border-secondary pointer-events-none"></div>
+                  {/* Left border */}
+                  <div className="absolute bottom-0 -left-2 h-[50%] border-l-8 border-secondary pointer-events-none"></div>
+
+                  <div className="relative bg-white p-6">
+                    <p className="text-primary-text text-md leading-relaxed mb-6">
+                      "How Semaglutide changed my life" <br />{" "}
+                      <i>~ Zainab Jan</i>
+                    </p>
+                    <Link href="/blogs/how-semaglutide-changes-lives">
+                      <Button variant="primary" size="sm" className="px-4">
+                        Read this story
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right - 2 columns (Image) */}
+              <div className="col-span-2">
+                <img
+                  src={Story.src}
+                  alt="Story featured image"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-16 bg-white">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6 lg:px-0">
+          {/* Mobile Layout */}
+          <div className="flex flex-col lg:hidden gap-8">
+            <div>
+              <p className="text-primary-text text-md leading-relaxed mb-4">
+                What is diabetes? Find out in our two-minute video spoken in
+                English.
+              </p>
+              <p className="text-primary-text text-md leading-relaxed">
+                Or choose a version in Urdu, Gujarati, Punjabi or Sylheti from
+                our{" "}
+                <Link
+                  href="https://www.youtube.com/playlist?list=PLQDlTVSOXD9GeCq19dVbUpYZewQaztdsR"
+                  target="_blank"
+                  className="text-primary font-semibold underline"
+                >
+                  YouTube playlist
+                </Link>
+              </p>
+            </div>
+            <div className="relative w-full pb-[56.25%] bg-black">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/CyVTZC1Gz6w"
+                title="What is Diabesity?"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid grid-cols-3 gap-12 items-center">
+            {/* Left - 1 column (Text) */}
+            <div className="col-span-1">
+              <p className="text-primary-text text-md leading-relaxed">
+                What is diabetes? Find out in our two-minute video spoken in
+                English.
+              </p>
+              <p className="text-primary-text text-md leading-relaxed">
+                Or choose a version in Urdu, Gujarati, Punjabi or Sylheti from
+                our{" "}
+                <Link
+                  href="https://www.youtube.com/playlist?list=PLQDlTVSOXD9GeCq19dVbUpYZewQaztdsR"
+                  target="_blank"
+                  className="text-primary font-semibold underline"
+                >
+                  YouTube playlist
+                </Link>
+              </p>
+            </div>
+
+            {/* Right - 2 columns (Video) */}
+            <div className="col-span-2">
+              <div className="relative w-full pb-[56.25%] bg-black">
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/CyVTZC1Gz6w"
+                  title="What is Diabesity?"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Support Section */}
+      <section className="relative">
+        {/* Mobile Layout */}
+        <div className="lg:hidden px-6">
+          <div className="relative w-full h-64 md:h-80">
+            <img
+              src="https://www.diabetes.org.uk/sites/default/files/2020-06/rsz_cumbria_north_east_scheme.jpg"
+              alt="Looking for support"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="bg-white py-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-text mb-6">
+              Looking for support?
+            </h2>
+            <p className="text-primary-text text-md leading-relaxed mb-6">
+              Read about the community support we offer for people living with
+              or affected by diabesity
+            </p>
+            <Link href="/contact">
+              <Button variant="primary" size="md" className="px-8 mb-8">
+                Read more
+              </Button>
+            </Link>
+            <div className="w-full h-1 bg-primary"></div>
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:block">
+          <div className="relative lg:max-w-4xl mx-auto h-96 xl:h-[500px]">
+            {/* Background Image */}
+            <img
+              src={SupportBG.src}
+              alt="Looking for support"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            {/* White Overlay Box - Right Side */}
+            <div className="absolute top-24 right-8 max-w-md">
+              {/* Top border - right to left */}
+              <div className="absolute -top-2 -right-2 w-[50%] border-t-8 border-secondary pointer-events-none"></div>
+              {/* Right border */}
+              <div className="absolute top-0 -right-2 h-[50%] border-r-8 border-secondary pointer-events-none"></div>
+              {/* Bottom border - left to right */}
+              <div className="absolute -bottom-2 -left-2 w-[50%] border-b-8 border-primary pointer-events-none"></div>
+              {/* Left border */}
+              <div className="absolute bottom-0 -left-2 h-[50%] border-l-8 border-primary pointer-events-none"></div>
+
+              {/* White Background Box */}
+              <div className="relative bg-white p-8 shadow-lg">
+                <h2 className="text-3xl xl:text-4xl font-bold text-primary-text mb-6">
+                  Looking for support?
+                </h2>
+                <p className="text-primary-text text-md leading-relaxed mb-6">
+                  Read about the community support we offer for people living
+                  with or affected by diabesity
+                </p>
+                <Link href="/contact">
+                  <Button variant="primary" size="md" className="px-8">
+                    Read more
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Recipes Section */}
+      <section className="px-6 lg:px-0 py-16 relative">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-center mb-12 gap-6">
+            <div className="text-center flex flex-col gap-4">
+              <h2 className="text-3xl md:text-4xl font-medium text-primary-text">
+                All Season Pakistani Cuisine
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
+            {Object.values(recipes)
+              .slice(0, 3)
+              .map((recipe, idx) => (
+                <Link key={idx} href={`/recipes/${recipe.slug}`}>
+                  <Card className="overflow-hidden hover:shadow-lg rounded-none transition-shadow bg-white cursor-pointer h-full pb-6 pt-0">
+                    <div className="relative h-48 bg-gray-200">
+                      <img
+                        src={recipe.image}
+                        alt={recipe.imageAlt}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-between px-4 h-48">
+                      <h3 className="font-bold text-gray-900 text-xl leading-tight">
+                        {recipe.title}
+                      </h3>
+
+                      {/* Nutrition Info Grid */}
+                      <div className="grid grid-cols-3 gap-2 text-center">
+                        {/* Calories */}
+                        <div className="bg-blue-50 p-3">
+                          <div className="text-xs text-gray-600 mb-1">KCal</div>
+                          <div className="text-lg font-bold text-primary">
+                            {recipe.calories}
+                          </div>
+                        </div>
+
+                        {/* Carbs */}
+                        <div className="bg-purple-50 p-3">
+                          <div className="text-xs text-gray-600 mb-1">
+                            Carbs
+                          </div>
+                          <div className="text-lg font-bold">
+                            {recipe.carbs}
+                          </div>
+                        </div>
+
+                        {/* Sugars with Level Badge */}
+                        <div className={`bg-primary p-3 text-white`}>
+                          <div className="text-xs mb-1">Sugars</div>
+                          <div className="text-lg font-bold">
+                            {recipe.sugars}
+                          </div>
+                          <div className="text-xs mt-1">
+                            ({recipe.sugarLevel})
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+          </div>
+
+          <div className="flex justify-center mt-12">
+            <Link href="/resources?tab=recipes#content">
+              <Button variant="outlined">More recipes</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-8 hidden">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
               SERVICES
@@ -506,7 +1125,8 @@ export default function Home({ blogs, news }: HomeClientProps) {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
+          {/* Services section */}
+          <div className="grid md:grid-cols-3 2xl:grid-cols-5 gap-4 mb-6">
             {services.map((service, index) => (
               <div
                 key={index}
@@ -541,8 +1161,8 @@ export default function Home({ blogs, news }: HomeClientProps) {
       </section>
 
       {/* FAQs Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="pt-8 pb-24 bg-white hidden">
+        <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
               FAQs
@@ -621,57 +1241,10 @@ export default function Home({ blogs, news }: HomeClientProps) {
         </div>
       </section>
 
-      {/* Blogs Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between gap-6 mb-12">
-            <div className="text-left">
-              <p className="text-gray-600 text-sm uppercase tracking-wider mb-2">
-                BLOGS
-              </p>
-              <h2 className="text-3xl md:text-4xl font-medium text-gray-900 text-left">
-                Find the support you need
-              </h2>
-            </div>
-            <Link href="/resources?tab=blogs#content">
-              <Button variant="outlined">Find out more</Button>
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {blogs.slice(0, 3).map((blog, idx) => (
-              <Card
-                key={idx}
-                className="overflow-hidden hover:shadow-lg transition-shadow py-0 rounded-none cursor-pointer"
-              >
-                <Link href={`/blogs/${blog.slug}`}>
-                  <div className="relative h-56 bg-gray-200">
-                    <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-xs font-semibold">
-                      {new Date(blog.date).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                      })}
-                    </div>
-                    <img
-                      src={blog.image}
-                      alt={blog.imageAlt}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="px-6 py-4">
-                    <p className="text-gray-600 text-sm mb-2">Blog</p>
-                    <h3 className="font-bold text-gray-900 text-xl mb-4">
-                      {blog.title}
-                    </h3>
-                  </div>
-                </Link>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12"></div>
-        </div>
-      </section>
+      {/* Orange decorative line at bottom of homepage */}
+      <div className="lg:w-4xl xl:w-6xl 2xl:w-6xl mx-auto">
+        <div className="w-full h-2 bg-primary"></div>
+      </div>
     </div>
   );
 }

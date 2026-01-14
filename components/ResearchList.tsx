@@ -10,7 +10,7 @@ interface ResearchListProps {
 
 export default function ResearchList({ research }: ResearchListProps) {
   return (
-    <div className="max-w-7xl mx-auto px-6 pt-12">
+    <div className="max-w-4xl lg:max-w-6xl mx-auto pt-12 px-6 lg:px-0">
       <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-8">
         Research Articles
       </h2>

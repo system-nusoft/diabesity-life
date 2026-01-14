@@ -7,25 +7,25 @@ import DiabetesUk from "../public/diabetes-uk-logo.svg";
 const resources = [
   {
     title: "What is diabetes? video (Urdu)",
-    urduTitle: "ذیابیطس کیا ہے؟ ویڈیو ",
+    urduTitle: "ذیابیطس کیا ہے؟ (ویڈیو) ",
     href: "https://www.youtube.com/watch?v=CyVTZC1Gz6w&feature=youtu.be",
     type: "video",
   },
   {
     title: "What is type 1 diabetes? video (Urdu)",
-    urduTitle: "ٹائپ 1 ذیابیطس کیا ہے؟ ویڈیو ",
+    urduTitle: "ٹائپ 1 ذیابیطس کیا ہے؟ (ویڈیو) ",
     href: "https://www.youtube.com/watch?v=D1NR3RxLqBw&feature=youtu.be",
     type: "video",
   },
   {
     title: "What is type 2 diabetes? video (Urdu)",
-    urduTitle: "ٹائپ 2 ذیابیطس کیا ہے؟ ویڈیو ",
+    urduTitle: "ٹائپ 2 ذیابیطس کیا ہے؟ (ویڈیو) ",
     href: "https://www.youtube.com/watch?v=oVDRg4h62ro&feature=youtu.be",
     type: "video",
   },
   {
     title: "What is type 2 diabetes remission? video (Urdu)",
-    urduTitle: "ٹائپ 2 ذیابیطس کی معافی کیا ہے؟ ویڈیو ",
+    urduTitle: "ٹائپ 2 ذیابیطس کی معافی کیا ہے؟ (ویڈیو) ",
     href: "https://www.youtube.com/watch?v=ADTN1IQn9JQ&feature=youtu.be",
     type: "video",
   },
@@ -45,7 +45,7 @@ const resources = [
   },
   {
     title: "Sick Day Rules (Urdu)",
-    urduTitle: "بیماری کے دن کے قوانین ",
+    urduTitle: "بیماری کے دن کے اصول ",
     href: "https://www.diabetes.org.uk/sites/default/files/2020-07/Sick%20day%20rules%20URDU.pdf",
     type: "pdf",
     size: "249KB",
@@ -59,7 +59,7 @@ const resources = [
   },
   {
     title: "Diabetes symptoms video (Urdu)",
-    urduTitle: "ذیابیطس کی علامات ویڈیو ",
+    urduTitle: "ذیابیطس کی علامات (ویڈیو) ",
     description: "click the subtitles button to change the language",
     urduDescription: "زبان تبدیل کرنے کے لیے سب ٹائٹلز بٹن پر کلک کریں",
     href: "https://www.youtube.com/watch?v=bIhy-Rb2xp4&t=4s",
@@ -67,7 +67,7 @@ const resources = [
   },
   {
     title: "Exercise videos (Urdu)",
-    urduTitle: "ورزش کی ویڈیوز ",
+    urduTitle: "ورزش کی (ویڈیوز) ",
     description: "click the subtitles button to change the language",
     urduDescription: "زبان تبدیل کرنے کے لیے سب ٹائٹلز بٹن پر کلک کریں",
     href: "https://www.youtube.com/watch?v=MK4nyI70WcY&list=PLQDlTVSOXD9G7lcLj3KJC2SH5WAT_bPmO",
@@ -75,7 +75,7 @@ const resources = [
   },
   {
     title: "How to measure your waist video (Urdu)",
-    urduTitle: "کمر کی پیمائش کیسے کریں ویڈیو ",
+    urduTitle: "کمر کی پیمائش کیسے کریں (ویڈیو) ",
     description: "click the subtitles button to change the language",
     urduDescription: "زبان تبدیل کرنے کے لیے سب ٹائٹلز بٹن پر کلک کریں",
     href: "https://www.youtube.com/watch?v=e4cUSNq_OY8",
@@ -83,7 +83,7 @@ const resources = [
   },
   {
     title: "How to test your blood sugars video (Urdu)",
-    urduTitle: "بلڈ شوگر کی جانچ کیسے کریں ویڈیو ",
+    urduTitle: "بلڈ شوگر کی جانچ کیسے کریں (ویڈیو) ",
     description: "click the subtitles button to change the language",
     urduDescription: "زبان تبدیل کرنے کے لیے سب ٹائٹلز بٹن پر کلک کریں",
     href: "https://www.youtube.com/watch?v=e4cUSNq_OY8",
@@ -91,13 +91,13 @@ const resources = [
   },
   {
     title: "Five Ways to Move More exercise posters (Urdu)",
-    urduTitle: "مزید حرکت کے پانچ طریقے ورزش کے پوسٹرز ",
+    urduTitle: "مزید حرکت کے پانچ طریقے/ ورزش کے پوسٹرز ",
     href: "/urdu-guides/five-ways-to-move-more",
     type: "page",
   },
   {
     title: "Enjoy Food booklet for a South Asian diet",
-    urduTitle: "جنوبی ایشیائی غذا کے لیے کھانے سے لطف اندوز ہوں کتابچہ",
+    urduTitle: "جنوبی ایشیائی کھانے سے لطف اندوز ہوں (کتابچہ)",
     href: "/urdu-guides/enjoy-food",
     type: "page",
   },
@@ -107,35 +107,41 @@ export default function UrduGuidesClient() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="bg-white py-16 md:py-20 border-b-6 border-[#DB3B00]" dir="rtl">
-        <div className="max-w-7xl mx-auto px-6">
+      <section
+        className="bg-white py-16 md:py-20 border-b-6 border-[#DB3B00] px-6 lg:px-0"
+        dir="rtl"
+      >
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
             ذیابیطس اردو میں معلومات
           </h1>
           <div className="flex flex-col gap-4 mt-6">
             <Image src={DiabetesUk} alt="diabetes-uk" />
             <p className="text-gray-700 italic text-sm">
-            (This content is provided by Diabetes UK and is used with their permission. For more information click{" "}
-            <a
-              href="https://www.diabetes.org.uk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              here)
-            </a>
-          </p>
+              (This content is provided by Diabetes UK and is used with their
+              permission. For more information,{" "}
+              <a
+                href="https://www.diabetes.org.uk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                click here)
+              </a>
+            </p>
           </div>
         </div>
       </section>
 
       {/* Resources List Section */}
-      <section className="bg-gray-50 py-12 md:py-16" dir="rtl">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-gray-50 py-12 md:py-16 px-6 lg:px-0" dir="rtl">
+        <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <ul className="space-y-4">
             {resources.map((resource, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-primary ml-3 mt-1.5 text-xl">&#8226;</span>
+                <span className="text-primary ml-3 mt-1.5 text-xl">
+                  &#8226;
+                </span>
                 <div className="text-right">
                   <div>
                     <Link
@@ -145,9 +151,6 @@ export default function UrduGuidesClient() {
                     >
                       {resource.urduTitle}
                     </Link>
-                    {/* <span className="text-gray-700 mr-2 text-lg md:text-xl">
-                      / {resource.title}
-                    </span> */}
                   </div>
                   {resource.type === "pdf" && resource.size && (
                     <div className="text-gray-600 text-md mt-1">
