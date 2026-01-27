@@ -21,12 +21,13 @@ import Service2 from "../public/service-icon-2.png";
 import Service4 from "../public/service-icon-4.png";
 import Story from "../public/story-placeholder.webp";
 import SupportBG from "../public/support-section-bg.webp";
+import GlpInjection from "../public/glp-banner-injection.png";
 
 const heroSlides = [
   {
     image: Hero1.src,
     heading: "A new chapter in diabesity care",
-    body: "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
+    body: "Explore how modern medical science — including GLP-1–based therapies — is reshaping the understanding of obesity and type 2 diabetes.",
     ctaText: "Learn more",
     ctaUrl: "/resources",
     videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
@@ -55,7 +56,7 @@ const newServices = [
   {
     icon: Service1.src,
     title: "Understand diabesity",
-    body: "Gain a clear understanding of the link between type 2 diabetes and obesity. Knowledge is the first powerful step toward managing your health.",
+    body: "Gain a clear understanding of the link between type 2 diabetes and obesity, including diabesity, GLP-1 biology, and modern treatment pathways.",
     links: [{ text: "Learn more", url: "/learn" }],
   },
   {
@@ -67,7 +68,7 @@ const newServices = [
   {
     icon: Service4.src,
     title: "Daily care & monitoring",
-    body: "Consistent self-care is key to managing your condition. Find practical guides on monitoring your blood sugar and building a healthy daily routine.",
+    body: "Consistent self-care is key to managing your condition. Find practical guides to track blood sugar, recognize symptoms, and support day-to-day diabetes care.",
     links: [{ text: "View guides", url: "/daily-care-and-monitoring" }],
   },
 ];
@@ -961,6 +962,65 @@ export default function Home({ blogs, news }: HomeClientProps) {
                   allowFullScreen
                 ></iframe>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GLP Hub Section */}
+      <section className="relative bg-secondary overflow-visible py-10 mb-8 lg:mb-20">
+        <div className="relative z-10 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
+          {/* Mobile Layout */}
+          <div className="flex flex-col gap-6 lg:hidden">
+            <h2 className="text-2xl font-bold uppercase text-white">
+              GLP-1 &amp; Diabesity: A Modern Clinical Perspective
+            </h2>
+            <p className="text-md text-white leading-relaxed">
+              Learn how appetite regulation, insulin signalling, and metabolic health are connected.
+            </p>
+            <div>
+              <Link href="/glp-hub">
+                <Button variant="primary" size="md" className="px-6">
+                  Explore the GLP-1 Hub
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:flex items-center gap-16">
+            {/* Left - Heading */}
+            <div className="text-white flex-shrink-0">
+              <h2 className="text-2xl md:text-3xl font-bold uppercase leading-tight pl-20">
+                GLP-1 &amp; Diabesity: <br/> A Modern Clinical <br/> Perspective
+              </h2>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {/* Middle - Description */}
+              <div className="text-white max-w-xs">
+                <p className="text-md leading-relaxed">
+                  Learn how appetite regulation, insulin signalling, and metabolic health are connected.
+                </p>
+              </div>
+
+              {/* Button */}
+              <div className="flex-shrink-0">
+                <Link href="/glp-hub">
+                  <Button variant="primary" size="md" className="px-6">
+                    Explore the GLP-1 Hub
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right - Pakistan Map (extends beyond section height) */}
+            <div className="relative flex-1 flex justify-end">
+              <img
+                src={GlpInjection.src}
+                alt="Pakistan Map"
+                className="absolute top-1/2 -translate-y-1/2 right-25 h-[300px] w-auto object-fill"
+              />
             </div>
           </div>
         </div>

@@ -10,81 +10,21 @@ const careItems = [
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="font-bold text-lg mb-3">GLP-1 Pen (Injectable)</h3>
+          <h3 className="font-bold text-lg mb-3">Summary</h3>
           <p className="text-gray-700 mb-3">
-            A GLP-1 pen is an injectable tool that supports sugar control and
-            appetite regulation. It is usually used once a week or once a day
-            depending on your doctor&apos;s plan.
+            Many people with diabetes use prescription devices such
+            as GLP-1 injection pens or insulin pens as part of their
+            treatment plan. These devices are designed to be safe
+            and simple when used correctly, but proper technique,
+            hygiene, and storage are essential to avoid dosing errors,
+            infections, or reduced effectiveness.
           </p>
-
-          <h4 className="font-bold mb-2">What you need:</h4>
-          <ul className="list-disc pl-6 mb-4 space-y-1">
-            <li>Pen</li>
-            <li>New sterile needle</li>
-            <li>Alcohol swab</li>
-            <li>Sharps container (or thick bottle with screw lid)</li>
-            <li>Cool pouch during hot weather</li>
-          </ul>
-
-          <h4 className="font-bold mb-2">How to use (simple steps):</h4>
-          <ol className="list-decimal pl-6 mb-4 space-y-1">
-            <li>
-              Check the pen label, expiry date, and that the liquid looks clear
-            </li>
-            <li>Attach a new needle</li>
-            <li>If the instructions mention &quot;priming&quot;, do it once</li>
-            <li>Choose an area on your abdomen, thigh, or upper arm.</li>
-            <li>Inject under the skin</li>
-            <li>Rotate spots each time to avoid lumps</li>
-            <li>Throw the used needle into a sharp container right away</li>
-          </ol>
-
-          <h4 className="font-bold mb-2">Storage basics:</h4>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Keep unopened pens in the fridge (not frozen)</li>
-            <li>
-              In-use pens can stay at room temperature (avoid heat and sunlight)
-            </li>
-          </ul>
-        </div>
-
-        <hr className="border-gray-300" />
-
-        <div>
-          <h3 className="font-bold text-lg mb-3">Insulin (Pens or Vials)</h3>
-          <p className="text-gray-700 mb-3">
-            Insulin may be used daily or as needed.
+          <p className="text-gray-700 font-bold mb-3">
+            Read the full practical guide:{" "}
+            <a href="/how-to#how-to-use-prescription-treatments" className="underline">
+              How to use prescription treatments (pens, pills, and practical tips)
+            </a>
           </p>
-
-          <h4 className="font-bold mb-2">What you need:</h4>
-          <ul className="list-disc pl-6 mb-4 space-y-1">
-            <li>Insulin pen or vial</li>
-            <li>New needle or syringe</li>
-            <li>Alcohol swabs</li>
-            <li>Glucometer & strips</li>
-            <li>Sharps container</li>
-            <li>Fast-acting sugar source (for low sugar episodes)</li>
-          </ul>
-
-          <h4 className="font-bold mb-2">How to use (simple steps):</h4>
-          <ol className="list-decimal pl-6 mb-4 space-y-1">
-            <li>
-              Confirm which insulin you are using and when it should be taken
-            </li>
-            <li>Prime the pen if required</li>
-            <li>Inject under the skin and rotate areas</li>
-            <li>Check blood sugar as advised</li>
-            <li>Note down readings and how you feel</li>
-          </ol>
-
-          <h4 className="font-bold mb-2">Storage basics:</h4>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Keep unopened insulin in the fridge (not frozen)</li>
-            <li>
-              In-use insulin can stay at room temperature for around 28 days
-              (avoid sunlight)
-            </li>
-          </ul>
         </div>
       </div>
     ),
@@ -168,63 +108,31 @@ const careItems = [
     category: "Services" as Category,
   },
   {
-    title: "Types of medication (Injectables only — no oral medicines)",
+    title: "Types of medication (Injectables)",
     content: (
       <div className="space-y-6">
         <div>
-          <h3 className="font-bold text-lg mb-3">A. GLP-1 Injectable Pen</h3>
+          <h3 className="font-bold text-lg mb-3">1- Paragraphy Orientation</h3>
 
-          <h4 className="font-bold mb-2">These help with:</h4>
-          <ul className="list-disc pl-6 mb-4 space-y-1">
-            <li>Appetite control</li>
-            <li>Weight management</li>
-            <li>Better sugar levels</li>
-          </ul>
-
-          <h4 className="font-bold mb-2">Common experiences:</h4>
-          <ul className="list-disc pl-6 mb-4 space-y-1">
-            <li>Reduced hunger</li>
-            <li>Smaller meal portions</li>
-            <li>Occasional nausea in the beginning</li>
-            <li>Better control of cravings</li>
-          </ul>
-
-          <h4 className="font-bold mb-2">Important notes:</h4>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Do not use if you have certain rare thyroid conditions</li>
-            <li>Not suitable during pregnancy or breastfeeding</li>
-            <li>
-              If you&apos;re also on insulin, your other doses may need
-              adjustment
-            </li>
-          </ul>
-        </div>
-
-        <hr className="border-gray-300" />
-
-        <div>
-          <h3 className="font-bold text-lg mb-3">B. Insulin (Pen or Vial)</h3>
           <p className="text-gray-700 mb-3">
-            Insulin helps move sugar from your blood into your cells. It can be
-            long-acting (background insulin), meal-time insulin, or a premixed
-            version.
+            Injectable treatments for diabetes include <span className="font-bold">GLP-1
+            receptor agonists</span> and <span className="font-bold">insulin</span>, which work in different
+            ways to help control blood sugar. GLP-1 medications
+            support appetite regulation, improve insulin response,
+            and may help with weight loss, while insulin replaces or
+            supplements the body's natural insulin to control glucose
+            levels. These medicines are prescribed based on
+            individual needs, blood sugar patterns, and overall health,
+            and they are commonly used in Pakistan under medical
+            supervision.
           </p>
 
-          <h4 className="font-bold mb-2">What it helps with:</h4>
-          <ul className="list-disc pl-6 mb-4 space-y-1">
-            <li>High blood sugar levels</li>
-            <li>Stabilizing daily energy</li>
-            <li>Reducing long-term health risks</li>
-          </ul>
-
-          <h4 className="font-bold mb-2">Important notes:</h4>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Learn how to recognize low sugar signs</li>
-            <li>Always have a fast-acting sugar option nearby</li>
-            <li>
-              Illness, dehydration, or steroids can affect your insulin needs
-            </li>
-          </ul>
+          <p className="text-gray-700 font-bold mb-3">
+            Learn more about injectable diabetes medications:{" "}
+            <a href="/medication#injectables-handling" className="underline">
+              GLP-1 agonists &amp; newer agents – what to know in Pakistan
+            </a>
+          </p>
         </div>
       </div>
     ),

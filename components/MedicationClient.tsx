@@ -7,10 +7,6 @@ const medicationSections = [
     title: "First-line & Common Diabetes Drugs — Plain-language overview",
   },
   {
-    id: "glp1-agonists",
-    title: "GLP-1 Agonists & Newer Agents — What to know in Pakistan",
-  },
-  {
     id: "injectables-handling",
     title: "Injectables: Handling & Storage — Practical safety",
   },
@@ -55,32 +51,6 @@ const medicationContent = [
           <strong>doses, timing, and technique</strong> are clear. None of this
           replaces lifestyle; rather, medicines make lifestyle changes{" "}
           <strong>more effective and safer</strong>.
-        </p>
-      </div>
-    ),
-  },
-  {
-    id: "glp1-agonists",
-    title: "GLP-1 Agonists & Newer Agents — What to know in Pakistan",
-    content: (
-      <div className="space-y-6">
-        <p className="text-gray-700 leading-relaxed">
-          <strong>GLP-1 receptor agonists</strong> (e.g.,{" "}
-          <strong>Ozempic/semaglutide</strong>,{" "}
-          <strong>Rybelsus oral semaglutide</strong>,{" "}
-          <strong>liraglutide</strong>) act on hunger/fullness and insulin
-          pathways. Many people notice{" "}
-          <strong>reduced appetite, steadier sugars, and weight loss</strong>.
-          Typical side effects are{" "}
-          <strong>nausea, constipation, or reflux</strong> early on—often
-          improved by <strong>slow dose titration</strong> and{" "}
-          <strong>smaller meals</strong>. These medicines require medical
-          supervision: they're not for everyone (e.g., certain endocrine
-          conditions, pregnancy/breastfeeding). Never combine{" "}
-          <strong>Ozempic and Rybelsus</strong>; they're the{" "}
-          <strong>same molecule</strong> via different routes. If supplies vary
-          by city, discuss <strong>alternatives and bridging plans</strong> with
-          your clinician.
         </p>
       </div>
     ),

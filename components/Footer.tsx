@@ -59,7 +59,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            © <span className="text-primary">Diabesity</span> 2026. All Rights
+            © <span className="text-primary">Diabesity</span> {new Date().getFullYear()}. All Rights
             Reserved
           </p>
           {/* Socials */}
