@@ -6,10 +6,155 @@ import { useState } from "react";
 import DietIcon from "../../public/faqs-diet.svg";
 import EducationIcon from "../../public/faqs-education.svg";
 import HealthIcon from "../../public/faqs-health.svg";
+import GlpIcon from "../../public/faqs-glp.svg";
 
 const faqs = [
+    {
+    question: "What is GLP-1?",
+    answer:
+      "GLP-1 (glucagon-like peptide-1) is a natural hormone released from the gut after eating. It helps regulate appetite, digestion, and blood sugar levels by coordinating signals between the gut, pancreas, and brain.",
+    category: "GLP" as Category,
+  },
   {
-    question: "I’m at a restaurant — what should I order?",
+    question: "Why is GLP-1 important in diabesity?",
+    answer:
+      "Diabesity involves both obesity and Type 2 diabetes, which share hormonal pathways. GLP-1 influences hunger, satiety, and post-meal insulin response, making it a key biological link between excess weight and elevated blood sugar.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is GLP-1 a medication?",
+    answer:
+      "No. GLP-1 is a hormone naturally produced by the body. Some medical therapies are designed to support or enhance GLP-1 pathways, but GLP-1 itself is a biological signal, not a drug.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is GLP-1 the same as insulin?",
+    answer:
+      "No. Insulin lowers blood sugar directly. GLP-1 helps the body release insulin appropriately after meals and also influences appetite and digestion. They are different hormones with different roles.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How does GLP-1 affect appetite?",
+    answer:
+      "GLP-1 sends signals to the brain that promote feelings of fullness. When GLP-1 signaling is effective, appetite is better regulated and overeating becomes less likely.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Why do some people feel hungry even after eating?",
+    answer:
+      "Persistent hunger can occur when appetite-regulating signals between the gut and brain are disrupted. Reduced effectiveness of hormones such as GLP-1 may cause the brain to continue signaling hunger despite adequate food intake.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How does GLP-1 influence blood sugar?",
+    answer:
+      "GLP-1 helps stimulate insulin release after meals, slows digestion, and reduces excessive glucose release by the liver. Together, these actions help limit post-meal blood sugar spikes.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Does GLP-1 work the same way in everyone?",
+    answer:
+      "No. Hormonal responses vary between individuals based on genetics, metabolic health, and underlying conditions. GLP-1 signaling may be stronger or weaker depending on individual physiology.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Can GLP-1 signaling become impaired?",
+    answer:
+      "Yes. In obesity and Type 2 diabetes, GLP-1 signaling may be reduced or less effective, contributing to increased hunger, difficulty maintaining weight loss, and poorer blood sugar control.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is impaired GLP-1 signaling caused by lifestyle alone?",
+    answer:
+      "No. While lifestyle factors play a role, hormonal regulation is influenced by genetics, metabolism, long-term weight changes, and biological adaptation, not willpower alone.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How does GLP-1 relate to weight regain?",
+    answer:
+      "After weight loss, the body often increases hunger signals and reduces energy expenditure. Reduced effectiveness of appetite-regulating hormones such as GLP-1 contributes to the tendency to regain weight.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Does GLP-1 replace healthy eating and physical activity?",
+    answer:
+      "No. Healthy habits remain important. GLP-1 influences how the body responds to hunger and food, which can make lifestyle changes easier to sustain when hormonal signals are aligned.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is GLP-1 relevant only for people with diabetes?",
+    answer:
+      "No. GLP-1 plays a role in appetite and weight regulation even in people without diabetes. Its relevance extends across obesity, metabolic health, and Type 2 diabetes.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "What role does GLP-1 play in Type 2 diabetes?",
+    answer:
+      "In Type 2 diabetes, GLP-1 helps coordinate insulin release and appetite regulation. Disruption of this pathway contributes to both elevated blood sugar and excess weight.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Does GLP-1 replace insulin in Type 1 diabetes?",
+    answer:
+      "No. In Type 1 diabetes, insulin therapy is essential and cannot be replaced. GLP-1-related pathways do not substitute for insulin and are not standard treatment.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Can GLP-1 affect digestion?",
+    answer:
+      "Yes. GLP-1 slows stomach emptying, which helps regulate how quickly glucose enters the bloodstream and contributes to feelings of fullness after meals.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Why is GLP-1 often discussed alongside appetite and hormones?",
+    answer:
+      "Because GLP-1 is part of a broader hormonal network that regulates hunger, satiety, digestion, and glucose metabolism. It acts as a communication signal rather than a single isolated factor.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is GLP-1 a short-term signal or a long-term regulator?",
+    answer:
+      "GLP-1 acts in the short term after meals, but long-term patterns of GLP-1 signaling influence appetite behavior, metabolic balance, and weight regulation over time.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Does aging affect GLP-1 signaling?",
+    answer:
+      "Hormonal responses, including GLP-1 signaling, can change with age due to shifts in metabolism, muscle mass, and insulin sensitivity.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How does stress affect GLP-1 and appetite?",
+    answer:
+      "Chronic stress can disrupt hormonal balance, including appetite-regulating pathways. This may indirectly affect how signals like GLP-1 are perceived or acted upon by the body.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is GLP-1 involved in cravings?",
+    answer:
+      "GLP-1 influences satiety and reward signaling related to food intake. When its signaling is impaired, cravings and difficulty stopping eating may increase.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Why is GLP-1 considered a “biological signal”?",
+    answer:
+      "GLP-1 communicates information between the gut, brain, and pancreas. It does not force outcomes but helps guide how the body responds to food and hunger.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Can GLP-1 levels be measured easily?",
+    answer:
+      "GLP-1 levels are not routinely measured in standard clinical testing. Its effects are usually assessed through metabolic patterns rather than direct hormone measurement.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is information about GLP-1 on this site medical advice?",
+    answer:
+      "No. Content related to GLP-1 is provided for educational purposes only and does not replace consultation with a qualified healthcare professional.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "I'm at a restaurant — what should I order?",
     answer:
       "Eating out doesn’t have to mean giving up control. In Pakistan, menus are full of tempting carb-heavy dishes, but you can make smart swaps. Choose grilled or baked meats over fried. Ask for roti made from whole wheat instead of naan, and skip the extra oil. Load your plate with salad or sautéed vegetables before touching the rice or bread. If you’re at a dhaba, go for daal with a side of mixed sabzi instead of biryani. And remember — portion size matters. Share a dish with a friend or ask for half to be packed. You’ll leave satisfied, not stuffed, and your blood sugar will thank you.",
     category: "Diet" as Category,
@@ -398,6 +543,8 @@ export default function NewsClient() {
         "Medical guidance for managing your condition, from monitoring to overall wellness.",
       bgColor: "bg-diet-500",
       hoverColor: "hover:bg-diet-600",
+      ringColor: "ring-green-500/30",
+      titleColor: "text-green-500",
     },
     {
       category: "Education" as Category,
@@ -406,6 +553,8 @@ export default function NewsClient() {
         "Understand the science of diabesity and learn how to interpret your lab results.",
       bgColor: "bg-orange-500",
       hoverColor: "hover:bg-orange-600",
+      ringColor: "ring-orange-500/30",
+      titleColor: "text-orange-500",
     },
     {
       category: "Diet" as Category,
@@ -414,6 +563,18 @@ export default function NewsClient() {
         "Get practical nutrition tips for making smart food choices and building healthy meals.",
       bgColor: "bg-yellow-500",
       hoverColor: "hover:bg-yellow-600",
+      ringColor: "ring-yellow-500/30",
+      titleColor: "text-yellow-500",
+    },
+    {
+      category: "GLP" as Category,
+      title: "GLP-1",
+      description:
+        "Get key information on this newer class of medication for managing diabetes and weight.",
+      bgColor: "bg-primary",
+      hoverColor: "hover:bg-primary/90",
+      ringColor: "ring-primary/30",
+      titleColor: "text-primary",
     },
   ];
 
@@ -438,97 +599,51 @@ export default function NewsClient() {
       {/* Category Filter Section */}
       <section className="bg-white px-6 lg:px-0">
         <div className="max-w-5xl lg:max-w-6xl mx-auto">
-          {/* Category Icons - Triangular Layout */}
+          {/* Category Icons */}
           <div className="max-w-5xl mx-auto mb-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4 items-start">
-              {/* Health - Top Left */}
-              <div className="flex flex-col lg:flex-row-reverse items-center text-center gap-4">
-                <button
-                  onClick={() => {
-                    setSelectedCategory("Health");
-                    setOpenFaqIndex(null);
-                  }}
-                  className={`w-30 h-30 rounded-full flex items-center justify-center transition-all lg:mb-6 overflow-hidden ${
-                    categoryInfo[0].bgColor
-                  } ${
-                    selectedCategory === "Health"
-                      ? "ring-2 ring-offset-4 ring-green-500/30"
-                      : categoryInfo[0].hoverColor
-                  }`}
-                >
-                  <img
-                    src={HealthIcon.src}
-                    alt="Health"
-                    className="w-30 h-30 transition-transform hover:scale-110"
-                  />
-                </button>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-2xl font-bold text-green-500 mb-2">
-                    {categoryInfo[0].title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed max-w-xs">
-                    {categoryInfo[0].description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Education - Top Right */}
-              <div className="flex flex-col lg:flex-row items-center text-center gap-4">
-                <button
-                  onClick={() => {
-                    setSelectedCategory("Education");
-                    setOpenFaqIndex(null);
-                  }}
-                  className={`w-30 h-30 rounded-full flex items-center justify-center transition-all lg:mb-6 overflow-hidden ${
-                    categoryInfo[1].bgColor
-                  } ${
-                    selectedCategory === "Education"
-                      ? "ring-2 ring-offset-4 ring-orange-500/30"
-                      : categoryInfo[1].hoverColor
-                  }`}
-                >
-                  <img
-                    src={EducationIcon.src}
-                    alt="Education"
-                    className="w-30 h-30 transition-transform hover:scale-110"
-                  />
-                </button>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-2xl font-bold text-orange-500 mb-2">
-                    {categoryInfo[1].title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed max-w-xs">
-                    {categoryInfo[1].description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Diet - Bottom Center */}
-              <div className="flex flex-col items-center text-center gap-4 md:col-span-2 lg:-mt-12">
-                <button
-                  onClick={() => {
-                    setSelectedCategory("Diet");
-                    setOpenFaqIndex(null);
-                  }}
-                  className={`w-30 h-30 rounded-full flex items-center justify-center transition-all overflow-hidden ${
-                    categoryInfo[2].bgColor
-                  } ${
-                    selectedCategory === "Diet"
-                      ? "ring-2 ring-offset-4 ring-yellow-500/30"
-                      : categoryInfo[2].hoverColor
-                  }`}
-                >
-                  <img src={DietIcon.src} alt="Diet" className="w-30 h-30 transition-transform hover:scale-110" />
-                </button>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="text-2xl font-bold text-yellow-500 mb-2">
-                    {categoryInfo[2].title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed max-w-xs">
-                    {categoryInfo[2].description}
-                  </p>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-4">
+              {categoryInfo.map((info, index) => {
+                const icons = [HealthIcon, EducationIcon, DietIcon, GlpIcon];
+                const Icon = icons[index];
+                return (
+                  <div
+                    key={info.category}
+                    className={`flex flex-col items-center text-center gap-4 ${
+                      index % 2 === 0 ? "lg:flex-row-reverse" : "lg:flex-row"
+                    }`}
+                  >
+                    <button
+                      onClick={() => {
+                        setSelectedCategory(info.category);
+                        setOpenFaqIndex(null);
+                      }}
+                      className={`w-30 h-30 rounded-full flex items-center justify-center transition-all overflow-hidden ${
+                        info.bgColor
+                      } ${
+                        selectedCategory === info.category
+                          ? `ring-2 ring-offset-4 ${info.ringColor}`
+                          : info.hoverColor
+                      }`}
+                    >
+                      <img
+                        src={Icon.src}
+                        alt={info.title}
+                        className={`w-30 h-30 transition-transform hover:scale-120 ${
+                          selectedCategory === info.category ? "scale-120" : ""
+                        }`}
+                      />
+                    </button>
+                    <div className="flex flex-col items-center text-center">
+                      <h3 className={`text-2xl font-bold ${info.titleColor} mb-2`}>
+                        {info.title}
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed max-w-xs">
+                        {info.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
