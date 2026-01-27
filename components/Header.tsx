@@ -21,17 +21,31 @@ interface MenuColumn {
 
 const menuItems: MenuItem[] = [
   {
-    label: "Learn",
+    label: "GLP-1 & Diabesity",
     columns: [
       {
-        heading: "Learn",
+        heading: "GLP-1 & Diabesity",
         items: [
           {
             label: "What is Diabesity?",
-            url: "/learn#obesity-diabetes-connection",
+            url: "/glp-diabesity#obesity-diabetes-connection",
           },
-          { label: "What is Diabetes?", url: "/learn#diabetes-101" },
-          { label: "What is Obesity?", url: "/learn#obesity-101" },
+          { label: "What is Diabetes?", url: "/glp-diabesity#diabetes-101" },
+          { label: "What is Obesity?", url: "/glp-diabesity#obesity-101" },
+          {
+            label: "GLP-1 Agonists & Newer Agents",
+            url: "/glp-diabesity#glp1-agonists",
+          },
+          { label: "Clinical Corner", url: "/glp-diabesity#clinical-corner" },
+          {
+            label: "GLP-1 Based Treatments",
+            url: "/glp-diabesity#glp1-treatments",
+          },
+        ],
+      },
+      {
+        heading: "Learn",
+        items: [
           {
             label: "Risk Factors & Screening",
             url: "/learn#risk-factors-screening",
@@ -85,10 +99,6 @@ const menuItems: MenuItem[] = [
             url: "/medication#first-line-drugs",
           },
           {
-            label: "GLP-1 Agonists & Newer Agents",
-            url: "/medication#glp1-agonists",
-          },
-          {
             label: "Injectables: Handling & Storage",
             url: "/medication#injectables-handling",
           },
@@ -106,6 +116,23 @@ const menuItems: MenuItem[] = [
           },
         ],
       },
+    ],
+  },
+  {
+    label: "Tools",
+    columns: [
+      {
+        heading: "Tools",
+        items: [
+          { label: "BMI Calculator", url: "#" },
+          { label: "Calorie Tracker", url: "#" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Resources",
+    columns: [
       {
         heading: "How To",
         items: [
@@ -129,23 +156,6 @@ const menuItems: MenuItem[] = [
           },
         ],
       },
-    ],
-  },
-  {
-    label: "Tools",
-    columns: [
-      {
-        heading: "Tools",
-        items: [
-          { label: "BMI Calculator", url: "#" },
-          { label: "Calorie Tracker", url: "#" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Resources",
-    columns: [
       {
         heading: "Resources",
         items: [

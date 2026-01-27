@@ -30,6 +30,8 @@ export default function Breadcrumbs() {
     "daily-care-and-monitoring": "Daily Care and Monitoring",
     "privacy-policy": "Privacy Policy",
     "terms-of-use": "Terms of Use",
+    "glp-diabesity": "GLP-1 & Diabesity",
+    "glp-hub": "The GLP-1 Hub",
   };
 
   const resourceTabMap: Record<string, string> = {
@@ -61,7 +63,7 @@ export default function Breadcrumbs() {
 
   return (
     <nav
-      className="bg-gray-50 border-b border-gray-200"
+      className="bg-gray-50 border-b border-gray-200 sticky top-[52px] lg:top-[64px] z-40"
       aria-label="Breadcrumb"
     >
       <div className="max-w-4xl lg:max-w-6xl mx-auto py-3 px-6 lg:px-0">
