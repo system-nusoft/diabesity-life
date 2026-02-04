@@ -808,9 +808,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 discovery, and hope to find inspiration and a shared
                 understanding.
               </p>
-              <Button variant="primary" size="sm" className="px-4">
+              {/* <Button variant="primary" size="sm" className="px-4">
                 Read all stories
-              </Button>
+              </Button> */}
             </div>
 
             <div className="w-full">
@@ -849,9 +849,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 understanding.
               </p>
               <div>
-                <Button variant="primary" size="md" className="px-8">
+                {/* <Button variant="primary" size="md" className="px-8">
                   Read all stories
-                </Button>
+                </Button> */}
               </div>
             </div>
 
