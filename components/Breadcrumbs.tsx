@@ -32,6 +32,9 @@ export default function Breadcrumbs() {
     "terms-of-use": "Terms of Use",
     "glp-diabesity": "GLP-1 & Diabesity",
     "glp-hub": "The GLP-1 Hub",
+    "bmi-calculator": "BMI Calculator",
+    "calorie-counter": "Calorie Counter",
+    "hba1c-translator": "HbA1c Translator",
   };
 
   const resourceTabMap: Record<string, string> = {

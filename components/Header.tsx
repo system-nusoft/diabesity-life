@@ -124,8 +124,9 @@ const menuItems: MenuItem[] = [
       {
         heading: "Tools",
         items: [
-          { label: "BMI Calculator", url: "#" },
-          { label: "Calorie Tracker", url: "#" },
+          { label: "BMI Calculator", url: "/bmi-calculator" },
+          { label: "Calorie Counter", url: "/calorie-counter" },
+          { label: "HbA1c Translator", url: "/hba1c-translator" },
         ],
       },
     ],
