@@ -36,7 +36,7 @@ function calculateFromHba1c(hba1c: number): Result | null {
 
 function calculateFromGlucose(
   glucose: number,
-  unit: GlucoseUnit
+  unit: GlucoseUnit,
 ): Result | null {
   let glucoseMgDl = glucose;
   if (unit === "mmol/L") {
@@ -124,7 +124,7 @@ export default function Hba1cTranslatorClient() {
       const maxVal = glucoseUnit === "mg/dL" ? 500 : 28;
       if (glucose < minVal || glucose > maxVal) {
         setError(
-          `Glucose value should be between ${minVal} and ${maxVal} ${glucoseUnit}.`
+          `Glucose value should be between ${minVal} and ${maxVal} ${glucoseUnit}.`,
         );
         return;
       }
@@ -142,7 +142,7 @@ export default function Hba1cTranslatorClient() {
 
   const toggleMode = () => {
     setMode((prev) =>
-      prev === "hba1c-to-glucose" ? "glucose-to-hba1c" : "hba1c-to-glucose"
+      prev === "hba1c-to-glucose" ? "glucose-to-hba1c" : "hba1c-to-glucose",
     );
     setResult(null);
     setError(null);
@@ -173,9 +173,7 @@ export default function Hba1cTranslatorClient() {
             <div className="flex items-center justify-center gap-4 mb-8">
               <span
                 className={`text-sm font-medium ${
-                  mode === "hba1c-to-glucose"
-                    ? "text-primary"
-                    : "text-gray-400"
+                  mode === "hba1c-to-glucose" ? "text-primary" : "text-gray-400"
                 }`}
               >
                 HbA1c → Glucose
@@ -189,9 +187,7 @@ export default function Hba1cTranslatorClient() {
               </button>
               <span
                 className={`text-sm font-medium ${
-                  mode === "glucose-to-hba1c"
-                    ? "text-primary"
-                    : "text-gray-400"
+                  mode === "glucose-to-hba1c" ? "text-primary" : "text-gray-400"
                 }`}
               >
                 Glucose → HbA1c
@@ -393,8 +389,8 @@ export default function Hba1cTranslatorClient() {
               <p className="text-xs text-gray-600">
                 {/* <strong>Formula:</strong> eAG (mg/dL) = 28.7 × HbA1c − 46.7 */}
                 <strong>Note:</strong> These values are estimates. Actual blood
-                glucose can vary. Always consult your healthcare
-                provider for interpretation.
+                glucose can vary. Always consult your healthcare provider for
+                interpretation.
               </p>
             </div>
           </div>

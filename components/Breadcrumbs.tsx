@@ -35,6 +35,7 @@ export default function Breadcrumbs() {
     "bmi-calculator": "BMI Calculator",
     "calorie-counter": "Calorie Counter",
     "hba1c-translator": "HbA1c Translator",
+    "hypo-wallet-card": "Hypo Emergency Card",
   };
 
   const resourceTabMap: Record<string, string> = {

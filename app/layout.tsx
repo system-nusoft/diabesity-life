@@ -33,7 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ibmPlexSans.variable} ${ibmPlexSansCondensed.variable} antialiased`}>
+      <body
+        className={`${ibmPlexSans.variable} ${ibmPlexSansCondensed.variable} antialiased`}
+      >
         <SidebarProvider>
           <Header />
           <Breadcrumbs />

@@ -15,46 +15,56 @@ interface BmiResult {
   childNote?: string;
 }
 
-function classifyAdultBmi(bmi: number): { category: string; color: string; description: string } {
+function classifyAdultBmi(bmi: number): {
+  category: string;
+  color: string;
+  description: string;
+} {
   if (bmi < 18.5) {
     return {
       category: "Underweight",
       color: "#3b82f6",
-      description: "A BMI below 18.5 may indicate insufficient body weight. Consider consulting a healthcare provider about nutrition.",
+      description:
+        "A BMI below 18.5 may indicate insufficient body weight. Consider consulting a healthcare provider about nutrition.",
     };
   }
   if (bmi < 25) {
     return {
       category: "Normal",
       color: "#22c55e",
-      description: "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
+      description:
+        "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
     };
   }
   if (bmi < 30) {
     return {
       category: "Overweight",
       color: "#f59e0b",
-      description: "A BMI of 25–29.9 indicates overweight. Small changes in diet and activity can help reduce health risks.",
+      description:
+        "A BMI of 25–29.9 indicates overweight. Small changes in diet and activity can help reduce health risks.",
     };
   }
   if (bmi < 35) {
     return {
       category: "Obese (Class I)",
       color: "#f97316",
-      description: "A BMI of 30–34.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
+      description:
+        "A BMI of 30–34.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
     };
   }
   if (bmi < 40) {
     return {
       category: "Obese (Class II)",
       color: "#ef4444",
-      description: "A BMI of 35–39.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
+      description:
+        "A BMI of 35–39.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
     };
   }
   return {
     category: "Obese (Class III)",
     color: "#dc2626",
-    description: "A BMI of 40 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
+    description:
+      "A BMI of 40 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
   };
 }
 
@@ -80,9 +90,10 @@ const childThresholds: number[][] = [
 function classifyChildBmi(
   bmi: number,
   age: number,
-  gender: "male" | "female"
+  gender: "male" | "female",
 ): { category: string; color: string; childNote: string } {
-  const row = childThresholds.find((r) => r[0] === Math.round(age)) ||
+  const row =
+    childThresholds.find((r) => r[0] === Math.round(age)) ||
     childThresholds[childThresholds.length - 1];
 
   const p5 = gender === "male" ? row[1] : row[4];
@@ -118,7 +129,7 @@ function calculateBmi(
   heightCm: number,
   weightKg: number,
   age: number,
-  gender: "male" | "female"
+  gender: "male" | "female",
 ): BmiResult | null {
   if (heightCm <= 0 || weightKg <= 0) return null;
   const heightM = heightCm / 100;
@@ -191,7 +202,7 @@ function BmiGauge({ bmi }: { bmi: number | null }) {
           const x2 = cx + r * Math.cos(a2);
           const y2 = cy + r * Math.sin(a2);
 
-          const sweepDeg = (seg.endPct - seg.startPct) / 100 * 180;
+          const sweepDeg = ((seg.endPct - seg.startPct) / 100) * 180;
           const largeArc = sweepDeg > 180 ? 1 : 0;
 
           return (
@@ -233,7 +244,6 @@ function BmiGauge({ bmi }: { bmi: number | null }) {
             <circle cx={cx} cy={cy} r="4" fill="white" />
           </>
         )}
-
       </svg>
     </div>
   );
@@ -262,7 +272,9 @@ export default function BmiCalculatorClient() {
       return;
     }
     if (ageNum < 2) {
-      setError("BMI calculation is not reliable for children under 2 years old.");
+      setError(
+        "BMI calculation is not reliable for children under 2 years old.",
+      );
       return;
     }
     if (ageNum > 120) {
@@ -313,7 +325,12 @@ export default function BmiCalculatorClient() {
       weightKg = w * 0.453592;
     }
 
-    const bmiResult = calculateBmi(heightCm, weightKg, Math.floor(ageNum), gender);
+    const bmiResult = calculateBmi(
+      heightCm,
+      weightKg,
+      Math.floor(ageNum),
+      gender,
+    );
     setResult(bmiResult);
     setShowResult(true);
   };
@@ -341,8 +358,8 @@ export default function BmiCalculatorClient() {
             </h1>
             <p className="text-gray-700 text-md leading-relaxed max-w-2xl mx-auto">
               Body Mass Index (BMI) is a simple screening tool that uses your
-              height and weight to estimate body fat. Enter your details below to
-              calculate your BMI.
+              height and weight to estimate body fat. Enter your details below
+              to calculate your BMI.
             </p>
           </div>
         </div>
@@ -505,9 +522,7 @@ export default function BmiCalculatorClient() {
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder={
-                      weightUnit === "kg"
-                        ? "Weight in kg"
-                        : "Weight in pounds"
+                      weightUnit === "kg" ? "Weight in kg" : "Weight in pounds"
                     }
                     min="0"
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -545,7 +560,10 @@ export default function BmiCalculatorClient() {
                 <>
                   <BmiGauge bmi={result.bmi} />
                   <div className="text-center mt-6">
-                    <p className="text-5xl font-bold" style={{ color: result.color }}>
+                    <p
+                      className="text-5xl font-bold"
+                      style={{ color: result.color }}
+                    >
                       {result.bmi}
                     </p>
                     <p
@@ -563,8 +581,8 @@ export default function BmiCalculatorClient() {
                 <div className="text-center">
                   <BmiGauge bmi={null} />
                   <p className="text-gray-400 mt-6 text-lg">
-                    Enter your details and click &quot;Calculate BMI&quot; to see
-                    your result.
+                    Enter your details and click &quot;Calculate BMI&quot; to
+                    see your result.
                   </p>
                 </div>
               )}
@@ -626,8 +644,8 @@ export default function BmiCalculatorClient() {
             <p className="text-gray-600 text-sm leading-relaxed">
               <strong>Note:</strong> BMI is a screening tool, not a diagnostic
               measure. It does not account for muscle mass, bone density, or
-              ethnic differences. Always consult a healthcare
-              professional for a comprehensive assessment.
+              ethnic differences. Always consult a healthcare professional for a
+              comprehensive assessment.
             </p>
           </div>
         </div>

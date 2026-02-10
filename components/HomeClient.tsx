@@ -976,7 +976,8 @@ export default function Home({ blogs, news }: HomeClientProps) {
               GLP-1 &amp; Diabesity: A Modern Clinical Perspective
             </h2>
             <p className="text-md text-white leading-relaxed">
-              Learn how appetite regulation, insulin signalling, and metabolic health are connected.
+              Learn how appetite regulation, insulin signalling, and metabolic
+              health are connected.
             </p>
             <div>
               <Link href="/glp-hub">
@@ -992,7 +993,8 @@ export default function Home({ blogs, news }: HomeClientProps) {
             {/* Left - Heading */}
             <div className="text-white flex-shrink-0">
               <h2 className="text-2xl md:text-3xl font-bold uppercase leading-tight pl-20">
-                GLP-1 &amp; Diabesity: <br/> A Modern Clinical <br/> Perspective
+                GLP-1 &amp; Diabesity: <br /> A Modern Clinical <br />{" "}
+                Perspective
               </h2>
             </div>
 
@@ -1000,7 +1002,8 @@ export default function Home({ blogs, news }: HomeClientProps) {
               {/* Middle - Description */}
               <div className="text-white max-w-xs">
                 <p className="text-md leading-relaxed">
-                  Learn how appetite regulation, insulin signalling, and metabolic health are connected.
+                  Learn how appetite regulation, insulin signalling, and
+                  metabolic health are connected.
                 </p>
               </div>
 
@@ -1242,7 +1245,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                   <button
                     onClick={() => toggleFaq(idx)}
                     className={`${getCategoryGradient(
-                      faq.category
+                      faq.category,
                     )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
                   >
                     <span>{faq.question}</span>
@@ -1272,7 +1275,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                   <button
                     onClick={() => toggleFaq(idx + 4)}
                     className={`${getCategoryGradient(
-                      faq.category
+                      faq.category,
                     )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
                   >
                     <span>{faq.question}</span>
