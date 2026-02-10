@@ -12,17 +12,20 @@ const careItems = [
         <div>
           <h3 className="font-bold text-lg mb-3">Summary</h3>
           <p className="text-gray-700 mb-3">
-            Many people with diabetes use prescription devices such
-            as GLP-1 injection pens or insulin pens as part of their
-            treatment plan. These devices are designed to be safe
-            and simple when used correctly, but proper technique,
-            hygiene, and storage are essential to avoid dosing errors,
-            infections, or reduced effectiveness.
+            Many people with diabetes use prescription devices such as GLP-1
+            injection pens or insulin pens as part of their treatment plan.
+            These devices are designed to be safe and simple when used
+            correctly, but proper technique, hygiene, and storage are essential
+            to avoid dosing errors, infections, or reduced effectiveness.
           </p>
           <p className="text-gray-700 font-bold mb-3">
             Read the full practical guide:{" "}
-            <a href="/how-to#how-to-use-prescription-treatments" className="underline">
-              How to use prescription treatments (pens, pills, and practical tips)
+            <a
+              href="/how-to#how-to-use-prescription-treatments"
+              className="underline"
+            >
+              How to use prescription treatments (pens, pills, and practical
+              tips)
             </a>
           </p>
         </div>
@@ -115,16 +118,15 @@ const careItems = [
           <h3 className="font-bold text-lg mb-3">1- Paragraphy Orientation</h3>
 
           <p className="text-gray-700 mb-3">
-            Injectable treatments for diabetes include <span className="font-bold">GLP-1
-            receptor agonists</span> and <span className="font-bold">insulin</span>, which work in different
-            ways to help control blood sugar. GLP-1 medications
-            support appetite regulation, improve insulin response,
-            and may help with weight loss, while insulin replaces or
-            supplements the body's natural insulin to control glucose
-            levels. These medicines are prescribed based on
-            individual needs, blood sugar patterns, and overall health,
-            and they are commonly used in Pakistan under medical
-            supervision.
+            Injectable treatments for diabetes include{" "}
+            <span className="font-bold">GLP-1 receptor agonists</span> and{" "}
+            <span className="font-bold">insulin</span>, which work in different
+            ways to help control blood sugar. GLP-1 medications support appetite
+            regulation, improve insulin response, and may help with weight loss,
+            while insulin replaces or supplements the body's natural insulin to
+            control glucose levels. These medicines are prescribed based on
+            individual needs, blood sugar patterns, and overall health, and they
+            are commonly used in Pakistan under medical supervision.
           </p>
 
           <p className="text-gray-700 font-bold mb-3">
@@ -362,7 +364,7 @@ export default function DailyCareClient() {
                 <button
                   onClick={() => toggleItem(index)}
                   className={`${getCategoryGradient(
-                    item.category
+                    item.category,
                   )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center hover:opacity-90 group`}
                 >
                   <span className="group-hover:text-white">{item.title}</span>

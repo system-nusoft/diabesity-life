@@ -10,11 +10,11 @@ const hubSections = [
   },
   {
     id: "diabesity-link",
-    title: "The Link: Why GLP-1 Addresses \"Diabesity\"",
+    title: 'The Link: Why GLP-1 Addresses "Diabesity"',
   },
   {
     id: "appetite-regulation",
-    title: "Appetite Regulation: Silencing the \"Food Noise\"",
+    title: 'Appetite Regulation: Silencing the "Food Noise"',
   },
   {
     id: "insulin-signaling",
@@ -53,7 +53,7 @@ const hubContent = [
   },
   {
     id: "diabesity-link",
-    title: "The Link: Why GLP-1 Addresses \"Diabesity\"",
+    title: 'The Link: Why GLP-1 Addresses "Diabesity"',
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
@@ -92,7 +92,7 @@ const hubContent = [
   },
   {
     id: "appetite-regulation",
-    title: "Appetite Regulation: Silencing the \"Food Noise\"",
+    title: 'Appetite Regulation: Silencing the "Food Noise"',
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">

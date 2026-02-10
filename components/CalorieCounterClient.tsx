@@ -21,7 +21,7 @@ interface FoodItem {
 
 function getNutrient(food: FoodItem, name: string): number | null {
   const n = food.foodNutrients.find((fn) =>
-    fn.nutrientName.toLowerCase().includes(name.toLowerCase())
+    fn.nutrientName.toLowerCase().includes(name.toLowerCase()),
   );
   return n ? Math.round(n.value * 10) / 10 : null;
 }
@@ -47,7 +47,7 @@ export default function CalorieCounterClient() {
 
     try {
       const res = await fetch(
-        `/api/food-search?query=${encodeURIComponent(searchQuery)}`
+        `/api/food-search?query=${encodeURIComponent(searchQuery)}`,
       );
       const data = await res.json();
       setResults(data.foods || []);
@@ -104,7 +104,7 @@ export default function CalorieCounterClient() {
           {/* Search Bar */}
           <div className="bg-white border border-gray-200 shadow-sm p-6 mb-8">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Search Food
+              Search food
             </label>
             <div className="flex gap-3">
               <div className="relative flex-1">
@@ -245,7 +245,7 @@ export default function CalorieCounterClient() {
                               onChange={(e) =>
                                 setQuantity(
                                   food.fdcId,
-                                  parseFloat(e.target.value) || 0.25
+                                  parseFloat(e.target.value) || 0.25,
                                 )
                               }
                               step="0.25"
@@ -275,7 +275,7 @@ export default function CalorieCounterClient() {
                         {calories !== null && (
                           <div className="bg-primary/5 border border-primary/20 px-4 py-3 mb-4 flex items-center justify-between">
                             <span className="font-medium text-gray-900">
-                              Total Calories
+                              Total calories
                             </span>
                             <span className="text-2xl font-bold text-primary">
                               {Math.round(calories * qty)} kcal
@@ -285,7 +285,7 @@ export default function CalorieCounterClient() {
 
                         {/* Nutrition Breakdown */}
                         <h4 className="text-sm font-semibold text-gray-900 mb-3">
-                          Nutrition Breakdown
+                          Nutrition breakdown
                           <span className="font-normal text-gray-500">
                             {" "}
                             (per {Math.round(servingSize * qty)}
