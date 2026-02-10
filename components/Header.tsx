@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -667,9 +667,13 @@ export default function Header() {
                   <span className="text-sm text-primary-text whitespace-nowrap">
                     Talk to us about diabetes
                   </span>
-                  <p className="text-2xl font-bold text-primary whitespace-nowrap">
+                  <a
+                    href="tel:+923710622837"
+                    className="flex items-center gap-2 text-2xl font-bold text-primary whitespace-nowrap hover:underline transition-colors"
+                  >
+                    <Phone className="w-6 h-6" />
                     03710-622837
-                  </p>
+                  </a>
                 </div>
               </div>
 
@@ -688,8 +692,9 @@ export default function Header() {
                   </p>
                   <a
                     href="tel:+923710622837"
-                    className="text-md font-bold text-primary"
+                    className="flex items-center justify-end gap-1 text-md font-bold text-primary"
                   >
+                    <Phone className="w-4 h-4" />
                     03710-622837
                   </a>
                 </div>
