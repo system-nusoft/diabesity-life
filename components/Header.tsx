@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -127,6 +127,7 @@ const menuItems: MenuItem[] = [
           { label: "BMI Calculator", url: "/bmi-calculator" },
           { label: "Calorie Counter", url: "/calorie-counter" },
           { label: "HbA1c Translator", url: "/hba1c-translator" },
+          { label: "Hypo Emergency Card", url: "/hypo-wallet-card" },
         ],
       },
     ],
@@ -272,13 +273,13 @@ export default function Header() {
     setMobileExpandedItems((prev) =>
       prev.includes(label)
         ? prev.filter((item) => item !== label)
-        : [...prev, label]
+        : [...prev, label],
     );
   };
 
   const renderMegaMenu = (
     items: MenuItem[] | MenuColumn[],
-    parentLabel: string
+    parentLabel: string,
   ) => {
     /* ========== NESTING FORMAT (COMMENTED OUT) ========== */
     /* Uncomment this section to revert to 3-step nesting format */
@@ -590,7 +591,7 @@ export default function Header() {
           <div>
             {item.children &&
               item.children.map((child) =>
-                renderMobileMenuItem(child, depth + 1)
+                renderMobileMenuItem(child, depth + 1),
               )}
             {item.columns &&
               item.columns.map((column) => (
@@ -604,7 +605,7 @@ export default function Header() {
                   </div>
                   {/* Column items */}
                   {column.items.map((columnItem) =>
-                    renderMobileMenuItem(columnItem, depth + 1)
+                    renderMobileMenuItem(columnItem, depth + 1),
                   )}
                 </div>
               ))}
@@ -666,9 +667,13 @@ export default function Header() {
                   <span className="text-sm text-primary-text whitespace-nowrap">
                     Talk to us about diabetes
                   </span>
-                  <p className="text-2xl font-bold text-primary whitespace-nowrap">
-                    0300 123 4567
-                  </p>
+                  <a
+                    href="tel:+923710622837"
+                    className="flex items-center gap-2 text-2xl font-bold text-primary whitespace-nowrap hover:underline transition-colors"
+                  >
+                    <Phone className="w-6 h-6" />
+                    03710-622837
+                  </a>
                 </div>
               </div>
 
@@ -685,9 +690,13 @@ export default function Header() {
                   <p className="text-xs text-primary-text">
                     Talk to us about diabetes
                   </p>
-                  <p className="text-md font-bold text-primary">
-                    0300 123 4567
-                  </p>
+                  <a
+                    href="tel:+923710622837"
+                    className="flex items-center justify-end gap-1 text-md font-bold text-primary"
+                  >
+                    <Phone className="w-4 h-4" />
+                    03710-622837
+                  </a>
                 </div>
               </div>
 
@@ -738,7 +747,7 @@ export default function Header() {
             )}
             Menu
           </button>
-          <a href="tel:+923001234567" rel="noopener noreferrer">
+          <a href="tel:+923710622837" rel="noopener noreferrer">
             <Button variant="primary" size="sm" className="px-4 py-1">
               Get a consultation
             </Button>
@@ -789,11 +798,11 @@ export default function Header() {
                         item.label === "About diabesity"
                           ? "text-primary"
                           : pathname.startsWith("/resources") &&
-                            item.label === "Resources"
-                          ? "text-primary"
-                          : activeMenu === item.label
-                          ? "bg-primary text-white"
-                          : "text-primary-text hover:bg-primary hover:text-white"
+                              item.label === "Resources"
+                            ? "text-primary"
+                            : activeMenu === item.label
+                              ? "bg-primary text-white"
+                              : "text-primary-text hover:bg-primary hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -810,7 +819,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <a href="tel:+923001234567" rel="noopener noreferrer">
+            <a href="tel:+923710622837" rel="noopener noreferrer">
               <Button variant="primary" size="md" className="px-8 mr-0.5">
                 Get a consultation
               </Button>
@@ -836,7 +845,7 @@ export default function Header() {
                 (menuItems.find((item) => item.label === activeMenu)!.columns ||
                   menuItems.find((item) => item.label === activeMenu)!
                     .children)!,
-                activeMenu
+                activeMenu,
               )}
             </div>
           )}

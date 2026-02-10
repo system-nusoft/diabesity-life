@@ -9,10 +9,10 @@ import HealthIcon from "../../public/faqs-health.svg";
 import GlpIcon from "../../public/faqs-glp.svg";
 
 const faqs = [
-    {
+  {
     question: "What is GLP-1?",
     answer:
-      "GLP-1 (glucagon-like peptide-1) is a natural hormone released from the gut after eating. It helps regulate appetite, digestion, and blood sugar levels by coordinating signals between the gut, pancreas, and brain.",
+      "GLP-1 is an important hormone that helps your body keep blood sugar in balance. GLP-1 stands for glucagon-like peptide-1. This hormone is produced in the gut and is released in response to the food you eat. GLP-1 treatment works like your body's naturally occurring GLP-1. GLP-1 treatments: Increase the amount of insulin your pancreas releases when food is absorbed in the stomach and intestines (the increased insulin lowers blood sugar levels); Stop the liver from releasing sugar into the blood when it's not needed; Slow the movement of food through the stomach, so that sugar enters the blood more slowly.",
     category: "GLP" as Category,
   },
   {
@@ -124,6 +124,48 @@ const faqs = [
     category: "GLP" as Category,
   },
   {
+    question:
+      "Is TirzaTrim safe for someone who already has diabetic retinopathy?",
+    answer:
+      "Rapid improvement in glucose control has been associated with a temporary worsening of diabetic retinopathy. Patients with a history of diabetic retinopathy should be monitored for progression of diabetic retinopathy.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "What are the most common side effects associated with TirzaTrim?",
+    answer:
+      "The most common side effects include nausea, diarrhea, decreased appetite, vomiting, constipation, indigestion, and stomach (abdominal) pain.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "Is Seglu for weight loss? Will patient regain weight if they stop using Seglu?",
+    answer:
+      "Seglu is approved for adults with obesity, type 2 diabetes to lower blood sugar, along with diet and exercise, reduce the risk of major cardiovascular events such as heart attack, stroke, or death in adults with type 2 diabetes who also have heart disease, and lower the risk of worsening kidney disease, kidney failure (end-stage kidney disease), and death due to cardiovascular disease in adults with type 2 diabetes who also have chronic kidney disease. People respond to medicines differently. That's why it is important to talk to your health care professional about any questions you may have about your treatment plan.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "Has Seglutide/Seglu (Semaglutide) been studied for lowering the risk of chronic kidney disease getting worse?",
+    answer:
+      "In adults with type 2 diabetes and chronic kidney disease, there is an increased risk of the disease worsening, or of experiencing cardiovascular death. Semaglutide is proven to significantly lower those risks, including the risk for kidney failure and death due to cardiovascular disease. Semaglutide is the first and only medicine in its class (GLP-1) proven to help lower the risk of worsening kidney disease, kidney failure (end-stage kidney disease), and death due to cardiovascular disease in adults who also have chronic kidney disease.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "Has Seglutide/Seglu (Semaglutide) been studied for cardiovascular risk?",
+    answer:
+      "People with type 2 diabetes and known heart disease are at a greater risk of major cardiovascular events such as stroke, heart attack, or death. Semaglutide is proven to lower those risks. Semaglutide lowers the risk of major cardiovascular events such as stroke, heart attack, or death in adults who also have heart disease.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "Once prescribed Seglutide/Seglu (Semaglutide) for type 2 diabetes, how long will it take to lower the blood sugar?",
+    answer:
+      "You should take Seglutide/Seglu (Semaglutide) exactly as prescribed by your health care professional. If you have any questions about your A1C and blood sugar goals, or changes to your treatment plan, talk with your health care professional. Never make changes to your treatment plan without consulting your health care professional first.",
+    category: "GLP" as Category,
+  },
+  {
     question: "How does stress affect GLP-1 and appetite?",
     answer:
       "Chronic stress can disrupt hormonal balance, including appetite-regulating pathways. This may indirectly affect how signals like GLP-1 are perceived or acted upon by the body.",
@@ -151,6 +193,133 @@ const faqs = [
     question: "Is information about GLP-1 on this site medical advice?",
     answer:
       "No. Content related to GLP-1 is provided for educational purposes only and does not replace consultation with a qualified healthcare professional.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "What is Seglutide/Seglu?",
+    answer:
+      "Seglutide/Seglu (semaglutide) injection 0.25, 0.5 mg, 1 mg, 1.7 mg, 2 mg and 2.4 mg is an injectable prescription medicine for adults with type 2 diabetes used along with diet and exercise to improve blood sugar (glucose), for adults with obesity. It also lowers the risk of major cardiovascular events such as stroke, heart attack, or death in adults with type 2 diabetes who also have heart disease, and lowers the risk of worsening kidney disease, kidney failure (end-stage kidney disease), and death due to cardiovascular disease in adults with type 2 diabetes who also have chronic kidney disease.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "In which form Seglu and Seglutide available in Pakistan?",
+    answer:
+      "It's available in 3 delivery forms: Seglutide multidose pen – 2 MG and 4 MG; Seglutide vial – 2 MG and 4 MG; Seglu Prefilled syringe – 0.25 MG, 0.5 MG, 1 MG, 1.7 MG and 2.4 MG.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is Seglutide/Seglu currently available?",
+    answer:
+      "All forms of Seglutide/Seglu are available at retail pharmacies nationwide for appropriate patients with type 2 diabetes, obesity and obesity related complications. It is also available via helpline and offers free home delivery at 021-35371033.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Dosing schedule of Seglutide (Semaglutide)?",
+    answer:
+      "The recommended initiated dosage is 0.25 mg injected subcutaneously once weekly. After 4 weeks, the dosage should be increased in 0.25 mg increments. The maximum dosage is 2.4 mg in adults. Dose escalation should be individualized based on efficacy and tolerability.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How should Seglutide/Seglu be administered?",
+    answer:
+      "Inject Seglutide/Seglu subcutaneously in the abdomen, thigh, or upper arm at any time of day, with or without meals. Rotate injection sites with each dose. When using Seglutide/Seglu with insulin, administer as separate injections and never mix. It is acceptable to inject Seglutide/Seglu and insulin in the same body region, but the injections should not be adjacent to each other.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is Seglutide/Seglu safe in pregnancy and lactation?",
+    answer:
+      "Seglutide/Seglu should be used during pregnancy and lactation only if the potential benefit justifies the potential risk to the fetus.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "What is TirzaTrim?",
+    answer:
+      "TirzaTrim (Tirzepatide) is a glucose-dependent insulinotropic polypeptide receptor and glucagon-like peptide-1 receptor agonist indicated as an: Adjunct to diet and exercise in adults and pediatric patients 10 years of age and older to improve glycemic control with type 2 diabetes mellitus. Adjunct to a reduced-calorie diet and increased physical activity for weight management, including weight loss and weight maintenance, in adults in the presence of at least one weight-related comorbid condition (e.g., hypertension, dyslipidemia, obstructive sleep apnea, cardiovascular disease, prediabetes, or type 2 diabetes mellitus).",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How should TirzaTrim be initiated and titrated?",
+    answer:
+      "The recommended initiated dosage is 2.5 mg injected subcutaneously once weekly. After 4 weeks, the dosage should be increased in 2.5 mg increments. The maximum dosage is 15 mg in adults and 10 mg injected in pediatric patients. Dose escalation should be individualized based on efficacy and tolerability.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How should TirzaTrim be administered?",
+    answer:
+      "Inject TirzaTrim subcutaneously in the abdomen, thigh, or upper arm at any time of day, with or without meals. Rotate injection sites with each dose. When using TirzaTrim with insulin, administer as separate injections and never mix. It is acceptable to inject TirzaTrim and insulin in the same body region, but the injections should not be adjacent to each other.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "Why is there a thyroid cancer warning with the use of TirzaTrim?",
+    answer:
+      "TirzaTrim is contraindicated in patients with a personal or family history of MTC or in patients with MEN 2 syndrome. Counsel patients regarding the potential risk for MTC and inform them of symptoms of thyroid tumors (e.g., a mass in the neck, dysphagia, dyspnea, persistent hoarseness, serum calcitonin values >50 ng/L).",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How should pancreatitis risk be addressed?",
+    answer:
+      "Acute pancreatitis has been observed in patients treated with GLP-1 receptor agonists, or tirzepatide. After initiation of TirzaTrim, observe patients carefully for signs and symptoms of pancreatitis (including persistent severe abdominal pain, sometimes radiating to the back and which may or may not be accompanied by vomiting). If it is suspected, TirzaTrim should be discontinued and initiate appropriate management.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "How the risk of hypoglycemia with TirzaTrim be managed?",
+    answer:
+      "The risk of hypoglycemia may be lowered by a reducing the dose of sulfonylurea (or other concomitantly administered insulin secretagogue) or insulin.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "Is TirzaTrim safe in pregnancy and lactation?",
+    answer:
+      "TirzaTrim should be used during pregnancy and lactation only if the potential benefit justifies the potential risk to the fetus.",
+    category: "GLP" as Category,
+  },
+  {
+    question: "What is the storage & handling guidelines for TirzaTrim?",
+    answer:
+      "TirzaTrim Pen is a disposable multi-dose pre-filled pen. Store the pen in the refrigerator between 36°F to 46°F (2°C to 8°C). Can be stored unrefrigerated not above 30°C. Do not freeze your Pen. If the Pen has been frozen, throw the Pen away and use a new Pen. Do not use the pen if it appears damaged, discolored and contains particulate matter. Store your Pen in the original carton to protect your Pen from light. Always remove and safely discard the needle after each injection. Keep the pen covered with cap when not in use. Do not store the pen with needle attached.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "What are the most common side effects of Seglutide/Seglu (Semaglutide)?",
+    answer:
+      "The most common side effects include: Nausea, Stomach (abdominal) pain, Constipation, Diarrhea, and Vomiting.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "How to avoid nausea when you are taking Seglutide/Seglu (Semaglutide)?",
+    answer:
+      "To help avoid nausea: Eat bland, low-fat foods, like crackers, toast, and rice. Eat foods that contain water, like soups and gelatin. Avoid fried, greasy, or sweet foods. Avoid lying down after you eat. Go outdoors for fresh air. Eat more slowly. Drink clear or ice-cold drinks.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "How should patients be counseled if they miss a scheduled Seglutide/Seglu dose?",
+    answer:
+      "If a dose is missed, instruct patient to administer Seglutide/Seglu within 5 days of missed dose. If more than 5 days have passed skip the missed dose and administer the next dose on the regularly scheduled day. Instruct patient not to take two doses together, a 3-day gap should be maintained between doses.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "Other than Seglutide and Seglu, which other GLP base therapies are available by Macter?",
+    answer:
+      "TirzaTrim (Tirzepatide) is a glucose-dependent insulinotropic polypeptide receptor and glucagon-like peptide-1 receptor agonist.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "How should patients be counseled if they miss a scheduled TirzaTrim dose?",
+    answer:
+      "If a dose is missed, instruct patient to administer TirzaTrim within 4 days (96 hours) of missed dose. If more than 4 days have passed skip the missed dose and administer the next dose on the regularly scheduled day. Instruct patient not to take two doses together, a 3-day gap should be maintained between doses.",
+    category: "GLP" as Category,
+  },
+  {
+    question:
+      "What symptoms may indicate a suspected overdose of TirzaTrim, and how should it be managed?",
+    answer:
+      "A suspected overdose of TirzaTrim may present with symptoms of hypoglycemia, particularly in patients receiving concomitant insulin or sulfonylureas. Management is supportive and according to the patient's clinical signs and symptoms.",
     category: "GLP" as Category,
   },
   {
@@ -593,7 +762,7 @@ export default function NewsClient() {
               Expert-verified answers from our team of healthcare professionals
             </p>
           </div>
-        </div>   
+        </div>
       </section>
 
       {/* Category Filter Section */}
@@ -634,7 +803,9 @@ export default function NewsClient() {
                       />
                     </button>
                     <div className="flex flex-col items-center text-center">
-                      <h3 className={`text-2xl font-bold ${info.titleColor} mb-2`}>
+                      <h3
+                        className={`text-2xl font-bold ${info.titleColor} mb-2`}
+                      >
                         {info.title}
                       </h3>
                       <p className="text-gray-700 leading-relaxed max-w-xs">
@@ -663,7 +834,7 @@ export default function NewsClient() {
                     <button
                       onClick={() => toggleFaq(idx)}
                       className={`${getCategoryGradient(
-                        faq.category
+                        faq.category,
                       )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
                     >
                       <span>{faq.question}</span>
@@ -697,7 +868,7 @@ export default function NewsClient() {
                       <button
                         onClick={() => toggleFaq(actualIndex)}
                         className={`${getCategoryGradient(
-                          faq.category
+                          faq.category,
                         )} px-6 py-4 border text-left font-semibold text-gray-900 flex justify-between items-center transition-all hover:opacity-90`}
                       >
                         <span>{faq.question}</span>
