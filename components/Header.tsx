@@ -1,8 +1,9 @@
 "use client";
 
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { ChevronDown, LogOut, Menu, Phone, User, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import HealthcareProfessionalModal from "./HealthcareProfessionalModal";
 import { Button } from "./ui/button";
@@ -183,10 +184,40 @@ export default function Header() {
   const [activeLevel2, setActiveLevel2] = useState<string | null>(null);
   const [activeLevel3, setActiveLevel3] = useState<string | null>(null);
   const [mobileExpandedItems, setMobileExpandedItems] = useState<string[]>([]);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const megaMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const userDropdownDesktopRef = useRef<HTMLDivElement>(null);
+  const userDropdownMobileRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const isTransitioningRef = useRef<boolean>(false);
+  const { user, logout, isLoading } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    setIsUserDropdownOpen(false);
+    router.push("/");
+  };
+
+  // Close user dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const isOutsideDesktop =
+        !userDropdownDesktopRef.current?.contains(target);
+      const isOutsideMobile = !userDropdownMobileRef.current?.contains(target);
+
+      if (isOutsideDesktop && isOutsideMobile) {
+        setIsUserDropdownOpen(false);
+      }
+    };
+
+    if (isUserDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isUserDropdownOpen]);
 
   useEffect(() => {
     let ticking = false;
@@ -665,7 +696,7 @@ export default function Header() {
                 {/* Contact Number */}
                 <div className="flex flex-col gap-2">
                   <span className="text-sm text-primary-text whitespace-nowrap">
-                    Talk to us about diabetes
+                    Sehat CareLine call centre
                   </span>
                   <a
                     href="tel:+923710622837"
@@ -688,7 +719,7 @@ export default function Header() {
                 </Link>
                 <div className="text-end">
                   <p className="text-xs text-primary-text">
-                    Talk to us about diabetes
+                    Sehat CareLine call centre
                   </p>
                   <a
                     href="tel:+923710622837"
@@ -702,11 +733,20 @@ export default function Header() {
 
               {/* Right CTAs - Desktop Only */}
               <div className="hidden lg:flex items-center gap-3 flex-shrink-0 mr-0.5">
-                <Link href="#">
-                  <button className="px-8 py-2 border-2 border-gray-500 text-gray-500 transition-colors font-medium text-xs whitespace-nowrap">
+                {user ? (
+                  <Link href="/community">
+                    <button className="px-8 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium text-xs whitespace-nowrap">
+                      Our community
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="px-8 py-2 border-2 border-gray-400 text-gray-400 font-medium text-xs whitespace-nowrap cursor-not-allowed"
+                  >
                     Our community
                   </button>
-                </Link>
+                )}
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="px-8 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium text-xs whitespace-nowrap"
@@ -747,11 +787,47 @@ export default function Header() {
             )}
             Menu
           </button>
-          <a href="tel:+923710622837" rel="noopener noreferrer">
-            <Button variant="primary" size="sm" className="px-4 py-1">
-              Get a consultation
-            </Button>
-          </a>
+          {!isLoading && (
+            <>
+              {user ? (
+                <div className="relative" ref={userDropdownMobileRef}>
+                  <button
+                    onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                    className="flex items-center gap-2"
+                  >
+                    <span className="text-sm text-gray-700">Hi</span>
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
+                  </button>
+
+                  {/* Mobile User Dropdown */}
+                  {isUserDropdownOpen && (
+                    <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                      <div className="px-4 py-2 border-b border-gray-100">
+                        <p className="text-sm text-gray-500 truncate">
+                          {user.email}
+                        </p>
+                      </div>
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link href="/login">
+                  <Button variant="primary" size="sm" className="px-4 py-1">
+                    Login
+                  </Button>
+                </Link>
+              )}
+            </>
+          )}
         </div>
       </div>
 
@@ -819,11 +895,52 @@ export default function Header() {
               ))}
             </nav>
 
-            <a href="tel:+923710622837" rel="noopener noreferrer">
-              <Button variant="primary" size="md" className="px-8 mr-0.5">
-                Get a consultation
-              </Button>
-            </a>
+            {!isLoading && (
+              <>
+                {user ? (
+                  <div className="relative" ref={userDropdownDesktopRef}>
+                    <button
+                      onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 transition-colors"
+                    >
+                      <span className="text-sm text-gray-700 hidden xl:block">
+                        Hi, {user.firstName}
+                      </span>
+                      <span className="text-sm text-gray-700 xl:hidden">
+                        Hi
+                      </span>
+                      <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                        <User className="w-5 h-5 text-white" />
+                      </div>
+                    </button>
+
+                    {/* User Dropdown */}
+                    {isUserDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-lg py-2 z-50">
+                        <div className="px-4 py-2 border-b border-gray-100 xl:hidden">
+                          <p className="text-sm text-gray-500 truncate">
+                            {user.email}
+                          </p>
+                        </div>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Logout
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link href="/login">
+                    <Button variant="primary" size="md" className="px-8 mr-0.5">
+                      Login
+                    </Button>
+                  </Link>
+                )}
+              </>
+            )}
           </div>
         </div>
         {/* Primary Border Bottom - Only visible when scrolled */}
