@@ -215,7 +215,8 @@ export default function Header() {
 
     if (isUserDropdownOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isUserDropdownOpen]);
 
@@ -809,6 +810,13 @@ export default function Header() {
                           {user.email}
                         </p>
                       </div>
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setIsUserDropdownOpen(false)}
+                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                      >
+                        Dashboard
+                      </Link>
                       <button
                         onClick={handleLogout}
                         className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
@@ -820,9 +828,9 @@ export default function Header() {
                   )}
                 </div>
               ) : (
-                <Link href="/login">
+                <Link href="tel:+923710622837">
                   <Button variant="primary" size="sm" className="px-4 py-1">
-                    Login
+                    Get a consultation
                   </Button>
                 </Link>
               )}
@@ -922,6 +930,13 @@ export default function Header() {
                             {user.email}
                           </p>
                         </div>
+                        <Link
+                          href="/dashboard"
+                          onClick={() => setIsUserDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        >
+                          Dashboard
+                        </Link>
                         <button
                           onClick={handleLogout}
                           className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
@@ -933,9 +948,9 @@ export default function Header() {
                     )}
                   </div>
                 ) : (
-                  <Link href="/login">
+                  <Link href="tel:+923710622837">
                     <Button variant="primary" size="md" className="px-8 mr-0.5">
-                      Login
+                      Get a consultation
                     </Button>
                   </Link>
                 )}
@@ -978,6 +993,15 @@ export default function Header() {
 
               {/* CTAs Section */}
               <div className="pt-6 space-y-3 border-t-2 border-white/20 mt-4">
+                {user && (
+                  <Link
+                    href="/community"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block w-full px-4 py-3 border-2 border-white text-white hover:bg-white hover:text-primary transition-colors font-semibold text-center"
+                  >
+                    Our Community
+                  </Link>
+                )}
                 <Link
                   href="/about"
                   onClick={() => setIsMenuOpen(false)}

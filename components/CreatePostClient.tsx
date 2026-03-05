@@ -2,6 +2,8 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { ArrowLeft, X } from "lucide-react";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -25,7 +27,7 @@ const suggestedTags = [
 ];
 
 export default function CreatePostClient() {
-  const { user, isLoading, isBanned } = useAuth();
+  const { user, token, isLoading, isBanned } = useAuth();
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -43,20 +45,36 @@ export default function CreatePostClient() {
 
   const handleTagToggle = (tag: string) => {
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!title.trim() || !content.trim()) return;
+    if (!title.trim() || !content.trim() || !token) return;
 
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const res = await fetch(`${API_BASE_URL}/community/posts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: title.trim(),
+          content: content.trim(),
+          tags: selectedTags,
+        }),
+      });
 
-    router.push("/community");
+      if (!res.ok) throw new Error("Failed to create post");
+      router.push("/community");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isLoading) {

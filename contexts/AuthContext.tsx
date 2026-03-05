@@ -8,6 +8,7 @@ interface User {
   role: string;
   firstName?: string;
   lastName?: string;
+  communityBanned?: boolean;
 }
 
 interface AuthContextType {
@@ -18,10 +19,15 @@ interface AuthContextType {
   isBanned: boolean;
   bannedUsers: string[];
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, firstName: string, lastName?: string) => Promise<void>;
+  signup: (
+    email: string,
+    password: string,
+    firstName: string,
+    lastName?: string,
+  ) => Promise<void>;
   logout: () => void;
-  banUser: (userId: string) => void;
-  unbanUser: (userId: string) => void;
+  banUser: (userId: string) => Promise<void>;
+  unbanUser: (userId: string) => Promise<void>;
   isUserBanned: (userId: string) => boolean;
 }
 
@@ -52,15 +58,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const isAdmin = user?.role === "admin";
-  const isBanned = user ? bannedUsers.includes(user.id) : false;
+  // Use communityBanned from server-side user object if available,
+  // otherwise fall back to the local bannedUsers list
+  const isBanned = user
+    ? (user.communityBanned ?? bannedUsers.includes(user.id))
+    : false;
 
-  const banUser = (userId: string) => {
+  const banUser = async (userId: string) => {
+    if (token) {
+      await fetch(`${API_BASE_URL}/community/users/${userId}/ban`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    }
     const newBannedUsers = [...bannedUsers, userId];
     setBannedUsers(newBannedUsers);
     localStorage.setItem("bannedUsers", JSON.stringify(newBannedUsers));
   };
 
-  const unbanUser = (userId: string) => {
+  const unbanUser = async (userId: string) => {
+    if (token) {
+      await fetch(`${API_BASE_URL}/community/users/${userId}/ban`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    }
     const newBannedUsers = bannedUsers.filter((id) => id !== userId);
     setBannedUsers(newBannedUsers);
     localStorage.setItem("bannedUsers", JSON.stringify(newBannedUsers));
@@ -91,7 +113,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("user", JSON.stringify(data.user));
   };
 
-  const signup = async (email: string, password: string, firstName: string, lastName?: string, role='user') => {
+  const signup = async (
+    email: string,
+    password: string,
+    firstName: string,
+    lastName?: string,
+    role = "user",
+  ) => {
     const response = await fetch(`${API_BASE_URL}/auth/signup`, {
       method: "POST",
       headers: {

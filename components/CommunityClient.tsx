@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
-import { formatTimeAgo, getAllPosts, Post } from "@/lib/communityData";
+import { formatTimeAgo } from "@/lib/communityData";
 import {
   Ban,
   Heart,
@@ -19,22 +19,34 @@ import BanConfirmationModal from "./BanConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { Button } from "./ui/button";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+interface PostAuthor {
+  id: string;
+  email: string;
+  name: string;
+  communityBanned?: boolean;
+}
+
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  author: PostAuthor;
+  createdAt: string;
+  likes: number;
+  commentsCount: number;
+  tags: string[];
+  likedByMe: boolean;
+}
+
 export default function CommunityClient() {
-  const {
-    user,
-    isAdmin,
-    isBanned,
-    banUser,
-    unbanUser,
-    isUserBanned,
-    isLoading,
-  } = useAuth();
+  const { user, token, isAdmin, isBanned, banUser, unbanUser, isLoading } =
+    useAuth();
   const router = useRouter();
 
-  // All hooks must be called before any conditional returns
-  const [posts, setPosts] = useState<Post[]>(getAllPosts());
-  const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set());
-  const [deletedPosts, setDeletedPosts] = useState<Set<string>>(new Set());
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [postsLoading, setPostsLoading] = useState(true);
   const [banModalState, setBanModalState] = useState<{
     isOpen: boolean;
     userId: string;
@@ -54,6 +66,23 @@ export default function CommunityClient() {
     }
   }, [user, isLoading, router]);
 
+  // Fetch posts from API
+  useEffect(() => {
+    if (isLoading) return;
+    if (!user) return;
+
+    const headers: Record<string, string> = {};
+    if (token) headers["Authorization"] = `Bearer ${token}`;
+
+    fetch(`${API_BASE_URL}/community/posts`, { headers })
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setPosts(data);
+      })
+      .catch(() => {})
+      .finally(() => setPostsLoading(false));
+  }, [isLoading, user, token]);
+
   // Show loading state while checking auth
   if (isLoading) {
     return (
@@ -68,33 +97,27 @@ export default function CommunityClient() {
     return null;
   }
 
-  const handleLikePost = (postId: string, e: React.MouseEvent) => {
+  const handleLikePost = async (postId: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!user) {
-      router.push("/login");
-      return;
-    }
+    if (isBanned || !token) return;
 
-    if (isBanned) return;
-
-    setLikedPosts((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(postId)) {
-        newSet.delete(postId);
-      } else {
-        newSet.add(postId);
-      }
-      return newSet;
+    const res = await fetch(`${API_BASE_URL}/community/posts/${postId}/like`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
     });
+    if (!res.ok) return;
+
+    const { liked, likes } = await res.json();
+    setPosts((prev) =>
+      prev.map((p) =>
+        p.id === postId ? { ...p, likes, likedByMe: liked } : p,
+      ),
+    );
   };
 
   const handleCreatePost = () => {
-    if (!user) {
-      router.push("/login");
-      return;
-    }
     if (isBanned) return;
     router.push("/community/create");
   };
@@ -106,44 +129,60 @@ export default function CommunityClient() {
   ) => {
     e.preventDefault();
     e.stopPropagation();
-
-    setDeleteModalState({
-      isOpen: true,
-      postId,
-      postTitle,
-    });
+    setDeleteModalState({ isOpen: true, postId, postTitle });
   };
 
-  const handleConfirmDelete = () => {
-    setDeletedPosts((prev) => new Set([...prev, deleteModalState.postId]));
-    setPosts((prev) => prev.filter((p) => p.id !== deleteModalState.postId));
+  const handleConfirmDelete = async () => {
+    if (!token) return;
+    const res = await fetch(
+      `${API_BASE_URL}/community/posts/${deleteModalState.postId}`,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
+    if (res.ok) {
+      setPosts((prev) => prev.filter((p) => p.id !== deleteModalState.postId));
+    }
   };
 
   const handleBanUser = (
     userId: string,
     userName: string,
+    currentlyBanned: boolean,
     e: React.MouseEvent,
   ) => {
     e.preventDefault();
     e.stopPropagation();
-
     setBanModalState({
       isOpen: true,
       userId,
       userName,
-      isBanned: isUserBanned(userId),
+      isBanned: currentlyBanned,
     });
   };
 
-  const handleConfirmBan = () => {
+  const handleConfirmBan = async () => {
     if (banModalState.isBanned) {
-      unbanUser(banModalState.userId);
+      await unbanUser(banModalState.userId);
     } else {
-      banUser(banModalState.userId);
+      await banUser(banModalState.userId);
     }
+    // Update author ban status in posts list
+    setPosts((prev) =>
+      prev.map((p) =>
+        p.author.id === banModalState.userId
+          ? {
+              ...p,
+              author: {
+                ...p.author,
+                communityBanned: !banModalState.isBanned,
+              },
+            }
+          : p,
+      ),
+    );
   };
-
-  const visiblePosts = posts.filter((post) => !deletedPosts.has(post.id));
 
   return (
     <>
@@ -224,125 +263,136 @@ export default function CommunityClient() {
           </div>
 
           {/* Posts List */}
-          <div className="flex flex-col space-y-4">
-            {visiblePosts.map((post) => (
-              <Link href={`/community/${post.id}`} key={post.id}>
-                <div className="bg-white border border-gray-200 p-5 hover:border-primary transition-colors cursor-pointer">
-                  {/* Author Info */}
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <User className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium text-gray-800">
-                            {post.author.name}
-                          </p>
-                          {isUserBanned(post.author.id) && (
-                            <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
-                              Banned
-                            </span>
-                          )}
+          {postsLoading ? (
+            <div className="text-center py-12 text-gray-500">
+              Loading posts...
+            </div>
+          ) : posts.length === 0 ? (
+            <div className="text-center py-12 text-gray-500">
+              No posts yet. Be the first to share!
+            </div>
+          ) : (
+            <div className="flex flex-col space-y-4">
+              {posts.map((post) => (
+                <Link href={`/community/${post.id}`} key={post.id}>
+                  <div className="bg-white border border-gray-200 p-5 hover:border-primary transition-colors cursor-pointer">
+                    {/* Author Info */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          <User className="w-5 h-5 text-primary" />
                         </div>
-                        <p className="text-sm text-gray-500">
-                          {formatTimeAgo(post.createdAt)}
-                        </p>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-gray-800">
+                              {post.author.name}
+                            </p>
+                            {post.author.communityBanned && (
+                              <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
+                                Banned
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500">
+                            {formatTimeAgo(post.createdAt)}
+                          </p>
+                        </div>
                       </div>
+
+                      {/* Admin Controls */}
+                      {isAdmin && (
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={(e) =>
+                              handleBanUser(
+                                post.author.id,
+                                post.author.name,
+                                !!post.author.communityBanned,
+                                e,
+                              )
+                            }
+                            className={`p-2 rounded transition-colors ${
+                              post.author.communityBanned
+                                ? "text-green-600 hover:bg-green-50"
+                                : "text-orange-500 hover:bg-orange-50"
+                            }`}
+                            title={
+                              post.author.communityBanned
+                                ? "Unban user"
+                                : "Ban user"
+                            }
+                          >
+                            {post.author.communityBanned ? (
+                              <UserCheck className="w-5 h-5" />
+                            ) : (
+                              <Ban className="w-5 h-5" />
+                            )}
+                          </button>
+                          <button
+                            onClick={(e) =>
+                              handleDeletePost(post.id, post.title, e)
+                            }
+                            className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors"
+                            title="Delete post"
+                          >
+                            <Trash2 className="w-5 h-5" />
+                          </button>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Admin Controls */}
-                    {isAdmin && (
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={(e) =>
-                            handleBanUser(post.author.id, post.author.name, e)
-                          }
-                          className={`p-2 rounded transition-colors ${
-                            isUserBanned(post.author.id)
-                              ? "text-green-600 hover:bg-green-50"
-                              : "text-orange-500 hover:bg-orange-50"
-                          }`}
-                          title={
-                            isUserBanned(post.author.id)
-                              ? "Unban user"
-                              : "Ban user"
-                          }
+                    {/* Post Title */}
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {post.title}
+                    </h3>
+
+                    {/* Post Content Preview */}
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {post.content}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium"
                         >
-                          {isUserBanned(post.author.id) ? (
-                            <UserCheck className="w-5 h-5" />
-                          ) : (
-                            <Ban className="w-5 h-5" />
-                          )}
-                        </button>
-                        <button
-                          onClick={(e) =>
-                            handleDeletePost(post.id, post.title, e)
-                          }
-                          className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors"
-                          title="Delete post"
-                        >
-                          <Trash2 className="w-5 h-5" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* Post Title */}
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    {post.title}
-                  </h3>
-
-                  {/* Post Content Preview */}
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {post.content}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-6 pt-3 border-t border-gray-100">
-                    <button
-                      onClick={(e) => handleLikePost(post.id, e)}
-                      disabled={isBanned}
-                      className={`flex items-center gap-2 text-sm transition-colors ${
-                        isBanned
-                          ? "text-gray-300 cursor-not-allowed"
-                          : likedPosts.has(post.id)
-                            ? "text-red-500"
-                            : "text-gray-500 hover:text-red-500"
-                      }`}
-                    >
-                      <Heart
-                        className={`w-5 h-5 ${
-                          likedPosts.has(post.id) && !isBanned
-                            ? "fill-current"
-                            : ""
+                    {/* Actions */}
+                    <div className="flex items-center gap-6 pt-3 border-t border-gray-100">
+                      <button
+                        onClick={(e) => handleLikePost(post.id, e)}
+                        disabled={isBanned}
+                        className={`flex items-center gap-2 text-sm transition-colors ${
+                          isBanned
+                            ? "text-gray-300 cursor-not-allowed"
+                            : post.likedByMe
+                              ? "text-red-500"
+                              : "text-gray-500 hover:text-red-500"
                         }`}
-                      />
-                      <span>
-                        {post.likes + (likedPosts.has(post.id) ? 1 : 0)}
-                      </span>
-                    </button>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                      <MessageCircle className="w-5 h-5" />
-                      <span>{post.commentsCount} comments</span>
+                      >
+                        <Heart
+                          className={`w-5 h-5 ${
+                            post.likedByMe && !isBanned ? "fill-current" : ""
+                          }`}
+                        />
+                        <span>{post.likes}</span>
+                      </button>
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                        <MessageCircle className="w-5 h-5" />
+                        <span>{post.commentsCount} comments</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

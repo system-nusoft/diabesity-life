@@ -1,6 +1,8 @@
 "use client";
 
+import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
+import LogProgressModal from "./LogProgressModal";
 
 type Gender = "male" | "female";
 type HeightUnit = "ft-in" | "m";
@@ -28,7 +30,7 @@ function classifyAdultBmi(bmi: number): {
         "A BMI below 18.5 may indicate insufficient body weight. Consider consulting a healthcare provider about nutrition.",
     };
   }
-  if (bmi < 25) {
+  if (bmi < 23.5) {
     return {
       category: "Normal",
       color: "#22c55e",
@@ -36,35 +38,35 @@ function classifyAdultBmi(bmi: number): {
         "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
     };
   }
-  if (bmi < 30) {
+  if (bmi < 25) {
     return {
       category: "Overweight",
       color: "#f59e0b",
       description:
-        "A BMI of 25–29.9 indicates overweight. Small changes in diet and activity can help reduce health risks.",
+        "A BMI of 23.5–24.9 is considered overweight. Small lifestyle changes in diet and activity can help reduce future health risks.",
     };
   }
-  if (bmi < 35) {
+  if (bmi < 30) {
     return {
       category: "Obese (Class I)",
       color: "#f97316",
       description:
-        "A BMI of 30–34.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
+        "A BMI of 25–29.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
     };
   }
-  if (bmi < 40) {
+  if (bmi < 35) {
     return {
       category: "Obese (Class II)",
       color: "#ef4444",
       description:
-        "A BMI of 35–39.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
+        "A BMI of 30–34.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
     };
   }
   return {
     category: "Obese (Class III)",
     color: "#dc2626",
     description:
-      "A BMI of 40 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
+      "A BMI of 35 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
   };
 }
 
@@ -168,15 +170,13 @@ function BmiGauge({ bmi }: { bmi: number | null }) {
   const r = 120;
 
   // Segments defined as percentage of the 180° arc (left to right)
-  // BMI ranges: <18.5, 18.5-25, 25-30, 30-35, 35-40, 40+
-  // Mapped to 0-100% of the arc based on BMI range 10-45
   const segments = [
-    { label: "Underweight", color: "#3b82f6", startPct: 0, endPct: 24.3 },
-    { label: "Normal", color: "#22c55e", startPct: 24.3, endPct: 42.9 },
-    { label: "Overweight", color: "#f59e0b", startPct: 42.9, endPct: 57.1 },
-    { label: "Obese I", color: "#f97316", startPct: 57.1, endPct: 71.4 },
-    { label: "Obese II", color: "#ef4444", startPct: 71.4, endPct: 85.7 },
-    { label: "Obese III", color: "#dc2626", startPct: 85.7, endPct: 100 },
+    { label: "Underweight", color: "#3b82f6", startPct: 0, endPct: 24.29 },
+    { label: "Normal", color: "#22c55e", startPct: 24.29, endPct: 38.57 },
+    { label: "Overweight", color: "#f59e0b", startPct: 38.57, endPct: 42.86 },
+    { label: "Obese I", color: "#f97316", startPct: 42.86, endPct: 57.14 },
+    { label: "Obese II", color: "#ef4444", startPct: 57.14, endPct: 71.43 },
+    { label: "Obese III", color: "#dc2626", startPct: 71.43, endPct: 100 },
   ];
 
   // Convert percentage (0-100) to angle in radians
@@ -250,6 +250,7 @@ function BmiGauge({ bmi }: { bmi: number | null }) {
 }
 
 export default function BmiCalculatorClient() {
+  const { user } = useAuth();
   const [age, setAge] = useState("");
   const [gender, setGender] = useState<Gender>("male");
   const [heightUnit, setHeightUnit] = useState<HeightUnit>("ft-in");
@@ -261,6 +262,9 @@ export default function BmiCalculatorClient() {
   const [result, setResult] = useState<BmiResult | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showLogModal, setShowLogModal] = useState(false);
+  const [lastWeightKg, setLastWeightKg] = useState(0);
+  const [lastHeightCm, setLastHeightCm] = useState(0);
 
   const handleCalculate = () => {
     setError(null);
@@ -332,6 +336,8 @@ export default function BmiCalculatorClient() {
       gender,
     );
     setResult(bmiResult);
+    setLastWeightKg(weightKg);
+    setLastHeightCm(heightCm);
     setShowResult(true);
   };
 
@@ -575,6 +581,14 @@ export default function BmiCalculatorClient() {
                     <p className="text-gray-500 text-sm mt-4 max-w-xs leading-relaxed">
                       {result.description}
                     </p>
+                    {user && (
+                      <button
+                        onClick={() => setShowLogModal(true)}
+                        className="mt-5 px-5 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
+                      >
+                        Save to Progress
+                      </button>
+                    )}
                   </div>
                 </>
               ) : (
@@ -590,6 +604,21 @@ export default function BmiCalculatorClient() {
           </div>
         </div>
       </section>
+
+      {/* Log Progress Modal */}
+      {showLogModal && result && (
+        <LogProgressModal
+          metricData={{
+            toolType: "bmi",
+            bmiValue: result.bmi,
+            weightKg: lastWeightKg,
+            heightCm: lastHeightCm,
+            bmiCategory: result.category,
+          }}
+          onClose={() => setShowLogModal(false)}
+          onSaved={() => {}}
+        />
+      )}
 
       {/* Info Section */}
       <section className="bg-white py-12 md:py-16">
@@ -608,13 +637,13 @@ export default function BmiCalculatorClient() {
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-green-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>18.5 – 24.9</strong> — Normal weight
+                  <strong>18.5 – 23.4</strong> — Normal
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-yellow-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>25.0 – 29.9</strong> — Overweight
+                  <strong>23.5 – 24.9</strong> — Overweight
                 </p>
               </div>
             </div>
@@ -622,19 +651,19 @@ export default function BmiCalculatorClient() {
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-orange-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>30.0 – 34.9</strong> — Obese (Class I)
+                  <strong>25.0 – 29.9</strong> — Obese (Class I)
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-red-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>35.0 – 39.9</strong> — Obese (Class II)
+                  <strong>30.0 – 34.9</strong> — Obese (Class II)
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-red-600 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>40.0+</strong> — Obese (Class III)
+                  <strong>35.0+</strong> — Obese (Class III)
                 </p>
               </div>
             </div>
@@ -643,9 +672,9 @@ export default function BmiCalculatorClient() {
           <div className="mt-8 p-4 bg-gray-50 border border-gray-200">
             <p className="text-gray-600 text-sm leading-relaxed">
               <strong>Note:</strong> BMI is a screening tool, not a diagnostic
-              measure. It does not account for muscle mass, bone density, or
-              ethnic differences. Always consult a healthcare professional for a
-              comprehensive assessment.
+              measure, and does not account for muscle mass or bone density.
+              Always consult a healthcare professional for a comprehensive
+              assessment.
             </p>
           </div>
         </div>

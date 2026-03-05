@@ -6,7 +6,7 @@ import Segalutide from "../public/seglutide-product-profile-clinical-overview.jp
 import Semaglutide from "../public/semaglutide-kidney-protection-diabetes.jpg";
 import FlowTrial from "../public/flow-trial-semaglutide-kidney-disease.jpg";
 import EssenceTrial from "../public/essence-trial-semaglutide-in-metabolic-dysfunction.jpg";
-
+import PharmacologicTreatment from "../public/pharmacologic-treat-of-obesity.jpg";
 
 export interface ResearchArticle {
   slug: string;
@@ -489,13 +489,14 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          Health experts break its impact into two groups. &quot;Sick fat disease&quot;
-          happens when fat tissue itself goes haywire and pumps out bad hormones
-          that push conditions such as diabetes, hypertension, and fatty liver
-          disease. &quot;Fat mass disease&quot; arises from the physical strain of excess
-          weight — pressure on the heart, pressure on the lungs, sleep apnea,
-          and reduced mobility. Together, these pressures are responsible for
-          why obesity is associated with hundreds of medical complications.
+          Health experts break its impact into two groups. &quot;Sick fat
+          disease&quot; happens when fat tissue itself goes haywire and pumps
+          out bad hormones that push conditions such as diabetes, hypertension,
+          and fatty liver disease. &quot;Fat mass disease&quot; arises from the
+          physical strain of excess weight — pressure on the heart, pressure on
+          the lungs, sleep apnea, and reduced mobility. Together, these
+          pressures are responsible for why obesity is associated with hundreds
+          of medical complications.
         </p>
 
         <p className="mt-4">
@@ -509,11 +510,11 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           Scientists point out that for successful treatment, it is necessary to
-          transcend &quot;eat less, move more.&quot; Long-term management can involve
-          nutritional interventions, exercise, behavioral therapy, drugs, and
-          even surgery. The word is out: obesity is not a straightforward
-          failure of willpower but a multifaceted disease that needs integrated
-          solutions.
+          transcend &quot;eat less, move more.&quot; Long-term management can
+          involve nutritional interventions, exercise, behavioral therapy,
+          drugs, and even surgery. The word is out: obesity is not a
+          straightforward failure of willpower but a multifaceted disease that
+          needs integrated solutions.
         </p>
 
         <p className="mt-4">
@@ -567,9 +568,9 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          This trend isn&apos;t merely a clinical aside—it&apos;s a real-world issue.
-          Example: patients who received 36 weeks of tirzepatide regained almost
-          as much as half the weight lost after stopping.
+          This trend isn&apos;t merely a clinical aside—it&apos;s a real-world
+          issue. Example: patients who received 36 weeks of tirzepatide regained
+          almost as much as half the weight lost after stopping.
         </p>
 
         <p className="mt-4">
@@ -732,8 +733,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            Is your very own fat shaping your cancer risk in ways you can&apos;t even
-            imagine?{" "}
+            Is your very own fat shaping your cancer risk in ways you can&apos;t
+            even imagine?{" "}
             <Link
               href="https://bmccancer.biomedcentral.com/articles/10.1186/s12885-025-14362-y"
               target="_blank"
@@ -782,11 +783,11 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           What is appealing about these strategies is their versatility. Rather
-          than a single &quot;ideal&quot; diet, practitioners may guide patients toward
-          the choice that suits their tastes, cultural patterns, and health
-          objectives—thus, making it more likely to stick in the long term.
-          Research indicates that no matter what plan is utilized, patients
-          experience improvements in glycemic control, body weight, and
+          than a single &quot;ideal&quot; diet, practitioners may guide patients
+          toward the choice that suits their tastes, cultural patterns, and
+          health objectives—thus, making it more likely to stick in the long
+          term. Research indicates that no matter what plan is utilized,
+          patients experience improvements in glycemic control, body weight, and
           cardiometabolic risk factors when diets are maintained consistently.
         </p>
 
@@ -798,7 +799,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           <b>
             Interested in learning which diet may revolutionize diabetes
-            care—and why food might be medicine&apos;s most overlooked prescription?{" "}
+            care—and why food might be medicine&apos;s most overlooked
+            prescription?{" "}
             <Link
               href="https://academic.oup.com/jcem/article/110/Supplement_2/S112/8042170"
               target="_blank"
@@ -825,22 +827,22 @@ export const researchArticles: Record<string, ResearchArticle> = {
     content: (
       <>
         <p className="mt-4">
-          The UK&apos;s health guardian has published sweeping new advice that has
-          the potential to revolutionize how obesity is treated throughout the
-          NHS. For the first time, the National Institute for Health and Care
-          Excellence (NICE) is encouraging clinicians to treat overweight and
-          obesity as chronic long-term conditions that need long-term
+          The UK&apos;s health guardian has published sweeping new advice that
+          has the potential to revolutionize how obesity is treated throughout
+          the NHS. For the first time, the National Institute for Health and
+          Care Excellence (NICE) is encouraging clinicians to treat overweight
+          and obesity as chronic long-term conditions that need long-term
           assistance, not short-term solutions.
         </p>
 
         <p className="mt-4">
-          The change isn&apos;t only medical—it&apos;s cultural. Doctors are encouraged to
-          seek consent before bringing up the issue of weight, not to use
-          stigmatising language, and to think about the individual&apos;s broader
-          life background—from poverty to early trauma—before they can talk
-          about treatment. NICE underlines the fact that insensitive management
-          can drive individuals away from care, making both physical and mental
-          health even worse.
+          The change isn&apos;t only medical—it&apos;s cultural. Doctors are
+          encouraged to seek consent before bringing up the issue of weight, not
+          to use stigmatising language, and to think about the individual&apos;s
+          broader life background—from poverty to early trauma—before they can
+          talk about treatment. NICE underlines the fact that insensitive
+          management can drive individuals away from care, making both physical
+          and mental health even worse.
         </p>
 
         <p className="mt-4">
@@ -868,13 +870,13 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          The word is out: obesity care must go beyond &quot;eat less, move more&quot; and
-          adopt compassion, choice, and long-term support.
+          The word is out: obesity care must go beyond &quot;eat less, move
+          more&quot; and adopt compassion, choice, and long-term support.
         </p>
 
         <p className="mt-4">
-          The word is out: obesity care must go beyond &quot;eat less, move more&quot; and
-          adopt compassion, choice, and long-term support.{" "}
+          The word is out: obesity care must go beyond &quot;eat less, move
+          more&quot; and adopt compassion, choice, and long-term support.{" "}
           <Link
             href="Find out how the new NHS guidance might transform obesity care in the UK here."
             target="_blank"
@@ -945,8 +947,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            Might this &quot;one-disease&quot; strategy shift the way your doctor works
-            with you to manage your health?{" "}
+            Might this &quot;one-disease&quot; strategy shift the way your
+            doctor works with you to manage your health?{" "}
             <Link
               href="https://www.ahajournals.org/doi/10.1161/cir.0000000000001184"
               target="_blank"
@@ -1020,8 +1022,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            Fatty liver is no silent bystander—it&apos;s a metabolic warning sign
-            that usually precedes.{" "}
+            Fatty liver is no silent bystander—it&apos;s a metabolic warning
+            sign that usually precedes.{" "}
             <Link
               href="https://diabetesjournals.org/care/article/48/7/1057/160536/Metabolic-Dysfunction-Associated-Steatotic-Liver"
               target="_blank"
@@ -1089,8 +1091,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           The lesson is clear: combining heart, kidney, and metabolic disease in
-          a single umbrella isn&apos;t merely a new medical paradigm—it may be the
-          strongest means to avoid chronic illness and add years of healthy
+          a single umbrella isn&apos;t merely a new medical paradigm—it may be
+          the strongest means to avoid chronic illness and add years of healthy
           living.
         </p>
 
@@ -1213,12 +1215,12 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          This research throws some light on semaglutide&apos;s multifaceted action—
-          implying that it involves biochemically rebalancing in metabolic and
-          immune systems and not just through weight reduction alone.
-          Considering the worldwide increase in MASH and its transformation into
-          cirrhosis and liver cancer, such insights are a significant
-          breakthrough.
+          This research throws some light on semaglutide&apos;s multifaceted
+          action— implying that it involves biochemically rebalancing in
+          metabolic and immune systems and not just through weight reduction
+          alone. Considering the worldwide increase in MASH and its
+          transformation into cirrhosis and liver cancer, such insights are a
+          significant breakthrough.
         </p>
 
         <p className="mt-4">
@@ -1259,16 +1261,16 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           A landmark report in the journal <em>Global Heart</em> reveals the
           staggering scale of the global obesity epidemic and its profound
-          connection to cardiovascular disease (CVD), the world&apos;s leading cause
-          of death. The research highlights that as of 2022, over one billion
-          people were living with obesity. This escalating crisis is directly
-          fueling a surge in heart-related conditions, with high body mass index
-          (BMI) responsible for 1.9 million CVD deaths in 2021 alone—a number
-          that has more than doubled since 1990.
+          connection to cardiovascular disease (CVD), the world&apos;s leading
+          cause of death. The research highlights that as of 2022, over one
+          billion people were living with obesity. This escalating crisis is
+          directly fueling a surge in heart-related conditions, with high body
+          mass index (BMI) responsible for 1.9 million CVD deaths in 2021
+          alone—a number that has more than doubled since 1990.
         </p>
         <p className="mt-4">
-          The paper, &quot;The Weight of Cardiovascular Diseases,&quot; presents a
-          comprehensive analysis showing that since 1990, the age-standardised
+          The paper, &quot;The Weight of Cardiovascular Diseases,&quot; presents
+          a comprehensive analysis showing that since 1990, the age-standardised
           prevalence of obesity has doubled among women and tripled among men.
           The authors argue for a critical shift in perspective, urging
           policymakers and clinicians to move beyond viewing obesity as a simple
@@ -1280,8 +1282,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
         <p className="mt-4">
           Looking forward, the report outlines actionable strategies across both
           public health and clinical medicine. It points to the promise of
-          potentially &quot;game-changing&quot; medical interventions, such as GLP-1
-          receptor agonists (GLP-1RAs), for managing weight and improving
+          potentially &quot;game-changing&quot; medical interventions, such as
+          GLP-1 receptor agonists (GLP-1RAs), for managing weight and improving
           cardiovascular outcomes. The authors conclude with a powerful call to
           action for coordinated efforts from global health organizations,
           healthcare systems, and governments to implement evidence-based
@@ -1397,14 +1399,14 @@ export const researchArticles: Record<string, ResearchArticle> = {
         </p>
 
         <p className="mt-4">
-          This new indication is based on clinical trial data showing Wegovy&apos;s
-          ability to achieve resolution of MASH and improvement in liver
-          fibrosis. The approval is granted under the FDA&apos;s accelerated pathway,
-          meaning continued approval may depend on the results of ongoing
-          confirmatory trials. This adds a critical new dimension to Wegovy&apos;s
-          existing approvals for reducing major cardiovascular events and for
-          chronic weight management in adults and adolescents with obesity or
-          overweight.
+          This new indication is based on clinical trial data showing
+          Wegovy&apos;s ability to achieve resolution of MASH and improvement in
+          liver fibrosis. The approval is granted under the FDA&apos;s
+          accelerated pathway, meaning continued approval may depend on the
+          results of ongoing confirmatory trials. This adds a critical new
+          dimension to Wegovy&apos;s existing approvals for reducing major
+          cardiovascular events and for chronic weight management in adults and
+          adolescents with obesity or overweight.
         </p>
 
         <p className="mt-4">
@@ -1498,11 +1500,11 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           Extensive clinical data from the SUSTAIN trial program underscores
-          Seglutide&apos;s efficacy. Across multiple head-to-head trials, semaglutide
-          demonstrated superior reductions in both HbA1c and body weight
-          compared to placebo, other GLP-1 RAs (like dulaglutide and exenatide
-          ER), DPP-4 inhibitors, and SGLT-2 inhibitors. The landmark SUSTAIN 6
-          cardiovascular outcomes trial revealed a significant{" "}
+          Seglutide&apos;s efficacy. Across multiple head-to-head trials,
+          semaglutide demonstrated superior reductions in both HbA1c and body
+          weight compared to placebo, other GLP-1 RAs (like dulaglutide and
+          exenatide ER), DPP-4 inhibitors, and SGLT-2 inhibitors. The landmark
+          SUSTAIN 6 cardiovascular outcomes trial revealed a significant{" "}
           <strong>26% reduction in the risk of MACE</strong> (CV death,
           non-fatal MI, or non-fatal stroke) versus placebo.
         </p>
@@ -1522,8 +1524,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            This profile highlights Seglutide&apos;s robust clinical data and its
-            evolving role as a multi-faceted agent for managing complex,
+            This profile highlights Seglutide&apos;s robust clinical data and
+            its evolving role as a multi-faceted agent for managing complex,
             interrelated metabolic conditions. For complete dosing,
             administration, and safety information, healthcare professionals
             should consult the full product monograph.{" "}
@@ -1598,8 +1600,8 @@ export const researchArticles: Record<string, ResearchArticle> = {
 
         <p className="mt-4">
           <b>
-            Want to dive deeper into the data that&apos;s changing the standard of
-            care for diabetic kidney disease?{" "}
+            Want to dive deeper into the data that&apos;s changing the standard
+            of care for diabetic kidney disease?{" "}
             <Link
               href="https://diabesity.life/wp-content/uploads/2025/10/The-FLOW-Trial-Plain-Language-Summary.jpg"
               target="_blank"
@@ -1638,9 +1640,9 @@ export const researchArticles: Record<string, ResearchArticle> = {
           The study was a large-scale, double-blind, randomized,
           placebo-controlled trial involving 3,533 participants. Patients were
           administered either a weekly 1.0 mg dose of subcutaneous semaglutide
-          or a placebo. The primary goal was to determine the drug&apos;s efficacy in
-          preventing a composite of major kidney events (including kidney
-          failure and a substantial loss of function) or death from
+          or a placebo. The primary goal was to determine the drug&apos;s
+          efficacy in preventing a composite of major kidney events (including
+          kidney failure and a substantial loss of function) or death from
           kidney-related or cardiovascular causes.
         </p>
 
@@ -1724,6 +1726,73 @@ export const researchArticles: Record<string, ResearchArticle> = {
             For more information{" "}
             <Link
               href="https://diabesity.life/wp-content/uploads/2025/10/Phase-3-ESSENCE-trial-Semaglutide-in-metabolic-dysfunction-associated-steatohepatitis.pdf"
+              target="_blank"
+              className="text-primary underline"
+            >
+              click here.
+            </Link>
+          </b>
+        </p>
+      </>
+    ),
+  },
+
+  "pharmacologic-treatment-of-obesity-in-adults": {
+    slug: "pharmacologic-treatment-of-obesity-in-adults",
+    title:
+      "Pharmacologic Treatment of Obesity in Adults: Standards of Care in Overweight and Obesity",
+    date: "2024-05-24",
+    image: PharmacologicTreatment.src,
+    imageAlt:
+      "Multiple blister packs of medication, illustrating the findings of the FLOW trial on semaglutide.",
+    authors: "American Diabetes Association",
+    journal: "American Diabetes Association (ADA)",
+    content: (
+      <>
+        <p className="mt-4">
+          Obesity medications may be part of a comprehensive care plan for
+          adults with obesity. The Obesity Association, a division of the
+          American Diabetes Association (ADA), developed comprehensive,
+          evidence-based guidelines on the pharmacologic treatment of obesity in
+          adults. When used in conjunction with lifestyle modifications, obesity
+          medications have demonstrated efficacy in inducing and sustaining
+          weight reduction while concurrently improving clinical outcomes of
+          obesity and obesity-related diseases and complications. Health care
+          professionals should engage people with obesity in a person-centered,
+          shared decision-making approach when selecting an obesity medication
+          to optimize health outcomes while emphasizing individual needs and
+          preferences. The ADA’s Obesity Association encourages health care
+          professionals to adopt these guidelines for treatment of obesity in
+          adults.
+        </p>
+
+        <p className="mt-4">
+          Obesity medications are an essential component of a comprehensive
+          approach to obesity management, offering significant benefits beyond
+          lifestyle interventions alone for many people. Research indicates that
+          pharmacotherapy can lead to greater weight reduction and improved
+          weight maintenance than placebo in adults with obesity. Of note,
+          randomized controlled trials (RCTs) of obesity medications include
+          lifestyle intervention in both placebo and study drug arms, which most
+          typically comprises a 500-calorie deficit meal plan and behavioral
+          intervention that usually produces 2.6% weight reduction in the
+          placebo group, and the placebo group receives a placebo pill or
+          injection, as appropriate. In meta-analyses of RCTs, people treated
+          with obesity medications experienced substantial weight reduction
+          compared with placebo. Participants treated with obesity
+          medications also had improvements in cardiometabolic markers, such as
+          glycemia and lipid profiles, and some obesity medications
+          demonstrated improvements in cardiovascular outcomes and other
+          obesity-related diseases. When used appropriately, obesity
+          medications offer a favorable risk-benefit profile in many cases,
+          making them a viable option for many people with obesity.
+        </p>
+
+        <p className="mt-4">
+          <b>
+            For more information{" "}
+            <Link
+              href="https://diabetesjournals.org/docm-care/article/1/1/5/164233/Pharmacologic-Treatment-of-Obesity-in-Adults"
               target="_blank"
               className="text-primary underline"
             >
