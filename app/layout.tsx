@@ -2,6 +2,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
+import { AuthProvider } from "@/contexts/AuthContext";
 import { SidebarProvider } from "@/contexts/SidebarContext";
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
@@ -36,17 +37,19 @@ export default function RootLayout({
       <body
         className={`${ibmPlexSans.variable} ${ibmPlexSansCondensed.variable} antialiased`}
       >
-        <SidebarProvider>
-          <Header />
-          <Breadcrumbs />
-          <div className="lg:flex">
-            <Suspense fallback={<div />}>
-              <Sidebar />
-            </Suspense>
-            <main className="w-full lg:flex-1">{children}</main>
-          </div>
-          <Footer />
-        </SidebarProvider>
+        <AuthProvider>
+          <SidebarProvider>
+            <Header />
+            <Breadcrumbs />
+            <div className="lg:flex">
+              <Suspense fallback={<div />}>
+                <Sidebar />
+              </Suspense>
+              <main className="w-full lg:flex-1">{children}</main>
+            </div>
+            <Footer />
+          </SidebarProvider>
+        </AuthProvider>
       </body>
     </html>
   );

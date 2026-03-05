@@ -9,6 +9,7 @@ import Article6 from "../public/news-article-6.jpg";
 import Article7 from "../public/news-article-7.webp";
 import Article8 from "../public/news-article-8.webp";
 import Article9 from "../public/news-article-9.jpg";
+import Article10 from "../public/news-article-10.jpg";
 
 export interface NewsArticle {
   slug: string;
@@ -399,6 +400,55 @@ export const newsArticles: Record<string, NewsArticle> = {
           For more details, click{" "}
           <Link
             href="https://www.diabetesresearchclinicalpractice.com/article/S0168-8227(25)00866-6/fulltext"
+            target="_blank"
+            className="text-primary underline"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  "pakistani-children-overweight-or-obese": {
+    slug: "pakistani-children-overweight-or-obese",
+    title:
+      "VITALSNEWS: Breaking News - Over 18 million Pakistani children either overweight or obese, global atlas warns",
+    date: "2025-11-17",
+    image: Article10.src,
+    imageAlt: "Medical research",
+    category: "Health",
+    color: "bg-green-500",
+    excerpt:
+      "Background: Peer support is vital for improving diabetes management by offering emotional, educational, & practical assistance specially in Type 1 Diabetes (T1DM) worldwide.",
+    content: (
+      <>
+        <p>
+          Islamabad: More than 18 million children and adolescents aged 5 to 19
+          years in Pakistan are currently living with overweight or obesity,
+          placing the country among the five most affected nations in the world
+          as childhood obesity rises rapidly across low and middle income
+          countries.
+        </p>
+        <p className="mt-4">
+          The alarming estimate places Pakistan alongside the world’s most
+          populous countries facing a growing burden of childhood obesity. The
+          figures come from the World Obesity Atlas 2026, a comprehensive global
+          analysis of childhood overweight and obesity trends prepared by the
+          World Obesity Federation.
+        </p>
+        <p className="mt-4">
+          According to the report, Pakistan ranks fifth globally for the number
+          of children aged 5 to 19 years living with high body mass index,
+          following China, India, the United States and Indonesia. The atlas
+          estimates that around eight million Pakistani children in this age
+          group are already living with obesity, while the total number of those
+          who are either overweight or obese exceeds 18 million.
+        </p>
+        <p className="mt-4">
+          For more details, click{" "}
+          <Link
+            href="https://vitalsnews.com/top-story/breaking-news-over-18-million-pakistani-children-either-overweight-or-obese-global-atlas-warns/"
             target="_blank"
             className="text-primary underline"
           >

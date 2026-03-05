@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import { ArrowRightLeft } from "lucide-react";
+import { useState } from "react";
+import LogProgressModal from "./LogProgressModal";
 
 type ConversionMode = "hba1c-to-glucose" | "glucose-to-hba1c";
 type GlucoseUnit = "mg/dL" | "mmol/L";
@@ -91,12 +93,14 @@ function getCategory(hba1c: number): {
 }
 
 export default function Hba1cTranslatorClient() {
+  const { user } = useAuth();
   const [mode, setMode] = useState<ConversionMode>("hba1c-to-glucose");
   const [hba1cInput, setHba1cInput] = useState("");
   const [glucoseInput, setGlucoseInput] = useState("");
   const [glucoseUnit, setGlucoseUnit] = useState<GlucoseUnit>("mg/dL");
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showLogModal, setShowLogModal] = useState(false);
 
   const handleConvert = () => {
     setError(null);
@@ -325,9 +329,35 @@ export default function Hba1cTranslatorClient() {
                 <p className="text-gray-600 text-sm leading-relaxed text-center">
                   {result.description}
                 </p>
+
+                {user && (
+                  <div className="mt-5 text-center">
+                    <button
+                      onClick={() => setShowLogModal(true)}
+                      className="px-5 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
+                    >
+                      Save to Progress
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
+
+          {/* Log Progress Modal */}
+          {showLogModal && result && (
+            <LogProgressModal
+              metricData={{
+                toolType: "hba1c",
+                hba1cPercent: result.hba1c,
+                eagMgDl: result.glucoseMgDl,
+                eagMmol: result.glucoseMmol,
+                hba1cCategory: result.category,
+              }}
+              onClose={() => setShowLogModal(false)}
+              onSaved={() => {}}
+            />
+          )}
 
           {/* Reference Table */}
           <div className="mt-8 bg-white border border-gray-200 shadow-sm p-6">
