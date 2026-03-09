@@ -828,9 +828,9 @@ export default function Header() {
                   )}
                 </div>
               ) : (
-                <Link href="tel:+923710622837">
+                <Link href="/login">
                   <Button variant="primary" size="sm" className="px-4 py-1">
-                    Get a consultation
+                    Login
                   </Button>
                 </Link>
               )}
@@ -948,9 +948,9 @@ export default function Header() {
                     )}
                   </div>
                 ) : (
-                  <Link href="tel:+923710622837">
+                  <Link href="/login">
                     <Button variant="primary" size="md" className="px-8 mr-0.5">
-                      Get a consultation
+                      Login
                     </Button>
                   </Link>
                 )}

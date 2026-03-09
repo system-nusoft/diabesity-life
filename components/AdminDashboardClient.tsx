@@ -12,6 +12,7 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 interface CommentReport {
+  kind: "comment";
   id: string;
   commentId: string | null;
   commentContent: string;
@@ -24,23 +25,60 @@ interface CommentReport {
   createdAt: string;
 }
 
+interface PostReport {
+  kind: "post";
+  id: string;
+  postId: string | null;
+  postTitle: string;
+  postAuthorId: string;
+  postAuthorName: string;
+  reporterName: string;
+  reason: string | null;
+  status: string;
+  createdAt: string;
+}
+
+type Report = CommentReport | PostReport;
+
 export default function AdminDashboardClient() {
   const { token, banUser } = useAuth();
-  const [reports, setReports] = useState<CommentReport[]>([]);
+  const [reports, setReports] = useState<Report[]>([]);
   const [loading, setLoading] = useState(true);
   const [actionPending, setActionPending] = useState<string | null>(null);
   const [pendingAction, setPendingAction] = useState<{
     type: "delete" | "ban";
-    report: CommentReport;
+    report: Report;
   } | null>(null);
 
   const fetchReports = useCallback(async () => {
     if (!token) return;
     try {
-      const res = await fetch(`${API_BASE_URL}/community/reports`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) setReports(await res.json());
+      const [commentRes, postRes] = await Promise.all([
+        fetch(`${API_BASE_URL}/community/reports`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        fetch(`${API_BASE_URL}/community/post-reports`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
+
+      const commentReports = commentRes.ok
+        ? ((await commentRes.json()) as Omit<CommentReport, "kind">[]).map(
+            (r) => ({ ...r, kind: "comment" as const })
+          )
+        : [];
+      const postReports = postRes.ok
+        ? ((await postRes.json()) as Omit<PostReport, "kind">[]).map((r) => ({
+            ...r,
+            kind: "post" as const,
+          }))
+        : [];
+
+      const combined = [...commentReports, ...postReports].sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      setReports(combined);
     } finally {
       setLoading(false);
     }
@@ -53,10 +91,15 @@ export default function AdminDashboardClient() {
   const removeReport = (reportId: string) =>
     setReports((prev) => prev.filter((r) => r.id !== reportId));
 
-  const handleIgnore = async (reportId: string) => {
+  const handleIgnore = async (report: Report) => {
+    const reportId = report.id;
     setActionPending(reportId + ":ignore");
     try {
-      const res = await fetch(`${API_BASE_URL}/community/reports/${reportId}`, {
+      const endpoint =
+        report.kind === "post"
+          ? `${API_BASE_URL}/community/post-reports/${reportId}`
+          : `${API_BASE_URL}/community/reports/${reportId}`;
+      const res = await fetch(endpoint, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -66,34 +109,58 @@ export default function AdminDashboardClient() {
     }
   };
 
-  const execDeleteComment = async (report: CommentReport) => {
-    if (!report.commentId) return;
+  const execDelete = async (report: Report) => {
     setActionPending(report.id + ":delete");
     try {
-      const res = await fetch(
-        `${API_BASE_URL}/community/comments/${report.commentId}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
-      if (res.ok) {
-        await fetch(`${API_BASE_URL}/community/reports/${report.id}`, {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        removeReport(report.id);
+      if (report.kind === "comment") {
+        if (!report.commentId) return;
+        const res = await fetch(
+          `${API_BASE_URL}/community/comments/${report.commentId}`,
+          {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        if (res.ok) {
+          await fetch(`${API_BASE_URL}/community/reports/${report.id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          removeReport(report.id);
+        }
+      } else {
+        if (!report.postId) return;
+        const res = await fetch(
+          `${API_BASE_URL}/community/posts/${report.postId}`,
+          {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        if (res.ok) {
+          await fetch(`${API_BASE_URL}/community/post-reports/${report.id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          removeReport(report.id);
+        }
       }
     } finally {
       setActionPending(null);
     }
   };
 
-  const execBanAuthor = async (report: CommentReport) => {
+  const execBan = async (report: Report) => {
+    const authorId =
+      report.kind === "comment" ? report.commentAuthorId : report.postAuthorId;
     setActionPending(report.id + ":ban");
     try {
-      await banUser(report.commentAuthorId);
-      await fetch(`${API_BASE_URL}/community/reports/${report.id}`, {
+      await banUser(authorId);
+      const endpoint =
+        report.kind === "post"
+          ? `${API_BASE_URL}/community/post-reports/${report.id}`
+          : `${API_BASE_URL}/community/reports/${report.id}`;
+      await fetch(endpoint, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -103,23 +170,29 @@ export default function AdminDashboardClient() {
     }
   };
 
+  const getAuthorName = (report: Report) =>
+    report.kind === "comment" ? report.commentAuthorName : report.postAuthorName;
+
+  const deleteModalType = (report: Report): "comment" | "post" =>
+    report.kind === "comment" ? "comment" : "post";
+
   return (
     <>
       <DeleteConfirmationModal
         isOpen={pendingAction?.type === "delete"}
         onClose={() => setPendingAction(null)}
         onConfirm={() => {
-          if (pendingAction?.type === "delete") execDeleteComment(pendingAction.report);
+          if (pendingAction?.type === "delete") execDelete(pendingAction.report);
         }}
-        type="comment"
+        type={pendingAction ? deleteModalType(pendingAction.report) : "comment"}
       />
       <BanConfirmationModal
         isOpen={pendingAction?.type === "ban"}
         onClose={() => setPendingAction(null)}
         onConfirm={() => {
-          if (pendingAction?.type === "ban") execBanAuthor(pendingAction.report);
+          if (pendingAction?.type === "ban") execBan(pendingAction.report);
         }}
-        userName={pendingAction?.report.commentAuthorName ?? ""}
+        userName={pendingAction ? getAuthorName(pendingAction.report) : ""}
         isBanned={false}
       />
     <div className="flex flex-col">
@@ -130,7 +203,7 @@ export default function AdminDashboardClient() {
             Admin dashboard
           </h1>
           <p className="text-gray-600 text-sm">
-            Review comments reported by users.
+            Review posts and comments reported by users.
           </p>
         </div>
       </section>
@@ -146,7 +219,7 @@ export default function AdminDashboardClient() {
               <CheckCircle className="w-10 h-10 text-green-500 mx-auto mb-3" />
               <p className="text-gray-700 font-medium">No pending reports</p>
               <p className="text-gray-400 text-sm mt-1">
-                All clear — no comments have been reported.
+                All clear — nothing has been reported.
               </p>
             </div>
           ) : (
@@ -158,6 +231,10 @@ export default function AdminDashboardClient() {
 
               {reports.map((report) => {
                 const isBusy = actionPending?.startsWith(report.id);
+                const authorName = getAuthorName(report);
+                const isPost = report.kind === "post";
+                const canDelete = isPost ? !!report.postId : !!report.commentId;
+
                 return (
                   <div
                     key={report.id}
@@ -168,7 +245,12 @@ export default function AdminDashboardClient() {
                       <div className="flex items-center gap-2 text-xs text-gray-500">
                         <Flag className="w-3.5 h-3.5 text-orange-400" />
                         <span>
-                          Reported by{" "}
+                          {isPost ? (
+                            <span className="font-medium text-orange-600 mr-1">Post</span>
+                          ) : (
+                            <span className="font-medium text-blue-600 mr-1">Comment</span>
+                          )}
+                          reported by{" "}
                           <span className="font-medium text-gray-700">
                             {report.reporterName}
                           </span>{" "}
@@ -187,16 +269,18 @@ export default function AdminDashboardClient() {
                       )}
                     </div>
 
-                    {/* Comment content */}
+                    {/* Content snapshot */}
                     <div className="bg-gray-50 border border-gray-200 rounded px-4 py-3 mb-3">
                       <p className="text-xs text-gray-500 mb-1">
-                        Comment by{" "}
+                        {isPost ? "Post" : "Comment"} by{" "}
                         <span className="font-medium text-gray-700">
-                          {report.commentAuthorName}
+                          {authorName}
                         </span>
                       </p>
                       <p className="text-gray-800 text-sm">
-                        {report.commentContent}
+                        {isPost
+                          ? report.postTitle
+                          : report.commentContent}
                       </p>
                     </div>
 
@@ -211,11 +295,11 @@ export default function AdminDashboardClient() {
                     <div className="flex flex-wrap gap-2">
                       <button
                         onClick={() => setPendingAction({ type: "delete", report })}
-                        disabled={isBusy || !report.commentId}
+                        disabled={isBusy || !canDelete}
                         className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-600 border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
-                        Delete comment
+                        Delete {isPost ? "post" : "comment"}
                       </button>
                       <button
                         onClick={() => setPendingAction({ type: "ban", report })}
@@ -226,7 +310,7 @@ export default function AdminDashboardClient() {
                         Ban author
                       </button>
                       <button
-                        onClick={() => handleIgnore(report.id)}
+                        onClick={() => handleIgnore(report)}
                         disabled={isBusy}
                         className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-500 border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                       >

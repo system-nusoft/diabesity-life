@@ -5,14 +5,17 @@ import { formatTimeAgo } from "@/lib/communityData";
 import {
   ArrowLeft,
   Ban,
+  Check,
   Flag,
   Heart,
   MessageCircle,
+  Pencil,
   Send,
   Shield,
   Trash2,
   User,
   UserCheck,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -22,6 +25,23 @@ import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { Button } from "./ui/button";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+const SUGGESTED_TAGS = [
+  "Question",
+  "Semaglutide",
+  "GLP-1",
+  "Type 1",
+  "Type 2",
+  "Diet",
+  "Exercise",
+  "Medication",
+  "Insulin",
+  "Weight Loss",
+  "Success Story",
+  "Tips",
+  "Recipes",
+  "Mental Health",
+];
 
 interface PostAuthor {
   id: string;
@@ -85,6 +105,22 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
     submitting: boolean;
     submitted: Set<string>;
   }>({ commentId: null, reason: "", submitting: false, submitted: new Set() });
+  const [postReportState, setPostReportState] = useState<{
+    isOpen: boolean;
+    reason: string;
+    submitting: boolean;
+    submitted: boolean;
+  }>({ isOpen: false, reason: "", submitting: false, submitted: false });
+  const [postEditState, setPostEditState] = useState<{
+    isEditing: boolean;
+    title: string;
+    content: string;
+    tags: string[];
+    saving: boolean;
+  }>({ isEditing: false, title: "", content: "", tags: [], saving: false });
+  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+  const [commentEditContent, setCommentEditContent] = useState("");
+  const [commentEditSaving, setCommentEditSaving] = useState(false);
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -101,12 +137,12 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
     if (token) headers["Authorization"] = `Bearer ${token}`;
 
     Promise.all([
-      fetch(`${API_BASE_URL}/community/posts/${postId}`, { headers }).then((r) =>
-        r.ok ? r.json() : null
+      fetch(`${API_BASE_URL}/community/posts/${postId}`, { headers }).then(
+        (r) => (r.ok ? r.json() : null),
       ),
-      fetch(`${API_BASE_URL}/community/posts/${postId}/comments`, { headers }).then(
-        (r) => (r.ok ? r.json() : [])
-      ),
+      fetch(`${API_BASE_URL}/community/posts/${postId}/comments`, {
+        headers,
+      }).then((r) => (r.ok ? r.json() : [])),
     ])
       .then(([postData, commentsData]) => {
         if (!postData) {
@@ -123,17 +159,14 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
   const handleLikePost = async () => {
     if (!user || isBanned || !token || !post) return;
 
-    const res = await fetch(
-      `${API_BASE_URL}/community/posts/${post.id}/like`,
-      {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    const res = await fetch(`${API_BASE_URL}/community/posts/${post.id}/like`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (!res.ok) return;
 
     const { liked, likes } = await res.json();
-    setPost((prev) => prev ? { ...prev, likes, likedByMe: liked } : prev);
+    setPost((prev) => (prev ? { ...prev, likes, likedByMe: liked } : prev));
   };
 
   const handleLikeComment = async (commentId: string) => {
@@ -144,13 +177,15 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
-      }
+      },
     );
     if (!res.ok) return;
 
     const { liked, likes } = await res.json();
     setComments((prev) =>
-      prev.map((c) => (c.id === commentId ? { ...c, likes, likedByMe: liked } : c))
+      prev.map((c) =>
+        c.id === commentId ? { ...c, likes, likedByMe: liked } : c,
+      ),
     );
   };
 
@@ -171,7 +206,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ content: newComment.trim() }),
-        }
+        },
       );
 
       if (!res.ok) return;
@@ -180,7 +215,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       setComments((prev) => [newCommentObj, ...prev]);
       setNewComment("");
       setPost((prev) =>
-        prev ? { ...prev, commentsCount: prev.commentsCount + 1 } : prev
+        prev ? { ...prev, commentsCount: prev.commentsCount + 1 } : prev,
       );
     } finally {
       setIsSubmitting(false);
@@ -189,7 +224,12 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
 
   const handleDeletePost = () => {
     if (!post) return;
-    setDeleteModalState({ isOpen: true, type: "post", id: post.id, title: post.title });
+    setDeleteModalState({
+      isOpen: true,
+      type: "post",
+      id: post.id,
+      title: post.title,
+    });
   };
 
   const handleDeleteComment = (commentId: string) => {
@@ -202,7 +242,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
     if (deleteModalState.type === "post") {
       const res = await fetch(
         `${API_BASE_URL}/community/posts/${deleteModalState.id}`,
-        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
+        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } },
       );
       if (res.ok) {
         setIsPostDeleted(true);
@@ -211,19 +251,30 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
     } else {
       const res = await fetch(
         `${API_BASE_URL}/community/comments/${deleteModalState.id}`,
-        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } }
+        { method: "DELETE", headers: { Authorization: `Bearer ${token}` } },
       );
       if (res.ok) {
         setComments((prev) => prev.filter((c) => c.id !== deleteModalState.id));
         setPost((prev) =>
-          prev ? { ...prev, commentsCount: Math.max(0, prev.commentsCount - 1) } : prev
+          prev
+            ? { ...prev, commentsCount: Math.max(0, prev.commentsCount - 1) }
+            : prev,
         );
       }
     }
   };
 
-  const handleBanUser = (userId: string, userName: string, currentlyBanned: boolean) => {
-    setBanModalState({ isOpen: true, userId, userName, isBanned: currentlyBanned });
+  const handleBanUser = (
+    userId: string,
+    userName: string,
+    currentlyBanned: boolean,
+  ) => {
+    setBanModalState({
+      isOpen: true,
+      userId,
+      userName,
+      isBanned: currentlyBanned,
+    });
   };
 
   const handleConfirmBan = async () => {
@@ -237,14 +288,14 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
     setPost((prev) =>
       prev && prev.author.id === banModalState.userId
         ? { ...prev, author: { ...prev.author, communityBanned: newBanStatus } }
-        : prev
+        : prev,
     );
     setComments((prev) =>
       prev.map((c) =>
         c.author.id === banModalState.userId
           ? { ...c, author: { ...c.author, communityBanned: newBanStatus } }
-          : c
-      )
+          : c,
+      ),
     );
   };
 
@@ -260,8 +311,10 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ reason: reportState.reason.trim() || undefined }),
-        }
+          body: JSON.stringify({
+            reason: reportState.reason.trim() || undefined,
+          }),
+        },
       );
       if (res.ok) {
         setReportState((prev) => ({
@@ -273,6 +326,126 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       }
     } finally {
       setReportState((prev) => ({ ...prev, submitting: false }));
+    }
+  };
+
+  const handleStartEditPost = () => {
+    if (!post) return;
+    setPostEditState({
+      isEditing: true,
+      title: post.title,
+      content: post.content,
+      tags: [...post.tags],
+      saving: false,
+    });
+  };
+
+  const handleEditTagToggle = (tag: string) => {
+    setPostEditState((prev) => ({
+      ...prev,
+      tags: prev.tags.includes(tag)
+        ? prev.tags.filter((t) => t !== tag)
+        : [...prev.tags, tag],
+    }));
+  };
+
+  const handleSavePost = async () => {
+    if (!token || !post) return;
+    setPostEditState((prev) => ({ ...prev, saving: true }));
+    try {
+      const res = await fetch(`${API_BASE_URL}/community/posts/${post.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: postEditState.title.trim(),
+          content: postEditState.content.trim(),
+          tags: postEditState.tags,
+        }),
+      });
+      if (res.ok) {
+        const updated = await res.json();
+        setPost((prev) =>
+          prev
+            ? {
+                ...prev,
+                title: updated.title,
+                content: updated.content,
+                tags: updated.tags,
+              }
+            : prev,
+        );
+        setPostEditState((prev) => ({ ...prev, isEditing: false }));
+      }
+    } finally {
+      setPostEditState((prev) => ({ ...prev, saving: false }));
+    }
+  };
+
+  const handleStartEditComment = (comment: Comment) => {
+    setEditingCommentId(comment.id);
+    setCommentEditContent(comment.content);
+  };
+
+  const handleSaveComment = async (commentId: string) => {
+    if (!token) return;
+    setCommentEditSaving(true);
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/community/comments/${commentId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ content: commentEditContent.trim() }),
+        },
+      );
+      if (res.ok) {
+        setComments((prev) =>
+          prev.map((c) =>
+            c.id === commentId
+              ? { ...c, content: commentEditContent.trim() }
+              : c,
+          ),
+        );
+        setEditingCommentId(null);
+      }
+    } finally {
+      setCommentEditSaving(false);
+    }
+  };
+
+  const handleSubmitPostReport = async () => {
+    if (!token || !post) return;
+    setPostReportState((prev) => ({ ...prev, submitting: true }));
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/community/posts/${post.id}/report`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            reason: postReportState.reason.trim() || undefined,
+          }),
+        },
+      );
+      if (res.ok) {
+        setPostReportState({
+          isOpen: false,
+          reason: "",
+          submitting: false,
+          submitted: true,
+        });
+      }
+    } finally {
+      setPostReportState((prev) => ({ ...prev, submitting: false }));
     }
   };
 
@@ -306,7 +479,12 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       <BanConfirmationModal
         isOpen={banModalState.isOpen}
         onClose={() =>
-          setBanModalState({ isOpen: false, userId: "", userName: "", isBanned: false })
+          setBanModalState({
+            isOpen: false,
+            userId: "",
+            userName: "",
+            isBanned: false,
+          })
         }
         onConfirm={handleConfirmBan}
         userName={banModalState.userName}
@@ -349,8 +527,8 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
             <div className="max-w-4xl mx-auto px-4 flex items-center gap-2">
               <Ban className="w-5 h-5" />
               <span>
-                You have been banned from the community. You can view content but
-                cannot post or interact.
+                You have been banned from the community. You can view content
+                but cannot post or interact.
               </span>
             </div>
           </div>
@@ -368,7 +546,9 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="font-medium text-gray-800">{post.author.name}</p>
+                    <p className="font-medium text-gray-800">
+                      {post.author.name}
+                    </p>
                     {post.author.communityBanned && (
                       <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
                         Banned
@@ -381,19 +561,25 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                 </div>
               </div>
 
-              {/* Admin Controls for Post */}
-              {isAdmin && (
+              {/* Post Controls */}
+              {isAdmin ? (
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() =>
-                      handleBanUser(post.author.id, post.author.name, !!post.author.communityBanned)
+                      handleBanUser(
+                        post.author.id,
+                        post.author.name,
+                        !!post.author.communityBanned,
+                      )
                     }
                     className={`p-2 rounded transition-colors ${
                       post.author.communityBanned
                         ? "text-green-600 hover:bg-green-50"
                         : "text-orange-500 hover:bg-orange-50"
                     }`}
-                    title={post.author.communityBanned ? "Unban user" : "Ban user"}
+                    title={
+                      post.author.communityBanned ? "Unban user" : "Ban user"
+                    }
                   >
                     {post.author.communityBanned ? (
                       <UserCheck className="w-5 h-5" />
@@ -409,28 +595,137 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     <Trash2 className="w-5 h-5" />
                   </button>
                 </div>
-              )}
+              ) : user && post.author.id === user.id ? (
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={handleStartEditPost}
+                    className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 rounded transition-colors"
+                    title="Edit your post"
+                  >
+                    <Pencil className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={handleDeletePost}
+                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
+                    title="Delete your post"
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+              ) : null}
             </div>
 
-            {/* Post Title */}
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">{post.title}</h1>
-
-            {/* Post Content */}
-            <p className="text-gray-700 whitespace-pre-wrap mb-4">
-              {post.content}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            {/* Post Title / Content / Tags — edit mode or read mode */}
+            {postEditState.isEditing ? (
+              <div className="mb-4 space-y-3">
+                <input
+                  type="text"
+                  value={postEditState.title}
+                  onChange={(e) =>
+                    setPostEditState((prev) => ({
+                      ...prev,
+                      title: e.target.value,
+                    }))
+                  }
+                  className="w-full px-3 py-2 text-xl font-bold border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder="Post title"
+                />
+                <textarea
+                  value={postEditState.content}
+                  onChange={(e) =>
+                    setPostEditState((prev) => ({
+                      ...prev,
+                      content: e.target.value,
+                    }))
+                  }
+                  rows={6}
+                  className="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                  placeholder="Post content"
+                />
+                <div>
+                  {postEditState.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {postEditState.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="inline-flex items-center gap-1 px-3 py-1 bg-primary text-white text-sm font-medium"
+                        >
+                          {tag}
+                          <button
+                            type="button"
+                            onClick={() => handleEditTagToggle(tag)}
+                            className="hover:bg-white/20 rounded-full p-0.5"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-2">
+                    {SUGGESTED_TAGS.filter(
+                      (t) => !postEditState.tags.includes(t),
+                    ).map((tag) => (
+                      <button
+                        key={tag}
+                        type="button"
+                        onClick={() => handleEditTagToggle(tag)}
+                        className="px-3 py-1 border border-gray-300 text-gray-600 text-sm hover:border-primary hover:text-primary transition-colors"
+                      >
+                        + {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant="primary"
+                    onClick={handleSavePost}
+                    disabled={
+                      postEditState.saving ||
+                      !postEditState.title.trim() ||
+                      !postEditState.content.trim()
+                    }
+                    className="px-4 py-1 shadow-none"
+                  >
+                    <Check className="w-5 h-5" />
+                    {postEditState.saving ? "Saving..." : "Save"}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() =>
+                      setPostEditState((prev) => ({
+                        ...prev,
+                        isEditing: false,
+                      }))
+                    }
+                    className="px-4 py-1"
+                  >
+                    <X className="w-5 h-5" />
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <h1 className="text-2xl font-bold text-gray-900 mb-4">
+                  {post.title}
+                </h1>
+                <p className="text-gray-700 whitespace-pre-wrap mb-4">
+                  {post.content}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Actions */}
             <div className="flex items-center gap-6 pt-4 border-t border-gray-100">
@@ -454,6 +749,65 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                 <MessageCircle className="w-6 h-6" />
                 <span className="font-medium">{comments.length} comments</span>
               </div>
+
+              {/* Post report — non-admin users who didn't write this post */}
+              {user &&
+                !isAdmin &&
+                post.author.id !== user.id &&
+                (postReportState.submitted ? (
+                  <span className="ml-auto flex items-center gap-1 text-xs text-gray-400">
+                    <Flag className="w-3.5 h-3.5" />
+                    Reported
+                  </span>
+                ) : postReportState.isOpen ? (
+                  <div className="ml-auto flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={postReportState.reason}
+                      onChange={(e) =>
+                        setPostReportState((prev) => ({
+                          ...prev,
+                          reason: e.target.value,
+                        }))
+                      }
+                      placeholder="Reason (optional)"
+                      className="text-xs px-2 py-1 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary"
+                    />
+                    <button
+                      onClick={handleSubmitPostReport}
+                      disabled={postReportState.submitting}
+                      className="text-xs px-2 py-1 bg-primary text-white transition-colors disabled:opacity-60"
+                    >
+                      {postReportState.submitting ? "Sending..." : "Send"}
+                    </button>
+                    <button
+                      onClick={() =>
+                        setPostReportState((prev) => ({
+                          ...prev,
+                          isOpen: false,
+                          reason: "",
+                        }))
+                      }
+                      className="text-xs text-gray-400 hover:text-gray-600"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() =>
+                      setPostReportState((prev) => ({
+                        ...prev,
+                        isOpen: true,
+                        reason: "",
+                      }))
+                    }
+                    className="ml-auto flex items-center gap-1 text-xs text-gray-400 hover:text-primary transition-colors"
+                  >
+                    <Flag className="w-3.5 h-3.5" />
+                    Report
+                  </button>
+                ))}
             </div>
           </div>
 
@@ -551,7 +905,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                             handleBanUser(
                               comment.author.id,
                               comment.author.name,
-                              !!comment.author.communityBanned
+                              !!comment.author.communityBanned,
                             )
                           }
                           className={`p-1.5 rounded transition-colors ${
@@ -580,18 +934,57 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                         </button>
                       </div>
                     ) : user && comment.author.id === user.id ? (
-                      <button
-                        onClick={() => handleDeleteComment(comment.id)}
-                        className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
-                        title="Delete your comment"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={() => handleStartEditComment(comment)}
+                          className="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded transition-colors"
+                          title="Edit your comment"
+                        >
+                          <Pencil className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteComment(comment.id)}
+                          className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
+                          title="Delete your comment"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     ) : null}
                   </div>
 
                   {/* Comment Content */}
-                  <p className="text-gray-700 mb-3">{comment.content}</p>
+                  {editingCommentId === comment.id ? (
+                    <div className="mb-3 space-y-2">
+                      <textarea
+                        value={commentEditContent}
+                        onChange={(e) => setCommentEditContent(e.target.value)}
+                        rows={3}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                      />
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleSaveComment(comment.id)}
+                          disabled={
+                            commentEditSaving || !commentEditContent.trim()
+                          }
+                          className="flex items-center gap-1 px-2.5 py-1 text-xs bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-50"
+                        >
+                          <Check className="w-3.5 h-3.5" />
+                          {commentEditSaving ? "Saving..." : "Save"}
+                        </button>
+                        <button
+                          onClick={() => setEditingCommentId(null)}
+                          className="flex items-center gap-1 px-2.5 py-1 text-xs border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="text-gray-700 mb-3">{comment.content}</p>
+                  )}
 
                   {/* Comment Actions */}
                   <div className="flex items-center gap-4">
@@ -615,8 +1008,10 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     </button>
 
                     {/* Report button — non-admin users who didn't write this comment */}
-                    {user && !isAdmin && comment.author.id !== user.id && (
-                      reportState.submitted.has(comment.id) ? (
+                    {user &&
+                      !isAdmin &&
+                      comment.author.id !== user.id &&
+                      (reportState.submitted.has(comment.id) ? (
                         <span className="text-xs text-gray-400 flex items-center gap-1">
                           <Flag className="w-3.5 h-3.5" />
                           Reported
@@ -669,8 +1064,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           <Flag className="w-3.5 h-3.5" />
                           Report
                         </button>
-                      )
-                    )}
+                      ))}
                   </div>
                 </div>
               ))
