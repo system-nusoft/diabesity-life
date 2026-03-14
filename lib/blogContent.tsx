@@ -2254,5 +2254,7 @@ export function getAllBlogArticleSlugs(): string[] {
 }
 
 export function getAllBlogArticles(): BlogArticle[] {
-  return Object.values(blogArticles);
+  return Object.values(blogArticles).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
 }

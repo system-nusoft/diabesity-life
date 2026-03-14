@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { formatTimeAgo } from "@/lib/communityData";
+import { API_BASE_URL } from "@/lib/utils";
 import {
   Ban,
   Heart,
@@ -18,8 +19,6 @@ import { useEffect, useState } from "react";
 import BanConfirmationModal from "./BanConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { Button } from "./ui/button";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 interface PostAuthor {
   id: string;
@@ -47,6 +46,7 @@ export default function CommunityClient() {
 
   const [posts, setPosts] = useState<Post[]>([]);
   const [postsLoading, setPostsLoading] = useState(true);
+  const [activeTag, setActiveTag] = useState<string | null>(null);
   const [banModalState, setBanModalState] = useState<{
     isOpen: boolean;
     userId: string;
@@ -184,6 +184,11 @@ export default function CommunityClient() {
     );
   };
 
+  const allTags = Array.from(new Set(posts.flatMap((p) => p.tags))).sort();
+  const filteredPosts = activeTag
+    ? posts.filter((p) => p.tags.includes(activeTag))
+    : posts;
+
   return (
     <>
       <BanConfirmationModal
@@ -262,18 +267,49 @@ export default function CommunityClient() {
             </Button>
           </div>
 
+          {/* Tag Filter */}
+          {!postsLoading && allTags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              <button
+                onClick={() => setActiveTag(null)}
+                className={`px-3 py-1.5 text-sm font-medium border transition-colors ${
+                  activeTag === null
+                    ? "bg-primary text-white border-primary"
+                    : "bg-white text-gray-600 border-gray-300 hover:border-primary hover:text-primary"
+                }`}
+              >
+                All
+              </button>
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                  className={`px-3 py-1.5 text-sm font-medium border transition-colors ${
+                    activeTag === tag
+                      ? "bg-primary text-white border-primary"
+                      : "bg-white text-gray-600 border-gray-300 hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Posts List */}
           {postsLoading ? (
             <div className="text-center py-12 text-gray-500">
               Loading posts...
             </div>
-          ) : posts.length === 0 ? (
+          ) : filteredPosts.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
-              No posts yet. Be the first to share!
+              {activeTag
+                ? `No posts tagged "${activeTag}".`
+                : "No posts yet. Be the first to share!"}
             </div>
           ) : (
             <div className="flex flex-col space-y-4">
-              {posts.map((post) => (
+              {filteredPosts.map((post) => (
                 <Link href={`/community/${post.id}`} key={post.id}>
                   <div className="bg-white border border-gray-200 p-5 hover:border-primary transition-colors cursor-pointer">
                     {/* Author Info */}

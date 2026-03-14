@@ -1,7 +1,10 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
-import { ChevronDown, LogOut, Menu, Phone, User, X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { formatTimeAgo } from "@/lib/communityData";
+import { API_BASE_URL } from "@/lib/utils";
+import { Bell, ChevronDown, LogOut, Menu, Phone, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -176,6 +179,15 @@ const menuItems: MenuItem[] = [
   },
 ];
 
+interface Notification {
+  id: string;
+  title: string;
+  body: string;
+  isRead: boolean;
+  createdAt: string;
+  link?: string;
+}
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -185,19 +197,40 @@ export default function Header() {
   const [activeLevel3, setActiveLevel3] = useState<string | null>(null);
   const [mobileExpandedItems, setMobileExpandedItems] = useState<string[]>([]);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const megaMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const userDropdownDesktopRef = useRef<HTMLDivElement>(null);
   const userDropdownMobileRef = useRef<HTMLDivElement>(null);
+  const notificationRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isTransitioningRef = useRef<boolean>(false);
-  const { user, logout, isLoading } = useAuth();
+  const { user, token, logout, isLoading } = useAuth();
+  const { locale, setLocale } = useLanguage();
 
   const handleLogout = () => {
     logout();
     setIsUserDropdownOpen(false);
     router.push("/");
+  };
+
+  const hasUnread = notifications.some((n) => !n.isRead);
+
+  const handleBellClick = () => {
+    const opening = !isNotificationOpen;
+    setIsNotificationOpen(opening);
+    setIsUserDropdownOpen(false);
+    if (opening && token) {
+      // Optimistically mark all as read in UI
+      setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
+      // Persist to API
+      fetch(`${API_BASE_URL}/notifications/read`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+      }).catch(() => {});
+    }
   };
 
   // Close user dropdown when clicking outside
@@ -219,6 +252,40 @@ export default function Header() {
         document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isUserDropdownOpen]);
+
+  // Close notification dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!notificationRef.current?.contains(event.target as Node)) {
+        setIsNotificationOpen(false);
+      }
+    };
+    if (isNotificationOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isNotificationOpen]);
+
+  // Fetch notifications + poll every 45s
+  useEffect(() => {
+    if (!user || !token) return;
+
+    const fetchNotifications = () => {
+      fetch(`${API_BASE_URL}/notifications`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          if (Array.isArray(data)) setNotifications(data);
+        })
+        .catch(() => {});
+    };
+
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 45_000);
+    return () => clearInterval(interval);
+  }, [user, token]);
 
   useEffect(() => {
     let ticking = false;
@@ -734,6 +801,22 @@ export default function Header() {
 
               {/* Right CTAs - Desktop Only */}
               <div className="hidden lg:flex items-center gap-3 flex-shrink-0 mr-0.5">
+                {/* Language Toggle - Desktop */}
+                {/* <div className="flex items-center text-sm">
+                  <button
+                    onClick={() => setLocale("en")}
+                    className={`px-1.5 py-1 transition-colors ${locale === "en" ? "font-semibold text-primary" : "text-gray-400 hover:text-gray-600"}`}
+                  >
+                    EN
+                  </button>
+                  <span className="text-gray-300">|</span>
+                  <button
+                    onClick={() => setLocale("ur")}
+                    className={`px-1.5 py-1 transition-colors ${locale === "ur" ? "font-semibold text-primary" : "text-gray-400 hover:text-gray-600"}`}
+                  >
+                    اردو
+                  </button>
+                </div> */}
                 {user ? (
                   <Link href="/community">
                     <button className="px-8 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium text-xs whitespace-nowrap">
@@ -788,49 +871,80 @@ export default function Header() {
             )}
             Menu
           </button>
+          {/* Language Toggle - Mobile */}
+          {/* <div className="flex items-center text-sm">
+            <button
+              onClick={() => setLocale("en")}
+              className={`px-1.5 py-1 transition-colors ${locale === "en" ? "font-semibold text-primary" : "text-gray-400 hover:text-gray-600"}`}
+            >
+              EN
+            </button>
+            <span className="text-gray-300">|</span>
+            <button
+              onClick={() => setLocale("ur")}
+              className={`px-1.5 py-1 transition-colors ${locale === "ur" ? "font-semibold text-primary" : "text-gray-400 hover:text-gray-600"}`}
+            >
+              اردو
+            </button>
+          </div> */}
+
           {!isLoading && (
             <>
               {user ? (
-                <div className="relative" ref={userDropdownMobileRef}>
+                <div className="flex items-center gap-1">
+                  {/* Bell - Mobile */}
                   <button
-                    onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
-                    className="flex items-center gap-2"
+                    onClick={handleBellClick}
+                    className="relative p-2 hover:bg-gray-100 rounded transition-colors"
+                    title="Notifications"
                   >
-                    <span className="text-sm text-gray-700">Hi</span>
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                      <User className="w-4 h-4 text-white" />
-                    </div>
+                    <Bell className="w-5 h-5 text-gray-600" />
+                    {hasUnread && (
+                      <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+                    )}
                   </button>
 
-                  {/* Mobile User Dropdown */}
-                  {isUserDropdownOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
-                      <div className="px-4 py-2 border-b border-gray-100">
-                        <p className="text-sm text-gray-500 truncate">
-                          {user.email}
-                        </p>
+                  <div className="relative" ref={userDropdownMobileRef}>
+                    <button
+                      onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                      className="flex items-center gap-2"
+                    >
+                      <span className="text-sm text-gray-700">Hi</span>
+                      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                        <User className="w-4 h-4 text-white" />
                       </div>
-                      <Link
-                        href="/dashboard"
-                        onClick={() => setIsUserDropdownOpen(false)}
-                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                      >
-                        Dashboard
-                      </Link>
-                      <button
-                        onClick={handleLogout}
-                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                      >
-                        <LogOut className="w-4 h-4" />
-                        Logout
-                      </button>
-                    </div>
-                  )}
+                    </button>
+
+                    {/* Mobile User Dropdown */}
+                    {isUserDropdownOpen && (
+                      <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                        <div className="px-4 py-2 border-b border-gray-100">
+                          <p className="text-sm text-gray-500 truncate">
+                            {user.email}
+                          </p>
+                        </div>
+                        <Link
+                          href="/dashboard"
+                          onClick={() => setIsUserDropdownOpen(false)}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        >
+                          Dashboard
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Logout
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ) : (
-                <Link href="/login">
+                <Link href="tel:+923710622837">
                   <Button variant="primary" size="sm" className="px-4 py-1">
-                    Login
+                    Get a consultation
                   </Button>
                 </Link>
               )}
@@ -906,51 +1020,108 @@ export default function Header() {
             {!isLoading && (
               <>
                 {user ? (
-                  <div className="relative" ref={userDropdownDesktopRef}>
-                    <button
-                      onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
-                      className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 transition-colors"
-                    >
-                      <span className="text-sm text-gray-700 hidden xl:block">
-                        Hi, {user.firstName}
-                      </span>
-                      <span className="text-sm text-gray-700 xl:hidden">
-                        Hi
-                      </span>
-                      <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
-                        <User className="w-5 h-5 text-white" />
-                      </div>
-                    </button>
+                  <div className="flex items-center gap-1">
+                    {/* Bell */}
+                    <div className="relative" ref={notificationRef}>
+                      <button
+                        onClick={handleBellClick}
+                        className="relative p-2 hover:bg-gray-100 rounded transition-colors"
+                        title="Notifications"
+                      >
+                        <Bell className="w-5 h-5 text-gray-600" />
+                        {hasUnread && (
+                          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+                        )}
+                      </button>
 
-                    {/* User Dropdown */}
-                    {isUserDropdownOpen && (
-                      <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-lg py-2 z-50">
-                        <div className="px-4 py-2 border-b border-gray-100 xl:hidden">
-                          <p className="text-sm text-gray-500 truncate">
-                            {user.email}
-                          </p>
+                      {/* Notification Dropdown */}
+                      {isNotificationOpen && (
+                        <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-gray-200 shadow-lg z-50">
+                          <div className="px-4 py-3 border-b border-primary flex items-center justify-between">
+                            <p className="text-sm font-semibold text-gray-800">
+                              Notifications
+                            </p>
+                          </div>
+                          <div className="max-h-96 overflow-y-auto">
+                            {notifications.length === 0 ? (
+                              <p className="text-sm text-gray-400 text-center py-8">
+                                No notifications yet
+                              </p>
+                            ) : (
+                              notifications.map((n) => (
+                                <Link
+                                  key={n.id}
+                                  href={n.link ?? "#"}
+                                  onClick={() => setIsNotificationOpen(false)}
+                                  className={`flex gap-3 px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors ${!n.isRead ? "bg-primary/5" : ""}`}
+                                >
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-primary">
+                                      {n.title}
+                                    </p>
+                                    <p className="text-xs text-gray-500 mt-0.5">
+                                      {n.body}
+                                    </p>
+                                    <p className="text-xs text-gray-400 mt-1">
+                                      {formatTimeAgo(n.createdAt)}
+                                    </p>
+                                  </div>
+                                </Link>
+                              ))
+                            )}
+                          </div>
                         </div>
-                        <Link
-                          href="/dashboard"
-                          onClick={() => setIsUserDropdownOpen(false)}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                        >
-                          Dashboard
-                        </Link>
-                        <button
-                          onClick={handleLogout}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                        >
-                          <LogOut className="w-4 h-4" />
-                          Logout
-                        </button>
-                      </div>
-                    )}
+                      )}
+                    </div>
+
+                    <div className="relative" ref={userDropdownDesktopRef}>
+                      <button
+                        onClick={() =>
+                          setIsUserDropdownOpen(!isUserDropdownOpen)
+                        }
+                        className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 transition-colors"
+                      >
+                        <span className="text-sm text-gray-700 hidden xl:block">
+                          Hi, {user.firstName}
+                        </span>
+                        <span className="text-sm text-gray-700 xl:hidden">
+                          Hi
+                        </span>
+                        <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                          <User className="w-5 h-5 text-white" />
+                        </div>
+                      </button>
+
+                      {/* User Dropdown */}
+                      {isUserDropdownOpen && (
+                        <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-lg py-2 z-50">
+                          <div className="px-4 py-2 border-b border-gray-100 xl:hidden">
+                            <p className="text-sm text-gray-500 truncate">
+                              {user.email}
+                            </p>
+                          </div>
+                          <Link
+                            href="/dashboard"
+                            onClick={() => setIsUserDropdownOpen(false)}
+                            className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                          >
+                            Dashboard
+                          </Link>
+                          <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                          >
+                            <LogOut className="w-4 h-4" />
+                            Logout
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ) : (
-                  <Link href="/login">
+                  <Link href="tel:+923710622837">
                     <Button variant="primary" size="md" className="px-8 mr-0.5">
-                      Login
+                      Get a consultation
                     </Button>
                   </Link>
                 )}

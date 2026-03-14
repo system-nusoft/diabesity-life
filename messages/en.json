@@ -1,0 +1,15 @@
+{
+  "contact": {
+    "hero": "Contact us",
+    "heading": "We're here to help",
+    "description": "Have questions about diabetes prevention, obesity management, or treatments in Pakistan? Please reach out. Your journey to better health starts with a conversation.",
+    "fullName": "Full name*",
+    "email": "Email address*",
+    "subject": "Subject",
+    "message": "Message",
+    "success": "Thank you! Your message has been sent successfully.",
+    "error": "Sorry, there was an error sending your message. Please try again.",
+    "sending": "Sending...",
+    "send": "Send message"
+  }
+}

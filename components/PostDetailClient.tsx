@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { formatTimeAgo } from "@/lib/communityData";
+import { API_BASE_URL } from "@/lib/utils";
 import {
   ArrowLeft,
   Ban,
@@ -24,8 +25,6 @@ import BanConfirmationModal from "./BanConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { Button } from "./ui/button";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-
 const SUGGESTED_TAGS = [
   "Question",
   "Semaglutide",
@@ -47,6 +46,7 @@ interface PostAuthor {
   id: string;
   email: string;
   name: string;
+  role?: string;
   communityBanned?: boolean;
 }
 
@@ -684,7 +684,8 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     disabled={
                       postEditState.saving ||
                       !postEditState.title.trim() ||
-                      !postEditState.content.trim()
+                      !postEditState.content.trim() ||
+                      postEditState.tags.length === 0
                     }
                     className="px-4 py-1 shadow-none"
                   >
@@ -885,6 +886,11 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           <p className="font-medium text-gray-800 text-sm">
                             {comment.author.name}
                           </p>
+                          {comment.author.role === "admin" && (
+                            <span className="inline-flex items-center justify-center w-6 h-6 bg-primary border border-primary rounded text-primary">
+                              <Shield className="w-4 h-4 text-white" />
+                            </span>
+                          )}
                           {comment.author.communityBanned && (
                             <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
                               Banned

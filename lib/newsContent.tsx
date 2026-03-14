@@ -414,7 +414,7 @@ export const newsArticles: Record<string, NewsArticle> = {
     slug: "pakistani-children-overweight-or-obese",
     title:
       "VITALSNEWS: Breaking News - Over 18 million Pakistani children either overweight or obese, global atlas warns",
-    date: "2025-11-17",
+    date: "2026-03-06",
     image: Article10.src,
     imageAlt: "Medical research",
     category: "Health",
@@ -472,5 +472,7 @@ export function getAllNewsArticleSlugs(): string[] {
 }
 
 export function getAllNewsArticles(): NewsArticle[] {
-  return Object.values(newsArticles);
+  return Object.values(newsArticles).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
 }

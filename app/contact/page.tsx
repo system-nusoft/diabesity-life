@@ -1,9 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(
     null
@@ -26,7 +28,6 @@ export default function ContactPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    // Create URL-encoded form data for Google Forms
     const googleFormData = new URLSearchParams();
     googleFormData.append(
       FORM_FIELDS.fullName,
@@ -68,7 +69,7 @@ export default function ContactPage() {
       <section className="bg-primary py-16 md:py-20 px-6 lg:px-0">
         <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
-            Contact us
+            {t("contact.hero")}
           </h1>
         </div>
       </section>
@@ -80,85 +81,76 @@ export default function ContactPage() {
             {/* Left Column - Contact Information */}
             <div>
               <h2 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">
-                We&apos;re here to help
+                {t("contact.heading")}
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-12">
-                Have questions about diabetes prevention, obesity management, or
-                treatments in Pakistan? Please reach out. Your journey to better
-                health starts with a conversation.
+                {t("contact.description")}
               </p>
             </div>
 
             {/* Right Column - Contact Form */}
             <div>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Full Name */}
                 <div>
                   <input
                     type="text"
                     name="fullName"
-                    placeholder="Full name*"
+                    placeholder={t("contact.fullName")}
                     required
                     disabled={isSubmitting}
                     className="w-full px-0 py-3 border-b border-gray-300 focus:border-primary outline-none text-gray-900 placeholder-gray-400 disabled:opacity-50"
                   />
                 </div>
 
-                {/* Email */}
                 <div>
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email address*"
+                    placeholder={t("contact.email")}
                     required
                     disabled={isSubmitting}
                     className="w-full px-0 py-3 border-b border-gray-300 focus:border-primary outline-none text-gray-900 placeholder-gray-400 disabled:opacity-50"
                   />
                 </div>
 
-                {/* Subject */}
                 <div>
                   <input
                     type="text"
                     name="subject"
-                    placeholder="Subject"
+                    placeholder={t("contact.subject")}
                     disabled={isSubmitting}
                     className="w-full px-0 py-3 border-b border-gray-300 focus:border-primary outline-none text-gray-900 placeholder-gray-400 disabled:opacity-50"
                   />
                 </div>
 
-                {/* Message */}
                 <div>
                   <textarea
                     name="message"
-                    placeholder="Message"
+                    placeholder={t("contact.message")}
                     rows={4}
                     disabled={isSubmitting}
                     className="w-full px-0 py-3 border-b border-gray-300 focus:border-primary outline-none text-gray-900 placeholder-gray-400 resize-none disabled:opacity-50"
                   />
                 </div>
 
-                {/* Success/Error Messages */}
                 {submitStatus === "success" && (
                   <div className="text-green-600 font-sm">
-                    Thank you! Your message has been sent successfully.
+                    {t("contact.success")}
                   </div>
                 )}
                 {submitStatus === "error" && (
                   <div className="text-red-600 font-sm">
-                    Sorry, there was an error sending your message. Please try
-                    again.
+                    {t("contact.error")}
                   </div>
                 )}
 
-                {/* Submit Button */}
                 <div>
                   <Button
                     type="submit"
                     variant="outlined"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : "Send message"}
+                    {isSubmitting ? t("contact.sending") : t("contact.send")}
                   </Button>
                 </div>
               </form>

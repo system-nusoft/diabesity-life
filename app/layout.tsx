@@ -3,9 +3,11 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import { SidebarProvider } from "@/contexts/SidebarContext";
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
+import Script from "next/script";
 import { Suspense } from "react";
 import "./globals.css";
 
@@ -34,22 +36,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-J2BBGRF7WQ"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-J2BBGRF7WQ');
+        `}
+      </Script>
       <body
         className={`${ibmPlexSans.variable} ${ibmPlexSansCondensed.variable} antialiased`}
       >
-        <AuthProvider>
-          <SidebarProvider>
-            <Header />
-            <Breadcrumbs />
-            <div className="lg:flex">
-              <Suspense fallback={<div />}>
-                <Sidebar />
-              </Suspense>
-              <main className="w-full lg:flex-1">{children}</main>
-            </div>
-            <Footer />
-          </SidebarProvider>
-        </AuthProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            <SidebarProvider>
+              <Header />
+              <Breadcrumbs />
+              <div className="lg:flex">
+                <Suspense fallback={<div />}>
+                  <Sidebar />
+                </Suspense>
+                <main className="w-full lg:flex-1">{children}</main>
+              </div>
+              <Footer />
+            </SidebarProvider>
+          </AuthProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
