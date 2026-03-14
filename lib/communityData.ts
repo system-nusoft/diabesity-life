@@ -234,7 +234,11 @@ export function getCommentsByPostId(postId: string): Comment[] {
 }
 
 export function formatTimeAgo(dateString: string): string {
-  const date = new Date(dateString);
+  // Treat as UTC if no timezone info is present
+  const normalized = /Z$|[+-]\d{2}:?\d{2}$/.test(dateString)
+    ? dateString
+    : dateString + "Z";
+  const date = new Date(normalized);
   const now = new Date();
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 

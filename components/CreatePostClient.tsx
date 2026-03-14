@@ -1,9 +1,8 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { API_BASE_URL } from "@/lib/utils";
 import { ArrowLeft, X } from "lucide-react";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -153,10 +152,10 @@ export default function CreatePostClient() {
             {/* Tags */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tags (optional)
+                Tags
               </label>
               <p className="text-sm text-gray-500 mb-3">
-                Select tags that best describe your post
+                Select at least one tag that best describes your post
               </p>
 
               {/* Selected Tags */}
@@ -207,7 +206,12 @@ export default function CreatePostClient() {
               <Button
                 type="submit"
                 variant="primary"
-                disabled={!title.trim() || !content.trim() || isSubmitting}
+                disabled={
+                  !title.trim() ||
+                  !content.trim() ||
+                  selectedTags.length === 0 ||
+                  isSubmitting
+                }
               >
                 {isSubmitting ? "Posting..." : "Post"}
               </Button>

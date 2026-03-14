@@ -1741,7 +1741,7 @@ export const researchArticles: Record<string, ResearchArticle> = {
     slug: "pharmacologic-treatment-of-obesity-in-adults",
     title:
       "Pharmacologic Treatment of Obesity in Adults: Standards of Care in Overweight and Obesity",
-    date: "2024-05-24",
+    date: "2026-03-06",
     image: PharmacologicTreatment.src,
     imageAlt:
       "Multiple blister packs of medication, illustrating the findings of the FLOW trial on semaglutide.",
@@ -1779,13 +1779,13 @@ export const researchArticles: Record<string, ResearchArticle> = {
           placebo group, and the placebo group receives a placebo pill or
           injection, as appropriate. In meta-analyses of RCTs, people treated
           with obesity medications experienced substantial weight reduction
-          compared with placebo. Participants treated with obesity
-          medications also had improvements in cardiometabolic markers, such as
-          glycemia and lipid profiles, and some obesity medications
-          demonstrated improvements in cardiovascular outcomes and other
-          obesity-related diseases. When used appropriately, obesity
-          medications offer a favorable risk-benefit profile in many cases,
-          making them a viable option for many people with obesity.
+          compared with placebo. Participants treated with obesity medications
+          also had improvements in cardiometabolic markers, such as glycemia and
+          lipid profiles, and some obesity medications demonstrated improvements
+          in cardiovascular outcomes and other obesity-related diseases. When
+          used appropriately, obesity medications offer a favorable risk-benefit
+          profile in many cases, making them a viable option for many people
+          with obesity.
         </p>
 
         <p className="mt-4">
@@ -1817,5 +1817,7 @@ export function getAllResearchArticleSlugs(): string[] {
 
 // Helper function to get all research articles
 export function getAllResearchArticles(): ResearchArticle[] {
-  return Object.values(researchArticles);
+  return Object.values(researchArticles).sort((a, b) =>
+    b.date.localeCompare(a.date),
+  );
 }

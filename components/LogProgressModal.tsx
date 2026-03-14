@@ -1,11 +1,10 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { API_BASE_URL } from "@/lib/utils";
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 interface BmiMetricData {
   toolType: "bmi";
