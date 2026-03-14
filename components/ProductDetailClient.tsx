@@ -2,7 +2,8 @@
 
 import { categoryLabels, Product } from "@/lib/productsData";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Download, FileText, X } from "lucide-react";
+import { jsPDF } from "jspdf";
+import { ArrowLeft, Download, FileText, Shield, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,12 +18,118 @@ export default function ProductDetailClient({
     { id: "logo", src: product.logoImage, alt: `${product.name} Logo` },
     { id: "packs", src: product.packsImage, alt: `${product.name} Packaging` },
     ...(product.deviceImage
-      ? [{ id: "device", src: product.deviceImage, alt: `${product.name} Device` }]
+      ? [
+          {
+            id: "device",
+            src: product.deviceImage,
+            alt: `${product.name} Device`,
+          },
+        ]
       : []),
   ];
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [showLightbox, setShowLightbox] = useState(false);
+
+  const handleDownloadSafetySheet = () => {
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+    });
+    const W = 210;
+    const primary = { r: 106, g: 61, b: 154 };
+    const gray = { r: 100, g: 100, b: 100 };
+
+    // ── Header band ──────────────────────────────────────────────────────────
+    pdf.setFillColor(primary.r, primary.g, primary.b);
+    pdf.rect(0, 0, W, 22, "F");
+
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(13);
+    pdf.text("DIABESITY.LIFE", 12, 10);
+
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(8);
+    pdf.text("diabesity.life", 12, 15);
+
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(9);
+    pdf.text("MEDICATION SAFETY SHEET", W - 12, 13, { align: "right" });
+
+    // ── Medication name ───────────────────────────────────────────────────────
+    pdf.setTextColor(primary.r, primary.g, primary.b);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(20);
+    pdf.text(product.name, 12, 34);
+
+    pdf.setTextColor(gray.r, gray.g, gray.b);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(11);
+    pdf.text(product.genericName, 12, 41);
+
+    // Divider
+    pdf.setDrawColor(primary.r, primary.g, primary.b);
+    pdf.setLineWidth(0.5);
+    pdf.line(12, 45, W - 12, 45);
+
+    // ── Product details ───────────────────────────────────────────────────────
+    let y = 54;
+    pdf.setTextColor(primary.r, primary.g, primary.b);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(8);
+    pdf.text("PRODUCT DETAILS", 12, y);
+    y += 6;
+
+    const details: [string, string][] = [
+      ["Brand Name", product.brandName],
+      ["Generic Name", product.genericName],
+      ["Formulation", product.form],
+      ["Dosing Frequency", product.frequency],
+      ["Available Dosages", product.dosages.join("  |  ")],
+    ];
+
+    details.forEach(([label, value]) => {
+      pdf.setFillColor(248, 245, 252);
+      pdf.rect(12, y - 4, W - 24, 8, "F");
+      pdf.setTextColor(gray.r, gray.g, gray.b);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(7);
+      pdf.text(label.toUpperCase(), 15, y);
+      pdf.setTextColor(30, 30, 30);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(9);
+      pdf.text(value, 70, y);
+      y += 10;
+    });
+
+    y += 4;
+
+    // ── Footer ────────────────────────────────────────────────────────────────
+    const footerY = 285;
+    pdf.setFillColor(primary.r, primary.g, primary.b);
+    pdf.rect(0, footerY, W, 12, "F");
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(6.5);
+    pdf.text(
+      "For healthcare professional use only. Not a substitute for full prescribing information.",
+      W / 2,
+      footerY + 5,
+      { align: "center" },
+    );
+    pdf.text(
+      `Generated at diabesity.life  |  ${new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}`,
+      W / 2,
+      footerY + 9,
+      { align: "center" },
+    );
+
+    pdf.save(
+      `${product.name.toLowerCase().replace(/\s+/g, "-")}-safety-sheet.pdf`,
+    );
+  };
 
   return (
     <div className="flex flex-col">
@@ -174,25 +281,35 @@ export default function ProductDetailClient({
               </div>
 
               {/* Downloads */}
-              {product.leafletPdf && (
-                <div className="bg-primary/5 border border-primary/20 p-6 mb-8">
-                  <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-primary" />
-                    Downloads
-                  </h2>
-                  <a
-                    href={product.leafletPdf}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
+              <div className="bg-primary/5 border border-primary/20 p-6 mb-8">
+                <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-primary" />
+                  Downloads
+                </h2>
+                <div className="flex flex-col space-y-3">
+                  {product.leafletPdf && (
+                    <a
+                      href={product.leafletPdf}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="primary" className="w-full">
+                        <Download className="w-5 h-5" />
+                        Download PDF
+                      </Button>
+                    </a>
+                  )}
+                  <Button
+                    variant="outlined"
+                    className="w-full"
+                    onClick={handleDownloadSafetySheet}
                   >
-                    <Button variant="primary" className="w-full">
-                      <Download className="w-5 h-5" />
-                      Download PDF
-                    </Button>
-                  </a>
+                    <Shield className="w-5 h-5" />
+                    Download safety sheet
+                  </Button>
                 </div>
-              )}
+              </div>
 
               {/* Disclaimer */}
               <div className="p-4 bg-yellow-50 border border-yellow-200">

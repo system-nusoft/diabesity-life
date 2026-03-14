@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { API_BASE_URL } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -126,9 +127,7 @@ export default function LoginClient() {
           <button
             type="button"
             onClick={() => {
-              const apiUrl =
-                process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-              window.location.href = `${apiUrl}/auth/google`;
+              window.location.href = `${API_BASE_URL}/auth/google`;
             }}
             className="w-full flex items-center justify-center gap-3 px-4 py-2 border border-gray-300 bg-white hover:bg-gray-50 transition-colors"
           >

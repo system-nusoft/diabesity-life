@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { API_BASE_URL } from "@/lib/utils";
 import AdminDashboardClient from "./AdminDashboardClient";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
@@ -15,8 +16,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 interface ToolLog {
   id: string;
