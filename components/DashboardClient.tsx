@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { API_BASE_URL } from "@/lib/utils";
 import AdminDashboardClient from "./AdminDashboardClient";
 import { Trash2 } from "lucide-react";
@@ -119,9 +120,23 @@ function CustomTooltip({
   label?: string;
   toolType: "bmi" | "hba1c";
 }) {
+  const { t } = useLanguage();
   if (!active || !payload || !payload.length) return null;
   const val = payload[0].value;
-  const category = payload[0].payload.category;
+  const rawCategory = payload[0].payload.category;
+  const bmiCategoryLabel: Record<string, string> = {
+    Underweight: t("bmi.categories.underweight"),
+    Normal: t("bmi.categories.normal"),
+    Overweight: t("bmi.categories.overweight"),
+    Obese: t("bmi.categories.obese"),
+  };
+  const hba1cCategoryLabel: Record<string, string> = {
+    Normal: t("hba1c.categories.normal"),
+    Prediabetes: t("hba1c.categories.prediabetes"),
+    Diabetes: t("hba1c.categories.diabetes"),
+  };
+  const categoryMap = toolType === "bmi" ? bmiCategoryLabel : hba1cCategoryLabel;
+  const category = rawCategory ? (categoryMap[rawCategory] ?? rawCategory) : null;
   return (
     <div className="bg-white border border-gray-200 shadow-md px-3 py-2 text-xs">
       <p className="font-medium text-gray-700">{label}</p>
@@ -152,8 +167,21 @@ function ToolSection({
   onDeleteLog,
   deleting,
 }: ToolSectionProps) {
-  const label = toolType === "bmi" ? "BMI" : "HbA1c";
+  const { t } = useLanguage();
   const toolUrl = toolType === "bmi" ? "/bmi-calculator" : "/hba1c-translator";
+
+  const bmiCategoryLabel: Record<string, string> = {
+    Underweight: t("bmi.categories.underweight"),
+    Normal: t("bmi.categories.normal"),
+    Overweight: t("bmi.categories.overweight"),
+    Obese: t("bmi.categories.obese"),
+  };
+  const hba1cCategoryLabel: Record<string, string> = {
+    Normal: t("hba1c.categories.normal"),
+    Prediabetes: t("hba1c.categories.prediabetes"),
+    Diabetes: t("hba1c.categories.diabetes"),
+  };
+  const categoryMap = toolType === "bmi" ? bmiCategoryLabel : hba1cCategoryLabel;
 
   // Filter logs by time
   const fromDate = getFromDate(timeFilter);
@@ -205,18 +233,28 @@ function ToolSection({
 
   return (
     <div className="bg-white border border-gray-200 shadow-sm p-6">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">{label} progress</h2>
+      <h2 className="text-xl font-bold text-gray-900 mb-4">
+        {toolType === "bmi"
+          ? t("dashboard.user.bmiProgress")
+          : t("dashboard.user.hba1cProgress")}
+      </h2>
 
       {logs.length === 0 ? (
         /* Empty State */
         <div className="text-center py-12 text-gray-500">
-          <p className="mb-2">No {label} logs yet.</p>
+          <p className="mb-2">
+            {toolType === "bmi"
+              ? t("dashboard.user.noBmiLogs")
+              : t("dashboard.user.noHba1cLogs")}
+          </p>
           <p className="text-sm">
-            Use the{" "}
+            {t("dashboard.user.emptyStateLinkPrefix")}
             <Link href={toolUrl} className="text-primary hover:underline">
-              {label} {toolType === "bmi" ? "Calculator" : "Translator"}
+              {toolType === "bmi"
+                ? t("dashboard.user.bmiToolLink")
+                : t("dashboard.user.hba1cToolLink")}
             </Link>{" "}
-            and save your first result.
+            {t("dashboard.user.emptyStateLinkSuffix")}
           </p>
         </div>
       ) : (
@@ -251,7 +289,7 @@ function ToolSection({
                     className="px-2 py-0.5 text-xs font-medium text-white"
                     style={{ backgroundColor: categoryColor }}
                   >
-                    {latestCategory}
+                    {categoryMap[latestCategory] ?? latestCategory}
                   </span>
                 )}
               </div>
@@ -264,12 +302,11 @@ function ToolSection({
                     : "border-green-300 text-green-700 bg-green-50"
                 }`}
               >
-                {preference.frequency.charAt(0).toUpperCase() +
-                  preference.frequency.slice(1)}{" "}
+                {t(`dashboard.user.frequency.${preference.frequency}`)}{" "}
                 ·{" "}
                 {isOverdue(preference.frequency, sortedNewest)
-                  ? "Overdue"
-                  : "On track ✓"}
+                  ? t("dashboard.user.overdue")
+                  : t("dashboard.user.onTrack")}
               </span>
             )}
           </div>
@@ -329,7 +366,7 @@ function ToolSection({
             </ResponsiveContainer>
           ) : (
             <p className="text-gray-400 text-sm text-center py-8">
-              No data in this time range.
+              {t("dashboard.user.noDataInRange")}
             </p>
           )}
 
@@ -337,7 +374,7 @@ function ToolSection({
           {sortedNewest.length > 0 && (
             <div className="mt-5 border-t border-gray-100 pt-4 space-y-2">
               <h3 className="text-sm font-medium text-gray-700 mb-3">
-                History
+                {t("dashboard.user.history")}
               </h3>
               {sortedNewest.map((log) => {
                 const val =
@@ -366,7 +403,7 @@ function ToolSection({
                           className="px-1.5 py-0.5 text-xs font-medium text-white whitespace-nowrap"
                           style={{ backgroundColor: catColor }}
                         >
-                          {cat}
+                          {categoryMap[cat] ?? cat}
                         </span>
                       )}
                       {log.notes && (
@@ -397,6 +434,7 @@ function ToolSection({
 export default function DashboardClient() {
   const { user, token, isLoading } = useAuth();
   const router = useRouter();
+  const { t } = useLanguage();
 
   const [bmiLogs, setBmiLogs] = useState<ToolLog[]>([]);
   const [hba1cLogs, setHba1cLogs] = useState<ToolLog[]>([]);
@@ -404,7 +442,7 @@ export default function DashboardClient() {
   const [bmiTimeFilter, setBmiTimeFilter] = useState<TimeFilter>("3M");
   const [hba1cTimeFilter, setHba1cTimeFilter] = useState<TimeFilter>("3M");
   const [deleting, setDeleting] = useState<string | null>(null);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<boolean>(false);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -431,7 +469,7 @@ export default function DashboardClient() {
       if (hba1cRes.ok) setHba1cLogs(await hba1cRes.json());
       if (prefRes.ok) setPreferences(await prefRes.json());
     } catch {
-      setFetchError("Failed to load data. Please refresh.");
+      setFetchError(true);
     }
   }, [token]);
 
@@ -460,7 +498,7 @@ export default function DashboardClient() {
   if (isLoading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-400">Loading...</p>
+        <p className="text-gray-400">{t("dashboard.loading")}</p>
       </div>
     );
   }
@@ -478,9 +516,9 @@ export default function DashboardClient() {
       <section className="bg-white py-12 border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-6">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            Progress dashboard
+            {t("dashboard.user.heading")}
           </h1>
-          <p className="text-gray-600 text-sm">Track your logs over time.</p>
+          <p className="text-gray-600 text-sm">{t("dashboard.user.description")}</p>
         </div>
       </section>
 
@@ -488,7 +526,7 @@ export default function DashboardClient() {
         <div className="max-w-4xl mx-auto px-6 space-y-8">
           {fetchError && (
             <p className="text-red-600 text-sm bg-red-50 border border-red-200 px-4 py-3">
-              {fetchError}
+              {t("dashboard.user.fetchError")}
             </p>
           )}
 

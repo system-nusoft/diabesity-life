@@ -19,6 +19,11 @@ export interface Product {
   packsImage: string;
   deviceImage?: string;
   leafletPdf?: string;
+  urdu?: {
+    description: string;
+    form: string;
+    frequency: string;
+  };
 }
 
 export const products: Product[] = [
@@ -37,6 +42,12 @@ export const products: Product[] = [
     packsImage: "/products/pfs/packs.png",
     deviceImage: "/products/pfs/syringe.png",
     leafletPdf: "/seglu-leaflet.pdf",
+    urdu: {
+      description:
+        "سیماگلوٹائیڈ کا پری فلڈ سرنج فارمولیشن ہفتے میں ایک بار ذیلی جلد کے انجیکشن کے لیے۔ آسان خود انتظامی کے لیے سنگل ڈوز پری فلڈ سرنج۔",
+      form: "پری فلڈ سرنج",
+      frequency: "ہفتے میں ایک بار",
+    },
   },
   {
     id: "seglutide-pen",
@@ -53,6 +64,12 @@ export const products: Product[] = [
     packsImage: "/products/pen/packs.png",
     deviceImage: "/products/pen/device.png",
     leafletPdf: "/seglutide-leaflet.pdf",
+    urdu: {
+      description:
+        "سیماگلوٹائیڈ کا ملٹی ڈوز پری فلڈ پین انجیکٹر ہفتے میں ایک بار ذیلی جلد کے انجیکشن کے لیے۔ ہر پین متعدد خوراکوں کے لیے ڈسپوزایبل سوئیوں کے ساتھ آتا ہے۔",
+      form: "پری فلڈ پین انجیکٹر",
+      frequency: "ہفتے میں ایک بار",
+    },
   },
   {
     id: "seglutide-vial",
@@ -67,11 +84,17 @@ export const products: Product[] = [
     frequency: "Once weekly",
     logoImage: "/products/vial/logo.png",
     packsImage: "/products/vial/packs.png",
+    urdu: {
+      description:
+        "سیماگلوٹائیڈ کا ملٹی ڈوز وائل فارمولیشن ہفتے میں ایک بار ذیلی جلد کے انجیکشن کے لیے۔ الگ سرنج انتظامی کی ضرورت والا انجیکشن محلول۔",
+      form: "ملٹی ڈوز وائل",
+      frequency: "ہفتے میں ایک بار",
+    },
   },
 ];
 
 export const categoryLabels: Record<string, string> = Object.fromEntries(
-  productTabs.map((tab) => [tab.id, tab.label])
+  productTabs.map((tab) => [tab.id, tab.label]),
 );
 
 export function getProductById(id: string): Product | undefined {

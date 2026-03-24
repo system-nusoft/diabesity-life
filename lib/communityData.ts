@@ -233,7 +233,7 @@ export function getCommentsByPostId(postId: string): Comment[] {
     );
 }
 
-export function formatTimeAgo(dateString: string): string {
+export function formatTimeAgo(dateString: string, locale: string = "en"): string {
   // Treat as UTC if no timezone info is present
   const normalized = /Z$|[+-]\d{2}:?\d{2}$/.test(dateString)
     ? dateString
@@ -241,6 +241,24 @@ export function formatTimeAgo(dateString: string): string {
   const date = new Date(normalized);
   const now = new Date();
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+
+  if (locale === "ur") {
+    if (diffInSeconds < 60) {
+      return "ابھی ابھی";
+    } else if (diffInSeconds < 3600) {
+      const minutes = Math.floor(diffInSeconds / 60);
+      return `${minutes} منٹ پہلے`;
+    } else if (diffInSeconds < 86400) {
+      const hours = Math.floor(diffInSeconds / 3600);
+      return hours === 1 ? "1 گھنٹہ پہلے" : `${hours} گھنٹے پہلے`;
+    } else if (diffInSeconds < 604800) {
+      const days = Math.floor(diffInSeconds / 86400);
+      return `${days} دن پہلے`;
+    } else {
+      const MONTHS_UR = ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر"];
+      return `${date.getDate()} ${MONTHS_UR[date.getMonth()]} ${date.getFullYear()}`;
+    }
+  }
 
   if (diffInSeconds < 60) {
     return "just now";
@@ -259,5 +277,78 @@ export function formatTimeAgo(dateString: string): string {
       day: "numeric",
       year: "numeric",
     });
+  }
+}
+
+export interface NotificationData {
+  id: string;
+  type: string;
+  title: string;
+  body: string;
+  count: number;
+  isRead: boolean;
+  createdAt: string;
+  link?: string;
+}
+
+export function translateNotification(
+  n: NotificationData,
+  locale: string,
+): { title: string; body: string } {
+  if (locale !== "ur") return { title: n.title, body: n.body };
+
+  const c = n.count;
+
+  // Extract content between the last pair of quotes (post title / comment excerpt)
+  const quotedMatch = n.body.match(/"([^"]+)"[^"]*$/);
+  const quoted = quotedMatch ? quotedMatch[1] : "";
+
+  // Extract author name after "comment by" or "post by"
+  const authorMatch = n.body.match(/(?:comment|post) by (.+)$/);
+  const author = authorMatch ? authorMatch[1] : "";
+
+  switch (n.type) {
+    case "post_liked":
+      return {
+        title: "آپ کی پوسٹ کو لائک ملا",
+        body:
+          c === 1
+            ? `1 شخص نے آپ کی پوسٹ "${quoted}" کو لائک کیا`
+            : `${c} افراد نے آپ کی پوسٹ "${quoted}" کو لائک کیا`,
+      };
+    case "comment_added":
+      return {
+        title: "آپ کی پوسٹ پر نئی تبصرہ",
+        body:
+          c === 1
+            ? `آپ کی پوسٹ "${quoted}" پر 1 نئی تبصرہ`
+            : `آپ کی پوسٹ "${quoted}" پر ${c} نئی تبصرے`,
+      };
+    case "comment_liked":
+      return {
+        title: "آپ کی تبصرہ کو لائک ملا",
+        body:
+          c === 1
+            ? `1 شخص نے آپ کی تبصرہ "${quoted}" کو لائک کیا`
+            : `${c} افراد نے آپ کی تبصرہ "${quoted}" کو لائک کیا`,
+      };
+    case "comment_reported":
+      return {
+        title: "تبصرہ رپورٹ ہوئی",
+        body:
+          c === 1
+            ? `${author} کی تبصرہ کو 1 صارف نے رپورٹ کیا`
+            : `${author} کی تبصرہ کو ${c} صارفین نے رپورٹ کیا`,
+      };
+    case "post_reported":
+      return {
+        title: "پوسٹ رپورٹ ہوئی",
+        body:
+          c === 1
+            ? `${author} کی پوسٹ کو 1 صارف نے رپورٹ کیا`
+            : `${author} کی پوسٹ کو ${c} صارفین نے رپورٹ کیا`,
+      };
+    default:
+      return { title: n.title, body: n.body };
   }
 }

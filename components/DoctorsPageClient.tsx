@@ -1,16 +1,20 @@
 "use client";
 
 import {
+  cityTranslations,
+  specializationTranslations,
   doctors,
   getUniqueCities,
   getUniqueSpecializations,
   type Doctor,
 } from "@/lib/doctorsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronDown, ExternalLink, FileText, Phone } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Button } from "./ui/button";
 
 export default function DoctorsPageClient() {
+  const { t, locale } = useLanguage();
   const [selectedPlatform, setSelectedPlatform] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedSpecialization, setSelectedSpecialization] =
@@ -58,18 +62,23 @@ export default function DoctorsPageClient() {
     setVisibleCount(10);
   };
 
+  const docWord =
+    filteredDoctors.length === 1 ? t("doctors.doctor") : t("doctors.doctors");
+  const countText =
+    locale === "ur"
+      ? `${filteredDoctors.length} ${t("doctors.of")} ${visibleDoctors.length} ${docWord} ${t("doctors.showing")}`
+      : `${t("doctors.showing")} ${visibleDoctors.length} ${t("doctors.of")} ${filteredDoctors.length} ${docWord}`;
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="bg-primary py-16 md:py-20 px-6 lg:px-0">
         <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Contact a Specialist
+            {t("doctors.heading")}
           </h1>
           <p className="text-white text-lg md:text-xl max-w-3xl">
-            Search our network of trusted doctors, nutritionists, and
-            specialists across Pakistan to get the personalized care you
-            deserve.
+            {t("doctors.description")}
           </p>
         </div>
       </section>
@@ -80,24 +89,29 @@ export default function DoctorsPageClient() {
           {/* Filters */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">City</label>
+              <label className="text-sm font-medium text-gray-700">
+                {t("doctors.cityLabel")}
+              </label>
               <CustomSelect
                 value={selectedCity}
                 onChange={(value) => {
                   setSelectedCity(value);
                   resetVisibleCount();
                 }}
-                placeholder="All Cities"
+                placeholder={t("doctors.allCities")}
                 options={[
-                  { value: "", label: "All Cities" },
-                  ...cities.map((c) => ({ value: c, label: c })),
+                  { value: "", label: t("doctors.allCities") },
+                  ...cities.map((c) => ({
+                    value: c,
+                    label: locale === "ur" ? (cityTranslations[c] ?? c) : c,
+                  })),
                 ]}
               />
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
-                Specialization
+                {t("doctors.specializationLabel")}
               </label>
               <CustomSelect
                 value={selectedSpecialization}
@@ -105,10 +119,13 @@ export default function DoctorsPageClient() {
                   setSelectedSpecialization(value);
                   resetVisibleCount();
                 }}
-                placeholder="All Specializations"
+                placeholder={t("doctors.allSpecializations")}
                 options={[
-                  { value: "", label: "All Specializations" },
-                  ...specializations.map((s) => ({ value: s, label: s })),
+                  { value: "", label: t("doctors.allSpecializations") },
+                  ...specializations.map((s) => ({
+                    value: s,
+                    label: locale === "ur" ? (specializationTranslations[s] ?? s) : s,
+                  })),
                 ]}
               />
             </div>
@@ -120,25 +137,22 @@ export default function DoctorsPageClient() {
               onClick={handleReset}
               className="text-sm text-primary hover:underline mb-6"
             >
-              Clear all filters
+              {t("doctors.clearFilters")}
             </button>
           )}
 
           {/* Results Count */}
-          <div className="text-sm text-gray-600 mb-6">
-            Showing {visibleDoctors.length} of {filteredDoctors.length}{" "}
-            {filteredDoctors.length === 1 ? "doctor" : "doctors"}
-          </div>
+          <div className="text-sm text-gray-600 mb-6">{countText}</div>
 
           {/* Doctors List */}
           <div className="space-y-4">
             {filteredDoctors.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">
-                  No doctors found matching your criteria.
+                  {t("doctors.noDoctorsFound")}
                 </p>
                 <p className="text-gray-400 text-sm mt-2">
-                  Try adjusting your filters.
+                  {t("doctors.tryAdjusting")}
                 </p>
               </div>
             ) : (
@@ -152,7 +166,7 @@ export default function DoctorsPageClient() {
           {hasMore && (
             <div className="flex justify-center mt-8">
               <Button onClick={handleShowMore} variant="outlined">
-                Show more
+                {t("doctors.showMore")}
               </Button>
             </div>
           )}
@@ -208,7 +222,7 @@ function CustomSelect({
                   onChange(option.value);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+                className={`w-full text-left rtl:text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                   value === option.value
                     ? "bg-primary/10 text-primary font-medium"
                     : "text-gray-900"
@@ -225,17 +239,25 @@ function CustomSelect({
 }
 
 function DoctorCard({ doctor }: { doctor: Doctor }) {
+  const { t, locale } = useLanguage();
+  const displayName = locale === "ur" ? doctor.nameUr : doctor.name;
+  const displayCity =
+    locale === "ur" ? (cityTranslations[doctor.city] ?? doctor.city) : doctor.city;
+  const displaySpecialization =
+    locale === "ur"
+      ? (specializationTranslations[doctor.specialization] ?? doctor.specialization)
+      : doctor.specialization;
   return (
     <div className="border border-gray-200 p-4 hover:shadow-md transition-shadow bg-white">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="flex-1">
-          <h3 className="font-semibold text-lg text-gray-900">{doctor.name}</h3>
+          <h3 className="font-semibold text-lg text-gray-900">{displayName}</h3>
           <p className="text-gray-600 text-sm font-medium">
-            {doctor.specialization}
+            {displaySpecialization}
           </p>
           <div className="flex flex-wrap gap-2 mt-2">
             <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-primary text-white">
-              {doctor.city}
+              {displayCity}
             </span>
             {doctor.bookingPlatforms.map((platformInfo, index) => {
               if (platformInfo.link) {
@@ -261,14 +283,15 @@ function DoctorCard({ doctor }: { doctor: Doctor }) {
           <a
             href={`tel:${doctor.contactNumber}`}
             className="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-primary transition-colors"
+            dir="ltr"
           >
             <Phone className="w-4 h-4" />
             <span className="font-medium">{doctor.contactNumber}</span>
           </a>
           {doctor.pmdcNumber && (
-            <div className="inline-flex items-center gap-2 text-sm text-gray-600">
+            <div className="inline-flex items-center gap-2 text-sm text-gray-600" dir="ltr">
               <FileText className="w-4 h-4" />
-              <span>PMDC: {doctor.pmdcNumber}</span>
+              <span>{t("doctors.pmdc")}: {doctor.pmdcNumber}</span>
             </div>
           )}
         </div>

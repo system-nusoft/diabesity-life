@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  categoryLabels,
   getProductsByCategory,
   Product,
   ProductCategory,
   productTabs,
 } from "@/lib/productsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 export default function ProductsClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { t } = useLanguage();
   const tabParam = searchParams.get("tab");
 
   // Get default tab (first tab in the array)
@@ -25,7 +26,7 @@ export default function ProductsClient() {
   const isValidTab = productTabs.some((tab) => tab.id === tabParam);
 
   const [activeTab, setActiveTab] = useState<ProductCategory>(
-    isValidTab ? (tabParam as ProductCategory) : defaultTab
+    isValidTab ? (tabParam as ProductCategory) : defaultTab,
   );
 
   useEffect(() => {
@@ -47,11 +48,10 @@ export default function ProductsClient() {
       <section className="bg-primary py-16 md:py-20 px-6 lg:px-0">
         <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h1 className="text-white text-4xl md:text-5xl font-bold mb-4">
-            HCP Portal
+            {t("products.hero")}
           </h1>
           <p className="text-white text-lg md:text-xl max-w-3xl">
-            Healthcare professional resources and product information for
-            Semaglutide-based treatments
+            {t("products.heroDescription")}
           </p>
         </div>
       </section>
@@ -70,7 +70,7 @@ export default function ProductsClient() {
             >
               {productTabs.map((tab) => (
                 <option key={tab.id} value={tab.id}>
-                  {tab.label}
+                  {t(`products.tabs.${tab.id}`)}
                 </option>
               ))}
             </select>
@@ -88,7 +88,7 @@ export default function ProductsClient() {
                     : "text-gray-600 hover:text-gray-900"
                 }`}
               >
-                {tab.label}
+                {t(`products.tabs.${tab.id}`)}
               </button>
             ))}
           </div>
@@ -99,7 +99,7 @@ export default function ProductsClient() {
       <section className="py-16 md:py-24 bg-white px-6 lg:px-0">
         <div className="max-w-4xl lg:max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">
-            {categoryLabels[activeTab]} products
+            {t(`products.tabs.${activeTab}`)} {t("products.productsLabel")}
           </h2>
 
           {filteredProducts.length > 0 ? (
@@ -144,7 +144,7 @@ export default function ProductsClient() {
 
                     {/* View Details Link */}
                     <div className="flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
-                      View details
+                      {t("products.viewDetails")}
                       <ChevronRight className="w-4 h-4 ml-1" />
                     </div>
                   </div>
@@ -153,9 +153,7 @@ export default function ProductsClient() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-600">
-                No products available in this category.
-              </p>
+              <p className="text-gray-600">{t("products.noProducts")}</p>
             </div>
           )}
         </div>

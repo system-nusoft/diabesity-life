@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { jsPDF } from "jspdf";
 import {
@@ -29,118 +30,102 @@ interface CardDetails {
   doctorPhone: string;
 }
 
-const surveyQuestions = [
+// Scores are index-based so label translation doesn't affect calculatePrediction
+const surveyScores = [
   {
     id: 1,
-    question: "At what age were you diagnosed with diabetes?",
     options: [
-      { label: "Under 30 years old", type1Score: 3, type2Score: 0 },
-      { label: "30-45 years old", type1Score: 1, type2Score: 2 },
-      { label: "Over 45 years old", type1Score: 0, type2Score: 3 },
-      {
-        label: "Not diagnosed / I don't have diabetes",
-        type1Score: 0,
-        type2Score: 0,
-      },
+      { t1: 3, t2: 0 },
+      { t1: 1, t2: 2 },
+      { t1: 0, t2: 3 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 2,
-    question: "Do you take insulin or diabetes medications?",
     options: [
-      { label: "Yes, insulin since diagnosis", type1Score: 3, type2Score: 0 },
-      { label: "Yes, insulin started later", type1Score: 1, type2Score: 2 },
-      { label: "Yes, oral medications only", type1Score: 0, type2Score: 3 },
-      { label: "No diabetes medications", type1Score: 0, type2Score: 0 },
+      { t1: 3, t2: 0 },
+      { t1: 1, t2: 2 },
+      { t1: 0, t2: 3 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 3,
-    question: "What is your current BMI category?",
     options: [
-      {
-        label: "Underweight or Normal (BMI < 25)",
-        type1Score: 1,
-        type2Score: 0,
-      },
-      { label: "Overweight (BMI 25-30)", type1Score: 0, type2Score: 2 },
-      { label: "Obese (BMI > 30)", type1Score: 0, type2Score: 3 },
-      { label: "I don't know", type1Score: 0, type2Score: 0 },
+      { t1: 1, t2: 0 },
+      { t1: 0, t2: 2 },
+      { t1: 0, t2: 3 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 4,
-    question: "Do you have a family history of diabetes?",
     options: [
-      { label: "Yes, Type 1 diabetes", type1Score: 2, type2Score: 0 },
-      { label: "Yes, Type 2 diabetes", type1Score: 0, type2Score: 2 },
-      { label: "Yes, both types", type1Score: 1, type2Score: 1 },
-      { label: "No family history", type1Score: 0, type2Score: 0 },
+      { t1: 2, t2: 0 },
+      { t1: 0, t2: 2 },
+      { t1: 1, t2: 1 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 5,
-    question: "Have you ever experienced diabetic ketoacidosis (DKA)?",
     options: [
-      { label: "Yes, multiple times", type1Score: 3, type2Score: 0 },
-      { label: "Yes, once", type1Score: 2, type2Score: 0 },
-      { label: "No", type1Score: 0, type2Score: 0 },
-      { label: "I don't know what DKA is", type1Score: 0, type2Score: 0 },
+      { t1: 3, t2: 0 },
+      { t1: 2, t2: 0 },
+      { t1: 0, t2: 0 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 6,
-    question: "How quickly did your diabetes symptoms develop?",
     options: [
-      { label: "Very quickly (days to weeks)", type1Score: 3, type2Score: 0 },
-      { label: "Gradually (months to years)", type1Score: 0, type2Score: 3 },
-      { label: "I didn't notice any symptoms", type1Score: 0, type2Score: 0 },
-      { label: "I don't have diabetes symptoms", type1Score: 0, type2Score: 0 },
+      { t1: 3, t2: 0 },
+      { t1: 0, t2: 3 },
+      { t1: 0, t2: 0 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 7,
-    question: "Do you have any autoimmune conditions?",
     options: [
-      { label: "Yes (thyroid, celiac, etc.)", type1Score: 2, type2Score: 0 },
-      { label: "No", type1Score: 0, type2Score: 0 },
-      { label: "I don't know", type1Score: 0, type2Score: 0 },
+      { t1: 2, t2: 0 },
+      { t1: 0, t2: 0 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 8,
-    question: "How often do you experience low blood sugar (hypoglycemia)?",
     options: [
-      { label: "Frequently (weekly or more)", type1Score: 2, type2Score: 1 },
-      { label: "Sometimes (monthly)", type1Score: 1, type2Score: 1 },
-      { label: "Rarely or never", type1Score: 0, type2Score: 0 },
-      { label: "I don't monitor my blood sugar", type1Score: 0, type2Score: 0 },
+      { t1: 2, t2: 1 },
+      { t1: 1, t2: 1 },
+      { t1: 0, t2: 0 },
+      { t1: 0, t2: 0 },
     ],
   },
   {
     id: 9,
-    question: "What is your typical fasting blood sugar level?",
     options: [
-      {
-        label: "Often below 70 mg/dL (hypoglycemia)",
-        type1Score: 2,
-        type2Score: 0,
-      },
-      { label: "70-99 mg/dL (normal)", type1Score: 0, type2Score: 0 },
-      {
-        label: "100-125 mg/dL (prediabetes range)",
-        type1Score: 0,
-        type2Score: 2,
-      },
-      {
-        label: "126 mg/dL or higher (diabetes range)",
-        type1Score: 1,
-        type2Score: 2,
-      },
-      { label: "I don't know / I don't check", type1Score: 0, type2Score: 0 },
+      { t1: 2, t2: 0 },
+      { t1: 0, t2: 0 },
+      { t1: 0, t2: 2 },
+      { t1: 1, t2: 2 },
+      { t1: 0, t2: 0 },
     ],
   },
 ];
+
+function getSurveyQuestions(t: (key: string) => string) {
+  return surveyScores.map((q, qi) => ({
+    id: q.id,
+    question: t(`hypo.survey.q${qi + 1}.question`),
+    options: q.options.map((s, oi) => ({
+      label: t(`hypo.survey.q${qi + 1}.o${oi + 1}`),
+      type1Score: s.t1,
+      type2Score: s.t2,
+    })),
+  }));
+}
 
 const hypoResponseText = `SIGNS OF LOW BLOOD SUGAR:
 • Shakiness, sweating, dizziness
@@ -158,6 +143,9 @@ IF UNCONSCIOUS:
 • Place in recovery position`;
 
 export default function HypoWalletCardClient() {
+  const { t } = useLanguage();
+  const surveyQuestions = getSurveyQuestions(t);
+
   const [step, setStep] = useState<"survey" | "result" | "form" | "preview">(
     "survey",
   );
@@ -184,7 +172,7 @@ export default function HypoWalletCardClient() {
     const newAnswer: SurveyAnswer = {
       questionId: question.id,
       answer: option.label,
-      score: option.type1Score - option.type2Score,
+      score: optionIndex, // used as index into surveyScores for language-safe scoring
     };
 
     const updatedAnswers = [
@@ -205,12 +193,12 @@ export default function HypoWalletCardClient() {
     let type2Total = 0;
 
     surveyAnswers.forEach((answer) => {
-      const question = surveyQuestions.find((q) => q.id === answer.questionId);
-      if (question) {
-        const option = question.options.find((o) => o.label === answer.answer);
+      const scoreData = surveyScores.find((q) => q.id === answer.questionId);
+      if (scoreData) {
+        const option = scoreData.options[answer.score]; // score field repurposed as option index
         if (option) {
-          type1Total += option.type1Score;
-          type2Total += option.type2Score;
+          type1Total += option.t1;
+          type2Total += option.t2;
         }
       }
     });
@@ -411,11 +399,9 @@ export default function HypoWalletCardClient() {
       <div className="max-w-3xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Hypo Emergency Wallet Card
+            {t("hypo.hero")}
           </h1>
-          <p className="text-gray-600">
-            Create a personalized emergency card for hypoglycemia episodes
-          </p>
+          <p className="text-gray-600">{t("hypo.heroDescription")}</p>
         </div>
 
         {/* Survey Step */}
@@ -425,9 +411,12 @@ export default function HypoWalletCardClient() {
             <div className="mb-8">
               <div className="flex justify-between text-sm text-gray-500 mb-2">
                 <span>
-                  Question {currentQuestion + 1} of {surveyQuestions.length}
+                  {t("hypo.survey.questionPrefix")} {currentQuestion + 1}{" "}
+                  {t("hypo.survey.questionOf")} {surveyQuestions.length}
                 </span>
-                <span>{Math.round(progress)}% complete</span>
+                <span>
+                  {Math.round(progress)}% {t("hypo.survey.complete")}
+                </span>
               </div>
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div
@@ -465,7 +454,7 @@ export default function HypoWalletCardClient() {
                 className="flex items-center text-gray-600 hover:text-primary transition-colors"
               >
                 <ChevronLeft className="w-5 h-5 mr-1" />
-                Previous question
+                {t("hypo.survey.previousQuestion")}
               </button>
             )}
           </div>
@@ -480,19 +469,16 @@ export default function HypoWalletCardClient() {
                   <CheckCircle className="w-10 h-10 text-green-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Low Risk Assessment
+                  {t("hypo.result.lowRiskTitle")}
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  Based on your responses, you appear to have a low risk of
-                  hypoglycemia. A hypo emergency card may not be necessary for
-                  you at this time.
+                  {t("hypo.result.lowRiskDesc1")}
                 </p>
                 <p className="text-gray-600 mb-8">
-                  If you believe you may be at risk or have been diagnosed with
-                  diabetes, please consult with your healthcare provider.
+                  {t("hypo.result.lowRiskDesc2")}
                 </p>
                 <Button variant="outlined" onClick={handleRestart}>
-                  Start over
+                  {t("hypo.result.startOver")}
                 </Button>
               </>
             ) : (
@@ -501,32 +487,30 @@ export default function HypoWalletCardClient() {
                   <AlertTriangle className="w-10 h-10 text-yellow-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Assessment Complete
+                  {t("hypo.result.assessmentTitle")}
                 </h2>
                 <p className="text-gray-600 mb-2">
-                  Based on your responses, your diabetes profile suggests:
+                  {t("hypo.result.assessmentDesc")}
                 </p>
                 <p className="text-2xl font-bold text-primary mb-6">
                   {prediction === "type1"
-                    ? "Type 1 Diabetes"
-                    : "Type 2 Diabetes"}
+                    ? t("hypo.result.type1")
+                    : t("hypo.result.type2")}
                 </p>
                 <div className="bg-blue-50 border border-blue-200 p-4 mb-8">
                   <div className="flex items-start gap-3">
                     <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-blue-800 text-left">
-                      This is an estimate based on common patterns. Only a
-                      medical professional can provide an accurate diagnosis.
-                      You can adjust the diabetes type in the next step.
+                    <p className="text-sm text-blue-800 text-left rtl:text-right">
+                      {t("hypo.result.disclaimer")}
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-4 justify-center">
                   <Button variant="outlined" onClick={handleRestart}>
-                    Start over
+                    {t("hypo.result.startOver")}
                   </Button>
                   <Button variant="primary" onClick={handleProceedToForm}>
-                    Create your card
+                    {t("hypo.result.createCard")}
                     <ChevronRight className="w-5 h-5" />
                   </Button>
                 </div>
@@ -539,26 +523,26 @@ export default function HypoWalletCardClient() {
         {step === "form" && (
           <div className="bg-white border border-gray-200 shadow-lg p-8">
             <h2 className="text-xl font-bold text-gray-900 mb-6">
-              Enter Your Card Details
+              {t("hypo.form.title")}
             </h2>
 
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
+                  {t("hypo.form.fullName")}
                 </label>
                 <input
                   type="text"
                   value={cardDetails.name}
                   onChange={(e) => handleFormChange("name", e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="Enter your full name"
+                  placeholder={t("hypo.form.fullNamePlaceholder")}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Diabetes Type
+                  {t("hypo.form.diabetesType")}
                 </label>
                 <select
                   value={cardDetails.diabetesType}
@@ -567,19 +551,25 @@ export default function HypoWalletCardClient() {
                   }
                   className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
                 >
-                  <option value="Type 1 Diabetes">Type 1 Diabetes</option>
-                  <option value="Type 2 Diabetes">Type 2 Diabetes</option>
-                  <option value="Gestational Diabetes">
-                    Gestational Diabetes
+                  <option value="Type 1 Diabetes">
+                    {t("hypo.form.type1")}
                   </option>
-                  <option value="Prediabetes">Prediabetes</option>
+                  <option value="Type 2 Diabetes">
+                    {t("hypo.form.type2")}
+                  </option>
+                  <option value="Gestational Diabetes">
+                    {t("hypo.form.gestational")}
+                  </option>
+                  <option value="Prediabetes">
+                    {t("hypo.form.prediabetes")}
+                  </option>
                 </select>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Emergency Contact Name
+                    {t("hypo.form.emergencyContactName")}
                   </label>
                   <input
                     type="text"
@@ -588,12 +578,12 @@ export default function HypoWalletCardClient() {
                       handleFormChange("emergencyContact", e.target.value)
                     }
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                    placeholder="Contact name"
+                    placeholder={t("hypo.form.emergencyContactNamePlaceholder")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Emergency Contact Phone
+                    {t("hypo.form.emergencyContactPhone")}
                   </label>
                   <input
                     type="tel"
@@ -602,14 +592,16 @@ export default function HypoWalletCardClient() {
                       handleFormChange("emergencyPhone", e.target.value)
                     }
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                    placeholder="Phone number"
+                    placeholder={t(
+                      "hypo.form.emergencyContactPhonePlaceholder",
+                    )}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Current Medications
+                  {t("hypo.form.medications")}
                 </label>
                 <textarea
                   value={cardDetails.medications}
@@ -618,13 +610,13 @@ export default function HypoWalletCardClient() {
                   }
                   className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
                   rows={2}
-                  placeholder="List your diabetes medications"
+                  placeholder={t("hypo.form.medicationsPlaceholder")}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Allergies
+                  {t("hypo.form.allergies")}
                 </label>
                 <input
                   type="text"
@@ -633,14 +625,14 @@ export default function HypoWalletCardClient() {
                     handleFormChange("allergies", e.target.value)
                   }
                   className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="Any known allergies"
+                  placeholder={t("hypo.form.allergiesPlaceholder")}
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Doctor&apos;s Name
+                    {t("hypo.form.doctorName")}
                   </label>
                   <input
                     type="text"
@@ -649,12 +641,12 @@ export default function HypoWalletCardClient() {
                       handleFormChange("doctorName", e.target.value)
                     }
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                    placeholder="Doctor's name"
+                    placeholder={t("hypo.form.doctorNamePlaceholder")}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Doctor&apos;s Phone
+                    {t("hypo.form.doctorPhone")}
                   </label>
                   <input
                     type="tel"
@@ -663,14 +655,14 @@ export default function HypoWalletCardClient() {
                       handleFormChange("doctorPhone", e.target.value)
                     }
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                    placeholder="Doctor's phone"
+                    placeholder={t("hypo.form.doctorPhonePlaceholder")}
                   />
                 </div>
               </div>
 
               <div className="flex gap-4 pt-4">
                 <Button variant="outlined" onClick={() => setStep("result")}>
-                  Back
+                  {t("hypo.form.back")}
                 </Button>
                 <Button
                   variant="primary"
@@ -678,7 +670,7 @@ export default function HypoWalletCardClient() {
                   disabled={!cardDetails.name}
                   className="flex-1"
                 >
-                  Preview card
+                  {t("hypo.form.previewCard")}
                 </Button>
               </div>
             </div>
@@ -690,17 +682,18 @@ export default function HypoWalletCardClient() {
           <div className="space-y-6">
             <div className="bg-white border border-gray-200 shadow-lg p-8">
               <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">
-                Your Emergency Card Preview
+                {t("hypo.preview.title")}
               </h2>
 
               {/* Card Preview - Front */}
               <div className="mb-4">
                 <p className="text-sm text-gray-500 mb-2 text-center">
-                  (Frontside)
+                  {t("hypo.preview.frontside")}
                 </p>
                 <div
                   className="mx-auto bg-primary overflow-hidden shadow-lg border border-gray-200"
                   style={{ width: "342px", height: "230px" }}
+                  dir="ltr"
                 >
                   {/* Header */}
                   <div className="bg-white px-4 py-2 flex items-center justify-between">
@@ -767,11 +760,12 @@ export default function HypoWalletCardClient() {
               {/* Card Preview - Back */}
               <div className="mb-8">
                 <p className="text-sm text-gray-500 mb-2 text-center">
-                  (Backside)
+                  {t("hypo.preview.backside")}
                 </p>
                 <div
                   className="mx-auto bg-white border border-gray-200 overflow-hidden shadow-lg"
                   style={{ width: "342px", height: "230px" }}
+                  dir="ltr"
                 >
                   {/* Header */}
                   <div className="bg-primary px-4 py-2">
@@ -819,7 +813,7 @@ export default function HypoWalletCardClient() {
               {/* Actions */}
               <div className="flex gap-4">
                 <Button variant="outlined" onClick={() => setStep("form")}>
-                  Edit details
+                  {t("hypo.preview.editDetails")}
                 </Button>
                 <Button
                   variant="primary"
@@ -827,10 +821,10 @@ export default function HypoWalletCardClient() {
                   className="flex-1"
                 >
                   <Download className="w-5 h-5" />
-                  Download PDF
+                  {t("hypo.preview.downloadPdf")}
                 </Button>
                 <Button variant="outlined" onClick={handleRestart}>
-                  Start over
+                  {t("hypo.preview.startOver")}
                 </Button>
               </div>
             </div>

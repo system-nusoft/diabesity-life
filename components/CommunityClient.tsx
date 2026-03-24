@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { formatTimeAgo } from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
 import {
@@ -40,6 +41,7 @@ interface Post {
 }
 
 export default function CommunityClient() {
+  const { t, locale } = useLanguage();
   const { user, token, isAdmin, isBanned, banUser, unbanUser, isLoading } =
     useAuth();
   const router = useRouter();
@@ -87,7 +89,7 @@ export default function CommunityClient() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Loading...</p>
+        <p className="text-gray-500">{t("community.loading")}</p>
       </div>
     );
   }
@@ -221,17 +223,16 @@ export default function CommunityClient() {
         <div className="bg-primary text-white py-8">
           <div className="max-w-4xl mx-auto px-4">
             <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-3xl font-bold">Our community</h1>
+              <h1 className="text-3xl font-bold">{t("community.heading")}</h1>
               {isAdmin && (
                 <span className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 text-sm rounded">
                   <Shield className="w-4 h-4" />
-                  Admin
+                  {t("community.adminBadge")}
                 </span>
               )}
             </div>
             <p className="text-white/80">
-              Connect with others, share experiences, and support each other on
-              your health journey.
+              {t("community.description")}
             </p>
           </div>
         </div>
@@ -241,10 +242,7 @@ export default function CommunityClient() {
           <div className="bg-red-500 text-white py-3">
             <div className="max-w-4xl mx-auto px-4 flex items-center gap-2">
               <Ban className="w-5 h-5" />
-              <span>
-                You have been banned from the community. You can view content
-                but cannot post or interact.
-              </span>
+              <span>{t("community.bannedBanner")}</span>
             </div>
           </div>
         )}
@@ -254,7 +252,7 @@ export default function CommunityClient() {
           {/* Create Post Button */}
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-xl font-semibold text-gray-800">
-              Latest posts
+              {t("community.latestPosts")}
             </h2>
             <Button
               variant="primary"
@@ -263,7 +261,7 @@ export default function CommunityClient() {
               className={isBanned ? "opacity-50 cursor-not-allowed" : ""}
             >
               <Plus className="w-4 h-4" />
-              Create post
+              {t("community.createPost")}
             </Button>
           </div>
 
@@ -278,7 +276,7 @@ export default function CommunityClient() {
                     : "bg-white text-gray-600 border-gray-300 hover:border-primary hover:text-primary"
                 }`}
               >
-                All
+                {t("community.allFilter")}
               </button>
               {allTags.map((tag) => (
                 <button
@@ -299,13 +297,13 @@ export default function CommunityClient() {
           {/* Posts List */}
           {postsLoading ? (
             <div className="text-center py-12 text-gray-500">
-              Loading posts...
+              {t("community.loadingPosts")}
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
               {activeTag
-                ? `No posts tagged "${activeTag}".`
-                : "No posts yet. Be the first to share!"}
+                ? `${t("community.noPostsTaggedPrefix")} "${activeTag}"${t("community.noPostsTaggedSuffix")}`
+                : t("community.noPosts")}
             </div>
           ) : (
             <div className="flex flex-col space-y-4">
@@ -325,12 +323,12 @@ export default function CommunityClient() {
                             </p>
                             {post.author.communityBanned && (
                               <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
-                                Banned
+                                {t("community.bannedBadge")}
                               </span>
                             )}
                           </div>
                           <p className="text-sm text-gray-500">
-                            {formatTimeAgo(post.createdAt)}
+                            {formatTimeAgo(post.createdAt, locale)}
                           </p>
                         </div>
                       </div>
@@ -354,8 +352,8 @@ export default function CommunityClient() {
                             }`}
                             title={
                               post.author.communityBanned
-                                ? "Unban user"
-                                : "Ban user"
+                                ? t("community.tooltips.unbanUser")
+                                : t("community.tooltips.banUser")
                             }
                           >
                             {post.author.communityBanned ? (
@@ -369,7 +367,7 @@ export default function CommunityClient() {
                               handleDeletePost(post.id, post.title, e)
                             }
                             className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors"
-                            title="Delete post"
+                            title={t("community.tooltips.deletePost")}
                           >
                             <Trash2 className="w-5 h-5" />
                           </button>
@@ -421,7 +419,7 @@ export default function CommunityClient() {
                       </button>
                       <div className="flex items-center gap-2 text-sm text-gray-500">
                         <MessageCircle className="w-5 h-5" />
-                        <span>{post.commentsCount} comments</span>
+                        <span>{post.commentsCount} {t("community.comments")}</span>
                       </div>
                     </div>
                   </div>
