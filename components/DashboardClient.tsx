@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { API_BASE_URL } from "@/lib/utils";
 import AdminDashboardClient from "./AdminDashboardClient";
+import UpdatePreferenceModal from "./UpdatePreferenceModal";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -108,7 +109,6 @@ function getHba1cCategoryColor(category: string | null): string {
   return "#ef4444";
 }
 
-// Custom tooltip for recharts
 function CustomTooltip({
   active,
   payload,
@@ -135,8 +135,11 @@ function CustomTooltip({
     Prediabetes: t("hba1c.categories.prediabetes"),
     Diabetes: t("hba1c.categories.diabetes"),
   };
-  const categoryMap = toolType === "bmi" ? bmiCategoryLabel : hba1cCategoryLabel;
-  const category = rawCategory ? (categoryMap[rawCategory] ?? rawCategory) : null;
+  const categoryMap =
+    toolType === "bmi" ? bmiCategoryLabel : hba1cCategoryLabel;
+  const category = rawCategory
+    ? (categoryMap[rawCategory] ?? rawCategory)
+    : null;
   return (
     <div className="bg-white border border-gray-200 shadow-md px-3 py-2 text-xs">
       <p className="font-medium text-gray-700">{label}</p>
@@ -156,6 +159,7 @@ interface ToolSectionProps {
   onTimeFilterChange: (f: TimeFilter) => void;
   onDeleteLog: (id: string) => void;
   deleting: string | null;
+  onEditPreference: () => void;
 }
 
 function ToolSection({
@@ -166,6 +170,7 @@ function ToolSection({
   onTimeFilterChange,
   onDeleteLog,
   deleting,
+  onEditPreference,
 }: ToolSectionProps) {
   const { t } = useLanguage();
   const toolUrl = toolType === "bmi" ? "/bmi-calculator" : "/hba1c-translator";
@@ -181,15 +186,14 @@ function ToolSection({
     Prediabetes: t("hba1c.categories.prediabetes"),
     Diabetes: t("hba1c.categories.diabetes"),
   };
-  const categoryMap = toolType === "bmi" ? bmiCategoryLabel : hba1cCategoryLabel;
+  const categoryMap =
+    toolType === "bmi" ? bmiCategoryLabel : hba1cCategoryLabel;
 
-  // Filter logs by time
   const fromDate = getFromDate(timeFilter);
   const filteredLogs = fromDate
     ? logs.filter((l) => new Date(l.loggedAt) >= new Date(fromDate))
     : logs;
 
-  // Sort filtered logs newest first for the list, oldest first for the chart
   const sortedNewest = [...filteredLogs].sort(
     (a, b) => new Date(b.loggedAt).getTime() - new Date(a.loggedAt).getTime(),
   );
@@ -295,19 +299,26 @@ function ToolSection({
               </div>
             )}
             {preference && (
-              <span
-                className={`text-xs px-2 py-1 border font-medium ${
-                  isOverdue(preference.frequency, sortedNewest)
-                    ? "border-red-300 text-red-600 bg-red-50"
-                    : "border-green-300 text-green-700 bg-green-50"
-                }`}
-              >
-                {t(`dashboard.user.frequency.${preference.frequency}`)}{" "}
-                ·{" "}
-                {isOverdue(preference.frequency, sortedNewest)
-                  ? t("dashboard.user.overdue")
-                  : t("dashboard.user.onTrack")}
-              </span>
+              <>
+                <span
+                  className={`text-xs px-2 py-1 border font-medium ${
+                    isOverdue(preference.frequency, sortedNewest)
+                      ? "border-red-300 text-red-600 bg-red-50"
+                      : "border-green-300 text-green-700 bg-green-50"
+                  }`}
+                >
+                  {t(`dashboard.user.frequency.${preference.frequency}`)} ·{" "}
+                  {isOverdue(preference.frequency, sortedNewest)
+                    ? t("dashboard.user.overdue")
+                    : t("dashboard.user.onTrack")}
+                </span>
+                <button
+                  onClick={onEditPreference}
+                  className="text-xs text-primary hover:underline"
+                >
+                  Edit goal
+                </button>
+              </>
             )}
           </div>
 
@@ -443,6 +454,9 @@ export default function DashboardClient() {
   const [hba1cTimeFilter, setHba1cTimeFilter] = useState<TimeFilter>("3M");
   const [deleting, setDeleting] = useState<string | null>(null);
   const [fetchError, setFetchError] = useState<boolean>(false);
+  const [updatePrefModal, setUpdatePrefModal] = useState<
+    "bmi" | "hba1c" | null
+  >(null);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -518,7 +532,9 @@ export default function DashboardClient() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
             {t("dashboard.user.heading")}
           </h1>
-          <p className="text-gray-600 text-sm">{t("dashboard.user.description")}</p>
+          <p className="text-gray-600 text-sm">
+            {t("dashboard.user.description")}
+          </p>
         </div>
       </section>
 
@@ -538,6 +554,7 @@ export default function DashboardClient() {
             onTimeFilterChange={setBmiTimeFilter}
             onDeleteLog={handleDeleteLog}
             deleting={deleting}
+            onEditPreference={() => setUpdatePrefModal("bmi")}
           />
 
           <ToolSection
@@ -548,9 +565,31 @@ export default function DashboardClient() {
             onTimeFilterChange={setHba1cTimeFilter}
             onDeleteLog={handleDeleteLog}
             deleting={deleting}
+            onEditPreference={() => setUpdatePrefModal("hba1c")}
           />
         </div>
       </section>
+
+      {updatePrefModal && (
+        <UpdatePreferenceModal
+          toolType={updatePrefModal}
+          currentFrequency={
+            (updatePrefModal === "bmi" ? bmiPref : hba1cPref)?.frequency ??
+            "monthly"
+          }
+          onClose={() => setUpdatePrefModal(null)}
+          onSaved={(newFreq) => {
+            setPreferences((prev) =>
+              prev.map((p) =>
+                p.toolType === updatePrefModal
+                  ? { ...p, frequency: newFreq }
+                  : p,
+              ),
+            );
+            setUpdatePrefModal(null);
+          }}
+        />
+      )}
     </div>
   );
 }
