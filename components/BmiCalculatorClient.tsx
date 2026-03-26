@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import LogProgressModal from "./LogProgressModal";
 
@@ -251,6 +252,27 @@ function BmiGauge({ bmi }: { bmi: number | null }) {
 
 export default function BmiCalculatorClient() {
   const { user } = useAuth();
+  const { t } = useLanguage();
+
+  // Maps English category keys (from classification functions) to translated strings
+  const categoryLabel: Record<string, string> = {
+    "Underweight": t("bmi.categories.underweight"),
+    "Normal": t("bmi.categories.normal"),
+    "Overweight": t("bmi.categories.overweight"),
+    "Healthy weight": t("bmi.categories.healthyWeight"),
+    "Obese (Class I)": t("bmi.categories.obese1"),
+    "Obese (Class II)": t("bmi.categories.obese2"),
+    "Obese (Class III)": t("bmi.categories.obese3"),
+    "Obese": t("bmi.categories.obese"),
+  };
+  const descriptionLabel: Record<string, string> = {
+    "Underweight": t("bmi.descriptions.underweight"),
+    "Normal": t("bmi.descriptions.normal"),
+    "Overweight": t("bmi.descriptions.overweight"),
+    "Obese (Class I)": t("bmi.descriptions.obese1"),
+    "Obese (Class II)": t("bmi.descriptions.obese2"),
+    "Obese (Class III)": t("bmi.descriptions.obese3"),
+  };
   const [age, setAge] = useState("");
   const [gender, setGender] = useState<Gender>("male");
   const [heightUnit, setHeightUnit] = useState<HeightUnit>("ft-in");
@@ -272,17 +294,15 @@ export default function BmiCalculatorClient() {
     // Validate age
     const ageNum = parseFloat(age);
     if (!age || isNaN(ageNum) || ageNum < 0) {
-      setError("Please enter a valid age.");
+      setError(t("bmi.errors.invalidAge"));
       return;
     }
     if (ageNum < 2) {
-      setError(
-        "BMI calculation is not reliable for children under 2 years old.",
-      );
+      setError(t("bmi.errors.ageTooYoung"));
       return;
     }
     if (ageNum > 120) {
-      setError("Please enter a valid age (2–120).");
+      setError(t("bmi.errors.invalidAgeRange"));
       return;
     }
 
@@ -292,22 +312,22 @@ export default function BmiCalculatorClient() {
       const ft = parseFloat(feet) || 0;
       const inc = parseFloat(inches) || 0;
       if (ft < 0 || inc < 0) {
-        setError("Height values cannot be negative.");
+        setError(t("bmi.errors.heightNegative"));
         return;
       }
       if (ft === 0 && inc === 0) {
-        setError("Please enter your height.");
+        setError(t("bmi.errors.heightRequired"));
         return;
       }
       heightCm = ft * 30.48 + inc * 2.54;
     } else {
       const m = parseFloat(meters) || 0;
       if (m < 0) {
-        setError("Height cannot be negative.");
+        setError(t("bmi.errors.heightNegativeM"));
         return;
       }
       if (m === 0) {
-        setError("Please enter your height.");
+        setError(t("bmi.errors.heightRequired"));
         return;
       }
       heightCm = m * 100;
@@ -316,11 +336,11 @@ export default function BmiCalculatorClient() {
     // Validate weight
     const w = parseFloat(weight) || 0;
     if (w < 0) {
-      setError("Weight cannot be negative.");
+      setError(t("bmi.errors.weightNegative"));
       return;
     }
     if (w === 0) {
-      setError("Please enter your weight.");
+      setError(t("bmi.errors.weightRequired"));
       return;
     }
 
@@ -360,12 +380,10 @@ export default function BmiCalculatorClient() {
         <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              BMI Calculator
+              {t("bmi.hero")}
             </h1>
             <p className="text-gray-700 text-md leading-relaxed max-w-2xl mx-auto">
-              Body Mass Index (BMI) is a simple screening tool that uses your
-              height and weight to estimate body fat. Enter your details below
-              to calculate your BMI.
+              {t("bmi.heroDescription")}
             </p>
           </div>
         </div>
@@ -378,20 +396,20 @@ export default function BmiCalculatorClient() {
             {/* Input Form */}
             <div className="bg-white p-8 border border-gray-200 shadow-sm">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Your Details
+                {t("bmi.form.yourDetails")}
               </h2>
 
               <div className="space-y-4">
                 {/* Age */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Age
+                    {t("bmi.form.age")}
                   </label>
                   <input
                     type="number"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
-                    placeholder="Enter your age"
+                    placeholder={t("bmi.form.agePlaceholder")}
                     min="1"
                     max="120"
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -401,7 +419,7 @@ export default function BmiCalculatorClient() {
                 {/* Gender */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Gender
+                    {t("bmi.form.gender")}
                   </label>
                   <div className="flex gap-4">
                     <button
@@ -412,7 +430,7 @@ export default function BmiCalculatorClient() {
                           : "bg-white text-gray-700 border-gray-300 hover:border-primary"
                       }`}
                     >
-                      Male
+                      {t("bmi.form.male")}
                     </button>
                     <button
                       onClick={() => setGender("female")}
@@ -422,7 +440,7 @@ export default function BmiCalculatorClient() {
                           : "bg-white text-gray-700 border-gray-300 hover:border-primary"
                       }`}
                     >
-                      Female
+                      {t("bmi.form.female")}
                     </button>
                   </div>
                 </div>
@@ -431,7 +449,7 @@ export default function BmiCalculatorClient() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-700">
-                      Height
+                      {t("bmi.form.height")}
                     </label>
                     <div className="flex gap-2">
                       <button
@@ -463,7 +481,7 @@ export default function BmiCalculatorClient() {
                           type="number"
                           value={feet}
                           onChange={(e) => setFeet(e.target.value)}
-                          placeholder="Feet"
+                          placeholder={t("bmi.form.feetPlaceholder")}
                           min="0"
                           max="9"
                           className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -474,7 +492,7 @@ export default function BmiCalculatorClient() {
                           type="number"
                           value={inches}
                           onChange={(e) => setInches(e.target.value)}
-                          placeholder="Inches"
+                          placeholder={t("bmi.form.inchesPlaceholder")}
                           min="0"
                           max="11"
                           className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -486,7 +504,7 @@ export default function BmiCalculatorClient() {
                       type="number"
                       value={meters}
                       onChange={(e) => setMeters(e.target.value)}
-                      placeholder="Meters (e.g. 1.75)"
+                      placeholder={t("bmi.form.metersPlaceholder")}
                       step="0.01"
                       min="0"
                       className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -498,7 +516,7 @@ export default function BmiCalculatorClient() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-700">
-                      Weight
+                      {t("bmi.form.weight")}
                     </label>
                     <div className="flex gap-2">
                       <button
@@ -528,7 +546,7 @@ export default function BmiCalculatorClient() {
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder={
-                      weightUnit === "kg" ? "Weight in kg" : "Weight in pounds"
+                      weightUnit === "kg" ? t("bmi.form.weightKgPlaceholder") : t("bmi.form.weightLbsPlaceholder")
                     }
                     min="0"
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -548,13 +566,13 @@ export default function BmiCalculatorClient() {
                     onClick={handleCalculate}
                     className="flex-1 bg-primary text-white py-3 px-6 font-medium hover:bg-primary/90 transition-all"
                   >
-                    Calculate BMI
+                    {t("bmi.form.calculate")}
                   </button>
                   <button
                     onClick={handleReset}
                     className="px-6 py-3 border border-gray-300 font-medium text-gray-700 hover:bg-gray-50 transition-all"
                   >
-                    Reset
+                    {t("bmi.form.reset")}
                   </button>
                 </div>
               </div>
@@ -576,17 +594,17 @@ export default function BmiCalculatorClient() {
                       className="text-xl font-semibold mt-2"
                       style={{ color: result.color }}
                     >
-                      {result.category}
+                      {categoryLabel[result.category] ?? result.category}
                     </p>
                     <p className="text-gray-500 text-sm mt-4 max-w-xs leading-relaxed">
-                      {result.description}
+                      {result.isChild ? t("bmi.descriptions.child") : (descriptionLabel[result.category] ?? result.description)}
                     </p>
                     {user && (
                       <button
                         onClick={() => setShowLogModal(true)}
                         className="mt-5 px-5 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
                       >
-                        Save to Progress
+                        {t("bmi.result.saveProgress")}
                       </button>
                     )}
                   </div>
@@ -595,8 +613,7 @@ export default function BmiCalculatorClient() {
                 <div className="text-center">
                   <BmiGauge bmi={null} />
                   <p className="text-gray-400 mt-6 text-lg">
-                    Enter your details and click &quot;Calculate BMI&quot; to
-                    see your result.
+                    {t("bmi.result.prompt")}
                   </p>
                 </div>
               )}
@@ -624,26 +641,26 @@ export default function BmiCalculatorClient() {
       <section className="bg-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-            Understanding Your BMI
+            {t("bmi.info.heading")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-blue-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>Below 18.5</strong> — Underweight
+                  <strong>{t("bmi.info.ranges.below185")}</strong> — {t("bmi.categories.underweight")}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-green-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>18.5 – 23.4</strong> — Normal
+                  <strong>{t("bmi.info.ranges.185to234")}</strong> — {t("bmi.categories.normal")}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-yellow-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>23.5 – 24.9</strong> — Overweight
+                  <strong>{t("bmi.info.ranges.235to249")}</strong> — {t("bmi.categories.overweight")}
                 </p>
               </div>
             </div>
@@ -651,19 +668,19 @@ export default function BmiCalculatorClient() {
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-orange-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>25.0 – 29.9</strong> — Obese (Class I)
+                  <strong>{t("bmi.info.ranges.250to299")}</strong> — {t("bmi.categories.obese1")}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-red-500 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>30.0 – 34.9</strong> — Obese (Class II)
+                  <strong>{t("bmi.info.ranges.300to349")}</strong> — {t("bmi.categories.obese2")}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-4 h-4 rounded-full bg-red-600 flex-shrink-0" />
                 <p className="text-gray-700">
-                  <strong>35.0+</strong> — Obese (Class III)
+                  <strong>{t("bmi.info.ranges.350plus")}</strong> — {t("bmi.categories.obese3")}
                 </p>
               </div>
             </div>
@@ -671,10 +688,7 @@ export default function BmiCalculatorClient() {
 
           <div className="mt-8 p-4 bg-gray-50 border border-gray-200">
             <p className="text-gray-600 text-sm leading-relaxed">
-              <strong>Note:</strong> BMI is a screening tool, not a diagnostic
-              measure, and does not account for muscle mass or bone density.
-              Always consult a healthcare professional for a comprehensive
-              assessment.
+              {t("bmi.info.note")}
             </p>
           </div>
         </div>

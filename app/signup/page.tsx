@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { API_BASE_URL } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { signup } = useAuth();
+  const { t } = useLanguage();
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,12 +28,12 @@ export default function SignupPage() {
     setError("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError(t("signup.errorPasswordMatch"));
       return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+      setError(t("signup.errorPasswordLength"));
       return;
     }
 
@@ -41,7 +43,7 @@ export default function SignupPage() {
       await signup(email, password, firstName, lastName);
       router.push("/login?registered=true");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Signup failed");
+      setError(err instanceof Error ? err.message : t("signup.errorFallback"));
     } finally {
       setIsLoading(false);
     }
@@ -52,7 +54,7 @@ export default function SignupPage() {
       <div className="w-full max-w-md">
         <div className="bg-white border-2 border-primary p-8">
           <h1 className="text-2xl font-bold text-primary text-center mb-6">
-            Create your account
+            {t("signup.title")}
           </h1>
 
           {error && (
@@ -68,7 +70,7 @@ export default function SignupPage() {
                   htmlFor="firstName"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  First name <span className="text-red-500">*</span>
+                  {t("signup.firstName")} <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="firstName"
@@ -77,7 +79,7 @@ export default function SignupPage() {
                   onChange={(e) => setFirstName(e.target.value)}
                   required
                   className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="First name"
+                  placeholder={t("signup.firstNamePlaceholder")}
                 />
               </div>
               <div>
@@ -85,7 +87,7 @@ export default function SignupPage() {
                   htmlFor="lastName"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Last name
+                  {t("signup.lastName")}
                 </label>
                 <input
                   id="lastName"
@@ -93,7 +95,7 @@ export default function SignupPage() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="Last name"
+                  placeholder={t("signup.lastNamePlaceholder")}
                 />
               </div>
             </div>
@@ -103,7 +105,7 @@ export default function SignupPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Email <span className="text-red-500">*</span>
+                {t("signup.email")} <span className="text-red-500">*</span>
               </label>
               <input
                 id="email"
@@ -112,7 +114,7 @@ export default function SignupPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                placeholder="Enter your email"
+                placeholder={t("signup.emailPlaceholder")}
               />
             </div>
 
@@ -121,7 +123,7 @@ export default function SignupPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Password <span className="text-red-500">*</span>
+                {t("signup.password")} <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
@@ -132,7 +134,7 @@ export default function SignupPage() {
                   required
                   minLength={6}
                   className="w-full px-4 py-2 pr-10 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="Create a password (min. 6 characters)"
+                  placeholder={t("signup.passwordPlaceholder")}
                 />
                 <button
                   type="button"
@@ -153,7 +155,7 @@ export default function SignupPage() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Confirm password <span className="text-red-500">*</span>
+                {t("signup.confirmPassword")} <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
@@ -164,7 +166,7 @@ export default function SignupPage() {
                   required
                   minLength={6}
                   className="w-full px-4 py-2 pr-10 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="Confirm your password"
+                  placeholder={t("signup.confirmPasswordPlaceholder")}
                 />
                 <button
                   type="button"
@@ -186,7 +188,7 @@ export default function SignupPage() {
               className="w-full"
               disabled={isLoading}
             >
-              {isLoading ? "Creating account..." : "Sign up"}
+              {isLoading ? t("signup.creating") : t("signup.signupBtn")}
             </Button>
           </form>
 
@@ -195,7 +197,7 @@ export default function SignupPage() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">or</span>
+              <span className="bg-white px-2 text-gray-500">{t("signup.or")}</span>
             </div>
           </div>
 
@@ -225,17 +227,17 @@ export default function SignupPage() {
               />
             </svg>
             <span className="text-gray-700 font-medium">
-              Continue with Google
+              {t("signup.googleBtn")}
             </span>
           </button>
 
           <p className="mt-6 text-center text-sm text-gray-600">
-            Already have an account?{" "}
+            {t("signup.hasAccount")}{" "}
             <Link
               href="/login"
               className="text-primary font-medium hover:underline"
             >
-              Login here
+              {t("signup.loginLink")}
             </Link>
           </p>
         </div>

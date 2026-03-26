@@ -1,6 +1,8 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useBreadcrumb } from "@/contexts/BreadcrumbContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { formatTimeAgo } from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
 import {
@@ -77,8 +79,10 @@ interface PostDetailClientProps {
 }
 
 export default function PostDetailClient({ postId }: PostDetailClientProps) {
+  const { t, locale } = useLanguage();
   const { user, token, isAdmin, isBanned, banUser, unbanUser, isLoading } =
     useAuth();
+  const { setSegmentOverride, clearSegmentOverride } = useBreadcrumb();
   const router = useRouter();
 
   const [post, setPost] = useState<Post | null>(null);
@@ -150,10 +154,13 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
           return;
         }
         setPost(postData);
+        setSegmentOverride(postId, postData.title);
         setComments(Array.isArray(commentsData) ? commentsData : []);
       })
       .catch(() => router.push("/community"))
       .finally(() => setDataLoading(false));
+
+    return () => clearSegmentOverride(postId);
   }, [isLoading, user, token, postId, router]);
 
   const handleLikePost = async () => {
@@ -453,7 +460,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
   if (isLoading || dataLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Loading...</p>
+        <p className="text-gray-500">{t("community.loading")}</p>
       </div>
     );
   }
@@ -468,7 +475,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Trash2 className="w-12 h-12 text-red-500 mx-auto mb-4" />
-          <p className="text-gray-600">Post deleted. Redirecting...</p>
+          <p className="text-gray-600">{t("community.detail.postDeleted")}</p>
         </div>
       </div>
     );
@@ -510,12 +517,12 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
               className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
-              Back to community
+              {t("community.detail.backLink")}
             </Link>
             {isAdmin && (
               <span className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 text-sm rounded">
                 <Shield className="w-4 h-4" />
-                Admin
+                {t("community.adminBadge")}
               </span>
             )}
           </div>
@@ -526,10 +533,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
           <div className="bg-red-500 text-white py-3">
             <div className="max-w-4xl mx-auto px-4 flex items-center gap-2">
               <Ban className="w-5 h-5" />
-              <span>
-                You have been banned from the community. You can view content
-                but cannot post or interact.
-              </span>
+              <span>{t("community.detail.bannedBanner")}</span>
             </div>
           </div>
         )}
@@ -551,12 +555,12 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     </p>
                     {post.author.communityBanned && (
                       <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
-                        Banned
+                        {t("community.bannedBadge")}
                       </span>
                     )}
                   </div>
                   <p className="text-sm text-gray-500">
-                    {formatTimeAgo(post.createdAt)}
+                    {formatTimeAgo(post.createdAt, locale)}
                   </p>
                 </div>
               </div>
@@ -578,7 +582,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                         : "text-orange-500 hover:bg-orange-50"
                     }`}
                     title={
-                      post.author.communityBanned ? "Unban user" : "Ban user"
+                      post.author.communityBanned ? t("community.tooltips.unbanUser") : t("community.tooltips.banUser")
                     }
                   >
                     {post.author.communityBanned ? (
@@ -590,7 +594,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                   <button
                     onClick={handleDeletePost}
                     className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors"
-                    title="Delete post"
+                    title={t("community.tooltips.deletePost")}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -600,14 +604,14 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                   <button
                     onClick={handleStartEditPost}
                     className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 rounded transition-colors"
-                    title="Edit your post"
+                    title={t("community.tooltips.editPost")}
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
                   <button
                     onClick={handleDeletePost}
                     className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
-                    title="Delete your post"
+                    title={t("community.tooltips.deleteYourPost")}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
@@ -628,7 +632,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     }))
                   }
                   className="w-full px-3 py-2 text-xl font-bold border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary"
-                  placeholder="Post title"
+                  placeholder={t("community.detail.postTitlePlaceholder")}
                 />
                 <textarea
                   value={postEditState.content}
@@ -640,7 +644,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                   }
                   rows={6}
                   className="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary resize-none"
-                  placeholder="Post content"
+                  placeholder={t("community.detail.postContentPlaceholder")}
                 />
                 <div>
                   {postEditState.tags.length > 0 && (
@@ -690,7 +694,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     className="px-4 py-1 shadow-none"
                   >
                     <Check className="w-5 h-5" />
-                    {postEditState.saving ? "Saving..." : "Save"}
+                    {postEditState.saving ? t("community.detail.saving") : t("community.detail.save")}
                   </Button>
                   <Button
                     variant="outlined"
@@ -703,7 +707,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     className="px-4 py-1"
                   >
                     <X className="w-5 h-5" />
-                    Cancel
+                    {t("community.detail.cancel")}
                   </Button>
                 </div>
               </div>
@@ -748,7 +752,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
               </button>
               <div className="flex items-center gap-2 text-gray-500">
                 <MessageCircle className="w-6 h-6" />
-                <span className="font-medium">{comments.length} comments</span>
+                <span className="font-medium">{comments.length} {t("community.detail.commentsCount")}</span>
               </div>
 
               {/* Post report — non-admin users who didn't write this post */}
@@ -758,7 +762,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                 (postReportState.submitted ? (
                   <span className="ml-auto flex items-center gap-1 text-xs text-gray-400">
                     <Flag className="w-3.5 h-3.5" />
-                    Reported
+                    {t("community.detail.reported")}
                   </span>
                 ) : postReportState.isOpen ? (
                   <div className="ml-auto flex items-center gap-2">
@@ -771,7 +775,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           reason: e.target.value,
                         }))
                       }
-                      placeholder="Reason (optional)"
+                      placeholder={t("community.detail.reasonPlaceholder")}
                       className="text-xs px-2 py-1 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                     <button
@@ -779,7 +783,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                       disabled={postReportState.submitting}
                       className="text-xs px-2 py-1 bg-primary text-white transition-colors disabled:opacity-60"
                     >
-                      {postReportState.submitting ? "Sending..." : "Send"}
+                      {postReportState.submitting ? t("community.detail.sending") : t("community.detail.send")}
                     </button>
                     <button
                       onClick={() =>
@@ -791,7 +795,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                       }
                       className="text-xs text-gray-400 hover:text-gray-600"
                     >
-                      Cancel
+                      {t("community.detail.cancel")}
                     </button>
                   </div>
                 ) : (
@@ -806,7 +810,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                     className="ml-auto flex items-center gap-1 text-xs text-gray-400 hover:text-primary transition-colors"
                   >
                     <Flag className="w-3.5 h-3.5" />
-                    Report
+                    {t("community.detail.report")}
                   </button>
                 ))}
             </div>
@@ -814,13 +818,13 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
 
           {/* Comment Form */}
           <div className="bg-white border border-gray-200 p-4 mb-6">
-            <h3 className="font-semibold text-gray-800 mb-3">Add a comment</h3>
+            <h3 className="font-semibold text-gray-800 mb-3">{t("community.detail.addComment")}</h3>
             {user ? (
               isBanned ? (
                 <div className="text-center py-4 bg-gray-50 rounded">
                   <Ban className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                   <p className="text-gray-500">
-                    You cannot comment while banned.
+                    {t("community.detail.bannedComment")}
                   </p>
                 </div>
               ) : (
@@ -828,7 +832,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                   <textarea
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
-                    placeholder="Share your thoughts..."
+                    placeholder={t("community.detail.commentPlaceholder")}
                     rows={3}
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary resize-none"
                   />
@@ -839,7 +843,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                       disabled={!newComment.trim() || isSubmitting}
                     >
                       <Send className="w-4 h-4" />
-                      {isSubmitting ? "Posting..." : "Post comment"}
+                      {isSubmitting ? t("community.detail.posting") : t("community.detail.postComment")}
                     </Button>
                   </div>
                 </form>
@@ -847,10 +851,10 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
             ) : (
               <div className="text-center py-4">
                 <p className="text-gray-600 mb-3">
-                  Please login to join the conversation
+                  {t("community.detail.loginPrompt")}
                 </p>
                 <Link href="/login">
-                  <Button variant="primary">Login to comment</Button>
+                  <Button variant="primary">{t("community.detail.loginButton")}</Button>
                 </Link>
               </div>
             )}
@@ -859,14 +863,14 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
           {/* Comments List */}
           <div className="space-y-4">
             <h3 className="font-semibold text-gray-800">
-              Comments ({comments.length})
+              {t("community.detail.commentsHeading")} ({comments.length})
             </h3>
 
             {comments.length === 0 ? (
               <div className="bg-white border border-gray-200 p-8 text-center">
                 <MessageCircle className="w-12 h-12 text-gray-300 mx-auto mb-3" />
                 <p className="text-gray-500">
-                  No comments yet. Be the first to share your thoughts!
+                  {t("community.detail.noComments")}
                 </p>
               </div>
             ) : (
@@ -893,12 +897,12 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           )}
                           {comment.author.communityBanned && (
                             <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5 rounded">
-                              Banned
+                              {t("community.bannedBadge")}
                             </span>
                           )}
                         </div>
                         <p className="text-xs text-gray-500">
-                          {formatTimeAgo(comment.createdAt)}
+                          {formatTimeAgo(comment.createdAt, locale)}
                         </p>
                       </div>
                     </div>
@@ -921,8 +925,8 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           }`}
                           title={
                             comment.author.communityBanned
-                              ? "Unban user"
-                              : "Ban user"
+                              ? t("community.tooltips.unbanUser")
+                              : t("community.tooltips.banUser")
                           }
                         >
                           {comment.author.communityBanned ? (
@@ -934,7 +938,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                         <button
                           onClick={() => handleDeleteComment(comment.id)}
                           className="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors"
-                          title="Delete comment"
+                          title={t("community.tooltips.deleteComment")}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -944,14 +948,14 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                         <button
                           onClick={() => handleStartEditComment(comment)}
                           className="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded transition-colors"
-                          title="Edit your comment"
+                          title={t("community.tooltips.editComment")}
                         >
                           <Pencil className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleDeleteComment(comment.id)}
                           className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-colors"
-                          title="Delete your comment"
+                          title={t("community.tooltips.deleteYourComment")}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -977,14 +981,14 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           className="flex items-center gap-1 px-2.5 py-1 text-xs bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-50"
                         >
                           <Check className="w-3.5 h-3.5" />
-                          {commentEditSaving ? "Saving..." : "Save"}
+                          {commentEditSaving ? t("community.detail.saving") : t("community.detail.save")}
                         </button>
                         <button
                           onClick={() => setEditingCommentId(null)}
                           className="flex items-center gap-1 px-2.5 py-1 text-xs border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
                         >
                           <X className="w-3.5 h-3.5" />
-                          Cancel
+                          {t("community.detail.cancel")}
                         </button>
                       </div>
                     </div>
@@ -1020,7 +1024,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                       (reportState.submitted.has(comment.id) ? (
                         <span className="text-xs text-gray-400 flex items-center gap-1">
                           <Flag className="w-3.5 h-3.5" />
-                          Reported
+                          {t("community.detail.reported")}
                         </span>
                       ) : reportState.commentId === comment.id ? (
                         <div className="flex-1 flex items-center gap-2">
@@ -1033,7 +1037,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                                 reason: e.target.value,
                               }))
                             }
-                            placeholder="Reason (optional)"
+                            placeholder={t("community.detail.reasonPlaceholder")}
                             className="flex-1 text-xs px-2 py-1 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary"
                           />
                           <button
@@ -1041,7 +1045,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                             disabled={reportState.submitting}
                             className="text-xs px-2 py-1 bg-primary text-white transition-colors disabled:opacity-60"
                           >
-                            {reportState.submitting ? "Sending..." : "Send"}
+                            {reportState.submitting ? t("community.detail.sending") : t("community.detail.send")}
                           </button>
                           <button
                             onClick={() =>
@@ -1053,7 +1057,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                             }
                             className="text-xs text-gray-400 hover:text-gray-600"
                           >
-                            Cancel
+                            {t("community.detail.cancel")}
                           </button>
                         </div>
                       ) : (
@@ -1068,7 +1072,7 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
                           className="flex items-center gap-1 text-xs text-gray-400 hover:text-primary transition-colors"
                         >
                           <Flag className="w-3.5 h-3.5" />
-                          Report
+                          {t("community.detail.report")}
                         </button>
                       ))}
                   </div>

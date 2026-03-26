@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { formatTimeAgo } from "@/lib/communityData";
+import { formatTimeAgo, translateNotification, NotificationData } from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
 import { Bell, ChevronDown, LogOut, Menu, Phone, User, X } from "lucide-react";
 import Link from "next/link";
@@ -23,170 +23,207 @@ interface MenuColumn {
   items: MenuItem[];
 }
 
-const menuItems: MenuItem[] = [
-  {
-    label: "GLP-1 & Diabesity",
-    columns: [
-      {
-        heading: "GLP-1 & Diabesity",
-        items: [
-          {
-            label: "What is Diabesity?",
-            url: "/glp-diabesity#obesity-diabetes-connection",
-          },
-          { label: "What is Diabetes?", url: "/glp-diabesity#diabetes-101" },
-          { label: "What is Obesity?", url: "/glp-diabesity#obesity-101" },
-          {
-            label: "GLP-1 Agonists & Newer Agents",
-            url: "/glp-diabesity#glp1-agonists",
-          },
-          { label: "Clinical Corner", url: "/glp-diabesity#clinical-corner" },
-          {
-            label: "GLP-1 Based Treatments",
-            url: "/glp-diabesity#glp1-treatments",
-          },
-        ],
-      },
-      {
-        heading: "Learn",
-        items: [
-          {
-            label: "Risk Factors & Screening",
-            url: "/learn#risk-factors-screening",
-          },
-          { label: "Common Myths vs. Facts", url: "/learn#myths-vs-facts" },
-          { label: "Clinical Corner", url: "/learn#clinical-corner" },
-        ],
-      },
-      {
-        heading: "Diet",
-        items: [
-          {
-            label: "Ask a Nutritionist",
-            url: "/diet#ask-a-nutritionist",
-          },
-          {
-            label: "Desi Meal Makeovers",
-            url: "/diet#desi-meal-makeovers",
-          },
-          {
-            label: "Low-GI & Glycaemic Load Tips",
-            url: "/diet#low-gi-tips",
-          },
-          {
-            label: "Portion Control & Practical Guides",
-            url: "/diet#portion-control",
-          },
-          {
-            label: "Sample Diet Plans",
-            url: "/diet#sample-diet-plans",
-          },
-          {
-            label: "Snacking & Street-Food Survival",
-            url: "/diet#snacking-street-food",
-          },
-          {
-            label: "Supplements & Herbal Remedies",
-            url: "/diet#supplements-herbal-remedies",
-          },
-          {
-            label: "Behavioural Tools",
-            url: "/diet#behavioural-tools",
-          },
-        ],
-      },
-      {
-        heading: "Medication",
-        items: [
-          {
-            label: "First-line & Common Drugs",
-            url: "/medication#first-line-drugs",
-          },
-          {
-            label: "Injectables: Handling & Storage",
-            url: "/medication#injectables-handling",
-          },
-          {
-            label: "Safety, Interactions & Monitoring",
-            url: "/medication#safety-interactions-monitoring",
-          },
-          {
-            label: "Affordability & Access",
-            url: "/medication#affordability-access",
-          },
-          {
-            label: "Surgery & Advanced Therapies",
-            url: "/medication#surgery-advanced-therapies",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Tools",
-    columns: [
-      {
-        heading: "Tools",
-        items: [
-          { label: "BMI Calculator", url: "/bmi-calculator" },
-          { label: "Calorie Counter", url: "/calorie-counter" },
-          { label: "HbA1c Translator", url: "/hba1c-translator" },
-          { label: "Hypo Emergency Card", url: "/hypo-wallet-card" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Resources",
-    columns: [
-      {
-        heading: "How To",
-        items: [
-          { label: "How to Start?", url: "/how-to#how-to-start" },
-          { label: "How to Exercise at Home?", url: "/how-to#how-to-exercise" },
-          {
-            label: "How to Read Food Labels?",
-            url: "/how-to#how-to-read-labels",
-          },
-          {
-            label: "How to Handle Social Events?",
-            url: "/how-to#how-to-handle-social-events",
-          },
-          {
-            label: "How to Use Prescription Treatments?",
-            url: "/how-to#how-to-use-prescription-treatments",
-          },
-          {
-            label: "How to Handle Blood Sugar?",
-            url: "/how-to#how-to-handle-blood-sugar",
-          },
-        ],
-      },
-      {
-        heading: "Resources",
-        items: [
-          { label: "Blogs", url: "/resources?tab=blogs" },
-          { label: "News articles", url: "/resources?tab=news" },
-          { label: "Research articles", url: "/resources?tab=research" },
-          { label: "Recipes", url: "/resources?tab=recipes" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Frequently asked questions",
-    url: "/faqs",
-  },
-];
-
-interface Notification {
-  id: string;
-  title: string;
-  body: string;
-  isRead: boolean;
-  createdAt: string;
-  link?: string;
+function getMenuItems(t: (key: string) => string): MenuItem[] {
+  return [
+    {
+      label: t("header.nav.glpDiabesity"),
+      columns: [
+        {
+          heading: t("header.menu_headings.glpDiabesity"),
+          items: [
+            {
+              label: t("header.menu_items.whatIsDiabesity"),
+              url: "/glp-diabesity#obesity-diabetes-connection",
+            },
+            {
+              label: t("header.menu_items.whatIsDiabetes"),
+              url: "/glp-diabesity#diabetes-101",
+            },
+            {
+              label: t("header.menu_items.whatIsObesity"),
+              url: "/glp-diabesity#obesity-101",
+            },
+            {
+              label: t("header.menu_items.glp1Agonists"),
+              url: "/glp-diabesity#glp1-agonists",
+            },
+            {
+              label: t("header.menu_items.clinicalCorner"),
+              url: "/glp-diabesity#clinical-corner",
+            },
+            {
+              label: t("header.menu_items.glp1Treatments"),
+              url: "/glp-diabesity#glp1-treatments",
+            },
+          ],
+        },
+        {
+          heading: t("header.menu_headings.learn"),
+          items: [
+            {
+              label: t("header.menu_items.riskFactors"),
+              url: "/learn#risk-factors-screening",
+            },
+            {
+              label: t("header.menu_items.mythsVsFacts"),
+              url: "/learn#myths-vs-facts",
+            },
+            {
+              label: t("header.menu_items.clinicalCorner"),
+              url: "/learn#clinical-corner",
+            },
+          ],
+        },
+        {
+          heading: t("header.menu_headings.diet"),
+          items: [
+            {
+              label: t("header.menu_items.askNutritionist"),
+              url: "/diet#ask-a-nutritionist",
+            },
+            {
+              label: t("header.menu_items.desiMeal"),
+              url: "/diet#desi-meal-makeovers",
+            },
+            {
+              label: t("header.menu_items.lowGI"),
+              url: "/diet#low-gi-tips",
+            },
+            {
+              label: t("header.menu_items.portionControl"),
+              url: "/diet#portion-control",
+            },
+            {
+              label: t("header.menu_items.sampleDiet"),
+              url: "/diet#sample-diet-plans",
+            },
+            {
+              label: t("header.menu_items.snacking"),
+              url: "/diet#snacking-street-food",
+            },
+            {
+              label: t("header.menu_items.supplements"),
+              url: "/diet#supplements-herbal-remedies",
+            },
+            {
+              label: t("header.menu_items.behavioural"),
+              url: "/diet#behavioural-tools",
+            },
+          ],
+        },
+        {
+          heading: t("header.menu_headings.medication"),
+          items: [
+            {
+              label: t("header.menu_items.firstLine"),
+              url: "/medication#first-line-drugs",
+            },
+            {
+              label: t("header.menu_items.injectables"),
+              url: "/medication#injectables-handling",
+            },
+            {
+              label: t("header.menu_items.safety"),
+              url: "/medication#safety-interactions-monitoring",
+            },
+            {
+              label: t("header.menu_items.affordability"),
+              url: "/medication#affordability-access",
+            },
+            {
+              label: t("header.menu_items.surgery"),
+              url: "/medication#surgery-advanced-therapies",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: t("header.nav.tools"),
+      columns: [
+        {
+          heading: t("header.menu_headings.tools"),
+          items: [
+            {
+              label: t("header.menu_items.bmiCalculator"),
+              url: "/bmi-calculator",
+            },
+            {
+              label: t("header.menu_items.calorieCounter"),
+              url: "/calorie-counter",
+            },
+            {
+              label: t("header.menu_items.hba1cTranslator"),
+              url: "/hba1c-translator",
+            },
+            {
+              label: t("header.menu_items.hypoCard"),
+              url: "/hypo-wallet-card",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: t("header.nav.resources"),
+      columns: [
+        {
+          heading: t("header.menu_headings.howTo"),
+          items: [
+            {
+              label: t("header.menu_items.howToStart"),
+              url: "/how-to#how-to-start",
+            },
+            {
+              label: t("header.menu_items.howToExercise"),
+              url: "/how-to#how-to-exercise",
+            },
+            {
+              label: t("header.menu_items.howToReadLabels"),
+              url: "/how-to#how-to-read-labels",
+            },
+            {
+              label: t("header.menu_items.howToSocial"),
+              url: "/how-to#how-to-handle-social-events",
+            },
+            {
+              label: t("header.menu_items.howToPrescription"),
+              url: "/how-to#how-to-use-prescription-treatments",
+            },
+            {
+              label: t("header.menu_items.howToBloodSugar"),
+              url: "/how-to#how-to-handle-blood-sugar",
+            },
+          ],
+        },
+        {
+          heading: t("header.menu_headings.resources"),
+          items: [
+            {
+              label: t("header.menu_items.blogs"),
+              url: "/resources?tab=blogs",
+            },
+            { label: t("header.menu_items.news"), url: "/resources?tab=news" },
+            {
+              label: t("header.menu_items.research"),
+              url: "/resources?tab=research",
+            },
+            {
+              label: t("header.menu_items.recipes"),
+              url: "/resources?tab=recipes",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: t("header.nav.faqs"),
+      url: "/faqs",
+    },
+  ];
 }
+
+type Notification = NotificationData;
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -208,7 +245,8 @@ export default function Header() {
   const router = useRouter();
   const isTransitioningRef = useRef<boolean>(false);
   const { user, token, logout, isLoading } = useAuth();
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, t } = useLanguage();
+  const menuItems = getMenuItems(t);
 
   const handleLogout = () => {
     logout();
@@ -764,7 +802,7 @@ export default function Header() {
                 {/* Contact Number */}
                 <div className="flex flex-col gap-2">
                   <span className="text-sm text-primary-text whitespace-nowrap">
-                    Sehat CareLine call centre
+                    {t("header.careline")}
                   </span>
                   <a
                     href="tel:+923710622837"
@@ -787,7 +825,7 @@ export default function Header() {
                 </Link>
                 <div className="text-end">
                   <p className="text-xs text-primary-text">
-                    Sehat CareLine call centre
+                    {t("header.careline")}
                   </p>
                   <a
                     href="tel:+923710622837"
@@ -802,7 +840,7 @@ export default function Header() {
               {/* Right CTAs - Desktop Only */}
               <div className="hidden lg:flex items-center gap-3 flex-shrink-0 mr-0.5">
                 {/* Language Toggle - Desktop */}
-                {/* <div className="flex items-center text-sm">
+                <div className="flex items-center text-sm">
                   <button
                     onClick={() => setLocale("en")}
                     className={`px-1.5 py-1 transition-colors ${locale === "en" ? "font-semibold text-primary" : "text-gray-400 hover:text-gray-600"}`}
@@ -816,11 +854,11 @@ export default function Header() {
                   >
                     اردو
                   </button>
-                </div> */}
+                </div>
                 {user ? (
                   <Link href="/community">
                     <button className="px-8 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium text-xs whitespace-nowrap">
-                      Our community
+                      {t("header.ourCommunity")}
                     </button>
                   </Link>
                 ) : (
@@ -828,14 +866,14 @@ export default function Header() {
                     disabled
                     className="px-8 py-2 border-2 border-gray-400 text-gray-400 font-medium text-xs whitespace-nowrap cursor-not-allowed"
                   >
-                    Our community
+                    {t("header.ourCommunity")}
                   </button>
                 )}
                 <button
                   onClick={() => setIsModalOpen(true)}
                   className="px-8 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium text-xs whitespace-nowrap"
                 >
-                  For Professionals
+                  {t("header.forProfessionals")}
                 </button>
               </div>
 
@@ -869,10 +907,10 @@ export default function Header() {
             ) : (
               <Menu className="h-5 w-5" />
             )}
-            Menu
+            {t("header.menu")}
           </button>
           {/* Language Toggle - Mobile */}
-          {/* <div className="flex items-center text-sm">
+          <div className="flex items-center text-sm">
             <button
               onClick={() => setLocale("en")}
               className={`px-1.5 py-1 transition-colors ${locale === "en" ? "font-semibold text-primary" : "text-gray-400 hover:text-gray-600"}`}
@@ -886,7 +924,7 @@ export default function Header() {
             >
               اردو
             </button>
-          </div> */}
+          </div>
 
           {!isLoading && (
             <>
@@ -909,7 +947,9 @@ export default function Header() {
                       onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
                       className="flex items-center gap-2"
                     >
-                      <span className="text-sm text-gray-700">Hi</span>
+                      <span className="text-sm text-gray-700">
+                        {t("header.hi")}
+                      </span>
                       <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                         <User className="w-4 h-4 text-white" />
                       </div>
@@ -928,23 +968,23 @@ export default function Header() {
                           onClick={() => setIsUserDropdownOpen(false)}
                           className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                         >
-                          Dashboard
+                          {t("header.dashboard")}
                         </Link>
                         <button
                           onClick={handleLogout}
                           className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                         >
                           <LogOut className="w-4 h-4" />
-                          Logout
+                          {t("header.logout")}
                         </button>
                       </div>
                     )}
                   </div>
                 </div>
               ) : (
-                <Link href="tel:+923710622837">
+                <Link href="/login">
                   <Button variant="primary" size="sm" className="px-4 py-1">
-                    Get a consultation
+                    {t("header.login")}
                   </Button>
                 </Link>
               )}
@@ -1039,35 +1079,38 @@ export default function Header() {
                         <div className="absolute right-0 top-full mt-2 w-80 bg-white border border-gray-200 shadow-lg z-50">
                           <div className="px-4 py-3 border-b border-primary flex items-center justify-between">
                             <p className="text-sm font-semibold text-gray-800">
-                              Notifications
+                              {t("header.notifications")}
                             </p>
                           </div>
                           <div className="max-h-96 overflow-y-auto">
                             {notifications.length === 0 ? (
                               <p className="text-sm text-gray-400 text-center py-8">
-                                No notifications yet
+                                {t("header.noNotifications")}
                               </p>
                             ) : (
-                              notifications.map((n) => (
-                                <Link
-                                  key={n.id}
-                                  href={n.link ?? "#"}
-                                  onClick={() => setIsNotificationOpen(false)}
-                                  className={`flex gap-3 px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors ${!n.isRead ? "bg-primary/5" : ""}`}
-                                >
-                                  <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-primary">
-                                      {n.title}
-                                    </p>
-                                    <p className="text-xs text-gray-500 mt-0.5">
-                                      {n.body}
-                                    </p>
-                                    <p className="text-xs text-gray-400 mt-1">
-                                      {formatTimeAgo(n.createdAt)}
-                                    </p>
-                                  </div>
-                                </Link>
-                              ))
+                              notifications.map((n) => {
+                                const { title, body } = translateNotification(n, locale);
+                                return (
+                                  <Link
+                                    key={n.id}
+                                    href={n.link ?? "#"}
+                                    onClick={() => setIsNotificationOpen(false)}
+                                    className={`flex gap-3 px-4 py-3 border-b border-gray-50 hover:bg-gray-50 transition-colors ${!n.isRead ? "bg-primary/5" : ""}`}
+                                  >
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-sm font-medium text-primary">
+                                        {title}
+                                      </p>
+                                      <p className="text-xs text-gray-500 mt-0.5">
+                                        {body}
+                                      </p>
+                                      <p className="text-xs text-gray-400 mt-1">
+                                        {formatTimeAgo(n.createdAt, locale)}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                );
+                              })
                             )}
                           </div>
                         </div>
@@ -1082,10 +1125,10 @@ export default function Header() {
                         className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 transition-colors"
                       >
                         <span className="text-sm text-gray-700 hidden xl:block">
-                          Hi, {user.firstName}
+                          {t("header.hi")}, {user.firstName}
                         </span>
                         <span className="text-sm text-gray-700 xl:hidden">
-                          Hi
+                          {t("header.hi")}
                         </span>
                         <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
                           <User className="w-5 h-5 text-white" />
@@ -1105,23 +1148,23 @@ export default function Header() {
                             onClick={() => setIsUserDropdownOpen(false)}
                             className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                           >
-                            Dashboard
+                            {t("header.dashboard")}
                           </Link>
                           <button
                             onClick={handleLogout}
                             className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                           >
                             <LogOut className="w-4 h-4" />
-                            Logout
+                            {t("header.logout")}
                           </button>
                         </div>
                       )}
                     </div>
                   </div>
                 ) : (
-                  <Link href="tel:+923710622837">
+                  <Link href="/login">
                     <Button variant="primary" size="md" className="px-8 mr-0.5">
-                      Get a consultation
+                      {t("header.login")}
                     </Button>
                   </Link>
                 )}
@@ -1170,7 +1213,7 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(false)}
                     className="block w-full px-4 py-3 border-2 border-white text-white hover:bg-white hover:text-primary transition-colors font-semibold text-center"
                   >
-                    Our Community
+                    {t("header.ourCommunity")}
                   </Link>
                 )}
                 <Link
@@ -1178,7 +1221,7 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                   className="block w-full px-4 py-3 border-2 border-white text-white hover:bg-white hover:text-primary transition-colors font-semibold text-center"
                 >
-                  Our Research
+                  {t("header.ourResearch")}
                 </Link>
                 <button
                   onClick={() => {
@@ -1187,7 +1230,7 @@ export default function Header() {
                   }}
                   className="w-full px-4 py-3 border-2 border-white text-white hover:bg-white hover:text-primary transition-colors font-semibold"
                 >
-                  For Healthcare Professionals
+                  {t("header.forHCPs")}
                 </button>
               </div>
             </nav>

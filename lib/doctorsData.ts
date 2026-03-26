@@ -5,6 +5,7 @@ export interface BookingPlatformInfo {
 
 export interface Doctor {
   name: string;
+  nameUr: string;
   city: string;
   specialization: string;
   contactNumber: string;
@@ -12,9 +13,39 @@ export interface Doctor {
   bookingPlatforms: BookingPlatformInfo[];
 }
 
+export const specializationTranslations: Record<string, string> = {
+  "Bariatric Surgeon": "بیریاٹرک سرجن",
+  "Endocrinology": "غدد کی بیماریاں",
+  "Endocrinologist": "غدد کے ماہر",
+  "Diabetes/Obesity": "ذیابیطس/موٹاپا",
+  "Family Medicine / Public Health": "فیملی میڈیسن / صحت عامہ",
+  "Diabetologist": "ذیابیطس کے ماہر",
+  "Diabetology": "ذیابیطس کے ماہر",
+  "Medicine": "طب",
+  "Physician": "معالج",
+  "Cardiologist": "امراض قلب کے ماہر",
+};
+
+export const cityTranslations: Record<string, string> = {
+  Mardan: "مردان",
+  Rawalpindi: "راولپنڈی",
+  "Islamabad/Peshawar": "اسلام آباد/پشاور",
+  Islamabad: "اسلام آباد",
+  Sialkot: "سیالکوٹ",
+  Gujranwala: "گجرانوالا",
+  Multan: "ملتان",
+  Faisalabad: "فیصل آباد",
+  Peshawar: "پشاور",
+  Lahore: "لاہور",
+  Sukkur: "سکھر",
+  Hyderabad: "حیدرآباد",
+  Karachi: "کراچی",
+};
+
 export const doctors: Doctor[] = [
   {
     name: "Dr Bayazeed",
+    nameUr: "ڈاکٹر بیازید",
     city: "Mardan",
     specialization: "Bariatric Surgeon",
     contactNumber: "0345-9857944",
@@ -27,6 +58,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Adnan Zahid",
+    nameUr: "ڈاکٹر عدنان زاہد",
     city: "Rawalpindi",
     specialization: "Endocrinology",
     contactNumber: "0321-5071061",
@@ -39,6 +71,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Muhammad Umar Wahab",
+    nameUr: "ڈاکٹر محمد عمر وہاب",
     city: "Islamabad/Peshawar",
     specialization: "Diabetes/Obesity",
     contactNumber: "0333-9158285",
@@ -51,6 +84,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Ahmed Abdullah",
+    nameUr: "ڈاکٹر احمد عبداللہ",
     city: "Rawalpindi",
     specialization: "Family Medicine / Public Health",
     contactNumber: "0333-5494758",
@@ -63,6 +97,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Kashif Rasheed",
+    nameUr: "ڈاکٹر کاشف رشید",
     city: "Islamabad",
     specialization: "Endocrinology",
     contactNumber: "0333-5304789",
@@ -75,6 +110,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Usama Sohail",
+    nameUr: "ڈاکٹر اسامہ سہیل",
     city: "Sialkot",
     specialization: "Diabetologist",
     contactNumber: "0343-4147898",
@@ -83,6 +119,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Amjad Iqbal",
+    nameUr: "ڈاکٹر امجد اقبال",
     city: "Gujranwala",
     specialization: "Diabetologist",
     contactNumber: "0300-9648828",
@@ -95,6 +132,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Irfan Sheikh",
+    nameUr: "ڈاکٹر عرفان شیخ",
     city: "Multan",
     specialization: "Diabetologist",
     contactNumber: "0301-7410205",
@@ -103,6 +141,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Altaf Ur Rehman",
+    nameUr: "ڈاکٹر الطاف الرحمان",
     city: "Faisalabad",
     specialization: "Diabetologist",
     contactNumber: "0302-8643100",
@@ -111,6 +150,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Fahim Ullah",
+    nameUr: "ڈاکٹر فہیم اللہ",
     city: "Peshawar",
     specialization: "Endocrinology",
     contactNumber: "0332-9142021",
@@ -123,6 +163,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Muhammad Azmat Khan",
+    nameUr: "ڈاکٹر محمد عزمت خان",
     city: "Rawalpindi",
     specialization: "Medicine",
     contactNumber: "0333-5179501",
@@ -135,6 +176,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Bilal Bin Younus",
+    nameUr: "ڈاکٹر بلال بن یونس",
     city: "Lahore",
     specialization: "Medicine",
     contactNumber: "0300-9405405",
@@ -147,6 +189,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr M Tahir Chaudhry",
+    nameUr: "ڈاکٹر محمد طاہر چوہدری",
     city: "Lahore",
     specialization: "Diabetology",
     contactNumber: "0300-9448693",
@@ -159,6 +202,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Madeeha Nazar",
+    nameUr: "ڈاکٹر مدیحہ نذر",
     city: "Rawalpindi",
     specialization: "Endocrinology",
     contactNumber: "0332-7777658",
@@ -171,6 +215,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Musarrat Iqbal",
+    nameUr: "ڈاکٹر مسرت اقبال",
     city: "Islamabad",
     specialization: "Diabetologist",
     contactNumber: "0302-5450011",
@@ -183,6 +228,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Faheem Ullah",
+    nameUr: "ڈاکٹر فہیم اللہ",
     city: "Peshawar",
     specialization: "Endocrinology",
     contactNumber: "0301-8502888",
@@ -195,6 +241,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Zahid Mehmood",
+    nameUr: "ڈاکٹر زاہد محمود",
     city: "Rawalpindi",
     specialization: "Diabetologist",
     contactNumber: "0333-5628541",
@@ -207,6 +254,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Muhammad Iqbal",
+    nameUr: "ڈاکٹر محمد اقبال",
     city: "Rawalpindi",
     specialization: "Diabetology",
     contactNumber: "0307-5113504",
@@ -219,6 +267,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Hafiz Ahsan",
+    nameUr: "ڈاکٹر حافظ احسن",
     city: "Lahore",
     specialization: "Diabetology",
     contactNumber: "0322-4383054",
@@ -227,6 +276,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Syed Sohaib Haider Zadi",
+    nameUr: "ڈاکٹر سید صہیب حیدر زیدی",
     city: "Lahore",
     specialization: "Endocrinology",
     contactNumber: "0333-8776350",
@@ -235,6 +285,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Shahzad tahir",
+    nameUr: "ڈاکٹر شہزاد طاہر",
     city: "Rawalpindi",
     specialization: "Diabetology",
     contactNumber: "03005144156",
@@ -243,6 +294,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Col Fawad Rehman",
+    nameUr: "ڈاکٹر کرنل فواد رحمان",
     city: "Rawalpindi",
     specialization: "Physician",
     contactNumber: "0313-5256261",
@@ -251,6 +303,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Wasiq Zafar Abbasi",
+    nameUr: "ڈاکٹر واثق ظفر عباسی",
     city: "Rawalpindi",
     specialization: "Physician",
     contactNumber: "0333-6422274",
@@ -259,6 +312,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Saleem Qureshi",
+    nameUr: "ڈاکٹر سلیم قریشی",
     city: "Islamabad",
     specialization: "Physician",
     contactNumber: "03205450688",
@@ -267,6 +321,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Tariq Sawand",
+    nameUr: "ڈاکٹر طارق ساوند",
     city: "Sukkur",
     specialization: "Cardiologist",
     contactNumber: "3337301525",
@@ -275,6 +330,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Saleem Khan",
+    nameUr: "ڈاکٹر سلیم خان",
     city: "Hyderabad",
     specialization: "Endocrinologist",
     contactNumber: "3332636673",
@@ -283,6 +339,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Asma Ahmed",
+    nameUr: "ڈاکٹر اسماء احمد",
     city: "Karachi",
     specialization: "Endocrinologist",
     contactNumber: "3018215464",
@@ -291,6 +348,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Nadeem Naeem",
+    nameUr: "ڈاکٹر ندیم نعیم",
     city: "Karachi",
     specialization: "Endocrinologist",
     contactNumber: "3009395600",
@@ -299,6 +357,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Musarrat Riaz",
+    nameUr: "ڈاکٹر مسرت ریاض",
     city: "Karachi",
     specialization: "Endocrinologist",
     contactNumber: "3333608865",
@@ -307,6 +366,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Tahir Ansari",
+    nameUr: "ڈاکٹر طاہر انصاری",
     city: "Karachi",
     specialization: "Physician",
     contactNumber: "3112477724",
@@ -315,6 +375,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Yusuf Kamal",
+    nameUr: "ڈاکٹر یوسف کمال",
     city: "Karachi",
     specialization: "Physician",
     contactNumber: "3332154522",
@@ -323,6 +384,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Urooj Laal",
+    nameUr: "ڈاکٹر عروج لال",
     city: "Karachi",
     specialization: "Endocrinologist",
     contactNumber: "3045153188",
@@ -331,6 +393,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Imran Ul Haq",
+    nameUr: "ڈاکٹر عمران الحق",
     city: "Karachi",
     specialization: "Endocrinologist",
     contactNumber: "3343556355",
@@ -339,6 +402,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Asher Fawad",
+    nameUr: "ڈاکٹر عاشر فواد",
     city: "Karachi",
     specialization: "Physician",
     contactNumber: "3302323905",
@@ -347,6 +411,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Amin Abdullah Makki",
+    nameUr: "ڈاکٹر امین عبداللہ مکی",
     city: "Karachi",
     specialization: "Diabetologist",
     contactNumber: "3330245765",
@@ -355,6 +420,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Dr Nida Shakeel",
+    nameUr: "ڈاکٹر ندا شکیل",
     city: "Karachi",
     specialization: "Physician",
     contactNumber: "3181144469",
@@ -363,6 +429,7 @@ export const doctors: Doctor[] = [
   },
   {
     name: "Usama Sohail",
+    nameUr: "اسامہ سہیل",
     city: "Lahore",
     specialization: "Diabetologist",
     contactNumber: "0343 4147898",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Trash2, X } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -18,6 +19,8 @@ export default function DeleteConfirmationModal({
   type,
   title,
 }: DeleteConfirmationModalProps) {
+  const { t } = useLanguage();
+
   if (!isOpen) return null;
 
   const handleConfirm = () => {
@@ -47,26 +50,24 @@ export default function DeleteConfirmationModal({
 
         {/* Title */}
         <h2 className="text-xl font-bold text-gray-900 text-center mb-2">
-          Delete {type === "post" ? "post" : "comment"}
+          {type === "post" ? t("community.deleteModal.deletePostTitle") : t("community.deleteModal.deleteCommentTitle")}
         </h2>
 
         {/* Description */}
         <p className="text-gray-600 text-center mb-6">
           {type === "post" ? (
             <>
-              Are you sure you want to delete this post
+              {t("community.deleteModal.deletePostDesc")}
               {title && (
                 <>
                   : <strong className="break-words">&quot;{title}&quot;</strong>
                 </>
               )}
-              ? This action cannot be undone and all comments will also be
-              removed.
+              {t("community.deleteModal.deletePostDescSuffix")}
             </>
           ) : (
             <>
-              Are you sure you want to delete this comment? This action cannot
-              be undone.
+              {t("community.deleteModal.deleteCommentDesc")}
             </>
           )}
         </p>
@@ -74,14 +75,14 @@ export default function DeleteConfirmationModal({
         {/* Actions */}
         <div className="flex gap-3">
           <Button variant="outlined" className="flex-1" onClick={onClose}>
-            Cancel
+            {t("community.deleteModal.cancel")}
           </Button>
           <Button
             variant="secondary"
             className="flex-1 !bg-red-500 !border-red-500 hover:!bg-red-600"
             onClick={handleConfirm}
           >
-            Delete
+            {t("community.deleteModal.delete")}
           </Button>
         </div>
       </div>

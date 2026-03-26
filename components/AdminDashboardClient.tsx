@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { formatTimeAgo } from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
 import { Ban, CheckCircle, ExternalLink, Flag, Trash2 } from "lucide-react";
@@ -40,6 +41,7 @@ type Report = CommentReport | PostReport;
 
 export default function AdminDashboardClient() {
   const { token, banUser } = useAuth();
+  const { t, locale } = useLanguage();
   const [reports, setReports] = useState<Report[]>([]);
   const [loading, setLoading] = useState(true);
   const [actionPending, setActionPending] = useState<string | null>(null);
@@ -204,10 +206,10 @@ export default function AdminDashboardClient() {
         <section className="bg-white py-12 border-b border-gray-200">
           <div className="max-w-4xl mx-auto px-6">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              Admin dashboard
+              {t("dashboard.admin.heading")}
             </h1>
             <p className="text-gray-600 text-sm">
-              Review posts and comments reported by users.
+              {t("dashboard.admin.description")}
             </p>
           </div>
         </section>
@@ -216,21 +218,25 @@ export default function AdminDashboardClient() {
           <div className="max-w-4xl mx-auto px-6">
             {loading ? (
               <p className="text-gray-400 text-center py-16">
-                Loading reports...
+                {t("dashboard.admin.loadingReports")}
               </p>
             ) : reports.length === 0 ? (
               <div className="bg-white border border-gray-200 shadow-sm p-12 text-center">
                 <CheckCircle className="w-10 h-10 text-green-500 mx-auto mb-3" />
-                <p className="text-gray-700 font-medium">No pending reports</p>
+                <p className="text-gray-700 font-medium">
+                  {t("dashboard.admin.noPendingReports")}
+                </p>
                 <p className="text-gray-400 text-sm mt-1">
-                  All clear — nothing has been reported.
+                  {t("dashboard.admin.allClear")}
                 </p>
               </div>
             ) : (
               <div className="space-y-4">
                 <p className="text-sm text-gray-500">
-                  {reports.length} pending report
-                  {reports.length !== 1 ? "s" : ""}
+                  {reports.length}{" "}
+                  {reports.length !== 1
+                    ? t("dashboard.admin.pendingReports")
+                    : t("dashboard.admin.pendingReport")}
                 </p>
 
                 {reports.map((report) => {
@@ -253,18 +259,18 @@ export default function AdminDashboardClient() {
                           <span>
                             {isPost ? (
                               <span className="font-medium text-primary mr-1">
-                                Post
+                                {t("dashboard.admin.postLabel")}
                               </span>
                             ) : (
                               <span className="font-medium text-primary mr-1">
-                                Comment
+                                {t("dashboard.admin.commentLabel")}
                               </span>
                             )}
-                            reported by{" "}
+                            {t("dashboard.admin.reportedBy")}{" "}
                             <span className="font-medium text-gray-700">
                               {report.reporterName}
                             </span>{" "}
-                            · {formatTimeAgo(report.createdAt)}
+                            · {formatTimeAgo(report.createdAt, locale)}
                           </span>
                         </div>
                         {report.postId && (
@@ -273,7 +279,7 @@ export default function AdminDashboardClient() {
                             className="flex items-center gap-1 text-xs text-primary hover:underline whitespace-nowrap"
                             target="_blank"
                           >
-                            View post
+                            {t("dashboard.admin.viewPost")}
                             <ExternalLink className="w-3 h-3" />
                           </Link>
                         )}
@@ -282,7 +288,9 @@ export default function AdminDashboardClient() {
                       {/* Content snapshot */}
                       <div className="bg-gray-50 border border-gray-200 rounded px-4 py-3 mb-3">
                         <p className="text-xs text-gray-500 mb-1">
-                          {isPost ? "Post" : "Comment"} by{" "}
+                          {isPost
+                            ? t("dashboard.admin.postBy")
+                            : t("dashboard.admin.commentBy")}{" "}
                           <span className="font-medium text-gray-700">
                             {authorName}
                           </span>
@@ -295,7 +303,7 @@ export default function AdminDashboardClient() {
                       {/* Report reason */}
                       {report.reason && (
                         <p className="text-xs text-gray-500 mb-3 italic">
-                          Reason: &ldquo;{report.reason}&rdquo;
+                          {t("dashboard.admin.reason")} &ldquo;{report.reason}&rdquo;
                         </p>
                       )}
 
@@ -309,7 +317,9 @@ export default function AdminDashboardClient() {
                           className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-red-600 border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
-                          Delete {isPost ? "post" : "comment"}
+                          {isPost
+                            ? t("dashboard.admin.deletePost")
+                            : t("dashboard.admin.deleteComment")}
                         </button>
                         <button
                           onClick={() =>
@@ -319,7 +329,7 @@ export default function AdminDashboardClient() {
                           className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-orange-600 border border-orange-200 hover:bg-orange-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           <Ban className="w-3.5 h-3.5" />
-                          Ban author
+                          {t("dashboard.admin.banAuthor")}
                         </button>
                         <button
                           onClick={() => handleIgnore(report)}
@@ -327,7 +337,7 @@ export default function AdminDashboardClient() {
                           className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-500 border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           <CheckCircle className="w-3.5 h-3.5" />
-                          Ignore
+                          {t("dashboard.admin.ignore")}
                         </button>
                       </div>
                     </div>

@@ -1,35 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowRight } from "lucide-react";
-
-const hubSections = [
-  {
-    id: "what-is-glp1",
-    title: "What is GLP-1?",
-  },
-  {
-    id: "diabesity-link",
-    title: 'The Link: Why GLP-1 Addresses "Diabesity"',
-  },
-  {
-    id: "appetite-regulation",
-    title: 'Appetite Regulation: Silencing the "Food Noise"',
-  },
-  {
-    id: "insulin-signaling",
-    title: "Insulin Signaling: Precision Glucose Control",
-  },
-  {
-    id: "beta-cell-protection",
-    title: "Beta-Cell Protection",
-  },
-];
+import Link from "next/link";
 
 const hubContent = [
   {
     id: "what-is-glp1",
-    title: "What is GLP-1?",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
@@ -38,7 +15,6 @@ const hubContent = [
           your small intestine. Think of it as your body&apos;s{" "}
           <strong>&quot;Fullness Messenger.&quot;</strong>
         </p>
-
         <p className="text-gray-700 leading-relaxed">
           In a healthy system, GLP-1 is released within minutes of eating. It
           travels through the bloodstream to signal the brain and the pancreas
@@ -50,10 +26,26 @@ const hubContent = [
         </p>
       </div>
     ),
+    urduContent: (
+      <div className="space-y-6">
+        <p className="text-gray-700 leading-relaxed">
+          <strong>Glucagon-like peptide-1 (GLP-1)</strong> آپ کی چھوٹی آنت کے
+          &quot;L-خلیوں&quot; میں پیدا ہونے والا ایک قدرتی میٹابولک ہارمون ہے۔
+          اسے اپنے جسم کا <strong>&quot;بھرپوری کا قاصد&quot;</strong> سمجھیں۔
+        </p>
+        <p className="text-gray-700 leading-relaxed">
+          صحت مند نظام میں، GLP-1 کھانے کے چند منٹوں میں خارج ہوتا ہے۔ یہ خون کے
+          ذریعے دماغ اور لبلبے کو یہ اشارہ دینے کے لیے سفر کرتا ہے کہ غذائی
+          اجزاء آ گئے ہیں۔ تاہم، قدرتی GLP-1 نازک ہوتا ہے؛ یہ انزائمز (DPP-4) کے
+          ذریعے صرف 2 منٹ میں ٹوٹ جاتا ہے۔ <strong>جدید GLP-1 علاج</strong>{" "}
+          &quot;طویل اثر&quot; رکھنے کے لیے بنائے گئے ہیں، جو پائیدار میٹابولک
+          کنٹرول فراہم کرنے کے لیے ایک ہفتے تک آپ کے نظام میں رہتے ہیں۔
+        </p>
+      </div>
+    ),
   },
   {
     id: "diabesity-link",
-    title: 'The Link: Why GLP-1 Addresses "Diabesity"',
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
@@ -61,12 +53,10 @@ const hubContent = [
           issues. We now know they are two sides of the same coin:{" "}
           <strong>Metabolic Dysfunction.</strong>
         </p>
-
         <p className="text-gray-700 leading-relaxed">
           GLP-1 is the &quot;bridge&quot; because it corrects the{" "}
           <strong>Incretin Effect</strong>.
         </p>
-
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">The Problem:</h3>
           <p className="text-gray-700 leading-relaxed">
@@ -75,7 +65,6 @@ const hubContent = [
             pancreas doesn&apos;t get the &quot;start&quot; signal for insulin.
           </p>
         </div>
-
         <div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
             The Solution:
@@ -89,17 +78,45 @@ const hubContent = [
         </div>
       </div>
     ),
+    urduContent: (
+      <div className="space-y-6">
+        <p className="text-gray-700 leading-relaxed">
+          دہائیوں سے، موٹاپے اور ٹائپ 2 ذیابیطس کو الگ الگ مسائل کے طور پر علاج
+          کیا جاتا رہا۔ اب ہم جانتے ہیں کہ یہ ایک ہی سکے کے دو رخ ہیں:{" "}
+          <strong>میٹابولک خرابی۔</strong>
+        </p>
+        <p className="text-gray-700 leading-relaxed">
+          GLP-1 &quot;پل&quot; ہے کیونکہ یہ <strong>Incretin Effect</strong> کو
+          درست کرتا ہے۔
+        </p>
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">مسئلہ:</h3>
+          <p className="text-gray-700 leading-relaxed">
+            &quot;ذیابیطسیٹی&quot; والے لوگوں میں، قدرتی GLP-1 ردعمل کمزور پڑ
+            جاتا ہے۔ جسم کو یہ احساس نہیں ہوتا کہ پیٹ بھر گیا ہے، اور لبلبے کو
+            انسولین کے لیے &quot;شروع&quot; کا اشارہ نہیں ملتا۔
+          </p>
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-gray-900 mb-3">حل:</h3>
+          <p className="text-gray-700 leading-relaxed">
+            GLP-1 کی سطح بحال کرنے سے، علاج بیک وقت بلڈ شوگر کم کرتے ہیں
+            (ذیابیطس کا علاج) اور کیلوری کی مقدار کم کرتے ہیں (موٹاپے کا علاج)۔
+            جب وزن کم ہوتا ہے، تو انسولین مزاحمت بہتر ہوتی ہے، صحت کا{" "}
+            <strong>&quot;نیک چکر&quot;</strong> بناتی ہے۔
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     id: "appetite-regulation",
-    title: 'Appetite Regulation: Silencing the "Food Noise"',
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
           One of the most revolutionary aspects of GLP-1 therapy is its effect
           on the <strong>Hypothalamus</strong> (the brain&apos;s reward center).
         </p>
-
         <ul className="space-y-4 text-gray-700">
           <li>
             <strong>Satiety Signaling:</strong> It increases the feeling of
@@ -120,10 +137,35 @@ const hubContent = [
         </ul>
       </div>
     ),
+    urduContent: (
+      <div className="space-y-6">
+        <p className="text-gray-700 leading-relaxed">
+          GLP-1 تھراپی کے سب سے انقلابی پہلوؤں میں سے ایک{" "}
+          <strong>Hypothalamus</strong> (دماغ کے ریوارڈ سینٹر) پر اس کا اثر ہے۔
+        </p>
+        <ul className="space-y-4 text-gray-700">
+          <li>
+            <strong>سیری کا اشارہ:</strong> یہ چھوٹے کھانوں کے بعد اطمینان کے
+            احساس کو بڑھاتا ہے۔
+          </li>
+          <li>
+            <strong>&quot;فوڈ نوئز&quot; اثر:</strong> بہت سے مریض اگلے کھانے کے
+            بارے میں مسلسل ذہنی بڑبڑاہٹ بیان کرتے ہیں۔ GLP-1 تھراپی اس
+            &quot;شور&quot; کو خاموش کرنے میں مدد کرتی ہے، جس سے صرف قوت ارادی
+            پر انحصار کیے بغیر صحت مند خوراک پر قائم رہنا آسان ہو جاتا ہے۔
+          </li>
+          <li>
+            <strong>سست ہضم:</strong> یہ جسمانی طور پر{" "}
+            <strong>معدے کے خالی ہونے</strong> کو سست کرتا ہے۔ چونکہ کھانا معدے
+            میں زیادہ دیر رہتا ہے، اس لیے بھرپوری کا جسمانی احساس منٹوں کی بجائے
+            گھنٹوں تک رہتا ہے۔
+          </li>
+        </ul>
+      </div>
+    ),
   },
   {
     id: "insulin-signaling",
-    title: "Insulin Signaling: Precision Glucose Control",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
@@ -131,7 +173,6 @@ const hubContent = [
           insulin constantly (which can cause dangerous &quot;crashes&quot;),
           GLP-1 is <strong>Glucose-Dependent</strong>.
         </p>
-
         <ul className="space-y-4 text-gray-700">
           <li>
             <strong>Smart Release:</strong> It tells the pancreas to release
@@ -145,10 +186,29 @@ const hubContent = [
         </ul>
       </div>
     ),
+    urduContent: (
+      <div className="space-y-6">
+        <p className="text-gray-700 leading-relaxed">
+          پرانی ذیابیطس کی دوائیوں کے برعکس جو لبلبے کو مسلسل انسولین پمپ کرنے
+          پر مجبور کرتی ہیں (جو خطرناک &quot;کریشز&quot; کا باعث بن سکتی ہیں)،
+          GLP-1 <strong>گلوکوز پر منحصر</strong> ہے۔
+        </p>
+        <ul className="space-y-4 text-gray-700">
+          <li>
+            <strong>ذہین اخراج:</strong> یہ لبلبے کو انسولین خارج کرنے کا حکم
+            دیتا ہے <em>صرف</em> جب آپ کی بلڈ شوگر واقعی زیادہ ہو۔ اس سے
+            ہائپوگلائسیمیا (کم بلڈ شوگر) کا خطرہ نمایاں طور پر کم ہو جاتا ہے۔
+          </li>
+          <li>
+            <strong>گلوکاگان کا دباؤ:</strong> یہ جگر کو آپ کے خون میں غیر ضروری
+            شوگر پمپ کرنے سے روکتا ہے۔
+          </li>
+        </ul>
+      </div>
+    ),
   },
   {
     id: "beta-cell-protection",
-    title: "Beta-Cell Protection",
     content: (
       <div className="space-y-6">
         <p className="text-gray-700 leading-relaxed">
@@ -158,34 +218,59 @@ const hubContent = [
         </p>
       </div>
     ),
-  },
-];
-
-const actionCards = [
-  {
-    title: "Supporting GLP-1 naturally",
-    description:
-      "Learn how diet and lifestyle choices can support your body's natural GLP-1 production.",
-    href: "/diet",
-    linkText: "Explore Diet",
-  },
-  {
-    title: "Restoring GLP-1 with treatment",
-    description:
-      "Understand the medical therapies available to restore and enhance GLP-1 signaling.",
-    href: "/medication",
-    linkText: "Explore Medication",
-  },
-  {
-    title: "Measuring GLP-1 outcomes",
-    description:
-      "Track your progress with the right tools and understand what the numbers mean.",
-    href: "#",
-    linkText: "Explore Tools",
+    urduContent: (
+      <div className="space-y-6">
+        <p className="text-gray-700 leading-relaxed">
+          ابھرتی ہوئی تحقیق سے پتہ چلتا ہے کہ GLP-1 لبلبے میں{" "}
+          <strong>بیٹا خلیوں</strong> کی صحت کی حفاظت اور بقا میں مدد کر سکتا
+          ہے، جو ممکنہ طور پر وقت کے ساتھ ذیابیطس کے بڑھنے کو سست کرتا ہے۔
+        </p>
+      </div>
+    ),
   },
 ];
 
 export default function GlpHubClient() {
+  const { t, locale } = useLanguage();
+
+  const hubSections = [
+    { id: "what-is-glp1", title: t("glpHub.sections.whatIsGlp1.title") },
+    { id: "diabesity-link", title: t("glpHub.sections.diabesityLink.title") },
+    {
+      id: "appetite-regulation",
+      title: t("glpHub.sections.appetiteRegulation.title"),
+    },
+    {
+      id: "insulin-signaling",
+      title: t("glpHub.sections.insulinSignaling.title"),
+    },
+    {
+      id: "beta-cell-protection",
+      title: t("glpHub.sections.betaCell.title"),
+    },
+  ];
+
+  const actionCards = [
+    {
+      title: t("glpHub.actionCards.diet.title"),
+      description: t("glpHub.actionCards.diet.description"),
+      href: "/diet",
+      linkText: t("glpHub.actionCards.diet.linkText"),
+    },
+    {
+      title: t("glpHub.actionCards.medication.title"),
+      description: t("glpHub.actionCards.medication.description"),
+      href: "/medication",
+      linkText: t("glpHub.actionCards.medication.linkText"),
+    },
+    {
+      title: t("glpHub.actionCards.tools.title"),
+      description: t("glpHub.actionCards.tools.description"),
+      href: "#",
+      linkText: t("glpHub.actionCards.tools.linkText"),
+    },
+  ];
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -208,12 +293,10 @@ export default function GlpHubClient() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                The GLP-1 Hub
+                {t("glpHub.hero.heading")}
               </h1>
               <p className="text-gray-700 text-md leading-relaxed">
-                Understanding how GLP-1 connects appetite, blood sugar, and
-                weight management. Discover the science behind this powerful
-                hormone and how it can help address diabesity.
+                {t("glpHub.hero.description")}
               </p>
             </div>
             <div className="relative h-64 lg:h-96">
@@ -231,7 +314,7 @@ export default function GlpHubClient() {
       <section className="bg-gray-50 py-12 md:py-16">
         <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-            Sections
+            {t("glpHub.sectionsLabel")}
           </h2>
           <ul className="space-y-4">
             {hubSections.map((section) => (
@@ -254,13 +337,13 @@ export default function GlpHubClient() {
       {/* Content Sections */}
       <section className="bg-white py-12">
         <div className="max-w-4xl mx-auto px-6 space-y-16">
-          {hubContent.map((section) => (
+          {hubContent.map((section, i) => (
             <div key={section.id}>
               <div id={section.id} className="scroll-mt-24">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 pb-4 border-b-2 border-primary">
-                  {section.title}
+                  {hubSections[i].title}
                 </h2>
-                {section.content}
+                {locale === "ur" ? section.urduContent : section.content}
               </div>
             </div>
           ))}
@@ -271,7 +354,7 @@ export default function GlpHubClient() {
       <section className="bg-gray-50 py-16 md:py-20">
         <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-            Take Action
+            {t("glpHub.takeAction")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {actionCards.map((card) => (

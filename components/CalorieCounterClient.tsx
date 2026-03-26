@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useRef, useCallback } from "react";
 import { Search, X, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -27,6 +28,7 @@ function getNutrient(food: FoodItem, name: string): number | null {
 }
 
 export default function CalorieCounterClient() {
+  const { t } = useLanguage();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<FoodItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -88,11 +90,10 @@ export default function CalorieCounterClient() {
         <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Calorie Counter
+              {t("calorie.hero")}
             </h1>
             <p className="text-gray-700 text-md leading-relaxed max-w-2xl mx-auto">
-              Search any food item to see its calorie content and nutritional
-              breakdown. Adjust the quantity to match your serving.
+              {t("calorie.heroDescription")}
             </p>
           </div>
         </div>
@@ -104,7 +105,7 @@ export default function CalorieCounterClient() {
           {/* Search Bar */}
           <div className="bg-white border border-gray-200 shadow-sm p-6 mb-8">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Search food
+              {t("calorie.searchLabel")}
             </label>
             <div className="flex gap-3">
               <div className="relative flex-1">
@@ -113,7 +114,7 @@ export default function CalorieCounterClient() {
                   value={query}
                   onChange={(e) => handleInputChange(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  placeholder="e.g. chicken breast, honey, apple..."
+                  placeholder={t("calorie.searchPlaceholder")}
                   className="w-full pl-10 pr-10 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -130,7 +131,7 @@ export default function CalorieCounterClient() {
                 onClick={handleSearch}
                 className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary/90 transition-all"
               >
-                Search
+                {t("calorie.searchButton")}
               </button>
             </div>
           </div>
@@ -139,17 +140,17 @@ export default function CalorieCounterClient() {
           {loading && (
             <div className="text-center py-12">
               <div className="inline-block w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin" />
-              <p className="text-gray-500 mt-3">Searching foods...</p>
+              <p className="text-gray-500 mt-3">{t("calorie.searching")}</p>
             </div>
           )}
 
           {!loading && searched && results.length === 0 && (
             <div className="text-center py-12 bg-white border border-gray-200 shadow-sm">
               <p className="text-gray-500 text-lg">
-                No results found for &quot;{query}&quot;
+                {t("calorie.noResultsFor")} &quot;{query}&quot;
               </p>
               <p className="text-gray-400 text-sm mt-1">
-                Try a different search term
+                {t("calorie.tryDifferent")}
               </p>
             </div>
           )}
@@ -157,7 +158,11 @@ export default function CalorieCounterClient() {
           {!loading && results.length > 0 && (
             <div className="space-y-3">
               <p className="text-sm text-gray-500 mb-4">
-                {results.length} result{results.length !== 1 && "s"} found
+                {results.length}{" "}
+                {results.length !== 1
+                  ? t("calorie.results")
+                  : t("calorie.result")}{" "}
+                {t("calorie.found")}
               </p>
               {results.map((food) => {
                 const calories = getNutrient(food, "Energy");
@@ -185,10 +190,10 @@ export default function CalorieCounterClient() {
                       onClick={() =>
                         setExpandedId(isExpanded ? null : food.fdcId)
                       }
-                      className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                      className="w-full px-6 py-4 flex items-center justify-between text-left rtl:text-right hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 capitalize">
+                        <h3 className="font-semibold text-gray-900 capitalize rtl:text-right">
                           {food.description.toLowerCase()}
                         </h3>
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
@@ -203,7 +208,7 @@ export default function CalorieCounterClient() {
                             </span>
                           )}
                           <span className="text-xs text-gray-400">
-                            per {servingSize}
+                            {t("calorie.per")} {servingSize}
                             {servingUnit}
                           </span>
                         </div>
@@ -228,7 +233,7 @@ export default function CalorieCounterClient() {
                         {/* Quantity Adjuster */}
                         <div className="flex items-center gap-4 py-4">
                           <span className="text-sm font-medium text-gray-700">
-                            Quantity:
+                            {t("calorie.quantity")}
                           </span>
                           <div className="flex items-center border border-gray-300">
                             <button
@@ -275,7 +280,7 @@ export default function CalorieCounterClient() {
                         {calories !== null && (
                           <div className="bg-primary/5 border border-primary/20 px-4 py-3 mb-4 flex items-center justify-between">
                             <span className="font-medium text-gray-900">
-                              Total calories
+                              {t("calorie.totalCalories")}
                             </span>
                             <span className="text-2xl font-bold text-primary">
                               {Math.round(calories * qty)} kcal
@@ -285,10 +290,10 @@ export default function CalorieCounterClient() {
 
                         {/* Nutrition Breakdown */}
                         <h4 className="text-sm font-semibold text-gray-900 mb-3">
-                          Nutrition breakdown
+                          {t("calorie.nutritionBreakdown")}
                           <span className="font-normal text-gray-500">
                             {" "}
-                            (per {Math.round(servingSize * qty)}
+                            ({t("calorie.per")} {Math.round(servingSize * qty)}
                             {servingUnit})
                           </span>
                         </h4>
@@ -296,7 +301,7 @@ export default function CalorieCounterClient() {
                           {protein !== null && (
                             <div className="bg-blue-50 p-3 text-center">
                               <p className="text-xs text-blue-600 font-medium">
-                                Protein
+                                {t("calorie.nutrients.protein")}
                               </p>
                               <p className="text-lg font-bold text-blue-700">
                                 {Math.round(protein * qty * 10) / 10}g
@@ -306,7 +311,7 @@ export default function CalorieCounterClient() {
                           {carbs !== null && (
                             <div className="bg-amber-50 p-3 text-center">
                               <p className="text-xs text-amber-600 font-medium">
-                                Carbs
+                                {t("calorie.nutrients.carbs")}
                               </p>
                               <p className="text-lg font-bold text-amber-700">
                                 {Math.round(carbs * qty * 10) / 10}g
@@ -316,7 +321,7 @@ export default function CalorieCounterClient() {
                           {totalFat !== null && (
                             <div className="bg-red-50 p-3 text-center">
                               <p className="text-xs text-red-600 font-medium">
-                                Fat
+                                {t("calorie.nutrients.fat")}
                               </p>
                               <p className="text-lg font-bold text-red-700">
                                 {Math.round(totalFat * qty * 10) / 10}g
@@ -326,7 +331,7 @@ export default function CalorieCounterClient() {
                           {fiber !== null && (
                             <div className="bg-green-50 p-3 text-center">
                               <p className="text-xs text-green-600 font-medium">
-                                Fiber
+                                {t("calorie.nutrients.fiber")}
                               </p>
                               <p className="text-lg font-bold text-green-700">
                                 {Math.round(fiber * qty * 10) / 10}g
@@ -336,7 +341,7 @@ export default function CalorieCounterClient() {
                           {sugar !== null && (
                             <div className="bg-pink-50 p-3 text-center">
                               <p className="text-xs text-pink-600 font-medium">
-                                Sugar
+                                {t("calorie.nutrients.sugar")}
                               </p>
                               <p className="text-lg font-bold text-pink-700">
                                 {Math.round(sugar * qty * 10) / 10}g
@@ -346,7 +351,7 @@ export default function CalorieCounterClient() {
                           {sodium !== null && (
                             <div className="bg-purple-50 p-3 text-center">
                               <p className="text-xs text-purple-600 font-medium">
-                                Sodium
+                                {t("calorie.nutrients.sodium")}
                               </p>
                               <p className="text-lg font-bold text-purple-700">
                                 {Math.round(sodium * qty * 10) / 10}mg
@@ -356,7 +361,7 @@ export default function CalorieCounterClient() {
                           {cholesterol !== null && (
                             <div className="bg-orange-50 p-3 text-center">
                               <p className="text-xs text-orange-600 font-medium">
-                                Cholesterol
+                                {t("calorie.nutrients.cholesterol")}
                               </p>
                               <p className="text-lg font-bold text-orange-700">
                                 {Math.round(cholesterol * qty * 10) / 10}mg

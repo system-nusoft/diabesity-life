@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
 import { recipes } from "@/lib/recipeContent";
@@ -23,82 +24,93 @@ import Story from "../public/story-placeholder.webp";
 import SupportBG from "../public/support-section-bg.webp";
 import GlpInjection from "../public/glp-banner-injection.png";
 
-const heroSlides = [
-  {
-    image: Hero1.src,
-    heading: "A new chapter in diabesity care",
-    body: "Explore how modern medical science — including GLP-1–based therapies — is reshaping the understanding of obesity and type 2 diabetes.",
-    ctaText: "Learn more",
-    ctaUrl: "/resources",
-    videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
-  },
-  {
-    image: Hero2.src,
-    heading: "Take control of your health today",
-    body: "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
-    ctaText: "Get started",
-    ctaUrl: "/daily-care-and-monitoring",
-    videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
-  },
-  {
-    image: Hero3.src,
-    heading: "ذیابیطس اردو میں معلومات",
-    body: "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
-    ctaText: "مزید جانیں",
-    ctaUrl: "/urdu-guides",
-    videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
-    watchVideoText: "ویڈیو دیکھیں",
-    isRtl: true,
-  },
-];
+function getHeroSlides(t: (key: string) => string) {
+  return [
+    {
+      image: Hero1.src,
+      heading: t("home.hero.s1.heading"),
+      body: t("home.hero.s1.body"),
+      ctaText: t("home.hero.s1.ctaText"),
+      ctaUrl: "/resources",
+      videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
+    },
+    {
+      image: Hero2.src,
+      heading: t("home.hero.s2.heading"),
+      body: t("home.hero.s2.body"),
+      ctaText: t("home.hero.s2.ctaText"),
+      ctaUrl: "/daily-care-and-monitoring",
+      videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
+    },
+    {
+      // Slide 3 is always Urdu — intentional fixed-language slide
+      image: Hero3.src,
+      heading: "ذیابیطس اردو میں معلومات",
+      body: "دریافت کریں کہ GLP-1 جیسے جدید علاج پاکستانیوں کو وزن اور بلڈ شوگر کنٹرول کرنے میں کیسے مدد کر رہے ہیں۔",
+      ctaText: "مزید جانیں",
+      ctaUrl: "/urdu-guides",
+      videoUrl: "https://www.youtube.com/embed/CyVTZC1Gz6w",
+      watchVideoText: "ویڈیو دیکھیں",
+      isRtl: true,
+    },
+  ];
+}
 
-const newServices = [
-  {
-    icon: Service1.src,
-    title: "Understand diabesity",
-    body: "Gain a clear understanding of the link between type 2 diabetes and obesity, including diabesity, GLP-1 biology, and modern treatment pathways.",
-    links: [{ text: "Learn more", url: "/learn" }],
-  },
-  {
-    icon: Service2.src,
-    title: "Eat smart and healthy",
-    body: "You don't have to sacrifice flavor for health. Explore delicious recipes and meal-planning tips that make healthy eating simple and enjoyable.",
-    links: [{ text: "Get recipes", url: "/resources?tab=recipes#content" }],
-  },
-  {
-    icon: Service4.src,
-    title: "Daily care & monitoring",
-    body: "Consistent self-care is key to managing your condition. Find practical guides to track blood sugar, recognize symptoms, and support day-to-day diabetes care.",
-    links: [{ text: "View guides", url: "/daily-care-and-monitoring" }],
-  },
-];
+function getNewServices(t: (key: string) => string) {
+  return [
+    {
+      icon: Service1.src,
+      title: t("home.services.s1.title"),
+      body: t("home.services.s1.body"),
+      links: [{ text: t("home.services.s1.link"), url: "/learn" }],
+    },
+    {
+      icon: Service2.src,
+      title: t("home.services.s2.title"),
+      body: t("home.services.s2.body"),
+      links: [
+        {
+          text: t("home.services.s2.link"),
+          url: "/resources?tab=recipes#content",
+        },
+      ],
+    },
+    {
+      icon: Service4.src,
+      title: t("home.services.s3.title"),
+      body: t("home.services.s3.body"),
+      links: [
+        { text: t("home.services.s3.link"), url: "/daily-care-and-monitoring" },
+      ],
+    },
+  ];
+}
 
-const impactStats = [
-  {
-    value: "1 in 4",
-    label: "adults with undiagnosed diabetes",
-    description:
-      "In Pakistan, a quarter of adults with diabetes don't know they have it, allowing silent progression to severe complications before the first symptom is even noticed.",
-    linkText: "",
-    linkUrl: "#",
-  },
-  {
-    value: "60%",
-    label: "heart attack patients have diabetes",
-    description:
-      "A staggering 6 out of 10 heart attack patients in Pakistan also have diabetes, highlighting the critical link between unmanaged blood sugar and cardiovascular risk.",
-    linkText: "",
-    linkUrl: "#",
-  },
-  {
-    value: "$2,648",
-    label: "million (USD)",
-    description:
-      "The annual cost of diabetes care in Pakistan exceeded $2.6 billion in 2021, placing an immense financial burden on families and the national healthcare system.",
-    linkText: "",
-    linkUrl: "#",
-  },
-];
+function getImpactStats(t: (key: string) => string) {
+  return [
+    {
+      value: "1 in 4",
+      label: t("home.impact.stat1.label"),
+      description: t("home.impact.stat1.description"),
+      linkText: "",
+      linkUrl: "#",
+    },
+    {
+      value: "60%",
+      label: t("home.impact.stat2.label"),
+      description: t("home.impact.stat2.description"),
+      linkText: "",
+      linkUrl: "#",
+    },
+    {
+      value: "$2,648",
+      label: t("home.impact.stat3.label"),
+      description: t("home.impact.stat3.description"),
+      linkText: "",
+      linkUrl: "#",
+    },
+  ];
+}
 
 const faqs = [
   {
@@ -202,6 +214,11 @@ interface HomeClientProps {
 }
 
 export default function Home({ blogs, news }: HomeClientProps) {
+  const { t, locale } = useLanguage();
+  const heroSlides = getHeroSlides(t);
+  const newServices = getNewServices(t);
+  const impactStats = getImpactStats(t);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
@@ -432,7 +449,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               onClick={closeVideoModal}
               className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl font-bold"
             >
-              Close ✕
+              {t("home.videoModal.close")}
             </button>
             <iframe
               src={currentVideoUrl}
@@ -486,9 +503,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
         <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-10 lg:gap-24">
             {impactStats.map((stat, index) => (
-              <div key={index} className="flex flex-col">
+              <div key={index} className={`flex flex-col${locale === "ur" ? " text-right" : ""}`}>
                 <div className="mb-4">
-                  <h2 className="text-4xl md:text-5xl font-bold text-primary-text">
+                  <h2 className="text-4xl md:text-5xl font-bold text-primary-text" dir="ltr">
                     {stat.value}
                   </h2>
                   <p className="text-xl md:text-2xl leading-8 font-bold text-secondary">
@@ -523,16 +540,15 @@ export default function Home({ blogs, news }: HomeClientProps) {
           {/* Mobile Layout */}
           <div className="flex flex-col gap-6 lg:hidden">
             <h2 className="text-2xl font-bold uppercase text-white">
-              Diabesity support in your area
+              {t("home.support.heading")}
             </h2>
             <p className="text-md text-white leading-relaxed">
-              Find regional contact information, your local support groups and
-              activities near you.
+              {t("home.support.description")}
             </p>
             <div>
               <Link href="/doctors">
                 <Button variant="primary" size="md" className="px-6">
-                  Find now
+                  {t("home.support.findNow")}
                 </Button>
               </Link>
             </div>
@@ -543,7 +559,14 @@ export default function Home({ blogs, news }: HomeClientProps) {
             {/* Left - Heading */}
             <div className="text-white flex-shrink-0">
               <h2 className="text-2xl md:text-4xl font-bold uppercase leading-tight">
-                Diabesity in <br /> your area
+                {t("home.support.headingDesktop")
+                  .split("\n")
+                  .map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      {i === 0 && <br />}
+                    </span>
+                  ))}
               </h2>
             </div>
 
@@ -551,8 +574,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               {/* Middle - Description */}
               <div className="text-white max-w-xs">
                 <p className="text-md leading-relaxed">
-                  Find regional contact information, your local support groups
-                  and activities near you.
+                  {t("home.support.description")}
                 </p>
               </div>
 
@@ -560,7 +582,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               <div className="flex-shrink-0">
                 <Link href="/doctors">
                   <Button variant="primary" size="md" className="px-6">
-                    Find now
+                    {t("home.support.findNow")}
                   </Button>
                 </Link>
               </div>
@@ -629,7 +651,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
           <div className="flex flex-col md:flex-row justify-center mb-12 gap-6">
             <div>
               <h2 className="text-3xl md:text-4xl font-medium text-primary-text">
-                Latest insights on diabesity
+                {t("home.news.heading")}
               </h2>
             </div>
           </div>
@@ -675,11 +697,17 @@ export default function Home({ blogs, news }: HomeClientProps) {
                           <small className="text-gray-600 text-sm">
                             {article.date}
                           </small>
-                          <h3 className="font-medium text-primary-text text-lg leading-snug line-clamp-3 min-h-[4.5rem]">
-                            {article.title}
+                          <h3
+                            className="font-medium text-primary-text text-lg leading-snug line-clamp-3 min-h-[4.5rem]"
+                            dir={locale === "ur" && article.titleUr ? "rtl" : undefined}
+                          >
+                            {locale === "ur" && article.titleUr ? article.titleUr : article.title}
                           </h3>
-                          <p className="text-primary-text text-sm leading-relaxed line-clamp-3">
-                            {article.excerpt}
+                          <p
+                            className="text-primary-text text-sm leading-relaxed line-clamp-3"
+                            dir={locale === "ur" && article.excerptUr ? "rtl" : undefined}
+                          >
+                            {locale === "ur" && article.excerptUr ? article.excerptUr : article.excerpt}
                           </p>
                         </div>
                       </Card>
@@ -689,7 +717,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               </div>
               <div className="flex justify-center mt-12">
                 <Link href="/resources?tab=news#content">
-                  <Button variant="outlined">More news</Button>
+                  <Button variant="outlined">{t("home.news.moreNews")}</Button>
                 </Link>
               </div>
             </div>
@@ -734,7 +762,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
         <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto p-6 lg:p-10 bg-gray-50">
           <div className="flex flex-col md:flex-row justify-center gap-6 mb-12">
             <h2 className="text-3xl md:text-4xl font-medium text-primary-text text-left">
-              Find the support you need
+              {t("home.blogs.heading")}
             </h2>
           </div>
 
@@ -747,10 +775,10 @@ export default function Home({ blogs, news }: HomeClientProps) {
                 <Link href={`/blogs/${blog.slug}`} className="cursor-pointer">
                   <div className="relative h-56 bg-gray-200">
                     <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-xs font-semibold">
-                      {new Date(blog.date).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                      })}
+                      {new Date(blog.date).toLocaleDateString(
+                        locale === "ur" ? "ur-PK" : "en-GB",
+                        { day: "numeric", month: "short" }
+                      )}
                     </div>
                     <img
                       src={blog.image}
@@ -759,8 +787,11 @@ export default function Home({ blogs, news }: HomeClientProps) {
                     />
                   </div>
                   <div className="px-6 py-4">
-                    <h3 className="font-bold text-primary-text text-xl mb-4">
-                      {blog.title}
+                    <h3
+                      className="font-bold text-primary-text text-xl mb-4"
+                      dir={locale === "ur" && blog.urdu ? "rtl" : undefined}
+                    >
+                      {locale === "ur" && blog.urdu ? blog.urdu.title : blog.title}
                     </h3>
                     <p className="text-primary-text text-md font-semibold leading-relaxed line-clamp-3 mb-4">
                       {blog.excerpt}
@@ -787,7 +818,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
           </div>
           <div className="flex justify-center mt-12">
             <Link href="/resources?tab=blogs#content">
-              <Button variant="outlined">Find out more</Button>
+              <Button variant="outlined">{t("home.blogs.findOut")}</Button>
             </Link>
           </div>
         </div>
@@ -800,13 +831,10 @@ export default function Home({ blogs, news }: HomeClientProps) {
           <div className="flex flex-col lg:hidden gap-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary-text mb-6 uppercase">
-                Stories: <br /> This is Diabesity
+                {t("home.stories.heading")}
               </h2>
               <p className="text-primary-text text-md leading-relaxed mb-6">
-                These are the unfiltered voices of people navigating life with
-                diabesity. Read their powerful, personal journeys of challenge,
-                discovery, and hope to find inspiration and a shared
-                understanding.
+                {t("home.stories.description")}
               </p>
               {/* <Button variant="primary" size="sm" className="px-4">
                 Read all stories
@@ -823,11 +851,12 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
             <div className="">
               <p className="text-primary-text text-md leading-relaxed mb-6">
-                "How Semaglutide changed my life" <br /> <i>~ Zainab Jan</i>
+                {t("home.stories.quote")} <br />{" "}
+                <i>{t("home.stories.author")}</i>
               </p>
               <Link href="/blogs/how-semaglutide-changes-lives">
                 <Button variant="primary" size="md" className="px-8">
-                  Read this story
+                  {t("home.stories.readStory")}
                 </Button>
               </Link>
             </div>
@@ -840,13 +869,10 @@ export default function Home({ blogs, news }: HomeClientProps) {
             {/* Left - 2 columns */}
             <div className="col-span-2 flex flex-col justify-center">
               <h2 className="text-4xl xl:text-4xl font-bold text-primary-text mb-6 uppercase leading-tight">
-                Stories: <br /> This is Diabesity
+                {t("home.stories.heading")}
               </h2>
               <p className="text-primary-text text-md leading-relaxed mb-8">
-                These are the unfiltered voices of people navigating life with
-                diabesity. Read their powerful, personal journeys of challenge,
-                discovery, and hope to find inspiration and a shared
-                understanding.
+                {t("home.stories.description")}
               </p>
               <div>
                 {/* <Button variant="primary" size="md" className="px-8">
@@ -870,12 +896,12 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
                   <div className="relative bg-white p-6">
                     <p className="text-primary-text text-md leading-relaxed mb-6">
-                      "How Semaglutide changed my life" <br />{" "}
-                      <i>~ Zainab Jan</i>
+                      {t("home.stories.quote")} <br />{" "}
+                      <i>{t("home.stories.author")}</i>
                     </p>
                     <Link href="/blogs/how-semaglutide-changes-lives">
                       <Button variant="primary" size="sm" className="px-4">
-                        Read this story
+                        {t("home.stories.readStory")}
                       </Button>
                     </Link>
                   </div>
@@ -902,19 +928,18 @@ export default function Home({ blogs, news }: HomeClientProps) {
           <div className="flex flex-col lg:hidden gap-8">
             <div>
               <p className="text-primary-text text-md leading-relaxed mb-4">
-                What is diabetes? Find out in our two-minute video spoken in
-                English.
+                {t("home.video.description1")}
               </p>
               <p className="text-primary-text text-md leading-relaxed">
-                Or choose a version in Urdu, Gujarati, Punjabi or Sylheti from
-                our{" "}
+                {t("home.video.description2Prefix")}{" "}
                 <Link
                   href="https://www.youtube.com/playlist?list=PLQDlTVSOXD9GeCq19dVbUpYZewQaztdsR"
                   target="_blank"
                   className="text-primary font-semibold underline"
                 >
-                  YouTube playlist
+                  {t("home.video.youtubePlaylist")}
                 </Link>
+                {t("home.video.description2Suffix")}
               </p>
             </div>
             <div className="relative w-full pb-[56.25%] bg-black">
@@ -934,19 +959,18 @@ export default function Home({ blogs, news }: HomeClientProps) {
             {/* Left - 1 column (Text) */}
             <div className="col-span-1">
               <p className="text-primary-text text-md leading-relaxed">
-                What is diabetes? Find out in our two-minute video spoken in
-                English.
+                {t("home.video.description1")}
               </p>
               <p className="text-primary-text text-md leading-relaxed">
-                Or choose a version in Urdu, Gujarati, Punjabi or Sylheti from
-                our{" "}
+                {t("home.video.description2Prefix")}{" "}
                 <Link
                   href="https://www.youtube.com/playlist?list=PLQDlTVSOXD9GeCq19dVbUpYZewQaztdsR"
                   target="_blank"
                   className="text-primary font-semibold underline"
                 >
-                  YouTube playlist
+                  {t("home.video.youtubePlaylist")}
                 </Link>
+                {t("home.video.description2Suffix")}
               </p>
             </div>
 
@@ -973,16 +997,15 @@ export default function Home({ blogs, news }: HomeClientProps) {
           {/* Mobile Layout */}
           <div className="flex flex-col gap-6 lg:hidden">
             <h2 className="text-2xl font-bold uppercase text-white">
-              GLP-1 &amp; Diabesity: A Modern Clinical Perspective
+              {t("home.glp.heading")}
             </h2>
             <p className="text-md text-white leading-relaxed">
-              Learn how appetite regulation, insulin signalling, and metabolic
-              health are connected.
+              {t("home.glp.description")}
             </p>
             <div>
               <Link href="/glp-hub">
                 <Button variant="primary" size="md" className="px-6">
-                  Explore the GLP-1 Hub
+                  {t("home.glp.exploreButton")}
                 </Button>
               </Link>
             </div>
@@ -991,10 +1014,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
           {/* Desktop Layout */}
           <div className="hidden lg:flex items-center gap-16">
             {/* Left - Heading */}
-            <div className="text-white flex-shrink-0">
+            <div className="text-white flex-shrink-0 lg:w-[38%]">
               <h2 className="text-2xl md:text-3xl font-bold uppercase leading-tight pl-20">
-                GLP-1 &amp; Diabesity: <br /> A Modern Clinical <br />{" "}
-                Perspective
+                {t("home.glp.heading")}
               </h2>
             </div>
 
@@ -1002,8 +1024,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               {/* Middle - Description */}
               <div className="text-white max-w-xs">
                 <p className="text-md leading-relaxed">
-                  Learn how appetite regulation, insulin signalling, and
-                  metabolic health are connected.
+                  {t("home.glp.description")}
                 </p>
               </div>
 
@@ -1011,7 +1032,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
               <div className="flex-shrink-0">
                 <Link href="/glp-hub">
                   <Button variant="primary" size="md" className="px-6">
-                    Explore the GLP-1 Hub
+                    {t("home.glp.exploreButton")}
                   </Button>
                 </Link>
               </div>
@@ -1042,15 +1063,14 @@ export default function Home({ blogs, news }: HomeClientProps) {
           </div>
           <div className="bg-white py-12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-text mb-6">
-              Looking for support?
+              {t("home.community.heading")}
             </h2>
             <p className="text-primary-text text-md leading-relaxed mb-6">
-              Read about the community support we offer for people living with
-              or affected by diabesity
+              {t("home.community.description")}
             </p>
             <Link href="/contact">
               <Button variant="primary" size="md" className="px-8 mb-8">
-                Read more
+                {t("home.community.readMore")}
               </Button>
             </Link>
             <div className="w-full h-1 bg-primary"></div>
@@ -1081,15 +1101,14 @@ export default function Home({ blogs, news }: HomeClientProps) {
               {/* White Background Box */}
               <div className="relative bg-white p-8 shadow-lg">
                 <h2 className="text-3xl xl:text-4xl font-bold text-primary-text mb-6">
-                  Looking for support?
+                  {t("home.community.heading")}
                 </h2>
                 <p className="text-primary-text text-md leading-relaxed mb-6">
-                  Read about the community support we offer for people living
-                  with or affected by diabesity
+                  {t("home.community.description")}
                 </p>
                 <Link href="/contact">
                   <Button variant="primary" size="md" className="px-8">
-                    Read more
+                    {t("home.community.readMore")}
                   </Button>
                 </Link>
               </div>
@@ -1104,7 +1123,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
           <div className="flex flex-col md:flex-row justify-center mb-12 gap-6">
             <div className="text-center flex flex-col gap-4">
               <h2 className="text-3xl md:text-4xl font-medium text-primary-text">
-                All Season Pakistani Cuisine
+                {t("home.recipes.heading")}
               </h2>
             </div>
           </div>
@@ -1123,15 +1142,20 @@ export default function Home({ blogs, news }: HomeClientProps) {
                       />
                     </div>
                     <div className="flex flex-col justify-between px-4 h-48">
-                      <h3 className="font-bold text-gray-900 text-xl leading-tight">
-                        {recipe.title}
+                      <h3
+                        className="font-bold text-gray-900 text-xl leading-tight"
+                        dir={locale === "ur" && recipe.titleUr ? "rtl" : undefined}
+                      >
+                        {locale === "ur" && recipe.titleUr ? recipe.titleUr : recipe.title}
                       </h3>
 
                       {/* Nutrition Info Grid */}
                       <div className="grid grid-cols-3 gap-2 text-center">
                         {/* Calories */}
                         <div className="bg-blue-50 p-3">
-                          <div className="text-xs text-gray-600 mb-1">KCal</div>
+                          <div className="text-xs text-gray-600 mb-1">
+                            {locale === "ur" ? "کیلوریز" : "KCal"}
+                          </div>
                           <div className="text-lg font-bold text-primary">
                             {recipe.calories}
                           </div>
@@ -1140,7 +1164,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                         {/* Carbs */}
                         <div className="bg-purple-50 p-3">
                           <div className="text-xs text-gray-600 mb-1">
-                            Carbs
+                            {t("home.recipes.carbs")}
                           </div>
                           <div className="text-lg font-bold">
                             {recipe.carbs}
@@ -1149,12 +1173,18 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
                         {/* Sugars with Level Badge */}
                         <div className={`bg-primary p-3 text-white`}>
-                          <div className="text-xs mb-1">Sugars</div>
+                          <div className="text-xs mb-1">
+                            {t("home.recipes.sugars")}
+                          </div>
                           <div className="text-lg font-bold">
                             {recipe.sugars}
                           </div>
                           <div className="text-xs mt-1">
-                            ({recipe.sugarLevel})
+                            ({locale === "ur"
+                              ? recipe.sugarLevel === "Low" ? "کم"
+                                : recipe.sugarLevel === "Medium" ? "درمیانہ"
+                                : "زیادہ"
+                              : recipe.sugarLevel})
                           </div>
                         </div>
                       </div>
@@ -1166,7 +1196,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
 
           <div className="flex justify-center mt-12">
             <Link href="/resources?tab=recipes#content">
-              <Button variant="outlined">More recipes</Button>
+              <Button variant="outlined">
+                {t("home.recipes.moreRecipes")}
+              </Button>
             </Link>
           </div>
         </div>

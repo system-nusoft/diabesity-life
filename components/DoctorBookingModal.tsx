@@ -2,11 +2,14 @@
 
 import {
   bookingPlatforms,
+  cityTranslations,
+  specializationTranslations,
   doctors,
   getUniqueCities,
   getUniqueSpecializations,
   type Doctor,
 } from "@/lib/doctorsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronDown, FileText, Phone, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -19,6 +22,7 @@ export default function DoctorBookingModal({
   open,
   onOpenChange,
 }: DoctorBookingModalProps) {
+  const { t, locale } = useLanguage();
   const [selectedPlatform, setSelectedPlatform] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedSpecialization, setSelectedSpecialization] =
@@ -63,6 +67,13 @@ export default function DoctorBookingModal({
 
   if (!open) return null;
 
+  const docWord =
+    filteredDoctors.length === 1 ? t("doctors.doctor") : t("doctors.doctors");
+  const countText =
+    locale === "ur"
+      ? `${filteredDoctors.length} ${docWord} ${t("doctors.showing")}`
+      : `${t("doctors.showing")} ${filteredDoctors.length} ${docWord}`;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
@@ -78,10 +89,10 @@ export default function DoctorBookingModal({
           <div className="flex items-start justify-between">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                Contact a Specialist
+                {t("doctors.modalHeading")}
               </h2>
               <p className="text-gray-600 mt-1 text-sm md:text-base">
-                Find and contact qualified doctors based on your preferences.
+                {t("doctors.modalDescription")}
               </p>
             </div>
             <button
@@ -99,43 +110,51 @@ export default function DoctorBookingModal({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
-                Booking Platform
+                {t("doctors.platformLabel")}
               </label>
               <CustomSelect
                 value={selectedPlatform}
                 onChange={setSelectedPlatform}
-                placeholder="All Platforms"
+                placeholder={t("doctors.allPlatforms")}
                 options={[
-                  { value: "", label: "All Platforms" },
+                  { value: "", label: t("doctors.allPlatforms") },
                   ...bookingPlatforms.map((p) => ({ value: p, label: p })),
                 ]}
               />
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-700">City</label>
+              <label className="text-sm font-medium text-gray-700">
+                {t("doctors.cityLabel")}
+              </label>
               <CustomSelect
                 value={selectedCity}
                 onChange={setSelectedCity}
-                placeholder="All Cities"
+                placeholder={t("doctors.allCities")}
                 options={[
-                  { value: "", label: "All Cities" },
-                  ...cities.map((c) => ({ value: c, label: c })),
+                  { value: "", label: t("doctors.allCities") },
+                  ...cities.map((c) => ({
+                    value: c,
+                    label: locale === "ur" ? (cityTranslations[c] ?? c) : c,
+                  })),
                 ]}
               />
             </div>
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">
-                Specialization
+                {t("doctors.specializationLabel")}
               </label>
               <CustomSelect
                 value={selectedSpecialization}
                 onChange={setSelectedSpecialization}
-                placeholder="All Specializations"
+                placeholder={t("doctors.allSpecializations")}
                 options={[
-                  { value: "", label: "All Specializations" },
-                  ...specializations.map((s) => ({ value: s, label: s })),
+                  { value: "", label: t("doctors.allSpecializations") },
+                  ...specializations.map((s) => ({
+                    value: s,
+                    label: locale === "ur" ? (specializationTranslations[s] ?? s) : s,
+                  })),
                 ]}
               />
             </div>
@@ -147,25 +166,22 @@ export default function DoctorBookingModal({
               onClick={handleReset}
               className="text-sm text-primary hover:underline mt-4"
             >
-              Clear all filters
+              {t("doctors.clearFilters")}
             </button>
           )}
 
           {/* Results Count */}
-          <div className="text-sm text-gray-600 mt-6 mb-4">
-            Showing {filteredDoctors.length}{" "}
-            {filteredDoctors.length === 1 ? "doctor" : "doctors"}
-          </div>
+          <div className="text-sm text-gray-600 mt-6 mb-4">{countText}</div>
 
           {/* Doctors List */}
           <div className="space-y-4">
             {filteredDoctors.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">
-                  No doctors found matching your criteria.
+                  {t("doctors.noDoctorsFound")}
                 </p>
                 <p className="text-gray-400 text-sm mt-2">
-                  Try adjusting your filters.
+                  {t("doctors.tryAdjusting")}
                 </p>
               </div>
             ) : (
@@ -226,7 +242,7 @@ function CustomSelect({
                   onChange(option.value);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
+                className={`w-full text-left rtl:text-right px-3 py-2 text-sm hover:bg-gray-100 ${
                   value === option.value
                     ? "bg-primary/10 text-primary font-medium"
                     : "text-gray-900"
@@ -243,20 +259,21 @@ function CustomSelect({
 }
 
 function DoctorCard({ doctor }: { doctor: Doctor }) {
+  const { t, locale } = useLanguage();
+  const displayName = locale === "ur" ? doctor.nameUr : doctor.name;
+  const displayCity =
+    locale === "ur" ? (cityTranslations[doctor.city] ?? doctor.city) : doctor.city;
   return (
     <div className="border border-gray-200 p-4 hover:shadow-md transition-shadow bg-white">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div className="flex-1">
-          <h3 className="font-semibold text-lg text-gray-900">{doctor.name}</h3>
-          <p className="text-gray-600 text-sm font-medium">
-            {doctor.specialization}
-          </p>
+          <h3 className="font-semibold text-lg text-gray-900">{displayName}</h3>
+          <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium border border-primary text-primary">
+            {doctor.bookingPlatforms[0].platform}
+          </span>
           <div className="flex flex-wrap gap-2 mt-2">
             <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-primary text-white">
-              {doctor.city}
-            </span>
-            <span className="inline-flex items-center px-2.5 py-1 text-xs font-medium border border-primary text-primary">
-              {doctor.bookingPlatforms[0].platform}
+              {displayCity}
             </span>
           </div>
         </div>
@@ -265,14 +282,15 @@ function DoctorCard({ doctor }: { doctor: Doctor }) {
           <a
             href={`tel:${doctor.contactNumber}`}
             className="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-primary transition-colors"
+            dir="ltr"
           >
             <Phone className="w-4 h-4" />
             <span className="font-medium">{doctor.contactNumber}</span>
           </a>
           {doctor.pmdcNumber && (
-            <div className="inline-flex items-center gap-2 text-sm text-gray-600">
+            <div className="inline-flex items-center gap-2 text-sm text-gray-600" dir="ltr">
               <FileText className="w-4 h-4" />
-              <span>PMDC: {doctor.pmdcNumber}</span>
+              <span>{t("doctors.pmdc")}: {doctor.pmdcNumber}</span>
             </div>
           )}
         </div>
