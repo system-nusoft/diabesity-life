@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Ban, UserCheck, X } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -18,6 +19,8 @@ export default function BanConfirmationModal({
   userName,
   isBanned,
 }: BanConfirmationModalProps) {
+  const { t } = useLanguage();
+
   if (!isOpen) return null;
 
   const handleConfirm = () => {
@@ -55,21 +58,18 @@ export default function BanConfirmationModal({
 
         {/* Title */}
         <h2 className="text-xl font-bold text-gray-900 text-center mb-2">
-          {isBanned ? "Unban user" : "Ban user"}
+          {isBanned ? t("community.banModal.unbanTitle") : t("community.banModal.banTitle")}
         </h2>
 
         {/* Description */}
         <p className="text-gray-600 text-center mb-6">
           {isBanned ? (
             <>
-              Are you sure you want to unban <strong>{userName}</strong>? They
-              will be able to post and interact in the community again.
+              {t("community.banModal.unbanDesc1")} <strong>{userName}</strong>{t("community.banModal.unbanDesc2")}
             </>
           ) : (
             <>
-              Are you sure you want to ban <strong>{userName}</strong>? They
-              will only be able to view content and won&apos;t be able to post
-              or interact.
+              {t("community.banModal.banDesc1")} <strong>{userName}</strong>{t("community.banModal.banDesc2")}
             </>
           )}
         </p>
@@ -77,14 +77,14 @@ export default function BanConfirmationModal({
         {/* Actions */}
         <div className="flex gap-3">
           <Button variant="outlined" className="flex-1" onClick={onClose}>
-            Cancel
+            {t("community.banModal.cancel")}
           </Button>
           <Button
             variant="primary"
             className={`flex-1`}
             onClick={handleConfirm}
           >
-            {isBanned ? "Unban" : "Ban"} user
+            {isBanned ? t("community.banModal.unbanButton") : t("community.banModal.banButton")}
           </Button>
         </div>
       </div>

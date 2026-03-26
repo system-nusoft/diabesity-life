@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { API_BASE_URL } from "@/lib/utils";
 import { ArrowLeft, X } from "lucide-react";
 import Link from "next/link";
@@ -26,6 +27,7 @@ const suggestedTags = [
 ];
 
 export default function CreatePostClient() {
+  const { t } = useLanguage();
   const { user, token, isLoading, isBanned } = useAuth();
   const router = useRouter();
   const [title, setTitle] = useState("");
@@ -79,7 +81,7 @@ export default function CreatePostClient() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p>Loading...</p>
+        <p>{t("community.loading")}</p>
       </div>
     );
   }
@@ -98,7 +100,7 @@ export default function CreatePostClient() {
             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to community
+            {t("community.createPage.backLink")}
           </Link>
         </div>
       </div>
@@ -107,7 +109,7 @@ export default function CreatePostClient() {
       <div className="max-w-4xl mx-auto px-4 py-6">
         <div className="bg-white border border-gray-200 p-6">
           <h1 className="text-2xl font-bold text-gray-900 mb-6">
-            Create a new post
+            {t("community.createPage.heading")}
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -117,14 +119,14 @@ export default function CreatePostClient() {
                 htmlFor="title"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Title
+                {t("community.createPage.titleLabel")}
               </label>
               <input
                 id="title"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="What's your question or topic?"
+                placeholder={t("community.createPage.titlePlaceholder")}
                 required
                 className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
               />
@@ -136,13 +138,13 @@ export default function CreatePostClient() {
                 htmlFor="content"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Content
+                {t("community.createPage.contentLabel")}
               </label>
               <textarea
                 id="content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Share your thoughts, experiences, or questions..."
+                placeholder={t("community.createPage.contentPlaceholder")}
                 rows={8}
                 required
                 className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary resize-none"
@@ -152,10 +154,10 @@ export default function CreatePostClient() {
             {/* Tags */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tags
+                {t("community.createPage.tagsLabel")}
               </label>
               <p className="text-sm text-gray-500 mb-3">
-                Select at least one tag that best describes your post
+                {t("community.createPage.tagsHint")}
               </p>
 
               {/* Selected Tags */}
@@ -200,7 +202,7 @@ export default function CreatePostClient() {
             <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
               <Link href="/community">
                 <Button type="button" variant="outlined">
-                  Cancel
+                  {t("community.createPage.cancel")}
                 </Button>
               </Link>
               <Button
@@ -213,7 +215,7 @@ export default function CreatePostClient() {
                   isSubmitting
                 }
               >
-                {isSubmitting ? "Posting..." : "Post"}
+                {isSubmitting ? t("community.createPage.posting") : t("community.createPage.post")}
               </Button>
             </div>
           </form>

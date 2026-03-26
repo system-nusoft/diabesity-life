@@ -1,5 +1,6 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
@@ -13,6 +14,7 @@ export default function HealthcareProfessionalModal({
   open,
   onOpenChange,
 }: HealthcareProfessionalModalProps) {
+  const { t } = useLanguage();
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
@@ -46,12 +48,9 @@ export default function HealthcareProfessionalModal({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Healthcare Professional Verification
+          {t("hcpModal.title")}
         </h2>
-        <p className="text-gray-700 mb-6">
-          This section is intended for healthcare professionals only. Please
-          confirm that you are a licensed healthcare professional to continue.
-        </p>
+        <p className="text-gray-700 mb-6">{t("hcpModal.description")}</p>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
@@ -63,7 +62,7 @@ export default function HealthcareProfessionalModal({
                 className="mt-1 w-4 h-4 text-primary bg-white border-gray-300 rounded cursor-pointer"
               />
               <span className="text-gray-700 text-sm">
-                I confirm that I am a licensed healthcare professional
+                {t("hcpModal.confirmLabel")}
               </span>
             </label>
           </div>
@@ -75,7 +74,7 @@ export default function HealthcareProfessionalModal({
               disabled={!isChecked}
               className="flex-1"
             >
-              Submit
+              {t("hcpModal.submit")}
             </Button>
             <Button
               type="button"
@@ -83,7 +82,7 @@ export default function HealthcareProfessionalModal({
               onClick={handleClose}
               className="flex-1"
             >
-              Cancel
+              {t("hcpModal.cancel")}
             </Button>
           </div>
         </form>

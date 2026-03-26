@@ -1,8 +1,12 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ExternalLinkIcon, Facebook, Instagram, Youtube } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="bg-[#1a1a1a] text-white">
       {/* Contact Specialist Section */}
@@ -10,12 +14,12 @@ export default function Footer() {
         <div className="max-w-6xl mx-auto px-6 lg:px-0 flex justify-between flex-col md:flex-row gap-8">
           <div>
             <h2 className="text-secondary text-3xl md:text-4xl font-medium mb-2">
-              Get in touch
+              {t("footer.getInTouch")}
             </h2>
           </div>
           <div className="flex gap-4">
             <Link href="/contact">
-              <Button variant="secondary">Contact</Button>
+              <Button variant="secondary">{t("footer.contact")}</Button>
             </Link>
             <Link
               href="http://www.dap.org.pk/Donations.html"
@@ -23,7 +27,7 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               <Button variant="gray">
-                Donate
+                {t("footer.donate")}
                 <ExternalLinkIcon className="ml-1 h-5 w-5" />
               </Button>
             </Link>
@@ -60,7 +64,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             © <span className="text-primary">Diabesity</span>{" "}
-            {new Date().getFullYear()}. All Rights Reserved
+            {new Date().getFullYear()}. {t("footer.allRightsReserved")}
           </p>
           {/* Socials */}
           <div>
@@ -113,13 +117,13 @@ export default function Footer() {
               href="/terms-of-use"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >
-              Terms of use
+              {t("footer.termsOfUse")}
             </Link>
             <Link
               href="/privacy-policy"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >
-              Privacy policy
+              {t("footer.privacyPolicy")}
             </Link>
           </div>
         </div>

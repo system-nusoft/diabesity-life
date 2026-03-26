@@ -8,6 +8,7 @@ import { BlogArticle } from "@/lib/blogContent";
 import { NewsArticle } from "@/lib/newsContent";
 import { Recipe } from "@/lib/recipeContent";
 import { ResearchArticle } from "@/lib/researchContent";
+import { useLanguage } from "@/contexts/LanguageContext";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -26,6 +27,7 @@ export default function ResourcesClient({
   research,
   recipes,
 }: ResourcesClientProps) {
+  const { locale } = useLanguage();
   const searchParams = useSearchParams();
   const router = useRouter();
   const tabParam = searchParams.get("tab");
@@ -65,11 +67,12 @@ export default function ResourcesClient({
         <div className="flex col-span-2 md:col-span-1 justify-center items-center">
           <div>
             <h1 className="text-3xl md:text-5xl font-medium text-gray-900 mb-6">
-              Resources
+              {locale === "ur" ? "وسائل" : "Resources"}
             </h1>
             <p className="text-gray-700 text-lg leading-relaxed max-w-5xl mb-2">
-              Explore our comprehensive collection of blogs, news, articles and
-              recipes.
+              {locale === "ur"
+                ? "بلاگز، خبریں، مضامین اور ترکیبوں کا ہمارا جامع مجموعہ دریافت کریں۔"
+                : "Explore our comprehensive collection of blogs, news, articles and recipes."}
             </p>
           </div>
         </div>
@@ -97,10 +100,10 @@ export default function ResourcesClient({
               }
               className="w-full px-2 py-3 text-base font-medium bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             >
-              <option value="blogs">Blogs</option>
-              <option value="news">News</option>
-              <option value="research">Research</option>
-              <option value="recipes">Recipes</option>
+              <option value="blogs">{locale === "ur" ? "بلاگز" : "Blogs"}</option>
+              <option value="news">{locale === "ur" ? "خبریں" : "News"}</option>
+              <option value="research">{locale === "ur" ? "تحقیق" : "Research"}</option>
+              <option value="recipes">{locale === "ur" ? "ترکیبیں" : "Recipes"}</option>
             </select>
           </div>
 
@@ -114,7 +117,7 @@ export default function ResourcesClient({
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              Blogs
+              {locale === "ur" ? "بلاگز" : "Blogs"}
             </button>
             <button
               onClick={() => handleTabChange("news")}
@@ -124,7 +127,7 @@ export default function ResourcesClient({
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              News
+              {locale === "ur" ? "خبریں" : "News"}
             </button>
             <button
               onClick={() => handleTabChange("research")}
@@ -134,7 +137,7 @@ export default function ResourcesClient({
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              Research
+              {locale === "ur" ? "تحقیق" : "Research"}
             </button>
             <button
               onClick={() => handleTabChange("recipes")}
@@ -144,7 +147,7 @@ export default function ResourcesClient({
                   : "text-gray-600 hover:text-gray-900"
               }`}
             >
-              Recipes
+              {locale === "ur" ? "ترکیبیں" : "Recipes"}
             </button>
           </div>
         </div>

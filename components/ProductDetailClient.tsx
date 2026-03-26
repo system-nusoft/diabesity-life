@@ -1,7 +1,8 @@
 "use client";
 
-import { categoryLabels, Product } from "@/lib/productsData";
+import { Product } from "@/lib/productsData";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { jsPDF } from "jspdf";
 import { ArrowLeft, Download, FileText, Shield, X } from "lucide-react";
 import Link from "next/link";
@@ -30,6 +31,17 @@ export default function ProductDetailClient({
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [showLightbox, setShowLightbox] = useState(false);
+  const { t, locale } = useLanguage();
+  const isUrdu = locale === "ur";
+  const displayDescription = isUrdu
+    ? (product.urdu?.description ?? product.description)
+    : product.description;
+  const displayForm = isUrdu
+    ? (product.urdu?.form ?? product.form)
+    : product.form;
+  const displayFrequency = isUrdu
+    ? (product.urdu?.frequency ?? product.frequency)
+    : product.frequency;
 
   const handleDownloadSafetySheet = () => {
     const pdf = new jsPDF({
@@ -162,7 +174,7 @@ export default function ProductDetailClient({
             className="inline-flex items-center text-white/80 hover:text-white mb-4 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to {categoryLabels[product.category]}
+            {t("products.backTo")} {t(`products.tabs.${product.category}`)}
           </Link>
           <h1 className="text-white text-3xl md:text-4xl font-bold mb-2">
             {product.name}
@@ -216,20 +228,20 @@ export default function ProductDetailClient({
               {/* Product Details Card */}
               <div className="bg-gray-50 border border-gray-200 p-8 mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Product information
+                  {t("products.detail.productInformation")}
                 </h2>
 
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      Brand name
+                      {t("products.detail.brandName")}
                     </h3>
                     <p className="text-lg text-gray-900">{product.brandName}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      Generic name
+                      {t("products.detail.genericName")}
                     </h3>
                     <p className="text-lg text-gray-900">
                       {product.genericName}
@@ -238,23 +250,23 @@ export default function ProductDetailClient({
 
                   <div>
                     <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      Formulation
+                      {t("products.detail.formulation")}
                     </h3>
-                    <p className="text-lg text-gray-900">{product.form}</p>
+                    <p className="text-lg text-gray-900">{displayForm}</p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                      Dosing frequency
+                      {t("products.detail.dosingFrequency")}
                     </h3>
                     <p className="text-lg text-primary font-medium">
-                      {product.frequency}
+                      {displayFrequency}
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
-                      Available dosages
+                      {t("products.detail.availableDosages")}
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {product.dosages.map((dosage) => (
@@ -273,10 +285,10 @@ export default function ProductDetailClient({
               {/* Description */}
               <div className="mb-8">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">
-                  Description
+                  {t("products.detail.description")}
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
-                  {product.description}
+                  {displayDescription}
                 </p>
               </div>
 
@@ -284,7 +296,7 @@ export default function ProductDetailClient({
               <div className="bg-primary/5 border border-primary/20 p-6 mb-8">
                 <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                   <FileText className="w-5 h-5 text-primary" />
-                  Downloads
+                  {t("products.detail.downloads")}
                 </h2>
                 <div className="flex flex-col space-y-3">
                   {product.leafletPdf && (
@@ -296,7 +308,7 @@ export default function ProductDetailClient({
                     >
                       <Button variant="primary" className="w-full">
                         <Download className="w-5 h-5" />
-                        Download PDF
+                        {t("products.detail.downloadPdf")}
                       </Button>
                     </a>
                   )}
@@ -306,7 +318,7 @@ export default function ProductDetailClient({
                     onClick={handleDownloadSafetySheet}
                   >
                     <Shield className="w-5 h-5" />
-                    Download safety sheet
+                    {t("products.detail.downloadSafetySheet")}
                   </Button>
                 </div>
               </div>
@@ -314,10 +326,7 @@ export default function ProductDetailClient({
               {/* Disclaimer */}
               <div className="p-4 bg-yellow-50 border border-yellow-200">
                 <p className="text-sm text-yellow-800">
-                  <strong>Important:</strong> This information is intended for
-                  healthcare professionals only. Please refer to the full
-                  prescribing information before use. Always consult with a
-                  qualified healthcare provider for medical advice.
+                  {t("products.detail.disclaimer")}
                 </p>
               </div>
             </div>

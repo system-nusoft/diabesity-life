@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { BreadcrumbProvider } from "@/contexts/BreadcrumbContext";
 import { SidebarProvider } from "@/contexts/SidebarContext";
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
@@ -53,6 +54,7 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <AuthProvider>
+            <BreadcrumbProvider>
             <SidebarProvider>
               <Header />
               <Breadcrumbs />
@@ -64,6 +66,7 @@ export default function RootLayout({
               </div>
               <Footer />
             </SidebarProvider>
+            </BreadcrumbProvider>
           </AuthProvider>
         </LanguageProvider>
       </body>

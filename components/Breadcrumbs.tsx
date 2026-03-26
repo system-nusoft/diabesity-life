@@ -1,11 +1,16 @@
 "use client";
 
-import { ChevronRight, Home } from "lucide-react";
+import { useBreadcrumb } from "@/contexts/BreadcrumbContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { ChevronLeft, ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
+  const { locale } = useLanguage();
+  const { segmentOverrides } = useBreadcrumb();
+  const isUrdu = locale === "ur";
 
   if (pathname === "/") {
     return null;
@@ -36,26 +41,79 @@ export default function Breadcrumbs() {
     "calorie-counter": "Calorie Counter",
     "hba1c-translator": "HbA1c Translator",
     "hypo-wallet-card": "Hypo Emergency Card",
+    community: "Community",
+    create: "Create Post",
+    dashboard: "Dashboard",
+    tools: "Tools",
+    login: "Login",
+    signup: "Sign up",
+    register: "Register",
+    learn: "Learn",
+    diet: "Diet",
+    medication: "Medication",
+    "how-to": "How To",
+  };
+
+  const labelMapUr: Record<string, string> = {
+    blogs: "بلاگز",
+    news: "خبریں",
+    recipes: "ترکیبیں",
+    research: "تحقیق",
+    resources: "وسائل",
+    about: "ہمارے بارے میں",
+    faqs: "اکثر پوچھے گئے سوالات",
+    doctors: "ماہر سے رابطہ کریں",
+    contact: "رابطہ",
+    products: "مصنوعات",
+    "urdu-guides": "اردو رہنما",
+    "five-ways-to-move-more": "زیادہ حرکت کے پانچ طریقے",
+    "enjoy-food": "کھانے سے لطف اٹھائیں",
+    "daily-care-and-monitoring": "روزانہ کی دیکھ بھال اور نگرانی",
+    "privacy-policy": "رازداری کی پالیسی",
+    "terms-of-use": "استعمال کی شرائط",
+    "glp-diabesity": "GLP-1 اور ڈائیبیسٹی",
+    "glp-hub": "GLP-1 ہب",
+    "bmi-calculator": "BMI کیلکولیٹر",
+    "calorie-counter": "کیلوری کاؤنٹر",
+    "hba1c-translator": "HbA1c ٹرانسلیٹر",
+    "hypo-wallet-card": "ہائپو ایمرجنسی کارڈ",
+    community: "کمیونٹی",
+    create: "پوسٹ بنائیں",
+    dashboard: "ڈیش بورڈ",
+    tools: "ٹولز",
+    login: "لاگ ان",
+    signup: "سائن اپ",
+    register: "رجسٹر",
+    learn: "سیکھیں",
+    diet: "غذا",
+    medication: "ادویات",
+    "how-to": "کیسے کریں",
   };
 
   const resourceTabMap: Record<string, string> = {
     blogs: "blog",
     news: "news",
-    recipes: "recipe",
+    recipes: "recipes",
     research: "research",
   };
 
   const breadcrumbs = [
-    { label: "Home", href: "/" },
+    { label: isUrdu ? "ہوم" : "Home", href: "/" },
     ...pathSegments.map((segment, index) => {
       let href = "/" + pathSegments.slice(0, index + 1).join("/");
 
-      const label =
-        labelMap[segment] ||
-        segment
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
+      const label = segmentOverrides[segment] ||
+        (isUrdu
+          ? labelMapUr[segment] ||
+            segment
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")
+          : labelMap[segment] ||
+            segment
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" "));
 
       if (index === 0 && resourceTabMap[segment]) {
         href = `/resources?tab=${resourceTabMap[segment]}`;
@@ -79,7 +137,9 @@ export default function Breadcrumbs() {
             return (
               <li key={breadcrumb.href} className="flex items-center">
                 {index > 0 && (
-                  <ChevronRight className="w-4 h-4 text-gray-400 mx-2" />
+                  isUrdu
+                    ? <ChevronLeft className="w-4 h-4 text-gray-400 mx-2" />
+                    : <ChevronRight className="w-4 h-4 text-gray-400 mx-2" />
                 )}
                 {isLast ? (
                   <span className="text-gray-900 font-medium flex items-center">

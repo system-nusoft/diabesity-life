@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowRightLeft } from "lucide-react";
 import { useState } from "react";
 import LogProgressModal from "./LogProgressModal";
@@ -94,6 +95,19 @@ function getCategory(hba1c: number): {
 
 export default function Hba1cTranslatorClient() {
   const { user } = useAuth();
+  const { t } = useLanguage();
+
+  const categoryLabel: Record<string, string> = {
+    Normal: t("hba1c.categories.normal"),
+    Prediabetes: t("hba1c.categories.prediabetes"),
+    Diabetes: t("hba1c.categories.diabetes"),
+  };
+
+  const descriptionLabel: Record<string, string> = {
+    Normal: t("hba1c.descriptions.normal"),
+    Prediabetes: t("hba1c.descriptions.prediabetes"),
+    Diabetes: t("hba1c.descriptions.diabetes"),
+  };
   const [mode, setMode] = useState<ConversionMode>("hba1c-to-glucose");
   const [hba1cInput, setHba1cInput] = useState("");
   const [glucoseInput, setGlucoseInput] = useState("");
@@ -109,11 +123,11 @@ export default function Hba1cTranslatorClient() {
     if (mode === "hba1c-to-glucose") {
       const hba1c = parseFloat(hba1cInput);
       if (!hba1cInput || isNaN(hba1c) || hba1c <= 0) {
-        setError("Please enter a valid HbA1c value.");
+        setError(t("hba1c.errors.invalidHba1c"));
         return;
       }
       if (hba1c < 3 || hba1c > 20) {
-        setError("HbA1c value should be between 3% and 20%.");
+        setError(t("hba1c.errors.hba1cRange"));
         return;
       }
       const calculated = calculateFromHba1c(hba1c);
@@ -121,14 +135,14 @@ export default function Hba1cTranslatorClient() {
     } else {
       const glucose = parseFloat(glucoseInput);
       if (!glucoseInput || isNaN(glucose) || glucose <= 0) {
-        setError("Please enter a valid glucose value.");
+        setError(t("hba1c.errors.invalidGlucose"));
         return;
       }
       const minVal = glucoseUnit === "mg/dL" ? 40 : 2.2;
       const maxVal = glucoseUnit === "mg/dL" ? 500 : 28;
       if (glucose < minVal || glucose > maxVal) {
         setError(
-          `Glucose value should be between ${minVal} and ${maxVal} ${glucoseUnit}.`,
+          `${t("hba1c.errors.glucoseRangeBetween")} ${minVal} ${t("hba1c.errors.and")} ${maxVal} ${glucoseUnit}${t("hba1c.errors.glucoseRangeSuffix")}.`,
         );
         return;
       }
@@ -159,11 +173,10 @@ export default function Hba1cTranslatorClient() {
         <div className="max-w-4xl lg:max-w-6xl mx-auto px-6 lg:px-0">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              HbA1c Translator
+              {t("hba1c.hero")}
             </h1>
             <p className="text-gray-700 text-md leading-relaxed max-w-2xl mx-auto">
-              Convert between HbA1c (%) and estimated average glucose (eAG).
-              HbA1c reflects your average blood sugar over the past 2-3 months.
+              {t("hba1c.heroDescription")}
             </p>
           </div>
         </div>
@@ -180,7 +193,7 @@ export default function Hba1cTranslatorClient() {
                   mode === "hba1c-to-glucose" ? "text-primary" : "text-gray-400"
                 }`}
               >
-                HbA1c → Glucose
+                {t("hba1c.modeHba1cToGlucose")}
               </span>
               <button
                 onClick={toggleMode}
@@ -194,7 +207,7 @@ export default function Hba1cTranslatorClient() {
                   mode === "glucose-to-hba1c" ? "text-primary" : "text-gray-400"
                 }`}
               >
-                Glucose → HbA1c
+                {t("hba1c.modeGlucoseToHba1c")}
               </span>
             </div>
 
@@ -203,7 +216,7 @@ export default function Hba1cTranslatorClient() {
               {mode === "hba1c-to-glucose" ? (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    HbA1c (%)
+                    {t("hba1c.labelHba1c")}
                   </label>
                   <input
                     type="number"
@@ -221,7 +234,7 @@ export default function Hba1cTranslatorClient() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="block text-sm font-medium text-gray-700">
-                      Average Glucose
+                      {t("hba1c.labelAvgGlucose")}
                     </label>
                     <div className="flex gap-2">
                       <button
@@ -273,13 +286,13 @@ export default function Hba1cTranslatorClient() {
                   onClick={handleConvert}
                   className="flex-1 bg-primary text-white py-3 px-6 font-medium hover:bg-primary/90 transition-all"
                 >
-                  Convert
+                  {t("hba1c.convert")}
                 </button>
                 <button
                   onClick={handleReset}
                   className="px-6 py-3 border border-gray-300 font-medium text-gray-700 hover:bg-gray-50 transition-all"
                 >
-                  Reset
+                  {t("hba1c.reset")}
                 </button>
               </div>
             </div>
@@ -293,7 +306,7 @@ export default function Hba1cTranslatorClient() {
                     className="inline-block px-4 py-2 text-sm font-semibold text-white"
                     style={{ backgroundColor: result.categoryColor }}
                   >
-                    {result.category}
+                    {categoryLabel[result.category] ?? result.category}
                   </span>
                 </div>
 
@@ -309,7 +322,7 @@ export default function Hba1cTranslatorClient() {
                   </div>
                   <div className="bg-blue-50 p-4 text-center">
                     <p className="text-xs text-blue-600 font-medium mb-1">
-                      Avg Glucose (mg/dL)
+                      {t("hba1c.avgGlucoseMgDl")}
                     </p>
                     <p className="text-2xl font-bold text-blue-700">
                       {result.glucoseMgDl}
@@ -317,7 +330,7 @@ export default function Hba1cTranslatorClient() {
                   </div>
                   <div className="bg-teal-50 p-4 text-center">
                     <p className="text-xs text-teal-600 font-medium mb-1">
-                      Avg Glucose (mmol/L)
+                      {t("hba1c.avgGlucoseMmol")}
                     </p>
                     <p className="text-2xl font-bold text-teal-700">
                       {result.glucoseMmol}
@@ -327,7 +340,7 @@ export default function Hba1cTranslatorClient() {
 
                 {/* Description */}
                 <p className="text-gray-600 text-sm leading-relaxed text-center">
-                  {result.description}
+                  {descriptionLabel[result.category] ?? result.description}
                 </p>
 
                 {user && (
@@ -336,7 +349,7 @@ export default function Hba1cTranslatorClient() {
                       onClick={() => setShowLogModal(true)}
                       className="px-5 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
                     >
-                      Save to Progress
+                      {t("hba1c.saveProgress")}
                     </button>
                   </div>
                 )}
@@ -362,23 +375,23 @@ export default function Hba1cTranslatorClient() {
           {/* Reference Table */}
           <div className="mt-8 bg-white border border-gray-200 shadow-sm p-6">
             <h2 className="text-lg font-bold text-gray-900 mb-4">
-              HbA1c Reference Chart
+              {t("hba1c.referenceChart")}
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gray-200">
-                    <th className="text-left py-2 pr-4 font-medium text-gray-700">
+                    <th className="text-left rtl:text-right py-2 pr-4 font-medium text-gray-700">
                       HbA1c (%)
                     </th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-700">
+                    <th className="text-left rtl:text-right py-2 pr-4 font-medium text-gray-700">
                       eAG (mg/dL)
                     </th>
-                    <th className="text-left py-2 pr-4 font-medium text-gray-700">
+                    <th className="text-left rtl:text-right py-2 pr-4 font-medium text-gray-700">
                       eAG (mmol/L)
                     </th>
-                    <th className="text-left py-2 font-medium text-gray-700">
-                      Category
+                    <th className="text-left rtl:text-right py-2 font-medium text-gray-700">
+                      {t("hba1c.tableCategory")}
                     </th>
                   </tr>
                 </thead>
@@ -405,7 +418,7 @@ export default function Hba1cTranslatorClient() {
                             className="inline-block px-2 py-0.5 text-xs font-medium text-white"
                             style={{ backgroundColor: row.color }}
                           >
-                            {row.category}
+                            {categoryLabel[row.category] ?? row.category}
                           </span>
                         </td>
                       </tr>
@@ -418,9 +431,7 @@ export default function Hba1cTranslatorClient() {
             <div className="mt-8 p-4 bg-gray-50 border border-gray-200">
               <p className="text-xs text-gray-600">
                 {/* <strong>Formula:</strong> eAG (mg/dL) = 28.7 × HbA1c − 46.7 */}
-                <strong>Note:</strong> These values are estimates. Actual blood
-                glucose can vary. Always consult your healthcare provider for
-                interpretation.
+                {t("hba1c.note")}
               </p>
             </div>
           </div>

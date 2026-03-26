@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { API_BASE_URL } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
@@ -15,6 +16,7 @@ export default function LoginClient() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const { t } = useLanguage();
   const router = useRouter();
   const searchParams = useSearchParams();
   const justRegistered = searchParams.get("registered") === "true";
@@ -39,12 +41,12 @@ export default function LoginClient() {
       <div className="w-full max-w-md">
         <div className="bg-white border-2 border-primary p-8">
           <h1 className="text-2xl font-bold text-primary text-center mb-6">
-            Login to your account
+            {t("login.title")}
           </h1>
 
           {justRegistered && (
             <div className="bg-green-50 border border-green-200 text-green-600 px-4 py-3 mb-4 text-sm">
-              Account created successfully! Please login with your credentials.
+              {t("login.successMsg")}
             </div>
           )}
 
@@ -60,7 +62,7 @@ export default function LoginClient() {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Email
+                {t("login.email")}
               </label>
               <input
                 id="email"
@@ -69,7 +71,7 @@ export default function LoginClient() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                placeholder="Enter your email"
+                placeholder={t("login.emailPlaceholder")}
               />
             </div>
 
@@ -78,7 +80,7 @@ export default function LoginClient() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Password
+                {t("login.password")}
               </label>
               <div className="relative">
                 <input
@@ -89,7 +91,7 @@ export default function LoginClient() {
                   required
                   minLength={6}
                   className="w-full px-4 py-2 pr-10 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-                  placeholder="Enter your password"
+                  placeholder={t("login.passwordPlaceholder")}
                 />
                 <button
                   type="button"
@@ -111,7 +113,7 @@ export default function LoginClient() {
               className="w-full"
               disabled={isLoading}
             >
-              {isLoading ? "Logging in..." : "Login"}
+              {isLoading ? t("login.loggingIn") : t("login.loginBtn")}
             </Button>
           </form>
 
@@ -120,7 +122,7 @@ export default function LoginClient() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">or</span>
+              <span className="bg-white px-2 text-gray-500">{t("login.or")}</span>
             </div>
           </div>
 
@@ -150,17 +152,17 @@ export default function LoginClient() {
               />
             </svg>
             <span className="text-gray-700 font-medium">
-              Continue with Google
+              {t("login.googleBtn")}
             </span>
           </button>
 
           <p className="mt-6 text-center text-sm text-gray-600">
-            Don&apos;t have an account?{" "}
+            {t("login.noAccount")}{" "}
             <Link
               href="/signup"
               className="text-primary font-medium hover:underline"
             >
-              Sign up here
+              {t("login.signupLink")}
             </Link>
           </p>
         </div>

@@ -11,5 +11,762 @@
     "error": "Sorry, there was an error sending your message. Please try again.",
     "sending": "Sending...",
     "send": "Send message"
+  },
+  "header": {
+    "careline": "Sehat CareLine call centre",
+    "ourCommunity": "Our community",
+    "forProfessionals": "For Professionals",
+    "forHCPs": "For Healthcare Professionals",
+    "ourResearch": "Our Research",
+    "menu": "Menu",
+    "hi": "Hi",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications yet",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "login": "Login",
+    "nav": {
+      "glpDiabesity": "GLP-1 & Diabesity",
+      "tools": "Tools",
+      "resources": "Resources",
+      "faqs": "Frequently asked questions"
+    },
+    "menu_headings": {
+      "glpDiabesity": "GLP-1 & Diabesity",
+      "learn": "Learn",
+      "diet": "Diet",
+      "medication": "Medication",
+      "howTo": "How To",
+      "resources": "Resources",
+      "tools": "Tools"
+    },
+    "menu_items": {
+      "whatIsDiabesity": "What is Diabesity?",
+      "whatIsDiabetes": "What is Diabetes?",
+      "whatIsObesity": "What is Obesity?",
+      "glp1Agonists": "GLP-1 Agonists & Newer Agents",
+      "clinicalCorner": "Clinical Corner",
+      "glp1Treatments": "GLP-1 Based Treatments",
+      "riskFactors": "Risk Factors & Screening",
+      "mythsVsFacts": "Common Myths vs. Facts",
+      "askNutritionist": "Ask a Nutritionist",
+      "desiMeal": "Desi Meal Makeovers",
+      "lowGI": "Low-GI & Glycaemic Load Tips",
+      "portionControl": "Portion Control & Practical Guides",
+      "sampleDiet": "Sample Diet Plans",
+      "snacking": "Snacking & Street-Food Survival",
+      "supplements": "Supplements & Herbal Remedies",
+      "behavioural": "Behavioural Tools",
+      "firstLine": "First-line & Common Drugs",
+      "injectables": "Injectables: Handling & Storage",
+      "safety": "Safety, Interactions & Monitoring",
+      "affordability": "Affordability & Access",
+      "surgery": "Surgery & Advanced Therapies",
+      "bmiCalculator": "BMI Calculator",
+      "calorieCounter": "Calorie Counter",
+      "hba1cTranslator": "HbA1c Translator",
+      "hypoCard": "Hypo Emergency Card",
+      "howToStart": "How to Start?",
+      "howToExercise": "How to Exercise at Home?",
+      "howToReadLabels": "How to Read Food Labels?",
+      "howToSocial": "How to Handle Social Events?",
+      "howToPrescription": "How to Use Prescription Treatments?",
+      "howToBloodSugar": "How to Handle Blood Sugar?",
+      "blogs": "Blogs",
+      "news": "News articles",
+      "research": "Research articles",
+      "recipes": "Recipes"
+    }
+  },
+  "hba1c": {
+    "hero": "HbA1c Translator",
+    "heroDescription": "Convert between HbA1c (%) and estimated average glucose (eAG). HbA1c reflects your average blood sugar over the past 2-3 months.",
+    "modeHba1cToGlucose": "HbA1c → Glucose",
+    "modeGlucoseToHba1c": "Glucose → HbA1c",
+    "labelHba1c": "HbA1c (%)",
+    "labelAvgGlucose": "Average Glucose",
+    "convert": "Convert",
+    "reset": "Reset",
+    "avgGlucoseMgDl": "Avg Glucose (mg/dL)",
+    "avgGlucoseMmol": "Avg Glucose (mmol/L)",
+    "saveProgress": "Save to Progress",
+    "referenceChart": "HbA1c Reference Chart",
+    "tableCategory": "Category",
+    "note": "Note: These values are estimates. Actual blood glucose can vary. Always consult your healthcare provider for interpretation.",
+    "errors": {
+      "invalidHba1c": "Please enter a valid HbA1c value.",
+      "hba1cRange": "HbA1c value should be between 3% and 20%.",
+      "invalidGlucose": "Please enter a valid glucose value.",
+      "glucoseRangeBetween": "Glucose value should be between",
+      "and": "and",
+      "glucoseRangeSuffix": ""
+    },
+    "categories": {
+      "normal": "Normal",
+      "prediabetes": "Prediabetes",
+      "diabetes": "Diabetes"
+    },
+    "descriptions": {
+      "normal": "Your blood sugar levels are within the normal range. Continue maintaining a healthy lifestyle.",
+      "prediabetes": "Your blood sugar levels indicate prediabetes. Lifestyle changes can help prevent progression to diabetes.",
+      "diabetes": "Your blood sugar levels are in the diabetes range. Please consult with your healthcare provider for proper management."
+    }
+  },
+  "calorie": {
+    "hero": "Calorie Counter",
+    "heroDescription": "Search any food item to see its calorie content and nutritional breakdown. Adjust the quantity to match your serving.",
+    "searchLabel": "Search food",
+    "searchPlaceholder": "e.g. chicken breast, honey, apple...",
+    "searchButton": "Search",
+    "searching": "Searching foods...",
+    "noResultsFor": "No results found for",
+    "tryDifferent": "Try a different search term",
+    "result": "result",
+    "results": "results",
+    "found": "found",
+    "per": "per",
+    "quantity": "Quantity:",
+    "totalCalories": "Total calories",
+    "nutritionBreakdown": "Nutrition breakdown",
+    "nutrients": {
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat",
+      "fiber": "Fiber",
+      "sugar": "Sugar",
+      "sodium": "Sodium",
+      "cholesterol": "Cholesterol"
+    }
+  },
+  "bmi": {
+    "hero": "BMI Calculator",
+    "heroDescription": "Body Mass Index (BMI) is a simple screening tool that uses your height and weight to estimate body fat. Enter your details below to calculate your BMI.",
+    "form": {
+      "yourDetails": "Your Details",
+      "age": "Age",
+      "agePlaceholder": "Enter your age",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "height": "Height",
+      "feetPlaceholder": "Feet",
+      "inchesPlaceholder": "Inches",
+      "metersPlaceholder": "Meters (e.g. 1.75)",
+      "weight": "Weight",
+      "weightKgPlaceholder": "Weight in kg",
+      "weightLbsPlaceholder": "Weight in pounds",
+      "calculate": "Calculate BMI",
+      "reset": "Reset"
+    },
+    "errors": {
+      "invalidAge": "Please enter a valid age.",
+      "ageTooYoung": "BMI calculation is not reliable for children under 2 years old.",
+      "invalidAgeRange": "Please enter a valid age (2–120).",
+      "heightNegative": "Height values cannot be negative.",
+      "heightRequired": "Please enter your height.",
+      "heightNegativeM": "Height cannot be negative.",
+      "weightNegative": "Weight cannot be negative.",
+      "weightRequired": "Please enter your weight."
+    },
+    "result": {
+      "saveProgress": "Save to Progress",
+      "prompt": "Enter your details and click \"Calculate BMI\" to see your result."
+    },
+    "categories": {
+      "underweight": "Underweight",
+      "normal": "Normal",
+      "overweight": "Overweight",
+      "healthyWeight": "Healthy weight",
+      "obese1": "Obese (Class I)",
+      "obese2": "Obese (Class II)",
+      "obese3": "Obese (Class III)",
+      "obese": "Obese"
+    },
+    "descriptions": {
+      "underweight": "A BMI below 18.5 may indicate insufficient body weight. Consider consulting a healthcare provider about nutrition.",
+      "normal": "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
+      "overweight": "A BMI of 23.5–24.9 is considered overweight. Small lifestyle changes in diet and activity can help reduce future health risks.",
+      "obese1": "A BMI of 25–29.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
+      "obese2": "A BMI of 30–34.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
+      "obese3": "A BMI of 35 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
+      "child": "For children and teens (ages 2–17), BMI is interpreted using age and gender-specific percentiles. Please consult a paediatrician for a full assessment."
+    },
+    "info": {
+      "heading": "Understanding Your BMI",
+      "note": "Note: BMI is a screening tool, not a diagnostic measure, and does not account for muscle mass or bone density. Always consult a healthcare professional for a comprehensive assessment.",
+      "ranges": {
+        "below185": "Below 18.5",
+        "185to234": "18.5 – 23.4",
+        "235to249": "23.5 – 24.9",
+        "250to299": "25.0 – 29.9",
+        "300to349": "30.0 – 34.9",
+        "350plus": "35.0+"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "s1": {
+        "heading": "A new chapter in diabesity care",
+        "body": "Explore how modern medical science — including GLP-1–based therapies — is reshaping the understanding of obesity and type 2 diabetes.",
+        "ctaText": "Learn more"
+      },
+      "s2": {
+        "heading": "Take control of your health today",
+        "body": "Discover how modern treatments like GLP-1s are helping Pakistanis manage weight and blood sugar like never before.",
+        "ctaText": "Get started"
+      }
+    },
+    "videoModal": {
+      "close": "Close ✕"
+    },
+    "services": {
+      "s1": {
+        "title": "Understand diabesity",
+        "body": "Gain a clear understanding of the link between type 2 diabetes and obesity, including diabesity, GLP-1 biology, and modern treatment pathways.",
+        "link": "Learn more"
+      },
+      "s2": {
+        "title": "Eat smart and healthy",
+        "body": "You don't have to sacrifice flavour for health. Explore delicious recipes and meal-planning tips that make healthy eating simple and enjoyable.",
+        "link": "Get recipes"
+      },
+      "s3": {
+        "title": "Daily care & monitoring",
+        "body": "Consistent self-care is key to managing your condition. Find practical guides to track blood sugar, recognise symptoms, and support day-to-day diabetes care.",
+        "link": "View guides"
+      }
+    },
+    "impact": {
+      "stat1": {
+        "label": "adults with undiagnosed diabetes",
+        "description": "In Pakistan, a quarter of adults with diabetes don't know they have it, allowing silent progression to severe complications before the first symptom is even noticed."
+      },
+      "stat2": {
+        "label": "heart attack patients have diabetes",
+        "description": "A staggering 6 out of 10 heart attack patients in Pakistan also have diabetes, highlighting the critical link between unmanaged blood sugar and cardiovascular risk."
+      },
+      "stat3": {
+        "label": "million (USD)",
+        "description": "The annual cost of diabetes care in Pakistan exceeded $2.6 billion in 2021, placing an immense financial burden on families and the national healthcare system."
+      }
+    },
+    "support": {
+      "heading": "Diabesity support in your area",
+      "headingDesktop": "Diabesity in \nyour area",
+      "description": "Find regional contact information, your local support groups and activities near you.",
+      "findNow": "Find now"
+    },
+    "news": {
+      "heading": "Latest insights on diabesity",
+      "moreNews": "More news"
+    },
+    "blogs": {
+      "heading": "Find the support you need",
+      "findOut": "Find out more"
+    },
+    "stories": {
+      "heading": "Stories: This is Diabesity",
+      "description": "These are the unfiltered voices of people navigating life with diabesity. Read their powerful, personal journeys of challenge, discovery, and hope to find inspiration and a shared understanding.",
+      "quote": "\"How Semaglutide changed my life\"",
+      "author": "~ Zainab Jan",
+      "readStory": "Read this story"
+    },
+    "video": {
+      "description1": "What is diabetes? Find out in our two-minute video spoken in English.",
+      "description2Prefix": "Or choose a version in Urdu, Gujarati, Punjabi or Sylheti from our",
+      "youtubePlaylist": "YouTube playlist",
+      "description2Suffix": ""
+    },
+    "glp": {
+      "heading": "GLP-1 & Diabesity: A Modern Clinical Perspective",
+      "description": "Learn how appetite regulation, insulin signalling, and metabolic health are connected.",
+      "exploreButton": "Explore the GLP-1 Hub"
+    },
+    "community": {
+      "heading": "Looking for support?",
+      "description": "Read about the community support we offer for people living with or affected by diabesity",
+      "readMore": "Read more"
+    },
+    "recipes": {
+      "heading": "All Season Pakistani Cuisine",
+      "carbs": "Carbs",
+      "sugars": "Sugars",
+      "moreRecipes": "More recipes"
+    }
+  },
+  "hypo": {
+    "hero": "Hypo Emergency Wallet Card",
+    "heroDescription": "Create a personalised emergency card for hypoglycaemia episodes",
+    "survey": {
+      "questionPrefix": "Question",
+      "questionOf": "of",
+      "complete": "complete",
+      "previousQuestion": "Previous question",
+      "q1": {
+        "question": "At what age were you diagnosed with diabetes?",
+        "o1": "Under 30 years old",
+        "o2": "30-45 years old",
+        "o3": "Over 45 years old",
+        "o4": "Not diagnosed / I don't have diabetes"
+      },
+      "q2": {
+        "question": "Do you take insulin or diabetes medications?",
+        "o1": "Yes, insulin since diagnosis",
+        "o2": "Yes, insulin started later",
+        "o3": "Yes, oral medications only",
+        "o4": "No diabetes medications"
+      },
+      "q3": {
+        "question": "What is your current BMI category?",
+        "o1": "Underweight or Normal (BMI < 25)",
+        "o2": "Overweight (BMI 25-30)",
+        "o3": "Obese (BMI > 30)",
+        "o4": "I don't know"
+      },
+      "q4": {
+        "question": "Do you have a family history of diabetes?",
+        "o1": "Yes, Type 1 diabetes",
+        "o2": "Yes, Type 2 diabetes",
+        "o3": "Yes, both types",
+        "o4": "No family history"
+      },
+      "q5": {
+        "question": "Have you ever experienced diabetic ketoacidosis (DKA)?",
+        "o1": "Yes, multiple times",
+        "o2": "Yes, once",
+        "o3": "No",
+        "o4": "I don't know what DKA is"
+      },
+      "q6": {
+        "question": "How quickly did your diabetes symptoms develop?",
+        "o1": "Very quickly (days to weeks)",
+        "o2": "Gradually (months to years)",
+        "o3": "I didn't notice any symptoms",
+        "o4": "I don't have diabetes symptoms"
+      },
+      "q7": {
+        "question": "Do you have any autoimmune conditions?",
+        "o1": "Yes (thyroid, celiac, etc.)",
+        "o2": "No",
+        "o3": "I don't know"
+      },
+      "q8": {
+        "question": "How often do you experience low blood sugar (hypoglycemia)?",
+        "o1": "Frequently (weekly or more)",
+        "o2": "Sometimes (monthly)",
+        "o3": "Rarely or never",
+        "o4": "I don't monitor my blood sugar"
+      },
+      "q9": {
+        "question": "What is your typical fasting blood sugar level?",
+        "o1": "Often below 70 mg/dL (hypoglycemia)",
+        "o2": "70-99 mg/dL (normal)",
+        "o3": "100-125 mg/dL (prediabetes range)",
+        "o4": "126 mg/dL or higher (diabetes range)",
+        "o5": "I don't know / I don't check"
+      }
+    },
+    "result": {
+      "lowRiskTitle": "Low Risk Assessment",
+      "lowRiskDesc1": "Based on your responses, you appear to have a low risk of hypoglycaemia. A hypo emergency card may not be necessary for you at this time.",
+      "lowRiskDesc2": "If you believe you may be at risk or have been diagnosed with diabetes, please consult with your healthcare provider.",
+      "assessmentTitle": "Assessment Complete",
+      "assessmentDesc": "Based on your responses, your diabetes profile suggests:",
+      "type1": "Type 1 Diabetes",
+      "type2": "Type 2 Diabetes",
+      "disclaimer": "This is an estimate based on common patterns. Only a medical professional can provide an accurate diagnosis. You can adjust the diabetes type in the next step.",
+      "startOver": "Start over",
+      "createCard": "Create your card"
+    },
+    "form": {
+      "title": "Enter Your Card Details",
+      "fullName": "Full Name *",
+      "fullNamePlaceholder": "Enter your full name",
+      "diabetesType": "Diabetes Type",
+      "type1": "Type 1 Diabetes",
+      "type2": "Type 2 Diabetes",
+      "gestational": "Gestational Diabetes",
+      "prediabetes": "Prediabetes",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactNamePlaceholder": "Contact name",
+      "emergencyContactPhone": "Emergency Contact Phone",
+      "emergencyContactPhonePlaceholder": "Phone number",
+      "medications": "Current Medications",
+      "medicationsPlaceholder": "List your diabetes medications",
+      "allergies": "Allergies",
+      "allergiesPlaceholder": "Any known allergies",
+      "doctorName": "Doctor's Name",
+      "doctorNamePlaceholder": "Doctor's name",
+      "doctorPhone": "Doctor's Phone",
+      "doctorPhonePlaceholder": "Doctor's phone",
+      "back": "Back",
+      "previewCard": "Preview card"
+    },
+    "preview": {
+      "title": "Your Emergency Card Preview",
+      "frontside": "(Frontside)",
+      "backside": "(Backside)",
+      "editDetails": "Edit details",
+      "downloadPdf": "Download PDF",
+      "startOver": "Start over"
+    }
+  },
+  "products": {
+    "hero": "HCP Portal",
+    "heroDescription": "Healthcare professional resources and product information for Semaglutide-based treatments",
+    "viewDetails": "View details",
+    "noProducts": "No products available in this category.",
+    "productsLabel": "products",
+    "backTo": "Back to",
+    "tabs": {
+      "pfs": "Pre-filled Syringe (PFS)",
+      "pen": "Pen Injector"
+    },
+    "detail": {
+      "productInformation": "Product information",
+      "brandName": "Brand name",
+      "genericName": "Generic name",
+      "formulation": "Formulation",
+      "dosingFrequency": "Dosing frequency",
+      "availableDosages": "Available dosages",
+      "description": "Description",
+      "downloads": "Downloads",
+      "downloadPdf": "Download PDF",
+      "downloadSafetySheet": "Download safety sheet",
+      "disclaimer": "Important: This information is intended for healthcare professionals only. Please refer to the full prescribing information before use. Always consult with a qualified healthcare provider for medical advice."
+    }
+  },
+  "hcpModal": {
+    "title": "Healthcare Professional Verification",
+    "description": "This section is intended for healthcare professionals only. Please confirm that you are a licensed healthcare professional to continue.",
+    "confirmLabel": "I confirm that I am a licensed healthcare professional",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "glpHub": {
+    "hero": {
+      "heading": "The GLP-1 Hub",
+      "description": "Understanding how GLP-1 connects appetite, blood sugar, and weight management. Discover the science behind this powerful hormone and how it can help address diabesity."
+    },
+    "sectionsLabel": "Sections",
+    "takeAction": "Take Action",
+    "sections": {
+      "whatIsGlp1": { "title": "What is GLP-1?" },
+      "diabesityLink": { "title": "The Link: Why GLP-1 Addresses \"Diabesity\"" },
+      "appetiteRegulation": { "title": "Appetite Regulation: Silencing the \"Food Noise\"" },
+      "insulinSignaling": { "title": "Insulin Signaling: Precision Glucose Control" },
+      "betaCell": { "title": "Beta-Cell Protection" }
+    },
+    "actionCards": {
+      "diet": {
+        "title": "Supporting GLP-1 naturally",
+        "description": "Learn how diet and lifestyle choices can support your body's natural GLP-1 production.",
+        "linkText": "Explore Diet"
+      },
+      "medication": {
+        "title": "Restoring GLP-1 with treatment",
+        "description": "Understand the medical therapies available to restore and enhance GLP-1 signaling.",
+        "linkText": "Explore Medication"
+      },
+      "tools": {
+        "title": "Measuring GLP-1 outcomes",
+        "description": "Track your progress with the right tools and understand what the numbers mean.",
+        "linkText": "Explore Tools"
+      }
+    }
+  },
+  "howTo": {
+    "hero": {
+      "heading": "How To",
+      "description": "Step-by-step guides for daily living with diabesity. From starting your journey to handling social events, reading food labels, and managing medications—practical advice you can use today."
+    },
+    "sectionsLabel": "Sections",
+    "sections": {
+      "start": { "title": "How to Start — Weeks 1, 4, and 12" },
+      "exercise": { "title": "How to Exercise at Home — Move more, safely" },
+      "readLabels": { "title": "How to Read Food Labels — Pakistani brands made simple" },
+      "socialEvents": { "title": "How to Handle Social Events & Cravings — Eid, weddings, office treats" },
+      "prescriptionTreatments": { "title": "How to Use Prescription Treatments — Pens, pills, and practical tips" },
+      "bloodSugar": { "title": "How to Handle High or Low Blood Sugar — Calm, clear actions" }
+    }
+  },
+  "dashboard": {
+    "loading": "Loading...",
+    "user": {
+      "heading": "Progress dashboard",
+      "description": "Track your logs over time.",
+      "fetchError": "Failed to load data. Please refresh.",
+      "bmiProgress": "BMI progress",
+      "hba1cProgress": "HbA1c progress",
+      "noBmiLogs": "No BMI logs yet.",
+      "noHba1cLogs": "No HbA1c logs yet.",
+      "emptyStateLinkPrefix": "Use the ",
+      "emptyStateLinkSuffix": "and save your first result.",
+      "bmiToolLink": "BMI Calculator",
+      "hba1cToolLink": "HbA1c Translator",
+      "onTrack": "On track ✓",
+      "overdue": "Overdue",
+      "frequency": {
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "quarterly": "Quarterly",
+        "manual": "Manual"
+      },
+      "noDataInRange": "No data in this time range.",
+      "history": "History"
+    },
+    "admin": {
+      "heading": "Admin dashboard",
+      "description": "Review posts and comments reported by users.",
+      "loadingReports": "Loading reports...",
+      "noPendingReports": "No pending reports",
+      "allClear": "All clear — nothing has been reported.",
+      "pendingReport": "pending report",
+      "pendingReports": "pending reports",
+      "postLabel": "Post",
+      "commentLabel": "Comment",
+      "reportedBy": "reported by",
+      "viewPost": "View post",
+      "postBy": "Post by",
+      "commentBy": "Comment by",
+      "reason": "Reason:",
+      "deletePost": "Delete post",
+      "deleteComment": "Delete comment",
+      "banAuthor": "Ban author",
+      "ignore": "Ignore"
+    }
+  },
+  "doctors": {
+    "heading": "Contact a Specialist",
+    "description": "Search our network of trusted doctors, nutritionists, and specialists across Pakistan to get the personalized care you deserve.",
+    "cityLabel": "City",
+    "allCities": "All Cities",
+    "specializationLabel": "Specialization",
+    "allSpecializations": "All Specializations",
+    "platformLabel": "Booking Platform",
+    "allPlatforms": "All Platforms",
+    "clearFilters": "Clear all filters",
+    "showing": "Showing",
+    "of": "of",
+    "doctor": "doctor",
+    "doctors": "doctors",
+    "noDoctorsFound": "No doctors found matching your criteria.",
+    "tryAdjusting": "Try adjusting your filters.",
+    "showMore": "Show more",
+    "pmdc": "PMDC",
+    "modalHeading": "Contact a Specialist",
+    "modalDescription": "Find and contact qualified doctors based on your preferences."
+  },
+  "community": {
+    "heading": "Our community",
+    "description": "Connect with others, share experiences, and support each other on your health journey.",
+    "bannedBanner": "You have been banned from the community. You can view content but cannot post or interact.",
+    "latestPosts": "Latest posts",
+    "createPost": "Create post",
+    "allFilter": "All",
+    "loadingPosts": "Loading posts...",
+    "noPostsTaggedPrefix": "No posts tagged",
+    "noPostsTaggedSuffix": ".",
+    "noPosts": "No posts yet. Be the first to share!",
+    "comments": "comments",
+    "adminBadge": "Admin",
+    "bannedBadge": "Banned",
+    "loading": "Loading...",
+    "tooltips": {
+      "banUser": "Ban user",
+      "unbanUser": "Unban user",
+      "deletePost": "Delete post",
+      "editPost": "Edit your post",
+      "deleteYourPost": "Delete your post",
+      "deleteComment": "Delete comment",
+      "editComment": "Edit your comment",
+      "deleteYourComment": "Delete your comment"
+    },
+    "createPage": {
+      "backLink": "Back to community",
+      "heading": "Create a new post",
+      "titleLabel": "Title",
+      "contentLabel": "Content",
+      "tagsLabel": "Tags",
+      "titlePlaceholder": "What's your question or topic?",
+      "contentPlaceholder": "Share your thoughts, experiences, or questions...",
+      "tagsHint": "Select at least one tag that best describes your post",
+      "cancel": "Cancel",
+      "post": "Post",
+      "posting": "Posting..."
+    },
+    "detail": {
+      "backLink": "Back to community",
+      "bannedBanner": "You have been banned from the community. You can view content but cannot post or interact.",
+      "postTitlePlaceholder": "Post title",
+      "postContentPlaceholder": "Post content",
+      "saving": "Saving...",
+      "save": "Save",
+      "cancel": "Cancel",
+      "commentsCount": "comments",
+      "report": "Report",
+      "reported": "Reported",
+      "reasonPlaceholder": "Reason (optional)",
+      "sending": "Sending...",
+      "send": "Send",
+      "addComment": "Add a comment",
+      "bannedComment": "You cannot comment while banned.",
+      "commentPlaceholder": "Share your thoughts...",
+      "postComment": "Post comment",
+      "posting": "Posting...",
+      "loginPrompt": "Please login to join the conversation",
+      "loginButton": "Login to comment",
+      "commentsHeading": "Comments",
+      "noComments": "No comments yet. Be the first to share your thoughts!",
+      "postDeleted": "Post deleted. Redirecting..."
+    },
+    "banModal": {
+      "banTitle": "Ban user",
+      "unbanTitle": "Unban user",
+      "banDesc1": "Are you sure you want to ban",
+      "banDesc2": "? They will only be able to view content and won't be able to post or interact.",
+      "unbanDesc1": "Are you sure you want to unban",
+      "unbanDesc2": "? They will be able to post and interact in the community again.",
+      "cancel": "Cancel",
+      "banButton": "Ban user",
+      "unbanButton": "Unban user"
+    },
+    "deleteModal": {
+      "deletePostTitle": "Delete post",
+      "deleteCommentTitle": "Delete comment",
+      "deletePostDesc": "Are you sure you want to delete this post",
+      "deletePostDescSuffix": "? This action cannot be undone and all comments will also be removed.",
+      "deleteCommentDesc": "Are you sure you want to delete this comment? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  },
+  "termsOfUse": {
+    "hero": "Terms of Use",
+    "s1Heading": "Introduction",
+    "s1Body": "Welcome to Diabesity. By accessing and using this website, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by these terms, please do not use this website. These terms apply to all visitors, users, and others who access or use the website.",
+    "s2Heading": "Medical Disclaimer",
+    "s2Body1": "The information provided on this website is for general informational and educational purposes only and is not intended as a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified healthcare provider with any questions you may have regarding a medical condition.",
+    "s2Body2": "Never disregard professional medical advice or delay in seeking it because of something you have read on this website. If you think you may have a medical emergency, call your doctor or emergency services immediately. Diabesity does not recommend or endorse any specific tests, physicians, products, procedures, opinions, or other information that may be mentioned on this website.",
+    "s3Heading": "Use of Content",
+    "s3Body1": "All content on this website, including text, graphics, logos, images, and software, is the property of Diabesity or its content suppliers and is protected by Pakistani and international copyright laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, or otherwise use any content without prior written permission.",
+    "s3Body2": "You are permitted to view, download, and print pages from this website for your own personal, non-commercial use, provided you do not modify the content and retain all copyright and proprietary notices.",
+    "s4Heading": "User Conduct",
+    "s4Intro": "When using this website, you agree not to:",
+    "s4li0": "Use the website for any unlawful purpose or in violation of any applicable laws of Pakistan",
+    "s4li1": "Attempt to gain unauthorized access to any portion of the website or any systems or networks connected to the website",
+    "s4li2": "Interfere with or disrupt the website or servers or networks connected to the website",
+    "s4li3": "Upload or transmit any viruses, malware, or other harmful code",
+    "s4li4": "Collect or store personal data about other users without their consent",
+    "s4li5": "Use the website to send unsolicited communications or spam",
+    "s5Heading": "Third-Party Links",
+    "s5Body": "This website may contain links to third-party websites or services that are not owned or controlled by Diabesity. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You acknowledge and agree that Diabesity shall not be responsible or liable for any damage or loss caused by or in connection with the use of any such content, goods, or services available on or through any such websites or services.",
+    "s6Heading": "Limitation of Liability",
+    "s6Body": "To the maximum extent permitted by applicable law, Diabesity shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or other intangible losses, resulting from your access to or use of (or inability to access or use) the website, any conduct or content of any third party on the website, or any content obtained from the website.",
+    "s7Heading": "Indemnification",
+    "s7Body": "You agree to defend, indemnify, and hold harmless Diabesity and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable legal fees, arising out of or in any way connected with your access to or use of the website or your violation of these Terms of Use.",
+    "s8Heading": "Changes to Terms",
+    "s8Body": "We reserve the right, at our sole discretion, to modify or replace these Terms of Use at any time. If a revision is material, we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion. By continuing to access or use our website after those revisions become effective, you agree to be bound by the revised terms.",
+    "s9Heading": "Governing Law",
+    "s9Body": "These Terms of Use shall be governed by and construed in accordance with the laws of Pakistan, without regard to its conflict of law provisions. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the courts of Pakistan.",
+    "s10Heading": "Contact Information",
+    "s10Body": "If you have any questions about these Terms of Use, please contact us through our website's contact page or email us at the address provided in the footer of our website."
+  },
+  "privacyPolicy": {
+    "hero": "Privacy Policy",
+    "s1Heading": "Information that is gathered from visitors",
+    "s1Body": "In common with other websites, log files are stored on the web server saving details such as the visitor's IP address, browser type, referring page and time of visit. Cookies may be used to remember visitor preferences when interacting with the website. Where registration is required, the visitor's email, and a username will be stored on the server.",
+    "s2Heading": "How the Information is used",
+    "s2Body": "The information is used to enhance the visitor's experience when using the website to display personalized content and possibly advertising. E-mail addresses will not be sold, rented or leased to 3rd parties. E-mail may be sent to inform you of news of our services or offers by us or our affiliates.",
+    "s3Heading": "Visitor Options",
+    "s3Body": "If you have subscribed to one of our services, you may unsubscribe by following the instructions which are included in the email that you receive. You may be able to block cookies via your browser settings but this may prevent you from access to certain features of the website.",
+    "s4Heading": "Cookies",
+    "s4Body": "Cookies are small digital signature files that are stored by your web browser that allow your preferences to be recorded when visiting the website. Also, they may be used to track your return visits to the website. 3rd party advertising companies may also use cookies for tracking purposes."
+  },
+  "about": {
+    "hero": {
+      "heading": "Health is your fundamental right",
+      "body": "We are a coalition of doctors, nutritionists, patients, and families who believe every Pakistani deserves the knowledge and tools to live a life free from the grip of diabesity. This is our promise to you and to Pakistan."
+    },
+    "story": {
+      "heading": "Our Story",
+      "p1": "This devastating link between diabetes and obesity, is not a statistic. It's our parents, our siblings, our friends.",
+      "p2": "We saw a nation grappling with the world's highest rate of diabetes, yet facing a wall of misinformation, stigma, and resources that didn't fit our culture or our lives. The advice was generic, the meal plans were foreign, and the conversation was happening in whispers, if at all.",
+      "p3": "We knew we couldn't stand by while this silent epidemic stole the health and futures of millions.",
+      "p4Prefix": "So, we built the solution we needed. ",
+      "p4Bold": "Diabesity Pakistan is your clear path forward.",
+      "p4Suffix": " It was founded to bridge the gaps, to replace confusion with clarity, and to empower you with guidance tailored for the realities of life in Pakistan."
+    },
+    "aboutUs": {
+      "heading": "About us and our battle against 'Diabesity'",
+      "body": "We are a motivated group of healthcare professionals, civil society activists, and concerned citizens who share a common purpose of helping Pakistan fight the growing diabetes and obesity pandemic, also now being increasingly known as 'Diabesity'.",
+      "list0": "Connect individuals to resources, specialists, and support systems.",
+      "list1": "Promote healthy living grounded in our culture and day-to-day realities.",
+      "list2": "Strive to eliminate stigma associated with diabesity and provide everyone with the resources to lead healthy lives.",
+      "list3": "Deliver reliable information in English and Urdu to raise awareness on diabesity.",
+      "closingPrefix": "For the benefit of current and future generations, we invite you to ",
+      "closingBold1": "inform, inspire",
+      "closingAnd": " and ",
+      "closingBold2": "empower",
+      "closingSuffix": " yourself and your loved ones, and participate in a ",
+      "closingBold3": "national movement against Diabesity."
+    },
+    "mission": {
+      "label": "Key Objectives",
+      "heading": "Our Mission in Action",
+      "card0Title": "Clear knowledge without confusion",
+      "card0Desc": "We break down complex topics like managing blood sugar to understanding medications into simple, actionable guides in both Urdu and English. We believe everyone has the right to understand their own health.",
+      "card1Title": "Tools That Fit Your Life",
+      "card1Desc": "We create diet plans that celebrate Pakistani cuisine by providing expert advice that understands your reality, from Lahore to the most remote village. These are resources designed to work with you.",
+      "card2Title": "A Community That Understands",
+      "card2Desc": "You are not alone on this journey. We share real stories from Pakistanis just like you to fight stigma, build a national network of support, and prove that change is possible together.",
+      "card3Title": "A Healthier Future for Generations",
+      "card3Desc": "Our ultimate goal is to turn the tide on this epidemic. By empowering individuals and families today, we are working to ensure that future generations of Pakistanis can live longer, stronger, and healthier lives."
+    }
+  },
+  "footer": {
+    "getInTouch": "Get in touch",
+    "contact": "Contact",
+    "donate": "Donate",
+    "allRightsReserved": "All Rights Reserved",
+    "termsOfUse": "Terms of use",
+    "privacyPolicy": "Privacy policy"
+  },
+  "login": {
+    "title": "Login to your account",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loggingIn": "Logging in...",
+    "loginBtn": "Login",
+    "or": "or",
+    "googleBtn": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "signupLink": "Sign up here",
+    "successMsg": "Account created successfully! Please login with your credentials."
+  },
+  "signup": {
+    "title": "Create your account",
+    "firstName": "First name",
+    "firstNamePlaceholder": "First name",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Last name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Create a password (min. 6 characters)",
+    "confirmPassword": "Confirm password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "creating": "Creating account...",
+    "signupBtn": "Sign up",
+    "or": "or",
+    "googleBtn": "Continue with Google",
+    "hasAccount": "Already have an account?",
+    "loginLink": "Login here",
+    "errorPasswordMatch": "Passwords do not match",
+    "errorPasswordLength": "Password must be at least 6 characters",
+    "errorFallback": "Signup failed"
   }
 }

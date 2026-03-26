@@ -6,10 +6,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ foods: [] });
   }
 
-  const apiKey = "oEgsjytDOD5PE0fMnBTriiQVFf3NbZit8GuEzg7G";
+  // const apiKey = "oEgsjytDOD5PE0fMnBTriiQVFf3NbZit8GuEzg7G";
+  const apiKey = "4m3ABH0rqmUUhG4ug2YQW51Xz1oiPS4AdTN10rl4";
 
   const url = `https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(
-    query
+    query,
   )}&pageSize=15&dataType=Survey%20(FNDDS),Foundation,SR%20Legacy&api_key=${apiKey}`;
 
   const maxRetries = 5;
@@ -32,7 +33,7 @@ export async function GET(request: NextRequest) {
       // Final attempt failed
       return NextResponse.json(
         { error: "Failed to fetch from USDA" },
-        { status: res.status }
+        { status: res.status },
       );
     } catch {
       // Network error - retry if attempts left
@@ -43,13 +44,13 @@ export async function GET(request: NextRequest) {
 
       return NextResponse.json(
         { error: "Failed to fetch food data" },
-        { status: 500 }
+        { status: 500 },
       );
     }
   }
 
   return NextResponse.json(
     { error: "Failed to fetch food data" },
-    { status: 500 }
+    { status: 500 },
   );
 }
