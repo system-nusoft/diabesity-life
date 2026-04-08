@@ -41,7 +41,6 @@ export default function SignupPage() {
 
     try {
       await signup(email, password, firstName, lastName);
-      router.push("/login?registered=true");
     } catch (err) {
       setError(err instanceof Error ? err.message : t("signup.errorFallback"));
     } finally {
@@ -70,7 +69,8 @@ export default function SignupPage() {
                   htmlFor="firstName"
                   className="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  {t("signup.firstName")} <span className="text-red-500">*</span>
+                  {t("signup.firstName")}{" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <input
                   id="firstName"
@@ -155,7 +155,8 @@ export default function SignupPage() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                {t("signup.confirmPassword")} <span className="text-red-500">*</span>
+                {t("signup.confirmPassword")}{" "}
+                <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <input
@@ -197,7 +198,9 @@ export default function SignupPage() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">{t("signup.or")}</span>
+              <span className="bg-white px-2 text-gray-500">
+                {t("signup.or")}
+              </span>
             </div>
           </div>
 

@@ -75,7 +75,8 @@
       "blogs": "بلاگز",
       "news": "خبریں",
       "research": "تحقیقی مضامین",
-      "recipes": "ترکیبیں"
+      "recipes": "ترکیبیں",
+      "urduGuides": "اردو گائیڈز"
     }
   },
   "calorie": {
@@ -595,7 +596,10 @@
       "deleteYourPost": "اپنی پوسٹ حذف کریں",
       "deleteComment": "تبصرہ حذف کریں",
       "editComment": "اپنا تبصرہ ترمیم کریں",
-      "deleteYourComment": "اپنا تبصرہ حذف کریں"
+      "deleteYourComment": "اپنا تبصرہ حذف کریں",
+      "deleteThread": "تھریڈ حذف کریں",
+      "banThreadAuthor": "تھریڈ بنانے والے کو پابند کریں",
+      "unbanThreadAuthor": "تھریڈ بنانے والے کی پابندی ہٹائیں"
     },
     "createPage": {
       "backLink": "کمیونٹی پر واپس",
@@ -652,8 +656,57 @@
       "deletePostDesc": "کیا آپ واقعی اس پوسٹ کو حذف کرنا چاہتے ہیں",
       "deletePostDescSuffix": "؟ یہ عمل واپس نہیں ہو سکتا اور تمام تبصرے بھی ہٹا دیے جائیں گے۔",
       "deleteCommentDesc": "کیا آپ واقعی اس تبصرے کو حذف کرنا چاہتے ہیں؟ یہ عمل واپس نہیں ہو سکتا۔",
+      "deleteThreadTitle": "تھریڈ حذف کریں",
+      "deleteThreadDesc": "کیا آپ واقعی یہ تھریڈ حذف کرنا چاہتے ہیں",
+      "deleteThreadDescSuffix": "؟ اس کی تمام پوسٹس اور تبصرے بھی مستقل طور پر حذف ہو جائیں گے۔",
       "cancel": "منسوخ",
       "delete": "حذف کریں"
+    },
+    "hub": {
+      "heading": "کمیونٹی ہب",
+      "subtitle": "ڈائیبیسٹی کمیونٹی کے ساتھ جڑیں، شیئر کریں اور سیکھیں",
+      "loadingCategories": "زمرے لوڈ ہو رہے ہیں...",
+      "noThreads": "ابھی کوئی تھریڈ نہیں۔ پہلا تھریڈ شروع کریں۔",
+      "posts": "پوسٹس",
+      "latest": "تازہ ترین:",
+      "startThread": "تھریڈ شروع کریں",
+      "categories": {
+        "support": { "name": "سپورٹ سرکلز", "description": "آپ کے صحت کے سفر میں ہم مرتبہ مدد" },
+        "clinical": { "name": "کلینیکل ونگ", "description": "ماہرین کی زیر قیادت طبی گفتگو" },
+        "resources": { "name": "ریسورس ایکسچینج", "description": "ٹولز، نکات، اور مشترکہ وسائل" }
+      }
+    },
+    "thread": {
+      "postCount": "پوسٹ اس تھریڈ میں",
+      "postCountPlural": "پوسٹس اس تھریڈ میں",
+      "noPosts": "ابھی کوئی پوسٹ نہیں۔ اس تھریڈ میں پہلی پوسٹ کریں۔",
+      "createPost": "پوسٹ بنائیں"
+    },
+    "createThread": {
+      "backLink": "کمیونٹی پر واپس",
+      "heading": "نیا تھریڈ شروع کریں",
+      "categoryLabel": "زمرہ",
+      "titleLabel": "تھریڈ کا عنوان",
+      "titlePlaceholder": "مثلاً جنوبی ایشیائی خوراک کے ساتھ بلڈ شوگر کا انتظام",
+      "descriptionLabel": "تفصیل",
+      "descriptionOptional": "(اختیاری)",
+      "descriptionPlaceholder": "مختصراً بتائیں کہ یہ تھریڈ کس بارے میں ہے...",
+      "cancel": "منسوخ",
+      "submit": "تھریڈ بنائیں",
+      "submitting": "بن رہا ہے..."
+    },
+    "sidebar": {
+      "relatedResources": "متعلقہ وسائل",
+      "types": {
+        "blog": "بلاگ",
+        "news": "خبریں",
+        "research": "تحقیق"
+      }
+    },
+    "breadcrumb": {
+      "home": "ہوم",
+      "community": "کمیونٹی",
+      "threads": "تھریڈز"
     }
   },
   "termsOfUse": {
@@ -745,7 +798,8 @@
     "donate": "عطیہ کریں",
     "allRightsReserved": "جملہ حقوق محفوظ ہیں",
     "termsOfUse": "استعمال کی شرائط",
-    "privacyPolicy": "رازداری کی پالیسی"
+    "privacyPolicy": "رازداری کی پالیسی",
+    "about": "ہمارے بارے میں"
   },
   "login": {
     "title": "اپنے اکاؤنٹ میں لاگ ان کریں",

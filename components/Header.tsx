@@ -2,7 +2,11 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { formatTimeAgo, translateNotification, NotificationData } from "@/lib/communityData";
+import {
+  formatTimeAgo,
+  translateNotification,
+  NotificationData,
+} from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
 import { Bell, ChevronDown, LogOut, Menu, Phone, User, X } from "lucide-react";
 import Link from "next/link";
@@ -211,6 +215,10 @@ function getMenuItems(t: (key: string) => string): MenuItem[] {
             {
               label: t("header.menu_items.recipes"),
               url: "/resources?tab=recipes",
+            },
+            {
+              label: t("header.menu_items.urduGuides"),
+              url: "/urdu-guides",
             },
           ],
         },
@@ -1089,7 +1097,10 @@ export default function Header() {
                               </p>
                             ) : (
                               notifications.map((n) => {
-                                const { title, body } = translateNotification(n, locale);
+                                const { title, body } = translateNotification(
+                                  n,
+                                  locale,
+                                );
                                 return (
                                   <Link
                                     key={n.id}

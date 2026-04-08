@@ -9,11 +9,52 @@ import { usePathname } from "next/navigation";
 export default function Breadcrumbs() {
   const pathname = usePathname();
   const { locale } = useLanguage();
-  const { segmentOverrides } = useBreadcrumb();
+  const { segmentOverrides, customItems } = useBreadcrumb();
   const isUrdu = locale === "ur";
 
   if (pathname === "/") {
     return null;
+  }
+
+  if (customItems) {
+    return (
+      <nav
+        className="bg-gray-50 border-b border-gray-200 sticky top-[52px] lg:top-[64px] z-40"
+        aria-label="Breadcrumb"
+      >
+        <div className="max-w-4xl lg:max-w-6xl mx-auto py-3 px-6 lg:px-0">
+          <ol className="flex items-center space-x-2 text-sm">
+            {customItems.map((item, index) => {
+              const isLast = index === customItems.length - 1;
+              const isHome = index === 0;
+              return (
+                <li key={`${item.href}-${index}`} className="flex items-center">
+                  {index > 0 && (
+                    isUrdu
+                      ? <ChevronLeft className="w-4 h-4 text-gray-400 mx-2" />
+                      : <ChevronRight className="w-4 h-4 text-gray-400 mx-2" />
+                  )}
+                  {isLast ? (
+                    <span className="text-gray-900 font-medium flex items-center">
+                      {isHome && <Home className="w-4 h-4 mr-1" />}
+                      {!isHome && item.label}
+                    </span>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className="text-gray-600 hover:text-primary transition-colors flex items-center"
+                    >
+                      {isHome && <Home className="w-4 h-4" />}
+                      {!isHome && item.label}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </nav>
+    );
   }
 
   const pathSegments = pathname.split("/").filter((segment) => segment);
@@ -42,6 +83,7 @@ export default function Breadcrumbs() {
     "hba1c-translator": "HbA1c Translator",
     "hypo-wallet-card": "Hypo Emergency Card",
     community: "Community",
+    threads: "Threads",
     create: "Create Post",
     dashboard: "Dashboard",
     tools: "Tools",
@@ -78,6 +120,7 @@ export default function Breadcrumbs() {
     "hba1c-translator": "HbA1c ٹرانسلیٹر",
     "hypo-wallet-card": "ہائپو ایمرجنسی کارڈ",
     community: "کمیونٹی",
+    threads: "تھریڈز",
     create: "پوسٹ بنائیں",
     dashboard: "ڈیش بورڈ",
     tools: "ٹولز",

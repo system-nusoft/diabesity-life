@@ -6,7 +6,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { formatTimeAgo } from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
 import {
-  ArrowLeft,
   Ban,
   Check,
   Flag,
@@ -20,12 +19,12 @@ import {
   UserCheck,
   X,
 } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BanConfirmationModal from "./BanConfirmationModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const SUGGESTED_TAGS = [
   "Question",
@@ -62,6 +61,13 @@ interface Post {
   commentsCount: number;
   tags: string[];
   likedByMe: boolean;
+  threadId: string | null;
+}
+
+interface ThreadInfo {
+  id: string;
+  title: string;
+  category: { id: string; name: string; slug: string } | null;
 }
 
 interface Comment {
@@ -82,10 +88,11 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
   const { t, locale } = useLanguage();
   const { user, token, isAdmin, isBanned, banUser, unbanUser, isLoading } =
     useAuth();
-  const { setSegmentOverride, clearSegmentOverride } = useBreadcrumb();
+  const { setSegmentOverride, clearSegmentOverride, setCustomBreadcrumbs, clearCustomBreadcrumbs } = useBreadcrumb();
   const router = useRouter();
 
   const [post, setPost] = useState<Post | null>(null);
+  const [thread, setThread] = useState<ThreadInfo | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
   const [newComment, setNewComment] = useState("");
@@ -154,13 +161,45 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
           return;
         }
         setPost(postData);
-        setSegmentOverride(postId, postData.title);
         setComments(Array.isArray(commentsData) ? commentsData : []);
+
+        if (postData.threadId) {
+          fetch(`${API_BASE_URL}/community/threads/${postData.threadId}`)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((threadData) => {
+              if (threadData) {
+                setThread(threadData);
+                const catKey = threadData.category
+                  ? `community.hub.categories.${threadData.category.slug}.name`
+                  : null;
+                const catVal = catKey ? t(catKey) : null;
+                const categoryLabel =
+                  catVal && catVal !== catKey
+                    ? catVal
+                    : threadData.category?.name ?? t("community.breadcrumb.threads");
+                setCustomBreadcrumbs([
+                  { label: t("community.breadcrumb.home"), href: "/" },
+                  { label: t("community.breadcrumb.community"), href: "/community" },
+                  { label: categoryLabel, href: "/community" },
+                  { label: threadData.title, href: `/community/threads/${postData.threadId}` },
+                  { label: postData.title, href: `/community/${postId}` },
+                ]);
+              } else {
+                setSegmentOverride(postId, postData.title);
+              }
+            })
+            .catch(() => setSegmentOverride(postId, postData.title));
+        } else {
+          setSegmentOverride(postId, postData.title);
+        }
       })
       .catch(() => router.push("/community"))
       .finally(() => setDataLoading(false));
 
-    return () => clearSegmentOverride(postId);
+    return () => {
+      clearSegmentOverride(postId);
+      clearCustomBreadcrumbs();
+    };
   }, [isLoading, user, token, postId, router]);
 
   const handleLikePost = async () => {
@@ -253,7 +292,10 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       );
       if (res.ok) {
         setIsPostDeleted(true);
-        setTimeout(() => router.push("/community"), 1000);
+        const dest = post?.threadId
+          ? `/community/threads/${post.threadId}`
+          : "/community";
+        setTimeout(() => router.push(dest), 1000);
       }
     } else {
       const res = await fetch(
@@ -509,25 +551,6 @@ export default function PostDetailClient({ postId }: PostDetailClientProps) {
       />
 
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <div className="bg-primary text-white py-4">
-          <div className="max-w-4xl mx-auto px-4 flex items-center justify-between">
-            <Link
-              href="/community"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              {t("community.detail.backLink")}
-            </Link>
-            {isAdmin && (
-              <span className="inline-flex items-center gap-1 px-2 py-1 bg-white/20 text-sm rounded">
-                <Shield className="w-4 h-4" />
-                {t("community.adminBadge")}
-              </span>
-            )}
-          </div>
-        </div>
-
         {/* Banned User Banner */}
         {isBanned && (
           <div className="bg-red-500 text-white py-3">

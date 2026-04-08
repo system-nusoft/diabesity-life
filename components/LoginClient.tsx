@@ -30,7 +30,12 @@ export default function LoginClient() {
       await login(email, password);
       router.push("/");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      const msg = err instanceof Error ? err.message : "Login failed";
+      if (msg === "EMAIL_NOT_VERIFIED") {
+        router.push(`/verify-email?email=${encodeURIComponent(email)}`);
+        return;
+      }
+      setError(msg);
     } finally {
       setIsLoading(false);
     }
@@ -122,7 +127,9 @@ export default function LoginClient() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-gray-500">{t("login.or")}</span>
+              <span className="bg-white px-2 text-gray-500">
+                {t("login.or")}
+              </span>
             </div>
           </div>
 
