@@ -1,5 +1,10 @@
 import CreatePostClient from "@/components/CreatePostClient";
+import { Suspense } from "react";
 
 export default function CreatePostPage() {
-  return <CreatePostClient />;
+  return (
+    <Suspense>
+      <CreatePostClient />
+    </Suspense>
+  );
 }

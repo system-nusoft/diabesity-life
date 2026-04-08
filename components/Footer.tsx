@@ -114,6 +114,12 @@ export default function Footer() {
           </div>
           <div className="flex space-x-6">
             <Link
+              href="/about"
+              className="text-gray-500 hover:text-white text-sm transition-colors"
+            >
+              {t("footer.about")}
+            </Link>
+            <Link
               href="/terms-of-use"
               className="text-gray-500 hover:text-white text-sm transition-colors"
             >

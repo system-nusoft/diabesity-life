@@ -75,7 +75,8 @@
       "blogs": "Blogs",
       "news": "News articles",
       "research": "Research articles",
-      "recipes": "Recipes"
+      "recipes": "Recipes",
+      "urduGuides": "Urdu Guides"
     }
   },
   "hba1c": {
@@ -453,9 +454,15 @@
     "takeAction": "Take Action",
     "sections": {
       "whatIsGlp1": { "title": "What is GLP-1?" },
-      "diabesityLink": { "title": "The Link: Why GLP-1 Addresses \"Diabesity\"" },
-      "appetiteRegulation": { "title": "Appetite Regulation: Silencing the \"Food Noise\"" },
-      "insulinSignaling": { "title": "Insulin Signaling: Precision Glucose Control" },
+      "diabesityLink": {
+        "title": "The Link: Why GLP-1 Addresses \"Diabesity\""
+      },
+      "appetiteRegulation": {
+        "title": "Appetite Regulation: Silencing the \"Food Noise\""
+      },
+      "insulinSignaling": {
+        "title": "Insulin Signaling: Precision Glucose Control"
+      },
       "betaCell": { "title": "Beta-Cell Protection" }
     },
     "actionCards": {
@@ -485,10 +492,18 @@
     "sections": {
       "start": { "title": "How to Start — Weeks 1, 4, and 12" },
       "exercise": { "title": "How to Exercise at Home — Move more, safely" },
-      "readLabels": { "title": "How to Read Food Labels — Pakistani brands made simple" },
-      "socialEvents": { "title": "How to Handle Social Events & Cravings — Eid, weddings, office treats" },
-      "prescriptionTreatments": { "title": "How to Use Prescription Treatments — Pens, pills, and practical tips" },
-      "bloodSugar": { "title": "How to Handle High or Low Blood Sugar — Calm, clear actions" }
+      "readLabels": {
+        "title": "How to Read Food Labels — Pakistani brands made simple"
+      },
+      "socialEvents": {
+        "title": "How to Handle Social Events & Cravings — Eid, weddings, office treats"
+      },
+      "prescriptionTreatments": {
+        "title": "How to Use Prescription Treatments — Pens, pills, and practical tips"
+      },
+      "bloodSugar": {
+        "title": "How to Handle High or Low Blood Sugar — Calm, clear actions"
+      }
     }
   },
   "dashboard": {
@@ -581,7 +596,10 @@
       "deleteYourPost": "Delete your post",
       "deleteComment": "Delete comment",
       "editComment": "Edit your comment",
-      "deleteYourComment": "Delete your comment"
+      "deleteYourComment": "Delete your comment",
+      "deleteThread": "Delete thread",
+      "banThreadAuthor": "Ban thread author",
+      "unbanThreadAuthor": "Unban thread author"
     },
     "createPage": {
       "backLink": "Back to community",
@@ -638,8 +656,57 @@
       "deletePostDesc": "Are you sure you want to delete this post",
       "deletePostDescSuffix": "? This action cannot be undone and all comments will also be removed.",
       "deleteCommentDesc": "Are you sure you want to delete this comment? This action cannot be undone.",
+      "deleteThreadTitle": "Delete thread",
+      "deleteThreadDesc": "Are you sure you want to delete the thread",
+      "deleteThreadDescSuffix": "? This will permanently delete all posts and comments within it.",
       "cancel": "Cancel",
       "delete": "Delete"
+    },
+    "hub": {
+      "heading": "Community Hub",
+      "subtitle": "Connect, share and learn with the Diabesity community",
+      "loadingCategories": "Loading categories...",
+      "noThreads": "No threads yet. Be the first to start one.",
+      "posts": "posts",
+      "latest": "Latest:",
+      "startThread": "Start a thread",
+      "categories": {
+        "support": { "name": "Support Circles", "description": "Peer support for your health journey" },
+        "clinical": { "name": "Clinical Wing", "description": "Expert-led medical discussions" },
+        "resources": { "name": "Resource Exchange", "description": "Tools, tips, and shared resources" }
+      }
+    },
+    "thread": {
+      "postCount": "post in this thread",
+      "postCountPlural": "posts in this thread",
+      "noPosts": "No posts yet. Be the first to post in this thread.",
+      "createPost": "Create Post"
+    },
+    "createThread": {
+      "backLink": "Back to Community",
+      "heading": "Start a New Thread",
+      "categoryLabel": "Category",
+      "titleLabel": "Thread Title",
+      "titlePlaceholder": "e.g. Managing blood sugar with a South Asian diet",
+      "descriptionLabel": "Description",
+      "descriptionOptional": "(optional)",
+      "descriptionPlaceholder": "Briefly describe what this thread is about...",
+      "cancel": "Cancel",
+      "submit": "Create Thread",
+      "submitting": "Creating..."
+    },
+    "sidebar": {
+      "relatedResources": "Related Resources",
+      "types": {
+        "blog": "Blog",
+        "news": "News",
+        "research": "Research"
+      }
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "community": "Community",
+      "threads": "Threads"
     }
   },
   "termsOfUse": {
@@ -731,7 +798,8 @@
     "donate": "Donate",
     "allRightsReserved": "All Rights Reserved",
     "termsOfUse": "Terms of use",
-    "privacyPolicy": "Privacy policy"
+    "privacyPolicy": "Privacy policy",
+    "about": "About"
   },
   "login": {
     "title": "Login to your account",

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/lib/utils";
 
 interface User {
@@ -26,6 +27,7 @@ interface AuthContextType {
     firstName: string,
     lastName?: string,
   ) => Promise<void>;
+  verifyEmail: (email: string, otp: string) => Promise<void>;
   logout: () => void;
   banUser: (userId: string) => Promise<void>;
   unbanUser: (userId: string) => Promise<void>;
@@ -39,6 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [bannedUsers, setBannedUsers] = useState<string[]>([]);
+  const router = useRouter();
 
   // Load auth state from localStorage on mount
   useEffect(() => {
@@ -132,7 +135,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       throw new Error(error.message || "Signup failed");
     }
 
-    return await response.json();
+    const data = await response.json();
+    router.push(`/verify-email?email=${encodeURIComponent(email)}`);
+    return data;
+  };
+
+  const verifyEmail = async (email: string, otp: string) => {
+    const response = await fetch(`${API_BASE_URL}/auth/verify-email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, otp }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Verification failed");
+    }
+
+    const data = await response.json();
+    setToken(data.access_token);
+    setUser(data.user);
+    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("user", JSON.stringify(data.user));
   };
 
   const logout = () => {
@@ -153,6 +177,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         bannedUsers,
         login,
         signup,
+        verifyEmail,
         logout,
         banUser,
         unbanUser,
