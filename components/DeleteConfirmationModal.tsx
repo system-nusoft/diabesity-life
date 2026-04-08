@@ -8,7 +8,7 @@ interface DeleteConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  type: "post" | "comment";
+  type: "post" | "comment" | "thread";
   title?: string;
 }
 
@@ -50,7 +50,11 @@ export default function DeleteConfirmationModal({
 
         {/* Title */}
         <h2 className="text-xl font-bold text-gray-900 text-center mb-2">
-          {type === "post" ? t("community.deleteModal.deletePostTitle") : t("community.deleteModal.deleteCommentTitle")}
+          {type === "post"
+            ? t("community.deleteModal.deletePostTitle")
+            : type === "thread"
+              ? t("community.deleteModal.deleteThreadTitle")
+              : t("community.deleteModal.deleteCommentTitle")}
         </h2>
 
         {/* Description */}
@@ -65,10 +69,18 @@ export default function DeleteConfirmationModal({
               )}
               {t("community.deleteModal.deletePostDescSuffix")}
             </>
-          ) : (
+          ) : type === "thread" ? (
             <>
-              {t("community.deleteModal.deleteCommentDesc")}
+              {t("community.deleteModal.deleteThreadDesc")}
+              {title && (
+                <>
+                  : <strong className="break-words">&quot;{title}&quot;</strong>
+                </>
+              )}
+              {t("community.deleteModal.deleteThreadDescSuffix")}
             </>
+          ) : (
+            <>{t("community.deleteModal.deleteCommentDesc")}</>
           )}
         </p>
 

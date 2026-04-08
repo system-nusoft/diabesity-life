@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { API_BASE_URL } from "@/lib/utils";
 import { ArrowLeft, X } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
@@ -30,6 +30,8 @@ export default function CreatePostClient() {
   const { t } = useLanguage();
   const { user, token, isLoading, isBanned } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const threadId = searchParams.get("threadId");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -42,7 +44,10 @@ export default function CreatePostClient() {
     if (!isLoading && isBanned) {
       router.push("/community");
     }
-  }, [user, isLoading, isBanned, router]);
+    if (!isLoading && user && !threadId) {
+      router.push("/community");
+    }
+  }, [user, isLoading, isBanned, threadId, router]);
 
   const handleTagToggle = (tag: string) => {
     setSelectedTags((prev) =>
@@ -68,11 +73,12 @@ export default function CreatePostClient() {
           title: title.trim(),
           content: content.trim(),
           tags: selectedTags,
+          threadId: threadId ?? undefined,
         }),
       });
 
       if (!res.ok) throw new Error("Failed to create post");
-      router.push("/community");
+      router.push(threadId ? `/community/threads/${threadId}` : "/community");
     } finally {
       setIsSubmitting(false);
     }
@@ -96,7 +102,7 @@ export default function CreatePostClient() {
       <div className="bg-primary text-white py-4">
         <div className="max-w-4xl mx-auto px-4">
           <Link
-            href="/community"
+            href={threadId ? `/community/threads/${threadId}` : "/community"}
             className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
@@ -200,7 +206,11 @@ export default function CreatePostClient() {
 
             {/* Submit Button */}
             <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
-              <Link href="/community">
+              <Link
+                href={
+                  threadId ? `/community/threads/${threadId}` : "/community"
+                }
+              >
                 <Button type="button" variant="outlined">
                   {t("community.createPage.cancel")}
                 </Button>
