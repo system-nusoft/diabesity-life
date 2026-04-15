@@ -8,11 +8,21 @@ import {
   NotificationData,
 } from "@/lib/communityData";
 import { API_BASE_URL } from "@/lib/utils";
-import { Bell, ChevronDown, LogOut, Menu, Phone, User, X } from "lucide-react";
+import {
+  Bell,
+  ChevronDown,
+  LogOut,
+  Menu,
+  Phone,
+  Search,
+  User,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import HealthcareProfessionalModal from "./HealthcareProfessionalModal";
+import SearchOverlay from "./SearchOverlay";
 import { Button } from "./ui/button";
 
 interface MenuItem {
@@ -243,6 +253,7 @@ export default function Header() {
   const [mobileExpandedItems, setMobileExpandedItems] = useState<string[]>([]);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const megaMenuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -831,17 +842,26 @@ export default function Header() {
                     className="h-[45px] w-auto"
                   />
                 </Link>
-                <div className="text-end">
-                  <p className="text-xs text-primary-text">
-                    {t("header.careline")}
-                  </p>
-                  <a
-                    href="tel:+923710622837"
-                    className="flex items-center justify-end gap-1 text-md font-bold text-primary"
+                <div className="flex items-center gap-2">
+                  <div className="text-end">
+                    <p className="text-[12px] text-primary-text">
+                      {t("header.careline")}
+                    </p>
+                    <a
+                      href="tel:+923710622837"
+                      className="flex items-center justify-end gap-1 text-md font-bold text-primary"
+                    >
+                      <Phone className="w-4 h-4" />
+                      03710-622837
+                    </a>
+                  </div>
+                  <button
+                    onClick={() => setIsSearchOpen(true)}
+                    className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors shrink-0"
+                    title="Search"
                   >
-                    <Phone className="w-4 h-4" />
-                    03710-622837
-                  </a>
+                    <Search className="w-4 h-4 text-primary" />
+                  </button>
                 </div>
               </div>
 
@@ -882,6 +902,14 @@ export default function Header() {
                   className="px-8 py-2 border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium text-xs whitespace-nowrap"
                 >
                   {t("header.forProfessionals")}
+                </button>
+                {/* Search - Desktop */}
+                <button
+                  onClick={() => setIsSearchOpen(true)}
+                  className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                  title="Search"
+                >
+                  <Search className="w-4 h-4 text-primary" />
                 </button>
               </div>
 
@@ -1253,6 +1281,10 @@ export default function Header() {
       <HealthcareProfessionalModal
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+      />
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
       />
     </header>
   );
