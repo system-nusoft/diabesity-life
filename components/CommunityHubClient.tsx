@@ -46,7 +46,8 @@ interface Category {
 }
 
 export default function CommunityHubClient() {
-  const { user, token, isAdmin, isBanned, banUser, unbanUser } = useAuth();
+  const { user, token, isAdmin, isBanned, banUser, unbanUser, isLoading } =
+    useAuth();
   const { t, locale } = useLanguage();
   const router = useRouter();
 
@@ -63,6 +64,12 @@ export default function CommunityHubClient() {
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.push("/login");
+    }
+  }, [user, isLoading, router]);
   const [banModalState, setBanModalState] = useState<{
     isOpen: boolean;
     userId: string;
@@ -76,6 +83,7 @@ export default function CommunityHubClient() {
   }>({ isOpen: false, threadId: "", threadTitle: "" });
 
   useEffect(() => {
+    if (isLoading || !user) return;
     fetch(`${API_BASE_URL}/community/categories`)
       .then((r) => r.json())
       .then((data) => {
@@ -83,7 +91,7 @@ export default function CommunityHubClient() {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [isLoading, user]);
 
   const handleStartThread = (categoryId: string) => {
     if (!user) {
@@ -155,6 +163,8 @@ export default function CommunityHubClient() {
       })),
     );
   };
+
+  if (isLoading || !user) return null;
 
   return (
     <>
