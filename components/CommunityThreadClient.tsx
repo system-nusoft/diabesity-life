@@ -46,7 +46,12 @@ interface ThreadInfo {
   title: string;
   description: string | null;
   postCount: number;
-  author: { id: string; name: string; communityBanned: boolean; role?: string } | null;
+  author: {
+    id: string;
+    name: string;
+    communityBanned: boolean;
+    role?: string;
+  } | null;
   category: { id: string; name: string; slug: string } | null;
 }
 
@@ -280,7 +285,10 @@ export default function CommunityThreadClient({
           {/* Actions bar */}
           <div className="flex justify-between items-center mb-6">
             <p className="text-sm text-gray-500">
-              {posts.length} {posts.length !== 1 ? t("community.thread.postCountPlural") : t("community.thread.postCount")}
+              {posts.length}{" "}
+              {posts.length !== 1
+                ? t("community.thread.postCountPlural")
+                : t("community.thread.postCount")}
             </p>
             <div className="flex items-center gap-2">
               {isAdmin && thread.author && (
@@ -373,123 +381,125 @@ export default function CommunityThreadClient({
                 : t("community.thread.noPosts")}
             </div>
           ) : (
-            <div className="flex flex-col space-y-4">
+            <div className="bg-white border border-gray-200 divide-y divide-gray-100">
               {filteredPosts.map((post) => (
-                <Link href={`/community/${post.id}`} key={post.id}>
-                  <div className="bg-white border border-gray-200 p-5 hover:border-primary transition-colors cursor-pointer">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                          <User className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <p className="font-medium text-gray-800">
-                              {post.author.name}
-                            </p>
-                            {post.author.communityBanned && (
-                              <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5">
-                                {t("community.bannedBadge")}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-gray-500">
-                            {formatTimeAgo(post.createdAt, locale)}
-                          </p>
-                        </div>
-                      </div>
-
-                      {isAdmin && (
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setBanModalState({
-                                isOpen: true,
-                                userId: post.author.id,
-                                userName: post.author.name,
-                                isBanned: !!post.author.communityBanned,
-                              });
-                            }}
-                            className={`p-2 rounded transition-colors ${
-                              post.author.communityBanned
-                                ? "text-green-600 hover:bg-green-50"
-                                : "text-orange-500 hover:bg-orange-50"
-                            }`}
-                            title={
-                              post.author.communityBanned
-                                ? t("community.tooltips.unbanUser")
-                                : t("community.tooltips.banUser")
-                            }
-                          >
-                            {post.author.communityBanned ? (
-                              <UserCheck className="w-5 h-5" />
-                            ) : (
-                              <Ban className="w-5 h-5" />
-                            )}
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              setDeletePostModal({
-                                isOpen: true,
-                                postId: post.id,
-                                postTitle: post.title,
-                              });
-                            }}
-                            className="p-2 text-red-500 hover:bg-red-50 rounded transition-colors"
-                            title={t("community.tooltips.deletePost")}
-                          >
-                            <Trash2 className="w-5 h-5" />
-                          </button>
-                        </div>
-                      )}
+                <div
+                  key={post.id}
+                  className="relative group hover:bg-gray-50 transition-colors"
+                >
+                  <Link
+                    href={`/community/${post.id}`}
+                    className="flex items-center gap-4 px-5 py-3.5"
+                  >
+                    {/* Icon */}
+                    <div className="shrink-0 w-8 h-8 bg-primary/10 flex items-center justify-center">
+                      <User className="w-4 h-4 text-primary" />
                     </div>
 
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-2">
-                      {post.content}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium"
-                        >
-                          {tag}
+                    {/* Title + meta */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-semibold text-sm text-gray-900 group-hover:text-primary transition-colors">
+                          {post.title}
                         </span>
-                      ))}
+                        {post.author.communityBanned && (
+                          <span className="text-xs text-red-500 bg-red-50 px-2 py-0.5">
+                            {t("community.bannedBadge")}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+                        <span className="text-xs text-gray-500">
+                          {post.author.name} ·{" "}
+                          {formatTimeAgo(post.createdAt, locale)}
+                        </span>
+                        {post.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-1.5 py-0.5 bg-primary/10 text-primary text-[10px] font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-6 pt-3 border-t border-gray-100">
+                    {/* Stats */}
+                    <div
+                      className={`shrink-0 flex items-center gap-4 text-xs text-gray-500 ${isAdmin ? "mr-16" : ""}`}
+                    >
                       <button
                         onClick={(e) => handleLikePost(post.id, e)}
                         disabled={isBanned}
-                        className={`flex items-center gap-2 text-sm transition-colors ${
+                        className={`flex items-center gap-1 transition-colors ${
                           isBanned
                             ? "text-gray-300 cursor-not-allowed"
                             : post.likedByMe
                               ? "text-red-500"
-                              : "text-gray-500 hover:text-red-500"
+                              : "hover:text-red-500"
                         }`}
                       >
                         <Heart
-                          className={`w-5 h-5 ${post.likedByMe && !isBanned ? "fill-current" : ""}`}
+                          className={`w-3.5 h-3.5 ${post.likedByMe && !isBanned ? "fill-current" : ""}`}
                         />
                         <span>{post.likes}</span>
                       </button>
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <MessageCircle className="w-5 h-5" />
-                        <span>{post.commentsCount} {t("community.comments")}</span>
+                      <div className="flex items-center gap-1">
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>{post.commentsCount}</span>
                       </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+
+                  {/* Admin controls */}
+                  {isAdmin && (
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setBanModalState({
+                            isOpen: true,
+                            userId: post.author.id,
+                            userName: post.author.name,
+                            isBanned: !!post.author.communityBanned,
+                          });
+                        }}
+                        className={`p-1.5 rounded transition-colors ${
+                          post.author.communityBanned
+                            ? "text-green-600 hover:bg-green-100"
+                            : "text-orange-500 hover:bg-orange-50"
+                        }`}
+                        title={
+                          post.author.communityBanned
+                            ? t("community.tooltips.unbanUser")
+                            : t("community.tooltips.banUser")
+                        }
+                      >
+                        {post.author.communityBanned ? (
+                          <UserCheck className="w-4 h-4" />
+                        ) : (
+                          <Ban className="w-4 h-4" />
+                        )}
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setDeletePostModal({
+                            isOpen: true,
+                            postId: post.id,
+                            postTitle: post.title,
+                          });
+                        }}
+                        className="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors"
+                        title={t("community.tooltips.deletePost")}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           )}

@@ -1052,6 +1052,7 @@ const faqs = [
   },
 ];
 
+
 export default function NewsClient() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<Category>("Health");
@@ -1182,7 +1183,9 @@ export default function NewsClient() {
                         {locale === "ur" ? info.titleUr : info.title}
                       </h3>
                       <p className="text-gray-700 leading-relaxed max-w-xs">
-                        {locale === "ur" ? info.descriptionUr : info.description}
+                        {locale === "ur"
+                          ? info.descriptionUr
+                          : info.description}
                       </p>
                     </div>
                   </div>

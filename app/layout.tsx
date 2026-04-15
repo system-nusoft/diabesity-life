@@ -1,4 +1,5 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
@@ -55,17 +56,18 @@ export default function RootLayout({
         <LanguageProvider>
           <AuthProvider>
             <BreadcrumbProvider>
-            <SidebarProvider>
-              <Header />
-              <Breadcrumbs />
-              <div className="lg:flex">
-                <Suspense fallback={<div />}>
-                  <Sidebar />
-                </Suspense>
-                <main className="w-full lg:flex-1">{children}</main>
-              </div>
-              <Footer />
-            </SidebarProvider>
+              <SidebarProvider>
+                <Header />
+                <Breadcrumbs />
+                <div className="lg:flex">
+                  <Suspense fallback={<div />}>
+                    <Sidebar />
+                  </Suspense>
+                  <main className="w-full lg:flex-1">{children}</main>
+                </div>
+                <Footer />
+                <ChatWidget />
+              </SidebarProvider>
             </BreadcrumbProvider>
           </AuthProvider>
         </LanguageProvider>

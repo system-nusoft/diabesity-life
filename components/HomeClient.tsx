@@ -503,9 +503,15 @@ export default function Home({ blogs, news }: HomeClientProps) {
         <div className="lg:max-w-4xl xl:max-w-6xl 2xl:max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-10 lg:gap-24">
             {impactStats.map((stat, index) => (
-              <div key={index} className={`flex flex-col${locale === "ur" ? " text-right" : ""}`}>
+              <div
+                key={index}
+                className={`flex flex-col${locale === "ur" ? " text-right" : ""}`}
+              >
                 <div className="mb-4">
-                  <h2 className="text-4xl md:text-5xl font-bold text-primary-text" dir="ltr">
+                  <h2
+                    className="text-4xl md:text-5xl font-bold text-primary-text"
+                    dir="ltr"
+                  >
                     {stat.value}
                   </h2>
                   <p className="text-xl md:text-2xl leading-8 font-bold text-secondary">
@@ -699,15 +705,27 @@ export default function Home({ blogs, news }: HomeClientProps) {
                           </small>
                           <h3
                             className="font-medium text-primary-text text-lg leading-snug line-clamp-3 min-h-[4.5rem]"
-                            dir={locale === "ur" && article.titleUr ? "rtl" : undefined}
+                            dir={
+                              locale === "ur" && article.titleUr
+                                ? "rtl"
+                                : undefined
+                            }
                           >
-                            {locale === "ur" && article.titleUr ? article.titleUr : article.title}
+                            {locale === "ur" && article.titleUr
+                              ? article.titleUr
+                              : article.title}
                           </h3>
                           <p
                             className="text-primary-text text-sm leading-relaxed line-clamp-3"
-                            dir={locale === "ur" && article.excerptUr ? "rtl" : undefined}
+                            dir={
+                              locale === "ur" && article.excerptUr
+                                ? "rtl"
+                                : undefined
+                            }
                           >
-                            {locale === "ur" && article.excerptUr ? article.excerptUr : article.excerpt}
+                            {locale === "ur" && article.excerptUr
+                              ? article.excerptUr
+                              : article.excerpt}
                           </p>
                         </div>
                       </Card>
@@ -777,7 +795,7 @@ export default function Home({ blogs, news }: HomeClientProps) {
                     <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-xs font-semibold">
                       {new Date(blog.date).toLocaleDateString(
                         locale === "ur" ? "ur-PK" : "en-GB",
-                        { day: "numeric", month: "short" }
+                        { day: "numeric", month: "short" },
                       )}
                     </div>
                     <img
@@ -791,7 +809,9 @@ export default function Home({ blogs, news }: HomeClientProps) {
                       className="font-bold text-primary-text text-xl mb-4"
                       dir={locale === "ur" && blog.urdu ? "rtl" : undefined}
                     >
-                      {locale === "ur" && blog.urdu ? blog.urdu.title : blog.title}
+                      {locale === "ur" && blog.urdu
+                        ? blog.urdu.title
+                        : blog.title}
                     </h3>
                     <p className="text-primary-text text-md font-semibold leading-relaxed line-clamp-3 mb-4">
                       {blog.excerpt}
@@ -1144,9 +1164,13 @@ export default function Home({ blogs, news }: HomeClientProps) {
                     <div className="flex flex-col justify-between px-4 h-48">
                       <h3
                         className="font-bold text-gray-900 text-xl leading-tight"
-                        dir={locale === "ur" && recipe.titleUr ? "rtl" : undefined}
+                        dir={
+                          locale === "ur" && recipe.titleUr ? "rtl" : undefined
+                        }
                       >
-                        {locale === "ur" && recipe.titleUr ? recipe.titleUr : recipe.title}
+                        {locale === "ur" && recipe.titleUr
+                          ? recipe.titleUr
+                          : recipe.title}
                       </h3>
 
                       {/* Nutrition Info Grid */}
@@ -1180,11 +1204,15 @@ export default function Home({ blogs, news }: HomeClientProps) {
                             {recipe.sugars}
                           </div>
                           <div className="text-xs mt-1">
-                            ({locale === "ur"
-                              ? recipe.sugarLevel === "Low" ? "کم"
-                                : recipe.sugarLevel === "Medium" ? "درمیانہ"
-                                : "زیادہ"
-                              : recipe.sugarLevel})
+                            (
+                            {locale === "ur"
+                              ? recipe.sugarLevel === "Low"
+                                ? "کم"
+                                : recipe.sugarLevel === "Medium"
+                                  ? "درمیانہ"
+                                  : "زیادہ"
+                              : recipe.sugarLevel}
+                            )
                           </div>
                         </div>
                       </div>
