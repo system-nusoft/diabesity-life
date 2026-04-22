@@ -31,43 +31,27 @@ function classifyAdultBmi(bmi: number): {
         "A BMI below 18.5 may indicate insufficient body weight. Consider consulting a healthcare provider about nutrition.",
     };
   }
-  if (bmi < 23.5) {
+  if (bmi < 23) {
     return {
-      category: "Normal",
+      category: "Normal Weight",
       color: "#22c55e",
       description:
         "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
     };
   }
-  if (bmi < 25) {
+  if (bmi < 27.5) {
     return {
-      category: "Overweight",
+      category: "Increased/At Risk (Overweight)",
       color: "#f59e0b",
       description:
-        "A BMI of 23.5–24.9 is considered overweight. Small lifestyle changes in diet and activity can help reduce future health risks.",
-    };
-  }
-  if (bmi < 30) {
-    return {
-      category: "Obese (Class I)",
-      color: "#f97316",
-      description:
-        "A BMI of 25–29.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
-    };
-  }
-  if (bmi < 35) {
-    return {
-      category: "Obese (Class II)",
-      color: "#ef4444",
-      description:
-        "A BMI of 30–34.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
+        "A BMI of 23.0–27.4 is considered increased/at risk. Lifestyle changes in diet and activity can help reduce future health risks.",
     };
   }
   return {
-    category: "Obese (Class III)",
-    color: "#dc2626",
+    category: "High Risk (Obese)",
+    color: "#ef4444",
     description:
-      "A BMI of 35 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
+      "A BMI of 27.5 or above is classified as high risk. Please consult a healthcare provider for personalised advice and support.",
   };
 }
 
@@ -171,13 +155,23 @@ function BmiGauge({ bmi }: { bmi: number | null }) {
   const r = 120;
 
   // Segments defined as percentage of the 180° arc (left to right)
+  // Gauge range: 10–45 (35 units). Segment boundaries: 18.5, 23.0, 27.5
+  // pct = (bmi - 10) / 35 * 100
   const segments = [
-    { label: "Underweight", color: "#3b82f6", startPct: 0, endPct: 24.29 },
-    { label: "Normal", color: "#22c55e", startPct: 24.29, endPct: 38.57 },
-    { label: "Overweight", color: "#f59e0b", startPct: 38.57, endPct: 42.86 },
-    { label: "Obese I", color: "#f97316", startPct: 42.86, endPct: 57.14 },
-    { label: "Obese II", color: "#ef4444", startPct: 57.14, endPct: 71.43 },
-    { label: "Obese III", color: "#dc2626", startPct: 71.43, endPct: 100 },
+    { label: "Underweight", color: "#3b82f6", startPct: 0, endPct: 24.29 }, // 10–18.5
+    {
+      label: "Normal Weight",
+      color: "#22c55e",
+      startPct: 24.29,
+      endPct: 37.14,
+    }, // 18.5–23.0
+    {
+      label: "Increased/At Risk",
+      color: "#f59e0b",
+      startPct: 37.14,
+      endPct: 50,
+    }, // 23.0–27.5
+    { label: "High Risk", color: "#ef4444", startPct: 50, endPct: 100 }, // 27.5–45
   ];
 
   // Convert percentage (0-100) to angle in radians
@@ -256,22 +250,18 @@ export default function BmiCalculatorClient() {
 
   // Maps English category keys (from classification functions) to translated strings
   const categoryLabel: Record<string, string> = {
-    "Underweight": t("bmi.categories.underweight"),
-    "Normal": t("bmi.categories.normal"),
-    "Overweight": t("bmi.categories.overweight"),
+    Underweight: t("bmi.categories.underweight"),
+    "Normal Weight": t("bmi.categories.normalWeight"),
+    "Increased/At Risk (Overweight)": t("bmi.categories.increasedRisk"),
+    "High Risk (Obese)": t("bmi.categories.highRisk"),
     "Healthy weight": t("bmi.categories.healthyWeight"),
-    "Obese (Class I)": t("bmi.categories.obese1"),
-    "Obese (Class II)": t("bmi.categories.obese2"),
-    "Obese (Class III)": t("bmi.categories.obese3"),
-    "Obese": t("bmi.categories.obese"),
+    Obese: t("bmi.categories.obese"),
   };
   const descriptionLabel: Record<string, string> = {
-    "Underweight": t("bmi.descriptions.underweight"),
-    "Normal": t("bmi.descriptions.normal"),
-    "Overweight": t("bmi.descriptions.overweight"),
-    "Obese (Class I)": t("bmi.descriptions.obese1"),
-    "Obese (Class II)": t("bmi.descriptions.obese2"),
-    "Obese (Class III)": t("bmi.descriptions.obese3"),
+    Underweight: t("bmi.descriptions.underweight"),
+    "Normal Weight": t("bmi.descriptions.normalWeight"),
+    "Increased/At Risk (Overweight)": t("bmi.descriptions.increasedRisk"),
+    "High Risk (Obese)": t("bmi.descriptions.highRisk"),
   };
   const [age, setAge] = useState("");
   const [gender, setGender] = useState<Gender>("male");
@@ -546,7 +536,9 @@ export default function BmiCalculatorClient() {
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder={
-                      weightUnit === "kg" ? t("bmi.form.weightKgPlaceholder") : t("bmi.form.weightLbsPlaceholder")
+                      weightUnit === "kg"
+                        ? t("bmi.form.weightKgPlaceholder")
+                        : t("bmi.form.weightLbsPlaceholder")
                     }
                     min="0"
                     className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -597,7 +589,10 @@ export default function BmiCalculatorClient() {
                       {categoryLabel[result.category] ?? result.category}
                     </p>
                     <p className="text-gray-500 text-sm mt-4 max-w-xs leading-relaxed">
-                      {result.isChild ? t("bmi.descriptions.child") : (descriptionLabel[result.category] ?? result.description)}
+                      {result.isChild
+                        ? t("bmi.descriptions.child")
+                        : (descriptionLabel[result.category] ??
+                          result.description)}
                     </p>
                     {user && (
                       <button
@@ -643,46 +638,34 @@ export default function BmiCalculatorClient() {
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
             {t("bmi.info.heading")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-blue-500 flex-shrink-0" />
-                <p className="text-gray-700">
-                  <strong>{t("bmi.info.ranges.below185")}</strong> — {t("bmi.categories.underweight")}
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-green-500 flex-shrink-0" />
-                <p className="text-gray-700">
-                  <strong>{t("bmi.info.ranges.185to234")}</strong> — {t("bmi.categories.normal")}
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-yellow-500 flex-shrink-0" />
-                <p className="text-gray-700">
-                  <strong>{t("bmi.info.ranges.235to249")}</strong> — {t("bmi.categories.overweight")}
-                </p>
-              </div>
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-blue-500 flex-shrink-0" />
+              <p className="text-gray-700">
+                <strong>{t("bmi.info.ranges.below185")}</strong> —{" "}
+                {t("bmi.categories.underweight")}
+              </p>
             </div>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-orange-500 flex-shrink-0" />
-                <p className="text-gray-700">
-                  <strong>{t("bmi.info.ranges.250to299")}</strong> — {t("bmi.categories.obese1")}
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-red-500 flex-shrink-0" />
-                <p className="text-gray-700">
-                  <strong>{t("bmi.info.ranges.300to349")}</strong> — {t("bmi.categories.obese2")}
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full bg-red-600 flex-shrink-0" />
-                <p className="text-gray-700">
-                  <strong>{t("bmi.info.ranges.350plus")}</strong> — {t("bmi.categories.obese3")}
-                </p>
-              </div>
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-green-500 flex-shrink-0" />
+              <p className="text-gray-700">
+                <strong>{t("bmi.info.ranges.185to229")}</strong> —{" "}
+                {t("bmi.categories.normalWeight")}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-yellow-500 flex-shrink-0" />
+              <p className="text-gray-700">
+                <strong>{t("bmi.info.ranges.230to274")}</strong> —{" "}
+                {t("bmi.categories.increasedRisk")}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-red-500 flex-shrink-0" />
+              <p className="text-gray-700">
+                <strong>{t("bmi.info.ranges.275plus")}</strong> —{" "}
+                {t("bmi.categories.highRisk")}
+              </p>
             </div>
           </div>
 

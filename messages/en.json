@@ -175,21 +175,17 @@
     },
     "categories": {
       "underweight": "Underweight",
-      "normal": "Normal",
-      "overweight": "Overweight",
+      "normalWeight": "Normal Weight",
+      "increasedRisk": "Increased/At Risk (Overweight)",
+      "highRisk": "High Risk (Obese)",
       "healthyWeight": "Healthy weight",
-      "obese1": "Obese (Class I)",
-      "obese2": "Obese (Class II)",
-      "obese3": "Obese (Class III)",
       "obese": "Obese"
     },
     "descriptions": {
       "underweight": "A BMI below 18.5 may indicate insufficient body weight. Consider consulting a healthcare provider about nutrition.",
-      "normal": "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
-      "overweight": "A BMI of 23.5–24.9 is considered overweight. Small lifestyle changes in diet and activity can help reduce future health risks.",
-      "obese1": "A BMI of 25–29.9 is classified as Class I obesity. Lifestyle changes and medical guidance can support better health.",
-      "obese2": "A BMI of 30–34.9 is classified as Class II obesity. Please consult a healthcare provider for personalised advice.",
-      "obese3": "A BMI of 35 or above is classified as Class III obesity. Medical support is recommended for safe, effective management.",
+      "normalWeight": "Your BMI is within the healthy range. Maintain your current lifestyle with balanced nutrition and regular activity.",
+      "increasedRisk": "A BMI of 23.0–27.4 is considered increased/at risk. Lifestyle changes in diet and activity can help reduce future health risks.",
+      "highRisk": "A BMI of 27.5 or above is classified as high risk. Please consult a healthcare provider for personalised advice and support.",
       "child": "For children and teens (ages 2–17), BMI is interpreted using age and gender-specific percentiles. Please consult a paediatrician for a full assessment."
     },
     "info": {
@@ -197,11 +193,9 @@
       "note": "Note: BMI is a screening tool, not a diagnostic measure, and does not account for muscle mass or bone density. Always consult a healthcare professional for a comprehensive assessment.",
       "ranges": {
         "below185": "Below 18.5",
-        "185to234": "18.5 – 23.4",
-        "235to249": "23.5 – 24.9",
-        "250to299": "25.0 – 29.9",
-        "300to349": "30.0 – 34.9",
-        "350plus": "35.0+"
+        "185to229": "18.5 – 22.9",
+        "230to274": "23.0 – 27.4",
+        "275plus": "27.5 or above"
       }
     }
   },
