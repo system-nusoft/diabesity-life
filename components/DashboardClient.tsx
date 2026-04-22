@@ -126,9 +126,9 @@ function CustomTooltip({
   const rawCategory = payload[0].payload.category;
   const bmiCategoryLabel: Record<string, string> = {
     Underweight: t("bmi.categories.underweight"),
-    Normal: t("bmi.categories.normal"),
-    Overweight: t("bmi.categories.overweight"),
-    Obese: t("bmi.categories.obese"),
+    "Normal Weight": t("bmi.categories.normalWeight"),
+    "Increased/At Risk (Overweight)": t("bmi.categories.increasedRisk"),
+    "High Risk (Obese)": t("bmi.categories.highRisk"),
   };
   const hba1cCategoryLabel: Record<string, string> = {
     Normal: t("hba1c.categories.normal"),
@@ -177,9 +177,9 @@ function ToolSection({
 
   const bmiCategoryLabel: Record<string, string> = {
     Underweight: t("bmi.categories.underweight"),
-    Normal: t("bmi.categories.normal"),
-    Overweight: t("bmi.categories.overweight"),
-    Obese: t("bmi.categories.obese"),
+    "Normal Weight": t("bmi.categories.normalWeight"),
+    "Increased/At Risk (Overweight)": t("bmi.categories.increasedRisk"),
+    "High Risk (Obese)": t("bmi.categories.highRisk"),
   };
   const hba1cCategoryLabel: Record<string, string> = {
     Normal: t("hba1c.categories.normal"),
