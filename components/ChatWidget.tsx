@@ -114,36 +114,66 @@ export default function ChatWidget() {
                       : "bg-white border border-gray-200 text-gray-800"
                   }`}
                 >
-                  {msg.role === "user" ? (
-                    msg.text
-                  ) : (
-                    <ReactMarkdown
-                      components={{
-                        p: ({ children }) => (
-                          <p className="mb-1 last:mb-0">{children}</p>
-                        ),
-                        ul: ({ children }) => (
-                          <ul className="list-disc pl-4 mb-1 space-y-0.5">
-                            {children}
-                          </ul>
-                        ),
-                        ol: ({ children }) => (
-                          <ol className="list-decimal pl-4 mb-1 space-y-0.5">
-                            {children}
-                          </ol>
-                        ),
-                        li: ({ children }) => <li>{children}</li>,
-                        strong: ({ children }) => (
-                          <strong className="font-semibold">{children}</strong>
-                        ),
-                        em: ({ children }) => (
-                          <em className="italic">{children}</em>
-                        ),
-                      }}
-                    >
-                      {msg.text}
-                    </ReactMarkdown>
-                  )}
+                  {msg.role === "user"
+                    ? msg.text
+                    : (() => {
+                        const disclaimerIndex = msg.text.lastIndexOf("\n⚠️");
+                        const body =
+                          disclaimerIndex !== -1
+                            ? msg.text.slice(0, disclaimerIndex).trimEnd()
+                            : msg.text;
+                        const disclaimer =
+                          disclaimerIndex !== -1
+                            ? msg.text.slice(disclaimerIndex).trim()
+                            : null;
+                        return (
+                          <>
+                            <ReactMarkdown
+                              components={{
+                                p: ({ children }) => (
+                                  <p className="mb-1 last:mb-0">{children}</p>
+                                ),
+                                ul: ({ children }) => (
+                                  <ul className="list-disc pl-4 mb-1 space-y-0.5">
+                                    {children}
+                                  </ul>
+                                ),
+                                ol: ({ children }) => (
+                                  <ol className="list-decimal pl-4 mb-1 space-y-0.5">
+                                    {children}
+                                  </ol>
+                                ),
+                                li: ({ children }) => <li>{children}</li>,
+                                strong: ({ children }) => (
+                                  <strong className="font-semibold">
+                                    {children}
+                                  </strong>
+                                ),
+                                em: ({ children }) => (
+                                  <em className="italic">{children}</em>
+                                ),
+                                a: ({ href, children }) => (
+                                  <a
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-primary underline hover:opacity-80"
+                                  >
+                                    {children}
+                                  </a>
+                                ),
+                              }}
+                            >
+                              {body}
+                            </ReactMarkdown>
+                            {disclaimer && (
+                              <p className="mt-2 pt-2 border-t border-gray-100 text-[11px] italic font-light tracking-wide text-gray-400">
+                                {disclaimer}
+                              </p>
+                            )}
+                          </>
+                        );
+                      })()}
                 </div>
               </div>
             ))}
